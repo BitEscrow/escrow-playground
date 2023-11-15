@@ -2,7 +2,7 @@ import { createStore }    from '@cmdcode/use-store'
 import { ProposalData }   from '@scrow/core'
 import { parse_proposal } from '@scrow/core/parse'
 
-export interface MockStore {
+export interface AppStore {
   cid      : string
   proposal : ProposalData
 }
@@ -31,14 +31,11 @@ const proposal = parse_proposal({
   version : 1
 })
 
-const defaults : MockStore = {
+const defaults : AppStore = {
   proposal,
   cid : 'daed3d6a782ca4b31286dc04be8b31852539e0647b097e359de3e55c75892432'
 }
 
-export const { 
-  StoreProvider : MockProvider, 
-  useStore      : useMock
-} = createStore({ defaults })
+const session_key = 'escrow-playground'
 
-
+export const { StoreProvider, useStore } = createStore({ defaults, session_key })

@@ -22,12 +22,29 @@
     "@noble/hashes" "^1.3.0"
     "@scure/base" "^1.1.3"
 
+"@cmdcode/buff@^2.2.3":
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@cmdcode/buff/-/buff-2.2.3.tgz#49f5e7eaa8a953c7c3bec1fc1ff55c1e611db850"
+  integrity sha512-GmG6RmQP9llMEr2kkR04Y8ctMAodg35xrK4x3dNGAa0OngKCzzEp1aoAt2cNVGyNwEo7zLzrtIw7QLGWhqnxww==
+  dependencies:
+    "@noble/hashes" "^1.3.0"
+    "@scure/base" "^1.1.3"
+
 "@cmdcode/crypto-tools@2.6.1", "@cmdcode/crypto-tools@^2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@cmdcode/crypto-tools/-/crypto-tools-2.6.1.tgz#aab6202f8cfcc4527afe1b84193a3827de6e8841"
   integrity sha512-UaBodL+fOalmD+6t+fpjSnonFe1yDPoj7/i09pE+dUjaUXixGn2SrB+MGrhuqDfyFwI2DEa2DxX/lOMy50FkJQ==
   dependencies:
     "@cmdcode/buff" "^2.2.2"
+    "@noble/curves" "^1.1.0"
+    "@noble/hashes" "^1.3.0"
+
+"@cmdcode/crypto-tools@^2.6.2":
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/@cmdcode/crypto-tools/-/crypto-tools-2.6.2.tgz#d3b8d2307be705ee875ac032e41e176a74da623d"
+  integrity sha512-ywsSxBBxu+jpdleCRQUsQ+sjFs8MLpRSbcBJeYfgjAO1noBYnkpWNf62xrjtY6fEDosgyVt8NMm9yCe9z7tWNA==
+  dependencies:
+    "@cmdcode/buff" "^2.2.3"
     "@noble/curves" "^1.1.0"
     "@noble/hashes" "^1.3.0"
 
@@ -38,6 +55,17 @@
   dependencies:
     "@cmdcode/buff" "^2.2.2"
     "@cmdcode/crypto-tools" "^2.6.1"
+
+"@cmdcode/use-signer@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@cmdcode/use-signer/-/use-signer-0.0.3.tgz#4ede211d04368de7bf56d189916a4723ca42046b"
+  integrity sha512-06blLyTw/VuIkUP0qm1P5b5TwhOTbZqUDlsgU5Voi2USIbDnxVCbSy52yAIvze0ED1QxynT0FgsCJ3ePHdoaXg==
+  dependencies:
+    "@cmdcode/buff" "^2.2.3"
+    "@cmdcode/crypto-tools" "^2.6.2"
+    "@scrow/core" "^0.3.4"
+    "@scure/bip39" "^1.2.1"
+    zod "^3.22.4"
 
 "@cmdcode/use-store@^1.0.7":
   version "1.0.7"
@@ -253,6 +281,21 @@
     react-textarea-autosize "8.5.3"
     type-fest "^3.13.1"
 
+"@mantine/dates@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@mantine/dates/-/dates-7.2.1.tgz#f77b9fbc80c5bd91c8b2401dc076d699bc1e86bc"
+  integrity sha512-wOLbWU0DJGG3kC7GdoIXdUSvCq9ggFjyDfOuHwRLa0rpWoytsgn9X59ab/4kO341tcqvkMa4F9Yq90Vhyj//rA==
+  dependencies:
+    clsx "2.0.0"
+
+"@mantine/form@^7.2.1":
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/@mantine/form/-/form-7.2.1.tgz#f9dd2ed70741433316ac94025d31824d7f0d2a75"
+  integrity sha512-Klh8QIz+uc2U3AR6d3R4/Eugvul4XbrSGx1+Dq8PtkepttWG7Zxv349aoR1iPBsDq543nLWqhsxhWpHphmD2uA==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    klona "^2.0.5"
+
 "@mantine/hooks@^7.2.1":
   version "7.2.1"
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-7.2.1.tgz#00c4f53e4b9e5d0d6dadc62fe6ee90461d60192a"
@@ -265,7 +308,7 @@
   dependencies:
     "@noble/hashes" "1.3.2"
 
-"@noble/hashes@1.3.2", "@noble/hashes@^1.3.0":
+"@noble/hashes@1.3.2", "@noble/hashes@^1.3.0", "@noble/hashes@~1.3.0":
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/@noble/hashes/-/hashes-1.3.2.tgz#6f26dbc8fbc7205873ce3cee2f690eba0d421b39"
   integrity sha512-MVC8EAQp7MvEcm30KWENFjgR+Mkmf+D189XJTkFIlwohU5hcBbn1ZkKq7KVTi2Hme3PMGF390DaL52beVrIihQ==
@@ -311,10 +354,18 @@
     "@cmdcode/crypto-tools" "^2.6.1"
     zod "^3.22.4"
 
-"@scure/base@^1.1.3":
+"@scure/base@^1.1.3", "@scure/base@~1.1.0":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@scure/base/-/base-1.1.3.tgz#8584115565228290a6c6c4961973e0903bb3df2f"
   integrity sha512-/+SgoRjLq7Xlf0CWuLHq2LUZeL/w65kfzAPG5NH9pcmBhs+nunQTn4gvdwgMTIXnt9b2C/1SeL2XiysZEyIC9Q==
+
+"@scure/bip39@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@scure/bip39/-/bip39-1.2.1.tgz#5cee8978656b272a917b7871c981e0541ad6ac2a"
+  integrity sha512-Z3/Fsz1yr904dduJD0NpiyRHhRYHdcnyh73FZWiV+/qhWi83wNJ3NWolYqCEN+ZWsUz2TWwajJggcRE9r1zUYg==
+  dependencies:
+    "@noble/hashes" "~1.3.0"
+    "@scure/base" "~1.1.0"
 
 "@swc/core-darwin-arm64@1.3.96":
   version "1.3.96"
@@ -394,6 +445,19 @@
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@swc/types/-/types-0.1.5.tgz#043b731d4f56a79b4897a3de1af35e75d56bc63a"
   integrity sha512-myfUej5naTBWnqOCc/MdVOLVjXUXtIA+NpDrDBKJtLLg2shUjBu3cZmB/85RyitKc55+lUUyl7oRfLOvkr2hsw==
+
+"@tabler/icons-react@^2.40.0":
+  version "2.40.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-react/-/icons-react-2.40.0.tgz#14efb60f0d841689c1ddf5691646dbfc3fa01901"
+  integrity sha512-C+dDOZowFbwI3LGQP0fdua+hOPkGkW7XeMcRXTSdEKc5fD75W6zRO5nXnWivIMRKsi/Y26EDmnQo15N8JX378w==
+  dependencies:
+    "@tabler/icons" "2.40.0"
+    prop-types "^15.7.2"
+
+"@tabler/icons@2.40.0":
+  version "2.40.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-2.40.0.tgz#96cecc990a03412b88194ce3765280d2e63c1be6"
+  integrity sha512-VqKsBSX159cLFTnCzkCmGhZtSPJHNN0lM2sC4xe0HPOfPUnjiex7rDHDdut4oe4iKRecDDpwXwM9BcU6xCPlCg==
 
 "@types/json-schema@^7.0.12":
   version "7.0.14"
@@ -660,6 +724,11 @@ csstype@^3.0.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.2.tgz#1d4bf9d572f11c14031f0436e1c10bc1f571f50b"
   integrity sha512-I7K1Uu0MBPzaFKg4nI5Q7Vs2t+3gWWW648spaF+Rg7pI9ds18Ugn+lvg4SHczUdKlHI5LWBXyqfS8+DufyBsgQ==
+
+dayjs@^1.11.10:
+  version "1.11.10"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
+  integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
 
 debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
@@ -1067,6 +1136,11 @@ keyv@^4.5.3:
   integrity sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==
   dependencies:
     json-buffer "3.0.1"
+
+klona@^2.0.5:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
+  integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
 
 levn@^0.4.1:
   version "0.4.1"

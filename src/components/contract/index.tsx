@@ -1,18 +1,15 @@
-import { useContract }  from '@/hooks/useContract'
-import ContractMainView from './view'
+import { useSigner } from '@/context/useSigner'
 
-interface Props {
-  cid : string
-}
+import ContractListView from './components/list'
 
-export default function ContractView ({ cid } : Props) {
-  const { data, error, isLoading } = useContract(cid)
+import { Box } from '@mantine/core'
+
+export default function ContractView () {
+  const { signer } = useSigner()
 
   return (
-    <>
-      { error && <p>Error: {String(error)}</p> }
-      { isLoading && <p>Loading...</p> }
-      { data && <ContractMainView data={ data } /> }
-    </>
+    <Box>
+      { signer !== null && <ContractListView signer={signer} />}
+    </Box>
   )
 }

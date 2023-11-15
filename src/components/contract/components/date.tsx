@@ -16,26 +16,26 @@ export default function ContractDateView ({ data } : Props) {
   } = data
   
   const date_activated = (activated !== null) 
-    ? convert_date(activated)
+    ? convert_date(activated).toLocaleString()
     : 'not active'
 
-  const date_deadline = convert_date(deadline)
+  const date_deadline = convert_date(deadline).toLocaleString()
 
   const date_expires = (expires_at !== null) 
-    ? convert_date(expires_at)
+    ? convert_date(expires_at).toLocaleString()
     : 'not active'
 
-  const date_published = convert_date(published)
+  const date_published = convert_date(published).toLocaleString()
 
   const date_settled = (settled_at !== null) 
-    ? convert_date(settled_at)
+    ? convert_date(settled_at).toLocaleString()
     : 'no spending txid'
 
   const date_spent = (spent_at !== null) 
-    ? convert_date(spent_at)
+    ? convert_date(spent_at).toLocaleString()
     : 'no spending txid'
 
-  const date_updated = convert_date(updated_at)
+  const date_updated = convert_date(updated_at).toLocaleString()
 
   return (
     <Table>

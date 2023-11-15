@@ -5,16 +5,16 @@ import { now }          from '@scrow/core/util'
 import { create_proof } from '@scrow/core/proof'
 
 import {
-  ContractData,
+  DepositData,
   Signer
 } from '@scrow/core'
 
-export function useContract (cid : string) {
+export function useDeposit (dpid : string) {
   const { store } = useConfig()
 
-  const url = `${store.config.host_url}/api/contract/${cid}`
+  const url = `${store.config.host_url}/api/deposit/${dpid}`
 
-  const { data, error, isLoading } = useSWR<ContractData>(url, fetcher)
+  const { data, error, isLoading } = useSWR<DepositData>(url, fetcher)
 
   return { data, error, isLoading }
 }
@@ -22,7 +22,7 @@ export function useContract (cid : string) {
 export function useContractList (signer : Signer) {
   const { store } = useConfig()
 
-  const url = `${store.config.host_url}/api/contract/list`
+  const url = `${store.config.host_url}/api/deposit/list`
 
   const tkn = create_proof(signer, url, { stamp : now() })
   const opt : RequestInit = { headers : { token : tkn } }
@@ -30,7 +30,7 @@ export function useContractList (signer : Signer) {
   console.log('url:', url)
   console.log('opt:', opt)
 
-  const { data, error, isLoading } = useSWR<ContractData[]>(url, (url : string) => fetcher(url, opt))
+  const { data, error, isLoading } = useSWR<DepositData[]>(url, (url : string) => fetcher(url, opt))
 
   return { data, error, isLoading }
 }
