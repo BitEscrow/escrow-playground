@@ -1,5 +1,5 @@
 {
-  "name": "escrow-demo",
+  "name": "escrow-playground",
   "version": "0.0.1",
   "type": "module",
   "scripts": {
@@ -9,34 +9,37 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@cmdcode/buff": "^2.2.2",
-    "@cmdcode/use-signer": "^0.0.3",
+    "@cmdcode/buff": "^2.2.5",
     "@cmdcode/use-store": "^1.0.7",
-    "@mantine/core": "^7.2.1",
-    "@mantine/dates": "^7.2.1",
-    "@mantine/form": "^7.2.1",
-    "@mantine/hooks": "^7.2.1",
-    "@scrow/core": "^0.3.4",
-    "@tabler/icons-react": "^2.40.0",
+    "@mantine/core": "^7.6.1",
+    "@mantine/dates": "^7.6.1",
+    "@mantine/form": "^7.6.1",
+    "@mantine/hooks": "^7.6.1",
+    "@scrow/core": "^0.7.31",
+    "@scrow/hooks": "^0.0.4",
+    "@tabler/icons-react": "^3.0.0",
     "dayjs": "^1.11.10",
+    "plausible-tracker": "^0.3.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swr": "^2.2.4"
+    "react-router-dom": "^6.22.3",
+    "react-toastify": "^10.0.4"
   },
   "devDependencies": {
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.0.0",
-    "@typescript-eslint/parser": "^6.0.0",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "eslint": "^8.45.0",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react-swc": "^3.6.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.3",
-    "postcss": "^8.4.31",
-    "postcss-preset-mantine": "^1.9.1",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
     "postcss-simple-vars": "^7.0.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.4.5",
-    "vite-tsconfig-paths": "^4.2.1"
+    "sass": "^1.71.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.6",
+    "vite-tsconfig-paths": "^4.3.1"
   }
 }
