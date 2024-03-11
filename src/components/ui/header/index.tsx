@@ -58,7 +58,7 @@ export default function Header(props : Props) {
         <IconMenu2/>
       </Button>
       <Image 
-        src={'/logo.png'} 
+        src={'./logo.png'} 
         w={120} 
         alt="BitEscrow Logo"
         onClick={() => go_home() }
@@ -79,7 +79,7 @@ export default function Header(props : Props) {
           size="lg"
           
           >
-              <img width="21" height="21" src='/discord_logo.svg' alt="Discord" />
+              <img width="21" height="21" src='./discord_logo.svg' alt="Discord" />
           </ActionIcon>
         <ActionIcon
             style={{borderRadius: '10px', backgroundColor: '#2D2D2D'}}                
@@ -90,7 +90,7 @@ export default function Header(props : Props) {
             size="lg"
             
         >
-            <img width="21" height="21" src='/github_logo.svg' alt="GitHub" />
+            <img width="21" height="21" src='./github_logo.svg' alt="GitHub" />
         </ActionIcon>
         <ActionIcon
             style={{borderRadius: '10px', backgroundColor: '#0068FD'}}                
