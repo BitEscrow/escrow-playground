@@ -9,11 +9,6 @@ export const servers = {
     oracle   : 'https://mutinynet.com',
     network  : 'mutiny'
   },
-  regtest : {
-    hostname : 'http://localhost:3000',
-    oracle   : 'http://172.21.0.3:3300',
-    network  : 'regtest'
-  },
   signet : {
     hostname : 'https://bitescrow-signet.vercel.app',
     oracle   : 'https://mempool.space/signet',
