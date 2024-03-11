@@ -16,7 +16,7 @@ const default_config = servers['mutiny']
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Fragment>
-    <BrowserRouter basename="/escrow-playground">
+    <BrowserRouter>
       <MantineProvider>
         <ConfigProvider>
           <ClientProvider config={default_config}>
