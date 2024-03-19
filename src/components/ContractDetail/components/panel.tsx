@@ -1,14 +1,9 @@
-import { useNavigate } from 'react-router-dom'
-import { useClient }   from '@scrow/hooks'
-import { useSigner }   from '@/hooks/useSigner'
+import { useSigner }    from '@/hooks/useSigner'
+import { ContractData } from '@scrow/core'
 
-import {
-  assert,
-  ContractData
-} from '@scrow/core'
+import { Accordion, Box, Tabs } from '@mantine/core'
 
-import { Accordion, Box, Button, Group, Tabs } from '@mantine/core'
-
+import ActionButtons   from './actions'
 import DetailsPanel    from './panels/details'
 import FundsPanel      from './panels/funds'
 import SessionPanel    from './panels/session'
@@ -24,47 +19,7 @@ interface Props {
 
 export default function ({ data, view } : Props) {
 
-  const navigate = useNavigate()
-
-  const { client } = useClient()
   const { signer } = useSigner()
-
-  const can_cancel = (
-    (
-      data.status === 'published' ||
-      data.status === 'funded'    ||
-      data.status === 'secured'
-    ) && (
-      data.moderator !== null &&
-      signer !== null         &&
-      signer.pubkey === data.moderator
-    )
-  )
-
-  const can_deposit = (
-    data.status === 'published' && 
-    (data.pending + data.balance) < data.total
-  )
-
-  const can_submit = (
-    data.status === 'active' &&
-    data.vm_state !== null
-  )
-
-  const cancel = async () => {
-    assert.exists(signer)
-    const req = signer.request.contract_cancel(data.cid)
-    const res = await client.contract.cancel(data.cid, req)
-    if (!res.ok) throw new Error(res.error)
-  }
-
-  const deposit = () => {
-    navigate(`/contracts/${data.cid}/fund`)
-  }
-
-  const submit = () => {
-    navigate(`/contracts/${data.cid}/vm`)
-  }
 
   return (
     <Box mt={20} maw={700}>
@@ -79,34 +34,11 @@ export default function ({ data, view } : Props) {
             <TxPanel data={data} />
           </Accordion>
         </Tabs.Panel>
-
         <Tabs.Panel value="json">
           <JsonView data={data} />
         </Tabs.Panel>
       </Tabs>
-      <Group mt={10}>
-        <Button
-          disabled={!can_cancel}
-          onClick={cancel}
-          style={{ flex : 1 }}
-        >
-          Cancel
-        </Button>
-        <Button
-          disabled={!can_deposit}
-          onClick={deposit}
-          style={{ flex : 1 }}
-        >
-          Deposit
-        </Button>
-        <Button
-          disabled={!can_submit}
-          onClick={submit}
-          style={{ flex : 1 }}
-        >
-          Open VM
-        </Button>
-      </Group>
+      { signer !== null && <ActionButtons data={data} signer={signer} /> }
     </Box>
   )
 }

@@ -412,10 +412,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.12.1.tgz#cd8d175e001c212d5ac71c7827ef1d5c5e14494c"
   integrity sha512-n+vkrSyphvmU0qkQ6QBNXCGr2mKjhP08mPRM/Xp5Ck2FV4NrHU+y6axzDeixUrCBHVUS51TZhjqrKBBsHLKb2Q==
 
-"@scrow/core@^0.7.31":
-  version "0.7.31"
-  resolved "https://registry.yarnpkg.com/@scrow/core/-/core-0.7.31.tgz#23ff5cd39613291ee0eab70ef6d81b65ed0df9a7"
-  integrity sha512-wDAem16ZXPc5LoVebBHUqFSP4qS6H2UTTMo+gQmfnDfvq1tg50NH/11qVEAPPuSRsjytdl/01cpzWe79VSAP6A==
+"@scrow/core@^0.7.32":
+  version "0.7.32"
+  resolved "https://registry.yarnpkg.com/@scrow/core/-/core-0.7.32.tgz#701c513fe93872907d1bc8ca1dd343fdf520c521"
+  integrity sha512-DCLXYMVfXeg8dlo/yzNlOINjnknnWxsYPuic5Ww1RVUxAPVgLZO8b2f3pFdkqN0MjY6j3hgzec+XuyFMxgjRvw==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"
@@ -425,15 +425,15 @@
     "@scrow/tapscript" "2.2.2"
     zod "^3.22.4"
 
-"@scrow/hooks@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.0.4.tgz#011156373b5f0e76a63c925fb58a8c4afd479373"
-  integrity sha512-55MzY2Lc8tbJktimd8ck+nJwtRXL0NCKAdE2E4S8fYnKg7KaJ16GS4DedEvctOFe4i2n85sZdUQLbWvN1WbTGA==
+"@scrow/hooks@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.0.6.tgz#b7abec63d4fe6296bd9881179508f82c73bce213"
+  integrity sha512-1mWppoYl9v/fY1lyKSKXtp64dZa2ENnkySOqTHPMglfXERttxnwDtXpig7dl9il41Cxb1/xn3YB2geU4CHg5ew==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.2"
     "@cmdcode/use-store" "^1.0.7"
-    "@scrow/core" "^0.7.31"
+    "@scrow/core" "^0.7.32"
     swr "^2.2.5"
 
 "@scrow/tapscript@2.2.2", "@scrow/tapscript@^2.2.2":
