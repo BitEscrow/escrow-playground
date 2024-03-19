@@ -12,6 +12,8 @@ import {
   Button
 } from '@mantine/core'
 
+import { IconPlus } from '@tabler/icons-react';
+
 interface Props {
   enabled : string[]
   form    : UseFormReturnType<ProposalData>
@@ -25,15 +27,24 @@ export default function ({ enabled, form } : Props) {
     const label   = `paths.${index}.0`
     const amount  = `paths.${index}.1`
     const address = `paths.${index}.2`
+
+    const formatAddress = (address: string) => {
+      if (address.length > 27) {
+        return `${address.slice(0, 19)}...${address.slice(-19)}`;
+      }
+      return address;
+    };
+
+
     return (
       <Group key={index} mb={15}>
-        <TextInput maw={100}
+        <TextInput maw={200}
           label="Label"
           disabled={is_disabled}
           style={{ flex: 1 }}
           {...form.getInputProps(label)}
         />
-        <NumberInput maw={120}
+        <NumberInput maw={150}
           label="Amount"
           disabled={is_disabled}
           style={{ flex: 1 }}
@@ -42,11 +53,12 @@ export default function ({ enabled, form } : Props) {
           defaultValue={1000}
           min={1000}
         />
-        <TextInput maw={250}
+        <TextInput maw={370}
           label="Address"
           disabled={is_disabled}
           style={{ flex: 1 }}
           {...form.getInputProps(address)}
+          value={formatAddress(form.values.paths[index][2] || '') }
         />
         { !is_disabled && 
           <ActionIcon color="red" onClick={() => form.removeListItem('paths', index)}>
@@ -58,24 +70,26 @@ export default function ({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={500}>
-      <Text pt={'10px'} mt={40}>
+    <Box maw={700}>
+      <Text mt={5} mb={30} c='dimmed' size='sm'>
         A spending path is a conditional payment. Each path is labeled, and these labels are used to choose a settlement path for the contract.
         <br/><br/>
         Paths are grouped by label, and each group is converted into a transaction template. These templates are used to lock funds to the contract.
       </Text>
       { fields.length === 0 &&
-        <Text c="dimmed" ta="center" mt={40}>
+        <Text c="dimmed" mt={40} ta="center">
           No spending paths have been created.
         </Text>  
       }
 
       {fields}
 
-      <Group justify="center" mt="sm">
+      <Group justify="right" mt="sm">
         <Button
           disabled={is_disabled}
           variant='subtle'
+          leftSection={<IconPlus size={'14px'}/>}
+          style={{borderRadius: '15px', color: !is_disabled? '#0068FD' : 'gray'}}
           onClick={() =>
             form.insertListItem('paths', [ 'payout', 1000, undefined ])
           }

@@ -1,5 +1,5 @@
 export default function () {
   return (
-    <>Landing page coming soon.</>
+    <>Getting Started, how to use, what to expect, disclaimer</>
   )
 }

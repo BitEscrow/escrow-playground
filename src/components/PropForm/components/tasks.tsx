@@ -1,6 +1,6 @@
-import { ProposalData }      from '@scrow/core'
-import { UseFormReturnType } from '@mantine/form'
-import { IconTrash }         from '@tabler/icons-react'
+import { ProposalData }         from '@scrow/core'
+import { UseFormReturnType }    from '@mantine/form'
+import { IconPlus, IconTrash }  from '@tabler/icons-react'
 
 import {
   Group,
@@ -62,8 +62,8 @@ export default function ProposalTaskList({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={500}>
-      <Text pt={'10px'} mt={40}>
+    <Box maw={700}>
+      <Text mt={5} mb={30} c='dimmed' size='sm'>
         A task is a program that executes after a scheduled amount of time has elapsed (in seconds). Tasks are useful for automating certain actions within a contract, such as a default settlement.
         <br /><br />
         The timer for each task begins ticking once a contract is activated.
@@ -79,9 +79,11 @@ export default function ProposalTaskList({ enabled, form } : Props) {
 
       {fields}
 
-      <Group justify="center">
+      <Group justify="right">
         <Button
           variant='subtle'
+          leftSection={<IconPlus size={'14px'}/>}
+          style={{borderRadius: '15px', color: !is_disabled? '#0068FD' : 'gray'}}
           disabled={is_disabled}
           onClick={() => form.insertListItem('schedule', [7200, '*', '*'])}
         >
