@@ -1,9 +1,10 @@
-import { useNavigate }  from 'react-router-dom'
-import { Buff }         from '@cmdcode/buff'
-import { DraftSession } from '@scrow/core'
-import { create_draft } from '@scrow/core/proposal'
-import { useConfig }    from '@/hooks/useConfig'
-import { useSigner }    from '@/hooks/useSigner'
+import { useNavigate }    from 'react-router-dom'
+import { Buff }           from '@cmdcode/buff'
+import { DraftSession }   from '@scrow/core'
+import { create_draft }   from '@scrow/core/proposal'
+import { useConfig }      from '@/hooks/useConfig'
+import { useSigner }      from '@/hooks/useSigner'
+import { useMediaQuery }  from '@mantine/hooks'
 
 import {
   useEffect,
@@ -27,6 +28,7 @@ import {
   Title,
   Space
 } from '@mantine/core'
+
 
 import presets_json from './presets.json' assert { type: 'json' }
 
@@ -76,7 +78,9 @@ export default function CreateDraftView () {
     } catch {
       setValid(false)
     }
-  }, [ json ])
+  }, [json])
+  
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
@@ -94,24 +98,56 @@ export default function CreateDraftView () {
       { signer !== null &&
         <>
           <Divider mb={30} mt={20}/>
-          <Box maw = {300}>
-            <NativeSelect
-              label="Example Templates"
-              description="Pre-built JSON templates to start with."
-              value={preset}
-              onChange={(e) => setPreset(e.currentTarget.value)}
-              data={Object.keys(presets_json)}
-            />
-            <Space h="xs" />
-            <Button
-              maw = {150}
-              variant="filled"
-              onClick={() => apply_preset()}
-            >
-              Apply
-            </Button>
+          <Box style={{ maxWidth: 500 }} mb={50}>
+            {isMobile ? (
+              <div>
+                <NativeSelect
+                  label="Example Templates"
+                  description="Pre-built JSON templates to start with."
+                  value={preset}
+                  onChange={(e) => setPreset(e.currentTarget.value)}
+                  data={Object.keys(presets_json)}
+                  style={{ width: '100%' }}
+                />
+                <Button
+                  variant="filled"
+                  onClick={apply_preset}
+                style={{
+                  marginTop: 20,
+                  width: 'auto',
+                  minWidth: 150,
+                  backgroundColor: '#0068FD',
+                  borderRadius: '15px',
+                }}
+                >
+                  Apply
+                </Button>
+              </div>
+            ) : (
+              <Group grow>
+                <NativeSelect
+                  label="Example Templates"
+                  description="Pre-built JSON templates to start with."
+                  value={preset}
+                  onChange={(e) => setPreset(e.currentTarget.value)}
+                  data={Object.keys(presets_json)}
+                  style={{ flexGrow: 1 }}
+                />
+                <Button
+                  mt={42}
+                  variant="filled"
+                  onClick={apply_preset}
+                  style={{
+                    maxWidth: '100px',
+                    backgroundColor: '#0068FD',
+                    borderRadius: '15px',
+                  }}
+                >
+                  Apply
+                </Button>
+              </Group>
+            )}
           </Box>
-          <Divider mb={30} mt={20}/>
           <Box maw={700}>
             <JsonInput
               label="Draft Template"
@@ -129,6 +165,10 @@ export default function CreateDraftView () {
           </Box>
           <Space h="xs" />
           <Button
+            style={{
+              backgroundColor: '#0068FD',
+              borderRadius: '15px',
+            }}
             maw = {150}
             variant="filled"
             onClick={() => init_draft()}
