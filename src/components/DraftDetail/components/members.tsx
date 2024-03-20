@@ -19,7 +19,7 @@ export default function ({ data } : Props) {
     <ScrollArea h={250}>
       <Stack>
         { data.members.map((e, idx) => (
-          <JsonInput 
+          <JsonInput
             autosize
             key={idx} 
             value={JSON.stringify(e, null, 2)}

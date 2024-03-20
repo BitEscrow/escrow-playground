@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react'
 import {
   Box,
   Button,
-  Code,
   Group,
-  Stack,
+  ScrollArea,
   TextInput
 } from '@mantine/core'
 
@@ -35,7 +34,7 @@ export default function ({ session } : Props) {
   const alias = get_alias(session.pubkey)
 
   const send = () => {
-    const msg = `[${alias}]: ${input}`
+    const msg = `${alias}: ${input}`
     session.send('chat', msg)
     setMsgs((e) => [ ...e, msg ])
     setInput('')
@@ -53,16 +52,36 @@ export default function ({ session } : Props) {
   }, [ init ])
 
   return (
-    <Box h={200} bg='gray'>
-      <Stack>
-        { msgs.map(msg => (
-          <Code key={Buff.random(16).hex}>{msg}</Code>
-        ))}
-      </Stack>
-      <Group>
+    <Box style={{ display: 'flex', flexDirection: 'column', height: '400px', backgroundColor: 'white' }}>
+      <ScrollArea style={{ flexGrow: 1, padding: '10px', overflowY: 'auto' }}>
+        <div style={{ padding: '10px', display: 'flex', flexDirection: 'column' }}>
+            {msgs.map((msg, index) => (
+              <div
+                key={index}
+                style={{
+                  marginBottom: '8px',
+                  maxWidth: '60%',
+                  padding: '8px 12px',
+                  borderRadius: '16px',
+                  backgroundColor: '#f0f0f0',
+                  border: '1px solid #ddd',
+                  wordWrap: 'break-word',
+                  alignSelf: 'flex-start', 
+                }}
+              >
+                {/* {msg} */}
+                {/* Make the color of sender dynamic based on who is agent, funder, buyer, seller, etc. */}
+                <strong style={{color: 'blue'}}>{alias}</strong>{msg.substring(alias.length)} 
+              </div>
+            ))}
+        </div>
+      </ScrollArea>
+      <Group justify="right" style={{ padding: '10px' }}>
         <TextInput
+          style={{ flexGrow: 1 }}
           onChange={(e) => setInput(e.target.value)}
           value={input}
+          placeholder="Type your message..."
         />
         <Button onClick={send}>Send</Button>
       </Group>

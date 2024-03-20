@@ -10,6 +10,7 @@ import {
   Button,
   Center,
   Group,
+  Divider,
   Loader,
   Tabs
 } from '@mantine/core'
@@ -57,6 +58,8 @@ export default function ({ secret, signer } : Props) {
       { !data && <Center><Loader color="blue" /></Center> }
       { data !== undefined &&
         <>
+      <Divider mb={30} mt={20} />
+
           <Terms data={ data } session={ session } />
           <Tabs defaultValue="chat">
             <Tabs.List grow>
