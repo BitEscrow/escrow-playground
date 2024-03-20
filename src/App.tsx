@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom'
 
 import {
   useState,
-  useEffect
+  useEffect,
+  SetStateAction
 } from 'react'
 
 import {
@@ -34,9 +35,21 @@ export default function AppDemo() {
   
   const [ view, setView ] = useState('')
 
-  const navigate  = useNavigate()
+  const navigate = useNavigate()
+  
+  const handleNavLinkClick = (view: SetStateAction<string>) => {
+    setView(view);
+    navigate(`/${view}`);
+
+    // Toggle navbar state based on device type
+    if (isMobile) {
+      toggle_navi_mobi();
+    }
+    // Desktop navbar remains unaffected (no toggle action needed)
+  };
 
   const goto_page = (view : string) => {
+    
     if (navi_desk_open) toggle_navi_desk()
     if (navi_mobi_open) toggle_navi_mobi()
     setView(view)
@@ -107,19 +120,19 @@ export default function AppDemo() {
 
       <AppShell.Navbar p="md"style={{ height: '100%' }}>
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Contracts" active={view === 'contracts'}
-          onClick={() => goto_page('contracts')}
+          onClick={() => handleNavLinkClick('contracts')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Deposits" active={view === 'deposits'}
-          onClick={() => goto_page('deposits')}
+          onClick={() => handleNavLinkClick('deposits')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Drafts" active={view === 'drafts'}
-          onClick={() => goto_page('drafts') }
+          onClick={() => handleNavLinkClick('drafts')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Settings" active={view === 'settings'} 
-          onClick={() => goto_page('settings')}
+          onClick={() => handleNavLinkClick('settings')}
         />
         <NavLink label="New Draft" active={view === 'drafts/new'} 
-          onClick={() => goto_page('drafts/new')}
+          onClick={() => handleNavLinkClick('drafts/new')}
           component="a"
           style={{
             fontWeight: 600,
@@ -131,9 +144,9 @@ export default function AppDemo() {
             alignItems: 'center',
             height: '32px', 
             marginTop: '20px',
-            width: '100%', 
+            width: '80%', 
             textDecoration: 'none',
-            maxWidth: '120px'
+            maxWidth: isMobile? '100px' : 'undefined'
         }}
         />
          {isMobile && <MobileFooterComponent/>}

@@ -80,7 +80,15 @@ export default function SettingsView () {
               onChange={(e) => setRelay(e.target.value)}
             />
             <Space h="xs" />
-            <Button onClick={update}>Update</Button>
+            <Button
+              style={{
+                      borderRadius: '15px',
+                      backgroundColor: '#0068FD'
+            }}
+              onClick={update}
+            >
+      Update
+            </Button>
             <ToastContainer
               position="bottom-center"
               autoClose={3000}

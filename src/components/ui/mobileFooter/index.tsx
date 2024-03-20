@@ -6,6 +6,7 @@ import {
 } from '@mantine/core';
 import {
     IconFileText,
+    IconSchool,
     // IconMoon,
     // IconSun
 } from '@tabler/icons-react';
@@ -53,6 +54,18 @@ const MobileFooterComponent = () => {
                 
             >
                 <img width="22" height="22" src='/github_logo.svg' alt="GitHub" />
+              </ActionIcon>
+              <ActionIcon
+                style={{borderRadius: '10px'}}                
+                component="a"
+                href="SCHOOLLINK"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="light"
+                size="lg"
+                
+            >
+                <IconSchool size={21} color='#0068FD'/>
             </ActionIcon>
             <ActionIcon
                 style={{borderRadius: '10px', backgroundColor: '#0068FD'}}                

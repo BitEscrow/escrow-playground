@@ -10,7 +10,8 @@ import {
 
 import {
   IconFileText,
-  IconMenu2
+  IconMenu2,
+  IconSchool
 } from '@tabler/icons-react'
 
 interface Props {
@@ -91,6 +92,18 @@ export default function Header(props : Props) {
             
         >
             <img width="21" height="21" src='github_logo.svg' alt="GitHub" />
+          </ActionIcon>
+          <ActionIcon
+            style={{borderRadius: '10px'}}                
+            component="a"
+            href="SCHOOLLINK"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="light"
+            size="lg"
+            
+        >
+            <IconSchool size={21} color='#0068FD'/>
         </ActionIcon>
         <ActionIcon
             style={{borderRadius: '10px', backgroundColor: '#0068FD'}}                
@@ -103,7 +116,7 @@ export default function Header(props : Props) {
             
         >
             <IconFileText size={21} color='white'/>
-        </ActionIcon>
+          </ActionIcon>
         {/* <ActionIcon
           style={{
               borderRadius: '10px',

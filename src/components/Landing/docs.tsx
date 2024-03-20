@@ -9,9 +9,13 @@ import {
 
 import { useMediaQuery } from '@mantine/hooks';
 
+import {
+  IconChevronRight,
+} from '@tabler/icons-react';
+
 export default function Docs() {
 
-  const isMobile = useMediaQuery('(max-width: 880px)');
+  const isMobile = useMediaQuery('(max-width: 982px)');
 
   return (
     <Grid>
@@ -27,8 +31,23 @@ export default function Docs() {
         </Grid.Col>
         {/* Left Column for Text on Bottom in Mobile */}
         <Grid.Col span={12}>
-          <Title order={1} p={20} pb={10}>Welcome to the API Playground</Title>
+          <Title order={1} p={20} pb={10}>Full Documentation with Examples</Title>
           <Text size="sm" p={20} pt={0}>Dive into our comprehensive documentation, packed with examples that walk you through every step of integrating and utilizing our API.</Text>
+            <Button
+              rightSection={<IconChevronRight size={20}/>}
+              variant='transparent'
+              mt={30}
+              w={150}
+              ml={10}
+              mb={30}
+              style={{
+                  borderRadius: '15px',
+                  color: '#0068FD'
+              }}
+              onClick={() => window.open('https://bitescrow.dev', '_blank')}
+          >
+Read The Docs
+          </Button>
         </Grid.Col>
       </>
     ) : (
@@ -54,17 +73,20 @@ export default function Docs() {
         >
           <Title order={1} pb={20}>Full Documentation with Examples</Title>
           <Text size="sm">Dive into our comprehensive documentation, packed with examples that walk you through every step of integrating and utilizing our API.</Text>
-            <Button
-                mt={30}
-                w={150}
-                style={{
-                    borderRadius: '15px',
-                    backgroundColor: '#0068FD'
-                }}
-                onClick={() => window.open('https://bitescrow.dev', '_blank')}
-            >
+          <Button
+            rightSection={<IconChevronRight size={20}/>}
+            variant='transparent'
+            mt={30}
+            w={180}
+            ml={-20}
+            style={{
+                borderRadius: '15px',
+                color: '#0068FD'
+            }}
+            onClick={() => window.open('https://bitescrow.dev', '_blank')}
+          >
 Read The Docs
-            </Button>
+          </Button>
         </Box>
         </Grid.Col>
       </>

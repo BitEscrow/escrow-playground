@@ -1,8 +1,7 @@
 import { Container }  from '@mantine/core';
 
-import Hero   from "./sections/hero";
-import Docs   from './sections/docs';
-// import CTA from './sections/cta';
+import Hero   from "./hero";
+import Docs   from './docs';
 
 export default function () {
   return (
@@ -11,7 +10,6 @@ export default function () {
       <div style={{backgroundColor: '#f2f2f2', borderRadius: '25px'}}>
         <Docs/> 
       </div>
-      {/* <CTA/> */}
     </Container>
   )
 }
