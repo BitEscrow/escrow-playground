@@ -54,7 +54,7 @@ export default function ({ session } : Props) {
   }, [ init ])
 
   return (
-    <Box style={{ display: 'flex', flexDirection: 'column', height: '400px', backgroundColor: 'white' }}>
+    <Box style={{ display: 'flex', flexDirection: 'column', height: '600px', backgroundColor: 'white' }}>
       <ScrollArea style={{ flexGrow: 1, padding: '10px', overflowY: 'auto' }}>
         <div style={{ padding: '10px', display: 'flex', flexDirection: 'column' }}>
             {msgs.map((msg, index) => (

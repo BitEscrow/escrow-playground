@@ -16,7 +16,7 @@ interface Props {
 
 export default function ({ data } : Props) {
   return (
-    <ScrollArea h={250}>
+    <ScrollArea h={600}>
       <Stack>
         { data.roles.map((e, idx) => (
           <JsonInput 

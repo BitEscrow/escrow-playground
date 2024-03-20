@@ -4,6 +4,7 @@ import { useNavigate }     from 'react-router-dom'
 import { EscrowSigner }    from '@scrow/core'
 import { useClient }       from '@scrow/hooks/client'
 import { useConfig }       from '@/hooks/useConfig'
+import { useMediaQuery }   from '@mantine/hooks'
 import { useDraftSession } from '@scrow/hooks/draft'
 
 import {
@@ -35,7 +36,10 @@ interface Props {
   signer : EscrowSigner
 }
 
-export default function ({ secret, signer } : Props) {
+export default function ({ secret, signer }: Props ) {
+  
+  const isMobile = useMediaQuery('(max-width: 768px)')
+
 
   const navigate = useNavigate()
 
@@ -65,10 +69,11 @@ export default function ({ secret, signer } : Props) {
       { !data && <Center><Loader color="blue" /></Center> }
       { data !== undefined &&
         <>
-          <Terms data={ data } session={ session } />
-          <Divider mb={40} mt={70} />
+        <Terms data={ data } session={ session } />
+        <Divider mb={40} mt={70} />
+        <div style={{ overflowX: 'auto', display: isMobile ? 'flex' : '' }}>
           <Tabs defaultValue="chat">
-            <Tabs.List grow>
+            <Tabs.List grow style={{minWidth: '700px'}} mb={20}>
               <Tabs.Tab value="chat" leftSection={<IconMessageCircle size={18}/>}>Chat</Tabs.Tab>
               <Tabs.Tab value="members" leftSection={<IconUsersGroup size={18}/>}>Members</Tabs.Tab>
               <Tabs.Tab value="roles" leftSection={<IconPuzzle size={18}/>}>Roles</Tabs.Tab>
@@ -86,6 +91,7 @@ export default function ({ secret, signer } : Props) {
               <Roles data={ data } session={ session } />
             </Tabs.Panel>
           </Tabs>
+        </div>
           
           <Seats data={ data } session={ session } />
           <Signatures data={ data } session={ session } />
