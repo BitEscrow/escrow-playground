@@ -23,6 +23,13 @@ import Terms      from './terms'
 import Seats      from './seats'
 import Signatures from './signatures'
 
+
+import {
+  IconMessageCircle,
+  IconPuzzle,
+  IconUsersGroup,
+} from '@tabler/icons-react'
+
 interface Props {
   secret : string
   signer : EscrowSigner
@@ -58,14 +65,13 @@ export default function ({ secret, signer } : Props) {
       { !data && <Center><Loader color="blue" /></Center> }
       { data !== undefined &&
         <>
-      <Divider mb={30} mt={20} />
-
           <Terms data={ data } session={ session } />
+          <Divider mb={40} mt={70} />
           <Tabs defaultValue="chat">
             <Tabs.List grow>
-              <Tabs.Tab value="chat">Chat</Tabs.Tab>
-              <Tabs.Tab value="members">Members</Tabs.Tab>
-              <Tabs.Tab value="roles">Roles</Tabs.Tab>
+              <Tabs.Tab value="chat" leftSection={<IconMessageCircle size={18}/>}>Chat</Tabs.Tab>
+              <Tabs.Tab value="members" leftSection={<IconUsersGroup size={18}/>}>Members</Tabs.Tab>
+              <Tabs.Tab value="roles" leftSection={<IconPuzzle size={18}/>}>Roles</Tabs.Tab>
             </Tabs.List>
 
             <Tabs.Panel value="chat" pt="xs">

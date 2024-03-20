@@ -14,6 +14,8 @@ import {
   DraftData,
   DraftSession
 } from '@scrow/core'
+import { IconSend2 } from '@tabler/icons-react'
+
 
 interface Props {
   data    : DraftData
@@ -71,7 +73,7 @@ export default function ({ session } : Props) {
               >
                 {/* {msg} */}
                 {/* Make the color of sender dynamic based on who is agent, funder, buyer, seller, etc. */}
-                <strong style={{color: 'blue'}}>{alias}</strong>{msg.substring(alias.length)} 
+                <strong style={{color: 'black'}}>{alias}</strong>{msg.substring(alias.length)} 
               </div>
             ))}
         </div>
@@ -83,7 +85,7 @@ export default function ({ session } : Props) {
           value={input}
           placeholder="Type your message..."
         />
-        <Button onClick={send}>Send</Button>
+        <Button onClick={send} style={{backgroundColor: '#0068FD', borderRadius: '15px'}}><IconSend2 size={18}/></Button>
       </Group>
     </Box>
   )

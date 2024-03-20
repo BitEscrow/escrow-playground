@@ -38,13 +38,13 @@ export default function ({ enabled, form } : Props) {
 
     return (
       <Group key={index} mb={15}>
-        <TextInput maw={200}
+        <TextInput maw={'28%'}
           label="Label"
           disabled={is_disabled}
           style={{ flex: 1 }}
           {...form.getInputProps(label)}
         />
-        <NumberInput maw={150}
+        <NumberInput maw={'72%'}
           label="Amount"
           disabled={is_disabled}
           style={{ flex: 1 }}
@@ -70,7 +70,7 @@ export default function ({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={700}>
+    <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
         A spending path is a conditional payment. Each path is labeled, and these labels are used to choose a settlement path for the contract.
         <br/><br/>

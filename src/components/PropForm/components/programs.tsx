@@ -105,7 +105,7 @@ export default function ({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={700}>
+    <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
         A program is used to execute an action within the contract. Each program specifies a set of actions that can be taken, and which spending paths can be selected.
         <br /><br />

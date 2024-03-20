@@ -18,7 +18,7 @@ interface Props {
 export default function ProposalDetailView({ enabled, form } : Props) {
 
   return (
-    <Box maw={700}>
+    <Box>
       <TextInput
         withAsterisk
         disabled={!enabled.includes('title')}

@@ -50,7 +50,7 @@ export default function ({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={500}>
+    <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
         A payment is unconditional, and will apply to all spending paths. They are useful for collecting fees, non-refundable costs, etc. Payments are not guaranteed if a contract expires without settlement.
       </Text>

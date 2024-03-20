@@ -62,7 +62,7 @@ export default function ProposalTaskList({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={700}>
+    <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
         A task is a program that executes after a scheduled amount of time has elapsed (in seconds). Tasks are useful for automating certain actions within a contract, such as a default settlement.
         <br /><br />

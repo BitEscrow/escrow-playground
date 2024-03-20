@@ -1,4 +1,5 @@
 import { ProposalData }      from '@scrow/core'
+import { useMediaQuery }     from '@mantine/hooks'
 import { UseFormReturnType } from '@mantine/form'
 
 import {
@@ -20,18 +21,19 @@ import {
   IconList,
 } from '@tabler/icons-react';
 
-
 interface Props {
   enabled : string[]
   form    : UseFormReturnType<ProposalData>
 }
 
-export default function ({ enabled, form } : Props) {
+export default function ({ enabled, form }: Props) {
+  
+  const isMobile = useMediaQuery('(max-width: 768px)')
 
   return (
     <Box mb={30}>
       <Tabs defaultValue="details">
-        <div style={{ overflowX: 'auto', display: 'flex' }}>
+        <div style={{ overflowX: 'auto', display: isMobile? 'flex' : ''}}>
           <Tabs.List grow style={{minWidth: '700px'}} mb={20}>
             <Tabs.Tab leftSection={<IconLicense size={18}/>} value="details">Details</Tabs.Tab>
             <Tabs.Tab leftSection={<IconRoute size={18}/>} value="paths">Paths</Tabs.Tab>
