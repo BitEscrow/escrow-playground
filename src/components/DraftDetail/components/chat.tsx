@@ -14,7 +14,7 @@ import {
   DraftData,
   DraftSession
 } from '@scrow/core'
-import { IconSend2 } from '@tabler/icons-react'
+import { IconArrowUp, IconSend2 } from '@tabler/icons-react'
 
 
 interface Props {
@@ -85,7 +85,7 @@ export default function ({ session } : Props) {
           value={input}
           placeholder="Type your message..."
         />
-        <Button onClick={send} style={{backgroundColor: '#0068FD', borderRadius: '15px'}}><IconSend2 size={18}/></Button>
+        <Button onClick={send} style={{backgroundColor: '#0068FD', borderRadius: '15px'}}><IconArrowUp size={18}/></Button>
       </Group>
     </Box>
   )

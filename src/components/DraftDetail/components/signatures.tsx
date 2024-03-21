@@ -1,5 +1,12 @@
-import { DraftData, DraftSession }  from '@scrow/core'
-import { Box, Button, Chip, Group } from '@mantine/core'
+import { DraftData, DraftSession } from '@scrow/core'
+
+import {
+  Box,
+  Button,
+  Chip,
+  Group,
+} from '@mantine/core'
+import { IconWritingSign } from '@tabler/icons-react'
 
 interface Props {
   data    : DraftData
@@ -15,14 +22,19 @@ export default function ({ data, session } : Props) {
 
   return (
     <Box>
-      <Group h={20} bg='gray'>
+      <Group h={20}>
         { aliases.map(e => <Chip key={e}>{e}</Chip>) }
       </Group>
       <Button
+        leftSection={<IconWritingSign size={14}/>}
+        style={{
+          borderRadius: '15px',
+          backgroundColor: '#0068FD'
+        }}
         disabled = {!session.is_full || session.is_endorsed}
         onClick  = {() => session.endorse()}
       >
-        Endorse
+        Sign & Endorse
       </Button>
     </Box>
   )

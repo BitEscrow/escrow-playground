@@ -38,10 +38,11 @@ export default function ({ data, session } : Props) {
     <Box>
       <PropForm enabled={data.terms} form={form} />
       <Button 
+        variant='subtle'
         leftSection={<IconRefresh size={14}/>}
          style={{
           borderRadius: '15px',
-          backgroundColor: '#0068FD'
+          color: '#0068FD'
       }}
         onClick={update}
       >

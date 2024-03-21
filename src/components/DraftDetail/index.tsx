@@ -36,6 +36,7 @@ export default function () {
         Negotiate on a contract proposal.
       </Text>
       <Divider mb={30} mt={20} />
+      
       { signer !== null && sid !== undefined
         && <Room secret={ sid } signer={ signer } /> 
         || <>
