@@ -14,12 +14,12 @@ export default function ({ data, setView } : Props) {
 
   const color = () => {
     switch (data?.status) {
-      case 'published': return 'yellow'
-      case 'funded' :   return 'teal'
-      case 'secured':   return 'blue'
-      case 'active':    return 'green'
-      case 'settled':   return 'purple'
-      case 'spent':     return 'grey'
+      case 'published': return '#0068FD'
+      case 'funded' :   return '#0068FD'
+      case 'secured':   return '#0068FD'
+      case 'active':    return '#0068FD'
+      case 'settled':   return 'green'
+      case 'spent':     return '#0068FD'
       case 'canceled':  return 'red'
       case 'expired':   return 'red'
       case 'error':     return 'red'
@@ -30,16 +30,16 @@ export default function ({ data, setView } : Props) {
   return (
     <Box>
       <Group mb={20} style={{ justifyContent : 'space-between' }}>
-        <Title>
+      <Title order={2} mb={15}>
           Contract Details
         </Title>
         <Controls setView={setView} />
       </Group>
       <Group style={{ justifyContent : 'flex-start' }}>
-        <Text>{`Status :`}</Text>
+        <Text>{`Status:`}</Text>
         <Badge
           mb={2}
-          radius={5}
+          radius={15}
           color={color()}
         >
           {`${data?.status ?? 'loading'}`}

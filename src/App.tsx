@@ -63,13 +63,13 @@ export default function AppDemo() {
   // 
   // -------------Analytics----------------
   //
-  // https://plausible.io/mvp.bitescrow.app
+  // https://plausible.io/playground.bitescrow.app
   // 
   // --------------------------------------
   
   useEffect(() => {
     const { trackPageview } = Plausible({
-      domain: 'mvp.bitescrow.app',
+      domain: 'playground.bitescrow.app',
       trackLocalhost: true
     })
 

@@ -56,7 +56,7 @@ export default function () {
         />
         <Button
           style={{
-            backgroundColor: '#0068FD',
+            backgroundColor: '8FD',
             borderRadius: '15px',
           }}
           onClick={handleClick}

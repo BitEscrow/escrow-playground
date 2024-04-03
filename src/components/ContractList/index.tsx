@@ -1,7 +1,7 @@
 import { EscrowSigner } from '@scrow/core/client';
 import { useContractList } from '@scrow/hooks/contract';
 import { Center, Loader, Text } from '@mantine/core';
-import ContractTable from './components/table';
+import ContractTable from './table';
 
 interface Props {
   signer: EscrowSigner;

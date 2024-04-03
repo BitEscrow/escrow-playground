@@ -14,7 +14,7 @@ export default function ({ data } : Props) {
     : 0
 
   return (
-    <Progress.Root size={30}>
+    <Progress.Root size={24} radius={'lg'}>
       <Tooltip label={`Pending: ${data.pending} sats`}>
         <Progress.Section value={pending} color="orange">
           <Progress.Label>{`Pending: ${data.pending} sats`}</Progress.Label>

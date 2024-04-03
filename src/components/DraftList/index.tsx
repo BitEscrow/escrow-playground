@@ -1,7 +1,7 @@
 import { useNavigate }  from 'react-router-dom'
 import { useDraftList } from '@scrow/hooks/draft'
 import { useConfig }    from '@/hooks/useConfig'
-import { IconRefresh, IconTrash, IconZoomScan }    from '@tabler/icons-react'
+import { IconRefresh, IconZoomScan }    from '@tabler/icons-react'
 import { EscrowSigner } from '@scrow/core'
 
 import {
@@ -10,9 +10,6 @@ import {
   Group,
   Center,
   Text,
-  Menu,
-  MenuItem,
-  ActionIcon,
   Loader,
   Button
 } from '@mantine/core'
@@ -28,7 +25,7 @@ export default function ({ signer } : Props) {
   const { store } = useConfig()
   const navigate = useNavigate()
 
-  const { data, isLoading, refresh, remove } = useDraftList(store.relay, signer)
+  const { data, isLoading, refresh } = useDraftList(store.relay, signer)
 
   const load_draft = (secret : string) => {
     navigate(`/drafts/${secret}`)
@@ -43,26 +40,6 @@ export default function ({ signer } : Props) {
       </td>
       <td><span onClick={() => load_draft(row.secret)}>{`${row.topic_id.slice(0, 10)}...${row.topic_id.slice(-10)}`}</span></td>
       <td>{row.updated_at}</td>
-     {/* <td>
-        <Menu
-          position="top"
-        >
-          <Menu.Target>
-            <ActionIcon variant="subtle" color="red" style={{ backgroundColor: 'transparent' }}>
-              <IconTrash size={17} />
-            </ActionIcon>
-          </Menu.Target>
-
-          <Menu.Dropdown>
-            <MenuItem
-              onClick={() => remove(row.secret)}
-              color="red"
-            >
-              Confirm Deletion?
-            </MenuItem>
-          </Menu.Dropdown>
-        </Menu>
-      </td> */}
     </tr>
   ))
 

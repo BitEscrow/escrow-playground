@@ -22,7 +22,7 @@ export default function Index({ signer }: Props) {
   if (data.length === 0) {
     return (
       <Center mt={50} mb={50} style={{ width: '100%', height: '100%', padding: '20px' }}>
-        <Text color="dimmed">You have no known deposits.</Text>
+        <Text c="dimmed">You have no known deposits.</Text>
       </Center>
     );
   }

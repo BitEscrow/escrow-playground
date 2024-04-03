@@ -23,7 +23,6 @@ export default function () {
   return (
     <Card>
       <ContractHeader data={ data } setView={setView} />
-      {/* <Divider mb={20} mt={20} /> */}
       { isLoading && <Center><Loader color="blue" /></Center> }
       { data && !isLoading && <ContractPanel data={data} view={view} /> }
     </Card>
