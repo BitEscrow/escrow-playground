@@ -23,7 +23,7 @@ interface Props {
   signer : EscrowSigner
 }
 
-export default function ({ signer } : Props) {
+export default function ContractTable ({ signer } : Props) {
 
   const { store } = useConfig()
   const navigate = useNavigate()

@@ -26,7 +26,8 @@ export default function ({ signer } : Props) {
             <Center mt={50} mb={50} style={{ width: '100%', height: '100%', padding: '20px' }}>
                 <Text c="dimmed">You have no known contracts.</Text>
             </Center>
-        }
+      }
+      
     </>
   )
 }

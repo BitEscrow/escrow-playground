@@ -53,10 +53,9 @@ export default function DraftView () {
           <DraftSearch />
           <Divider mb={30} mt={20}/>
           <Title order={2} mb={15}>Existing Drafts</Title>
-          <Text c="dimmed" style={{ marginBottom: '20px' }} maw='500px'>
+          <Text c="dimmed" mb={30} maw='500px'>
             Click on a draft below to view the details.
           </Text>
-          <Divider mb={30} mt={20}/>
           <DraftList signer={ signer }/>
       </>
     }
