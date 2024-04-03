@@ -4,7 +4,7 @@ import { IconLink }    from '@tabler/icons-react'
 
 import { ActionIcon, Grid, Group, Paper, Text } from '@mantine/core'
 
-import ProgressBar from './progress'
+import ProgressBar from './components/progress'
 
 interface Props {
   data : DepositData
