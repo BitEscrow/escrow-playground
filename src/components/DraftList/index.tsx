@@ -38,12 +38,12 @@ export default function ({ signer } : Props) {
     <tr key={row.topic_id} className={styles.tableRow}>
       <td>
         <button  onClick={() => load_draft(row.secret)} style={{ backgroundColor: 'transparent', border: 'none', cursor: 'pointer', transform: 'translateY(2px)' }}>
-            <IconZoomScan size={17} color="gray" />
+            <IconZoomScan size={17} color='#0068FE'/>
         </button>
       </td>
-      <td><span onClick={() => load_draft(row.secret)} style={{ color: '#54B251' }}>{`${row.topic_id.slice(0, 10)}...${row.topic_id.slice(-10)}`}</span></td>
-      <td><span style={{ color: '#0068FE' }}>{row.updated_at}</span></td>
-     <td>
+      <td><span onClick={() => load_draft(row.secret)}>{`${row.topic_id.slice(0, 10)}...${row.topic_id.slice(-10)}`}</span></td>
+      <td>{row.updated_at}</td>
+     {/* <td>
         <Menu
           position="top"
         >
@@ -62,7 +62,7 @@ export default function ({ signer } : Props) {
             </MenuItem>
           </Menu.Dropdown>
         </Menu>
-      </td>
+      </td> */}
     </tr>
   ))
 
@@ -79,7 +79,7 @@ export default function ({ signer } : Props) {
                       <th style={{ position: 'sticky', textAlign: 'left', top: 0, backgroundColor: 'white', color: 'black' }}>View</th>
                       <th style={{ position: 'sticky', textAlign: 'left', top: 0, backgroundColor: 'white', color: 'black' }}>Session ID</th>
                       <th style={{ position: 'sticky', textAlign: 'left', top: 0, backgroundColor: 'white', color: 'black' }}>Updated At</th>
-                      <th style={{ position: 'sticky', textAlign: 'right', top: 0, backgroundColor: 'white', color: 'black' }}></th>
+                      {/* <th style={{ position: 'sticky', textAlign: 'right', top: 0, backgroundColor: 'white', color: 'black' }}></th> */}
                     </tr>
                   </thead>
                   <tbody>{rows}</tbody>
