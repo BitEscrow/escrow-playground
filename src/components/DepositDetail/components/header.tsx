@@ -28,7 +28,7 @@ export default function ({ data, setView } : Props) {
   return (
     <Box>
       <Group mb={20} style={{ justifyContent : 'space-between' }}>
-        <Title>
+        <Title order={2} mb={15}>
           Deposit Details
         </Title>
         <Controls setView={setView} />

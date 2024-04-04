@@ -131,9 +131,6 @@ export default function AppDemo() {
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Settings" active={view === 'settings'} 
           onClick={() => handleNavLinkClick('settings')}
         />
-        <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="New* Drafts" active={view === 'newDraft'} 
-          onClick={() => handleNavLinkClick('newDraft')}
-        />
         <NavLink label="New Draft" active={view === 'drafts/new'} 
           onClick={() => handleNavLinkClick('drafts/new')}
           component="a"

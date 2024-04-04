@@ -12,6 +12,7 @@ import SettingsView   from '@/components/settings'
 import Error404View   from '@/components/ui/404'
 import LandingView    from '@/components/Landing'
 import CVMView        from '@/components/CVMView'
+import DepostitCreate from './components/DepositCreate'
 
 export default function () {
 
@@ -24,15 +25,12 @@ export default function () {
       <Route path="/contracts/:cid/vm"  element={<CVMView        />} />
       <Route path="/deposits"           element={<DepositView    />} />
       <Route path="/deposits/:dpid"     element={<DepositDetail  />} />
+      <Route path="/deposit/new"        element={<DepostitCreate/>}  />
       <Route path="/drafts"             element={<DraftView      />} />
       <Route path="/drafts/:sid"        element={<DraftDetail    />} />
       <Route path="/drafts/new"         element={<DraftCreate    />} />
       <Route path="/settings"           element={<SettingsView   />} />
       <Route path="/*"                  element={<Error404View   />} />
-      
-      {/* Temporary routes for new compoents in prod */}
-      <Route path="/drafts/new"          element={<Error404View />} />
-      {/* <Route path="/deposit/new"         element={<DepositNew   />} /> */}
     </Routes>
   )
 }
