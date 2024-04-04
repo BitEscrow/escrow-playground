@@ -45,7 +45,7 @@ export default function ({ signer } : Props) {
 
   return (
     <>
-      { isLoading && <Center><Loader color="blue" /></Center> }
+      { isLoading && <Center><Loader color="#0068FD" /></Center> }
       { !isLoading &&
         <>
           { data.length > 0 ? (

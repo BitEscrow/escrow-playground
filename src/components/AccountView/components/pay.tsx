@@ -55,7 +55,7 @@ export default function ({ account, setPayment } : Props) {
       />
       <Button mt={10}>Generate QR Code</Button>
       <Text>Checking for payment ...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

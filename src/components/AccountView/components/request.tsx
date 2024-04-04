@@ -50,7 +50,7 @@ export default function ({ account, setAccount, signer } : Props) {
   return (
     <Box>
       <Text>Requesting a deposit account from the Provider...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

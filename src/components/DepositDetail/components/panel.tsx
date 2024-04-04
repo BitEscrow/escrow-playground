@@ -1,7 +1,7 @@
 import { useDisclosure } from '@mantine/hooks'
 import { DepositData } from '@scrow/core'
 
-import { Accordion, Box, Button, Tabs } from '@mantine/core'
+import { Box, Button, Tabs } from '@mantine/core'
 
 import ConfirmPanel    from './panels/confirm'
 import CovenantPanel   from './panels/covenant'
@@ -27,14 +27,14 @@ export default function ({ data, view } : Props) {
     <Box mt={20} maw={700}>
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
-          <Accordion defaultValue="details">
+          <div>
             <DetailsPanel data={data}  />
             <ConfirmPanel data={data}  />
             <CovenantPanel data={data} />
             <DepositPanel data={data}  />
             <SessionPanel data={data}  />
             <TxPanel data={data}       />
-          </Accordion>
+          </div>
         </Tabs.Panel>
 
         <Tabs.Panel value="json">
@@ -43,11 +43,15 @@ export default function ({ data, view } : Props) {
       </Tabs>
 
       <Button
-        w='100%'
-        mt={10}
+        w='200px'
+        mt={30}
         disabled={!can_close}
         onClick={toggle}
-        style={{ flex : 1 }}
+        style={{
+          flex: 1,
+          backgroundColor: '#0068FD',
+          borderRadius: '15px',
+        }}
       >
         { opened ? 'Dismiss' : 'Close Deposit' }
       </Button>

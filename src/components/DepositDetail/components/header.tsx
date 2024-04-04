@@ -14,10 +14,10 @@ export default function ({ data, setView } : Props) {
 
   const color = () => {
     switch (data?.status) {
-      case 'pending' : return 'yellow'
-      case 'locked'  : return 'blue'
-      case 'open'    : return 'green'
-      case 'settled' : return 'purple'
+      case 'pending' : return 'gray'
+      case 'locked'  : return '#0068FD'
+      case 'open'    : return '#3F8C4F'
+      case 'settled' : return '#3F8C4F'
       case 'spent'   : return 'grey'
       case 'expired' : return 'red'
       case 'error'   : return 'red'
@@ -34,7 +34,7 @@ export default function ({ data, setView } : Props) {
         <Controls setView={setView} />
       </Group>
       <Group style={{ justifyContent : 'flex-start' }}>
-        <Text>{`Status :`}</Text>
+        <Text>{`Status:`}</Text>
         <Badge
           mb={2}
           radius={5}

@@ -35,7 +35,7 @@ export default function ({ account, deposit, payment, setDeposit } : Props) {
   return (
     <Box>
       <Text>Registering payment ...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

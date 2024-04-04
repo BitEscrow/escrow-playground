@@ -44,7 +44,7 @@ export default function ({ cid, deposit, setContract, signer } : Props) {
   return (
     <Box>
       <Text>Locking payment to contract...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

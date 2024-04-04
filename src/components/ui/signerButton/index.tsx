@@ -40,7 +40,7 @@ export default function SignerButton () {
     <>
       { signer !== null && <IdSwatch id={signer.pubkey} />}
       <ActionIcon
-        bg={signer !== null ? 'green' : '#0068FD'}
+        bg={signer !== null ? '#3F8C4F' : '#0068FD'}
         size={35}
         variant="filled"
         aria-label="Signer"

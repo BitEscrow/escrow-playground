@@ -20,9 +20,9 @@ export default function ({ data, setView } : Props) {
 
   const color = () => {
     switch (status) {
-      case 'open'    : return 'green'
+      case 'open'    : return '#3F8C4F'
       case 'disputed': return 'orange'
-      case 'closed'  : return 'blue'
+      case 'closed'  : return '#0068FD'
       default: return 'grey'
     }
   }
@@ -30,13 +30,13 @@ export default function ({ data, setView } : Props) {
   return (
     <Box>
       <Group mb={20} style={{ justifyContent : 'space-between' }}>
-        <Title>
+        <Title order={2} mb={15}>
           Contract VM
         </Title>
         <Controls setView={setView} />
       </Group>
       <Group style={{ justifyContent : 'flex-start' }}>
-        <Text>{`Status :`}</Text>
+        <Text>{`Status:`}</Text>
         <Badge mb={2} radius={5} color={color()}>
           {status}
         </Badge>

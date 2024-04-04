@@ -72,7 +72,7 @@ export default function ({ secret, signer }: Props ) {
 
   return (
     <>
-      { !data && <Center><Loader color="blue" /></Center> }
+      { !data && <Center><Loader color="#0068FD" /></Center> }
       { data !== undefined &&
         <>
         <Text size='lg' fw={700}>Draft Details</Text>

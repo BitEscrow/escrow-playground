@@ -48,13 +48,13 @@ export default function AppDemo() {
     // Desktop navbar remains unaffected (no toggle action needed)
   };
 
-  const goto_page = (view : string) => {
+  // const goto_page = (view : string) => {
     
-    if (navi_desk_open) toggle_navi_desk()
-    if (navi_mobi_open) toggle_navi_mobi()
-    setView(view)
-    navigate(`/${view}`)
-  }
+  //   if (navi_desk_open) toggle_navi_desk()
+  //   if (navi_mobi_open) toggle_navi_mobi()
+  //   setView(view)
+  //   navigate(`/${view}`)
+  // }
   
   // To opt out, simply delete this section
   // of code. this will not break anything.
@@ -131,6 +131,9 @@ export default function AppDemo() {
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Settings" active={view === 'settings'} 
           onClick={() => handleNavLinkClick('settings')}
         />
+        <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="New* Drafts" active={view === 'newDraft'} 
+          onClick={() => handleNavLinkClick('newDraft')}
+        />
         <NavLink label="New Draft" active={view === 'drafts/new'} 
           onClick={() => handleNavLinkClick('drafts/new')}
           component="a"
@@ -147,6 +150,23 @@ export default function AppDemo() {
             width: '80%', 
             textDecoration: 'none',
             maxWidth: isMobile? '100px' : 'undefined'
+        }}
+        />
+        <NavLink label="New Deposit" active={view === 'drafts/new'} 
+          onClick={() => handleNavLinkClick('deposit/new')}
+          component="a"
+          style={{
+            fontWeight: 600,
+            color: '#0068FD',
+            borderRadius: '25px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '32px', 
+            marginTop: '13px',
+            width: '100%', 
+            textDecoration: 'none',
+            maxWidth: isMobile? '200px' : 'undefined'
         }}
         />
          {isMobile && <MobileFooterComponent/>}

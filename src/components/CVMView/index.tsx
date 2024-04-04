@@ -24,7 +24,7 @@ export default function () {
     <Card>
       <CVMHeader data={ data } setView={setView} />
       {/* <Divider mb={20} mt={20} /> */}
-      { isLoading && <Center><Loader color="blue" /></Center> }
+      { isLoading && <Center><Loader color="#0068FD" /></Center> }
       { data && !isLoading && <CVMPanel data={data} view={view} /> }
     </Card>
   )

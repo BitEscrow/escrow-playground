@@ -26,7 +26,7 @@ export default function DepositTable({ signer }: Props) {
   const renderProgressBar = (depositData: DepositData) => {
     // Assuming get_progress function is correctly imported or defined within this file
     const progress = depositData.expires_at ? get_progress(depositData.created_at, depositData.expires_at) : 0;
-    const color = progress < 50 ? 'green' : progress < 75 ? 'yellow' : progress < 90 ? 'orange' : 'red';
+    const color = progress < 50 ? '#3F8C4F' : progress < 75 ? 'yellow' : progress < 90 ? 'orange' : 'red';
 
     return (
       <Progress value={progress} color={color}>
@@ -38,7 +38,7 @@ export default function DepositTable({ signer }: Props) {
   };
 
   if (isLoading) {
-    return <Center><Loader color="blue" /></Center>;
+    return <Center><Loader color="#0068FD" /></Center>;
   }
 
   if (data.length === 0) {

@@ -22,7 +22,7 @@ export default function ({ data } : Props) {
       </Tooltip>
 
       <Tooltip label={`Secured: ${data.balance} sats`}>
-        <Progress.Section value={balance} color="green">
+        <Progress.Section value={balance} color="#3F8C4F">
           <Progress.Label>{`Secured: ${data.balance} sats`}</Progress.Label>
         </Progress.Section>
       </Tooltip>

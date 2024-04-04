@@ -35,15 +35,15 @@ export default function ContractTable({ signer }: Props) {
         <Tooltip label={`Pending: ${contractData.pending} sats`} color="orange" withinPortal>
           <Progress.Section value={pendingPercentage} color="orange" />
         </Tooltip>
-        <Tooltip label={`Secured: ${contractData.balance} sats`} color="green" withinPortal>
-          <Progress.Section value={balancePercentage} color="green" />
+        <Tooltip label={`Secured: ${contractData.balance} sats`} color="#3F8C4F" withinPortal>
+          <Progress.Section value={balancePercentage} color="#3F8C4F" />
         </Tooltip>
       </Progress>
     );
   };
 
   if (isLoading) {
-    return <Center><Loader color="blue" /></Center>;
+    return <Center><Loader color="#0068FD" /></Center>;
   }
 
   if (data.length === 0) {

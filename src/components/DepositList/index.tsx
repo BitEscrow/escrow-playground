@@ -16,7 +16,7 @@ export default function Index({ signer }: Props) {
   const { data, isLoading } = useDepositList(signer);
 
   if (isLoading) {
-    return <Center><Loader color="blue" /></Center>;
+    return <Center><Loader color="#0068FD" /></Center>;
   }
 
   if (data.length === 0) {

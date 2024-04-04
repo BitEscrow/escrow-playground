@@ -40,7 +40,7 @@ export default function () {
       { signer !== null && sid !== undefined
         && <Room secret={ sid } signer={ signer } /> 
         || <>
-            <Center><Loader color="blue" /></Center>
+            <Center><Loader color="#0068FD" /></Center>
             <Button onClick={reload}>Reload</Button>
           </>
       }

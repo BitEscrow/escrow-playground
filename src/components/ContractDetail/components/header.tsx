@@ -18,7 +18,7 @@ export default function ({ data, setView } : Props) {
       case 'funded' :   return '#0068FD'
       case 'secured':   return '#0068FD'
       case 'active':    return '#0068FD'
-      case 'settled':   return 'green'
+      case 'settled':   return '#3F8C4F'
       case 'spent':     return '#0068FD'
       case 'canceled':  return 'red'
       case 'expired':   return 'red'

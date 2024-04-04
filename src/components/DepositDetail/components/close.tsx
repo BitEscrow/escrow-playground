@@ -11,7 +11,7 @@ import {
   useFeeRates
 } from '@scrow/hooks'
 
-import { Button, Collapse, NumberInput, Slider, Text } from '@mantine/core'
+import { Box, Button, Collapse, NumberInput, Slider, Text } from '@mantine/core'
 
 interface Props {
   data   : DepositData
@@ -46,8 +46,8 @@ export default function ({ data, opened } : Props) {
     <>
       { isLoading && <></> }
       { !isLoading && fees !== undefined &&
-        <Collapse in={opened} mt={10}>
-          <Text>Select a fee-rate for your closing transaction:</Text>
+        <Box mt={10}>
+          <Text c={'dimmed'}>Select a fee-rate for your closing transaction:</Text>
           <Slider
             m={10}
             p={20}
@@ -71,8 +71,18 @@ export default function ({ data, opened } : Props) {
             suffix=" sats per vbyte"
           />
           <Text mt={10}>TxFee Total: {feerate * 65} sats</Text>
-          <Button mt={10} w='100%' onClick={close}>Confirm</Button>
-        </Collapse>
+          <Button
+            mt={10}
+            w='80px'
+            onClick={close}
+            style={{
+              borderRadius: '15px',
+              backgroundColor: '#0068FD',
+            }}
+          >
+            Confirm
+          </Button>
+        </Box>
       }
     </>
   )
