@@ -1,29 +1,25 @@
-import { DepositData } from '@scrow/core'
-
-import { Accordion, TextInput } from '@mantine/core'
+import { DepositData } from '@scrow/sdk/core';
+import { Divider, TextInput, NumberInput, Text } from '@mantine/core';
 
 interface Props {
-  data : DepositData
+  data: DepositData;
 }
 
-export default function ({ data } : Props) {
-
-  const created_at = new Date(data.created_at * 1000).toLocaleString()
-
-  const exp_date = (data.expires_at !== null)
-    ? new Date(data.expires_at * 1000).toLocaleString()
-    : 'N/A'
-
+export default function DepositDetails({ data }: Props) {
+  const { utxo } = data
   return (
-    <Accordion.Item key="details" value="details">
-      <Accordion.Control>Details</Accordion.Control>
-      <Accordion.Panel>
-        <TextInput label="Deposit ID"     value={data.dpid}       readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Created At"     value={created_at}      readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Expires At"     value={exp_date}        readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Deposit Pubkey" value={data.deposit_pk} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Spending XPub"  value={data.spend_xpub} readOnly style={{ maxWidth: '500px' }} />
-      </Accordion.Panel>
-    </Accordion.Item>
-  )
+    <div style={{ marginTop: '30px' }}>
+      <Text size="lg" fw={700}>Deposit Details</Text>
+      <Text size="sm" mb={30} c={'dimmed'}>
+        Key information about the deposit, including the transaction ID, output index, the value of the deposit, and the script key.
+      </Text>
+      
+      <TextInput label="Transaction ID" value={utxo.txid ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
+      <NumberInput label="Output Index" value={utxo.vout ?? undefined} readOnly style={{ maxWidth: '500px' }} />
+      <NumberInput label="Value" value={utxo.value ?? undefined} readOnly style={{ maxWidth: '500px' }} />
+      <TextInput label="ScriptKey" value={utxo.scriptkey ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
+
+      <Divider mb={40} mt={70} />
+    </div>
+  );
 }

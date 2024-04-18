@@ -2,9 +2,9 @@ import { useClient }     from '@scrow/hooks/client'
 import { usePayAddress } from '@scrow/hooks'
 
 import {
-  DepositAccount,
-  OracleSpendData
-} from '@scrow/core'
+  AccountData,
+  OracleTxSpendData
+} from '@scrow/sdk/core'
 
 import {
   Dispatch,
@@ -26,15 +26,15 @@ import {
 // Then we need to show address + qr code + a copy/paste button
 
 interface Props {
-  account    : DepositAccount,
-  setPayment : Dispatch<SetStateAction<OracleSpendData | undefined>>
+  account    : AccountData,
+  setPayment : Dispatch<SetStateAction<OracleTxSpendData | undefined>>
 }
 
 export default function ({ account, setPayment } : Props) {
 
   const { client } = useClient()
 
-  const { data } = usePayAddress(client, account.address)
+  const { data } = usePayAddress(client, account.deposit_addr)
 
   const [ amount, setAmount ] = useState(10_000)
 
@@ -46,7 +46,7 @@ export default function ({ account, setPayment } : Props) {
 
   return (
     <Box>
-      <Text>Payment Address: {account.address}</Text>
+      <Text>Payment Address: {account.deposit_addr}</Text>
       <NumberInput 
         label="Amount"
         description="The amount you wish to deposit into escrow."
@@ -55,7 +55,7 @@ export default function ({ account, setPayment } : Props) {
       />
       <Button mt={10}>Generate QR Code</Button>
       <Text>Checking for payment ...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

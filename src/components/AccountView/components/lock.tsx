@@ -2,11 +2,12 @@ import { Dispatch, SetStateAction, useEffect } from 'react'
 
 import { useClient } from '@scrow/hooks/client'
 
-import { ContractData, DepositData, EscrowSigner } from '@scrow/core'
+import { ContractData, DepositData } from '@scrow/sdk/core'
 
 import { Box, Center, Loader, Text } from '@mantine/core'
 
 import { useContract } from '@scrow/hooks'
+import { EscrowSigner } from '@scrow/sdk/client'
 
 // This page should just auto-register.
 // Once registration is a success, forward to the deposit.
@@ -28,12 +29,12 @@ export default function ({ cid, deposit, setContract, signer } : Props) {
     if (
       data !== undefined &&
       data.status === 'published' &&
-      (data.pending + data.balance) < data.total
+      (data.fund_pend + data.fund_value) < data.tx_total
     ) {
       (async () => {
         console.log('locking funds...')
         const dpid = deposit.dpid
-        const req = signer.account.lock(data, deposit)
+        const req = signer.deposit.lock(data, deposit)
         const res = await client.deposit.lock(dpid, req)
         if (!res.ok) throw new Error(res.error)
         setContract(res.data.contract)
@@ -44,7 +45,7 @@ export default function ({ cid, deposit, setContract, signer } : Props) {
   return (
     <Box>
       <Text>Locking payment to contract...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

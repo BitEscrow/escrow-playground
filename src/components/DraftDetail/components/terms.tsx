@@ -1,10 +1,11 @@
-import { DraftData, DraftSession } from '@scrow/core'
+import { DraftData, DraftSession } from '@scrow/sdk/core'
 
 import { Box, Button }    from '@mantine/core'
 import { useForm }from '@mantine/form'
 
 import PropForm from '@/components/PropForm'
 import { validate_proposal, verify_proposal } from '@scrow/core/validate'
+import { IconRefresh } from '@tabler/icons-react'
 
 interface Props {
   data    : DraftData
@@ -36,7 +37,17 @@ export default function ({ data, session } : Props) {
   return (
     <Box>
       <PropForm enabled={data.terms} form={form} />
-      <Button onClick={update}>Update Draft</Button>
+      <Button 
+        variant='subtle'
+        leftSection={<IconRefresh size={14}/>}
+         style={{
+          borderRadius: '15px',
+          color: '#0068FD'
+      }}
+        onClick={update}
+      >
+        Update Draft
+      </Button>
     </Box>
   )
 }

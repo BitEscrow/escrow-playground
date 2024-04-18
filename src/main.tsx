@@ -12,15 +12,15 @@ import { SignerProvider }  from '@/hooks/useSigner'
 import { ConfigProvider }  from '@/hooks/useConfig'
 import { servers }         from './config'
 
-const default_config = servers['mutiny']
+const config = servers['mutiny']
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Fragment>
     <BrowserRouter>
       <MantineProvider>
         <ConfigProvider>
-          <ClientProvider config={default_config}>
-            <SignerProvider config={default_config}>
+          <ClientProvider config={config}>
+            <SignerProvider config={config}>
               <App />
             </SignerProvider>
           </ClientProvider>

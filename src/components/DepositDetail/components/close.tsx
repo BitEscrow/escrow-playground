@@ -1,17 +1,14 @@
-import { useState }  from 'react'
-import { useSigner } from '@/hooks/useSigner'
-
-import {
-  assert,
-  DepositData
-} from '@scrow/core'
+import { useState }    from 'react'
+import { DepositData } from '@scrow/sdk/core'
+import { useSigner }   from '@/hooks/useSigner'
 
 import {
   useClient,
   useFeeRates
 } from '@scrow/hooks'
 
-import { Button, Collapse, NumberInput, Slider, Text } from '@mantine/core'
+import { Box, Button, NumberInput, Slider, Text } from '@mantine/core'
+import { assert } from '@scrow/sdk/util'
 
 interface Props {
   data   : DepositData
@@ -30,7 +27,7 @@ export default function ({ data, opened } : Props) {
   const close = async () => {
     assert.exists(signer)
     const fee = feerate * 65
-    const req = signer.account.close(data, fee)
+    const req = signer.deposit.close(data, fee)
     const res = await client.deposit.close(data.dpid, req)
     if (!res.ok) throw new Error(res.error)
   }
@@ -46,8 +43,8 @@ export default function ({ data, opened } : Props) {
     <>
       { isLoading && <></> }
       { !isLoading && fees !== undefined &&
-        <Collapse in={opened} mt={10}>
-          <Text>Select a fee-rate for your closing transaction:</Text>
+        <Box mt={10}>
+          <Text c={'dimmed'}>Select a fee-rate for your closing transaction:</Text>
           <Slider
             m={10}
             p={20}
@@ -71,8 +68,18 @@ export default function ({ data, opened } : Props) {
             suffix=" sats per vbyte"
           />
           <Text mt={10}>TxFee Total: {feerate * 65} sats</Text>
-          <Button mt={10} w='100%' onClick={close}>Confirm</Button>
-        </Collapse>
+          <Button
+            mt={10}
+            w='80px'
+            onClick={close}
+            style={{
+              borderRadius: '15px',
+              backgroundColor: '#0068FD',
+            }}
+          >
+            Confirm
+          </Button>
+        </Box>
       }
     </>
   )

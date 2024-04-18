@@ -2,14 +2,18 @@ import { useState }        from 'react'
 import { useNavigate }     from 'react-router-dom'
 import { useClickOutside, useScrollIntoView } from '@mantine/hooks'
 import { useClient }       from '@scrow/hooks'
-import { now }             from '@scrow/core/util'
+import { now }             from '@scrow/sdk/util'
 
-import {
-  ContractData,
-  EscrowSigner
-} from '@scrow/core'
+import { ContractData } from '@scrow/sdk/core'
+import { EscrowSigner } from '@scrow/sdk/client'
 
 import { Box, Button, Collapse, Group, NumberInput, Text } from '@mantine/core'
+
+import {
+  IconBox,
+  IconCoins,
+} from '@tabler/icons-react'
+
 
 interface Props {
   data   : ContractData
@@ -49,16 +53,13 @@ export default function ({ data, signer } : Props) {
 
   const can_deposit = (
     data.status === 'published' && 
-    (data.pending + data.balance) < data.total
+    (data.fund_pend + data.fund_value) < data.tx_total
   )
 
-  const can_submit = (
-    data.status === 'active' &&
-    data.vm_state !== null
-  )
+  const can_submit = (data.activated && !data.closed)
 
   const cancel = async () => {
-    const req = signer.request.contract_cancel(data.cid)
+    const req = signer.contract.cancel(data)
     const res = await client.contract.cancel(data.cid, req)
     if (!res.ok) throw new Error(res.error)
   }
@@ -74,26 +75,33 @@ export default function ({ data, signer } : Props) {
   }
 
   return (
-    <Box ref={ref}>
+    <Box ref={ref} mt={30}>
       <Group mt={10}>
         <Button
+          variant='sublte'
+          color='red'
+          maw={'156px'}
           disabled={!can_cancel}
           onClick={() => set_view('cancel')}
-          style={{ flex : 1 }}
+          style={{ flex : 1, borderRadius: '15px' }}
         >
           Cancel
         </Button>
         <Button
+          leftSection={<IconCoins size={14}/>}
+          maw={'156px'}
           disabled={!can_deposit}
           onClick={() => set_view('deposit')}
-          style={{ flex : 1 }}
+          style={{ flex : 1, borderRadius: '15px' }}
         >
           Deposit
         </Button>
         <Button
+          leftSection={<IconBox size={14}/>}
+          maw={'156px'}
           disabled={!can_submit}
           onClick={() => set_view('submit')}
-          style={{ flex : 1 }}
+          style={{ flex : 1, borderRadius: '15px', backgroundColor: 'black' }}
         >
           Open VM
         </Button>

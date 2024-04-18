@@ -1,7 +1,7 @@
 import {
   DraftData,
   DraftSession
-} from '@scrow/core'
+} from '@scrow/sdk/core'
 
 import {
   JsonInput,
@@ -16,10 +16,10 @@ interface Props {
 
 export default function ({ data } : Props) {
   return (
-    <ScrollArea h={250}>
+    <ScrollArea h={730}>
       <Stack>
         { data.members.map((e, idx) => (
-          <JsonInput 
+          <JsonInput
             autosize
             key={idx} 
             value={JSON.stringify(e, null, 2)}

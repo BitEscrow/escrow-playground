@@ -1,6 +1,6 @@
 import { useState }  from 'react'
 import { servers }   from '@/config'
-import { Network }   from '@scrow/core'
+import { Network }   from '@scrow/sdk/core'
 import { useConfig } from '@/hooks/useConfig'
 import { useClient } from '@scrow/hooks/client'
 import { useSigner } from '@/hooks/useSigner'
@@ -13,7 +13,6 @@ import {
   Divider,
   NativeSelect,
   Box,
-  TextInput,
   Button,
   Space
 } from '@mantine/core'
@@ -33,16 +32,14 @@ export default function SettingsView () {
   const { update_config : update_signer } = useSigner()
 
   const [ network, setNetwork ] = useState<Network>(store.network as Network)
-  const [ relay, setRelay ]     = useState<string>(store.relay)
 
   const update = () => {
-    if (network !== store.network) {
-      const config = servers[network as keyof typeof servers]
-      update_client(config)
-      update_signer(config)
-      setNetwork(network)
-    }
-    update_config({ network, relay })
+    const config = servers[network as keyof typeof servers]
+    update_client(config)
+    update_signer(config)
+    setNetwork(network)
+    update_config({ network })
+    console.log('updated config:', config)
     toast.success(`Settings Updated`, {
       position: "bottom-center",
       autoClose: 3000,
@@ -67,20 +64,21 @@ export default function SettingsView () {
           <Box>
             <NativeSelect
               label="Choose Network"
-              data={[ 'mutiny', 'signet', 'testnet' ]}
+              data={[ 'mutiny', 'regtest', 'signet', 'testnet' ]}
               maw={300}
               value={network}
               onChange={(e) => setNetwork(e.target.value as Network)}
             />
             <Space h="xs" />
-            <TextInput
-              label="Enter a Relay"
-              maw={300}
-              value={relay}
-              onChange={(e) => setRelay(e.target.value)}
-            />
-            <Space h="xs" />
-            <Button onClick={update}>Update</Button>
+            <Button
+              style={{
+                borderRadius: '15px',
+                backgroundColor: '#0068FD'
+              }}
+              onClick={update}
+            >
+              Update
+            </Button>
             <ToastContainer
               position="bottom-center"
               autoClose={3000}

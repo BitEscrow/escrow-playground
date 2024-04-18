@@ -1,6 +1,10 @@
-import { ContractData } from '@scrow/core'
+import { ContractData } from '@scrow/sdk/core'
 
-import { Accordion, TextInput } from '@mantine/core'
+import {
+  Divider,
+  TextInput,
+  Text,
+} from '@mantine/core'
 
 interface Props {
   data : ContractData
@@ -9,14 +13,11 @@ interface Props {
 export default function ({ data } : Props) {
 
   return (
-    <Accordion.Item key="details" value="details">
-      <Accordion.Control>Details</Accordion.Control>
-      <Accordion.Panel>
-        <TextInput label="Agent ID" value={data.agent_id} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Agent Public Key" value={data.agent_pk} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Agent PN" value={data.agent_pn} readOnly style={{ maxWidth: '500px' }} />
+    <div style={{marginTop: '30px'}}>
+        <Text size='lg' fw={700}>Contract Information</Text>
+        <Text size='sm' mb={30} c={'dimmed'}>Details and metadata of a contract. you can add paths, payment paths, and programs to it before publishing for review.</Text>
         <TextInput label="Moderator" value={data.moderator ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      </Accordion.Panel>
-    </Accordion.Item>
+        <Divider mb={40} mt={70} />
+    </div>
   )
 }

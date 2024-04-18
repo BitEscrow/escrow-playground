@@ -2,7 +2,8 @@ import { useNavigate } from 'react-router-dom'
 
 import {
   useState,
-  useEffect
+  useEffect,
+  SetStateAction
 } from 'react'
 
 import {
@@ -34,14 +35,26 @@ export default function AppDemo() {
   
   const [ view, setView ] = useState('')
 
-  const navigate  = useNavigate()
+  const navigate = useNavigate()
+  
+  const handleNavLinkClick = (view: SetStateAction<string>) => {
+    setView(view);
+    navigate(`/${view}`);
 
-  const goto_page = (view : string) => {
-    if (navi_desk_open) toggle_navi_desk()
-    if (navi_mobi_open) toggle_navi_mobi()
-    setView(view)
-    navigate(`/${view}`)
-  }
+    // Toggle navbar state based on device type
+    if (isMobile) {
+      toggle_navi_mobi();
+    }
+    // Desktop navbar remains unaffected (no toggle action needed)
+  };
+
+  // const goto_page = (view : string) => {
+    
+  //   if (navi_desk_open) toggle_navi_desk()
+  //   if (navi_mobi_open) toggle_navi_mobi()
+  //   setView(view)
+  //   navigate(`/${view}`)
+  // }
   
   // To opt out, simply delete this section
   // of code. this will not break anything.
@@ -50,13 +63,13 @@ export default function AppDemo() {
   // 
   // -------------Analytics----------------
   //
-  // https://plausible.io/mvp.bitescrow.app
+  // https://plausible.io/playground.bitescrow.app
   // 
   // --------------------------------------
   
   useEffect(() => {
     const { trackPageview } = Plausible({
-      domain: 'mvp.bitescrow.app',
+      domain: 'playground.bitescrow.app',
       trackLocalhost: true
     })
 
@@ -107,19 +120,16 @@ export default function AppDemo() {
 
       <AppShell.Navbar p="md"style={{ height: '100%' }}>
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Contracts" active={view === 'contracts'}
-          onClick={() => goto_page('contracts')}
+          onClick={() => handleNavLinkClick('contracts')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Deposits" active={view === 'deposits'}
-          onClick={() => goto_page('deposits')}
-        />
-        <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Drafts" active={view === 'drafts'}
-          onClick={() => goto_page('drafts') }
+          onClick={() => handleNavLinkClick('deposits')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Settings" active={view === 'settings'} 
-          onClick={() => goto_page('settings')}
+          onClick={() => handleNavLinkClick('settings')}
         />
-        <NavLink label="New Draft" active={view === 'drafts/new'} 
-          onClick={() => goto_page('drafts/new')}
+        <NavLink label="New Contract" active={view === 'draft/new'}
+          onClick={() => handleNavLinkClick('draft/new')}
           component="a"
           style={{
             fontWeight: 600,
@@ -131,9 +141,26 @@ export default function AppDemo() {
             alignItems: 'center',
             height: '32px', 
             marginTop: '20px',
+            width: '100%',
+            textDecoration: 'none',
+            maxWidth: isMobile? '120px' : 'undefined'
+        }}
+        />
+        <NavLink label="New Deposit" active={view === 'deposit/new'} 
+          onClick={() => handleNavLinkClick('deposit/new')}
+          component="a"
+          style={{
+            fontWeight: 600,
+            color: '#0068FD',
+            borderRadius: '25px',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '32px', 
+            marginTop: '13px',
             width: '100%', 
             textDecoration: 'none',
-            maxWidth: '120px'
+            maxWidth: isMobile? '200px' : 'undefined'
         }}
         />
          {isMobile && <MobileFooterComponent/>}

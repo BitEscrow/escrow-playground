@@ -19,7 +19,12 @@ const FooterComponent = () => {
             <a href="https://bitescrow.app/terms" style={{ textDecoration: 'none' }}>
             <Text c="dimmed" size="sm">Terms</Text>
             </a>
-            
+            <a href="https://bitescrow.app/bug" style={{ textDecoration: 'none' }}>
+            <Text c="dimmed" size="sm">Bug Report</Text>
+            </a>
+            <a href="https://plausible.io/playground.bitescrow.app" style={{ textDecoration: 'none' }}>
+            <Text c="dimmed" size="sm">Analytics</Text>
+            </a>
         </Group>
           <Text c='dimmed' size='sm' pt={5} style={{textAlign: 'center'}}>
 &copy; Talaria Software, Inc. {currentYear} | BitEscrow Beta Version 1.0

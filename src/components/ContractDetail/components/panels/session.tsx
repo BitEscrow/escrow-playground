@@ -1,22 +1,21 @@
-import { ContractData } from '@scrow/core'
-
-import { Accordion, TextInput } from '@mantine/core'
+import { ContractData } from '@scrow/sdk/core';
+import { Divider, TextInput, Text } from '@mantine/core';
 
 interface Props {
-  data : ContractData
+  data: ContractData;
 }
 
-export default function ({ data } : Props) {
-
+export default function SessionDetails({ data }: Props) {
   return (
-    <Accordion.Item key="session" value="session">
-      <Accordion.Control>Session</Accordion.Control>
-      <Accordion.Panel>
-        <TextInput label="Agent ID" value={data.agent_id} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Agent Public Key" value={data.agent_pk} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Agent PN" value={data.agent_pn} readOnly style={{ maxWidth: '500px' }} />
-        <TextInput label="Moderator" value={data.moderator ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      </Accordion.Panel>
-    </Accordion.Item>
-  )
+    <div style={{ marginTop: '30px' }}>
+      <Text size="lg" fw={700}>Session Details</Text>
+      <Text size="sm" mb={30} c={'dimmed'}>
+        Information about the session agent, public keys, and moderator. These details are crucial for the integrity and security of the contract session.
+      </Text>
+    
+      <TextInput label="Moderator" value={data.moderator ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
+      
+      <Divider mb={40} mt={70} />
+    </div>
+  );
 }

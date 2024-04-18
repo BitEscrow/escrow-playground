@@ -23,7 +23,7 @@ export default function () {
   return (
     <Card>
       <DepositHeader data={ data } setView={setView} />
-      { isLoading && <Center><Loader color="blue" /></Center> }
+      { isLoading && <Center><Loader color="#0068FD" /></Center> }
       { data && !isLoading && <DepositPanel data={data} view={view} /> }
     </Card>
   )

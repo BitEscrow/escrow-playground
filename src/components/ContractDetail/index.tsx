@@ -1,3 +1,4 @@
+import { useState }    from 'react'
 import { useParams }   from 'react-router-dom'
 import { useContract } from '@scrow/hooks/contract'
 import { useClient }   from '@scrow/hooks/client'
@@ -10,7 +11,6 @@ import {
 
 import ContractPanel  from './components/panel'
 import ContractHeader from './components/header'
-import { useState } from 'react'
 
 export default function () {
   const { cid }    = useParams()
@@ -23,8 +23,7 @@ export default function () {
   return (
     <Card>
       <ContractHeader data={ data } setView={setView} />
-      {/* <Divider mb={20} mt={20} /> */}
-      { isLoading && <Center><Loader color="blue" /></Center> }
+      { isLoading && <Center><Loader color="#0068FD" /></Center> }
       { data && !isLoading && <ContractPanel data={data} view={view} /> }
     </Card>
   )

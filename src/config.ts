@@ -1,22 +1,31 @@
-export const default_config = {
-  network : 'mutiny',
-  relay   : 'wss://nos.lol'
+export const settings = {
+  engine  : 'cvm',
+  network : 'mutiny'
 }
 
 export const servers = {
   mutiny : {
-    hostname : 'https://bitescrow-mutiny.vercel.app',
-    oracle   : 'https://mutinynet.com',
-    network  : 'mutiny'
+    network    : 'mutiny',
+    oracle_url : 'https://mutinynet.com',
+    server_pk  : '33f9d5a021afdffb864153eefa5d353d53e2d22053dadf8577c0e2b524bac794',
+    server_url : 'https://bitescrow-mutiny.vercel.app',
+  },
+  regtest : {
+    network    : 'regtest',
+    oracle_url : 'http://localhost:3300',
+    server_pk  : '33f9d5a021afdffb864153eefa5d353d53e2d22053dadf8577c0e2b524bac794',
+    server_url : 'http://localhost:3001'
   },
   signet : {
-    hostname : 'https://bitescrow-signet.vercel.app',
-    oracle   : 'https://mempool.space/signet',
-    network  : 'signet',
+    network    : 'signet',
+    oracle_url : 'https://mempool.space/signet',
+    server_pk  : '33f9d5a021afdffb864153eefa5d353d53e2d22053dadf8577c0e2b524bac794',
+    server_url : 'https://bitescrow-signet.vercel.app'
   },
   testnet : {
-    hostname : 'https://bitescrow-testnet.vercel.app',
-    oracle   : 'https://mempool.space/testnet',
-    network  : 'testnet',
+    network    : 'testnet',
+    oracle_url : 'https://mempool.space/testnet',
+    server_pk  : '33f9d5a021afdffb864153eefa5d353d53e2d22053dadf8577c0e2b524bac794',
+    server_url : 'https://bitescrow-testnet.vercel.app'
   }
 }

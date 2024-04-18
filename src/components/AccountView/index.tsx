@@ -2,11 +2,11 @@ import { useEffect, useState }  from 'react'
 import { useSigner } from '@/hooks/useSigner'
 
 import {
+  AccountData,
   ContractData,
-  DepositAccount,
   DepositData,
-  OracleSpendData
-} from '@scrow/core'
+  OracleTxSpendData
+} from '@scrow/sdk/core'
 
 import { Box, Stepper, Text } from '@mantine/core'
 
@@ -27,8 +27,8 @@ export default function () {
   const { signer } = useSigner()
 
   const [ active,   setActive   ] = useState(1)
-  const [ account,  setAccount  ] = useState<DepositAccount>()
-  const [ payment,  setPayment  ] = useState<OracleSpendData>()
+  const [ account,  setAccount  ] = useState<AccountData>()
+  const [ payment,  setPayment  ] = useState<OracleTxSpendData>()
   const [ deposit,  setDeposit  ] = useState<DepositData>()
   const [ contract, setContract ] = useState<ContractData>()
 

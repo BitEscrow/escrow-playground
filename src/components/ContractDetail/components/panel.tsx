@@ -1,7 +1,7 @@
 import { useSigner }    from '@/hooks/useSigner'
-import { ContractData } from '@scrow/core'
+import { ContractData } from '@scrow/sdk/core'
 
-import { Accordion, Box, Tabs } from '@mantine/core'
+import { Accordion, Box, Divider, Tabs } from '@mantine/core'
 
 import ActionButtons   from './actions'
 import DetailsPanel    from './panels/details'
@@ -24,6 +24,7 @@ export default function ({ data, view } : Props) {
   return (
     <Box mt={20} maw={700}>
       <FundProgress data={data} />
+      <Divider mb={20} mt={20} />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
           <Accordion defaultValue="details">

@@ -1,4 +1,4 @@
-import { ProposalData }      from '@scrow/core'
+import { ProposalData }      from '@scrow/sdk/core'
 import { UseFormReturnType } from '@mantine/form'
 import { DateTimePicker }    from '@mantine/dates'
 
@@ -18,7 +18,7 @@ interface Props {
 export default function ProposalDetailView({ enabled, form } : Props) {
 
   return (
-    <Box maw={500}>
+    <Box>
       <TextInput
         withAsterisk
         disabled={!enabled.includes('title')}
@@ -28,6 +28,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <JsonInput
+        mt={15}
         label="Content"
         disabled={!enabled.includes('content')}
         description="Json field for storing custom content."
@@ -35,6 +36,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <NumberInput
+        mt={15}
         withAsterisk
         label="Value"
         disabled={!enabled.includes('value')}
@@ -45,6 +47,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <NumberInput
+        mt={15}
         label="Funding Duration"
         disabled={!enabled.includes('deadline')}
         description="The max duration of a published contract (in seconds) before it expires."
@@ -52,6 +55,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <NumberInput
+        mt={15}
         withAsterisk
         label="Contract Duration"
         disabled={!enabled.includes('duration')}
@@ -64,6 +68,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <DateTimePicker
+        mt={15}
         label="Activation Date"
         disabled={!enabled.includes('effective')}
         description="Set a specific date for the contract to activate."
@@ -71,6 +76,7 @@ export default function ProposalDetailView({ enabled, form } : Props) {
       />
 
       <NumberInput
+        mt={15}
         label="Fee Rate"
         disabled={!enabled.includes('feerate')}
         description="The rate to use (in sats per vbyte) for calculating transaction fees."

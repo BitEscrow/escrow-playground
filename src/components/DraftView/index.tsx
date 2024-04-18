@@ -7,10 +7,6 @@ import {
   Divider
 } from '@mantine/core'
 
-import DraftList   from '../DraftList'
-import DraftSearch from '../DraftSearch'
-
-
 export default function DraftView () {
 
   // const { store }  = useConfig()
@@ -46,20 +42,7 @@ export default function DraftView () {
         <Text c="dimmed" style={{ marginBottom: '20px' }} maw='500px'>
           You must login in order to view your drafts.
         </Text>
-      }       
-      
-      { signer !== null &&
-        <>
-          <DraftSearch />
-          <Divider mb={30} mt={20}/>
-          <Title order={2} mb={15}>Existing Drafts</Title>
-          <Text c="dimmed" style={{ marginBottom: '20px' }} maw='500px'>
-            Click on a draft below to view the details.
-          </Text>
-          <Divider mb={30} mt={20}/>
-          <DraftList signer={ signer }/>
-      </>
-    }
+      }
     </Card>
   )
 }

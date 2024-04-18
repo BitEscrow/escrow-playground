@@ -109,7 +109,7 @@ export default function () {
       <Group gap={0}>
         <Button
           style    = {{ flex : 1 }}
-          bg='green'
+          bg='#3F8C4F'
           m={10}
           radius   = {15}
           onClick  = {regen}

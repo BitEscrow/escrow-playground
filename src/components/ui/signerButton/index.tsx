@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-
-import { useSigner } from '@/hooks/useSigner'
-import { IconKey }   from '@tabler/icons-react'
+import { sleep }               from '@scrow/sdk/util'
+import { useMediaQuery }       from '@mantine/hooks'
+import { useSigner }           from '@/hooks/useSigner'
+import { IconKey }             from '@tabler/icons-react'
 
 import {
   ColorSwatch,
@@ -11,10 +12,7 @@ import {
   Modal
 } from '@mantine/core'
 
-import { useMediaQuery } from '@mantine/hooks'
-
 import UserView from '../drawer'
-import { sleep } from '@scrow/core/util'
 
 interface SwatchProps {
   id : string
@@ -40,7 +38,7 @@ export default function SignerButton () {
     <>
       { signer !== null && <IdSwatch id={signer.pubkey} />}
       <ActionIcon
-        bg={signer !== null ? 'green' : '#0068FD'}
+        bg={signer !== null ? '#3F8C4F' : '#0068FD'}
         size={35}
         variant="filled"
         aria-label="Signer"

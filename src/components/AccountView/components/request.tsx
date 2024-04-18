@@ -1,10 +1,6 @@
-import { useClient } from '@scrow/hooks/client'
-import { now }       from '@scrow/core/util'
-
-import {
-  DepositAccount,
-  EscrowSigner
-} from '@scrow/core'
+import { AccountData }  from '@scrow/sdk/core'
+import { useClient }    from '@scrow/hooks/client'
+import { EscrowSigner } from '@scrow/sdk/client'
 
 import {
   Dispatch,
@@ -18,12 +14,13 @@ import {
   Loader,
   Text
 } from '@mantine/core'
+import { useSigner } from '@/hooks/useSigner'
 
 interface Props {
-  account   ?: DepositAccount
+  account   ?: AccountData
   params     : Record<string, string>
   signer     : EscrowSigner
-  setAccount : Dispatch<SetStateAction<DepositAccount | undefined>>
+  setAccount : Dispatch<SetStateAction<AccountData| undefined>>
 }
 
 export default function ({ account, setAccount, signer } : Props) {
@@ -32,14 +29,13 @@ export default function ({ account, setAccount, signer } : Props) {
   const params = Object.fromEntries(query.entries())
 
   const lock = params.lock ? Number(params.lock) : 60 * 60 * 48
-  const idx  = params.idx  ? Number(params.idx)  : now()
 
   const { client } = useClient()
 
   useEffect(() => {
-    if (account === undefined) {
+    if (signer !== null && account === undefined) {
       (async () => {
-        const req = signer.account.create(lock, idx)
+        const req = signer.account.create('', lock)
         const res = await client.deposit.request(req)
         if (!res.ok) throw new Error(res.error)
         setAccount(res.data.account)
@@ -50,7 +46,7 @@ export default function ({ account, setAccount, signer } : Props) {
   return (
     <Box>
       <Text>Requesting a deposit account from the Provider...</Text>
-      <Center><Loader color="blue" /></Center>
+      <Center><Loader color="#0068FD" /></Center>
     </Box>
   )
 }

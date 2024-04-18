@@ -1,19 +1,30 @@
-import { ContractData } from '@scrow/core'
-
-import { Accordion, TextInput } from '@mantine/core'
+import { ContractData } from '@scrow/sdk/core';
+import {
+  Text,
+  TextInput,
+  Divider
+} from '@mantine/core';
 
 interface Props {
-  data : ContractData
+  data: ContractData;
 }
 
-export default function ({ data } : Props) {
-
+export default function TermsDetails({ data }: Props) {
   return (
-    <Accordion.Item key="terms" value="terms">
-      <Accordion.Control>Terms</Accordion.Control>
-      <Accordion.Panel>
-        <TextInput label="Proposal ID" value={data.prop_id} readOnly style={{ maxWidth: '500px' }} />
-      </Accordion.Panel>
-    </Accordion.Item>
-  )
+    <div style={{ marginTop: '30px' }}>
+      <Text size="lg" fw={700}>Terms Details</Text>
+      <Text size="sm" mb={30} color={'dimmed'}>
+        Specific terms and conditions of the contract. This section outlines the agreement proposal ID.
+      </Text>
+      
+      <TextInput 
+        label="Proposal ID" 
+        value={data.prop_id ?? 'N/A'} 
+        readOnly 
+        style={{ maxWidth: '500px' }} 
+      />
+
+      <Divider mb={40} mt={70} />
+    </div>
+  );
 }

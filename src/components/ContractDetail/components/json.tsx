@@ -1,4 +1,4 @@
-import { ContractData } from '@scrow/core'
+import { ContractData } from '@scrow/sdk/core'
 
 import { Box, JsonInput } from '@mantine/core'
 

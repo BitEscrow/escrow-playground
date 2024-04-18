@@ -1,6 +1,6 @@
-import { UseFormReturnType } from '@mantine/form'
-import { IconTrash }         from '@tabler/icons-react'
-import { ProposalData }      from '@scrow/core'
+import { UseFormReturnType }    from '@mantine/form'
+import { IconPlus, IconTrash }  from '@tabler/icons-react'
+import { ProposalData }         from '@scrow/sdk/core'
 
 import {
   NumberInput,
@@ -12,6 +12,7 @@ import {
   Button
 } from '@mantine/core'
 
+
 interface Props {
   enabled : string[]
   form    : UseFormReturnType<ProposalData>
@@ -20,6 +21,7 @@ interface Props {
 export default function ({ enabled, form } : Props) {
 
   const is_disabled = !enabled.includes('payments')
+  
 
   const fields = form.values.payments.map((_, index) => {    
     return (
@@ -48,22 +50,24 @@ export default function ({ enabled, form } : Props) {
   })
 
   return (
-    <Box maw={500}>
-      <Text pt={'10px'} mt={40}>
+    <Box>
+      <Text mt={5} mb={30} c='dimmed' size='sm'>
         A payment is unconditional, and will apply to all spending paths. They are useful for collecting fees, non-refundable costs, etc. Payments are not guaranteed if a contract expires without settlement.
       </Text>
       { fields.length === 0 &&
-        <Text c="dimmed" ta="center" mt={40}>
+        <Text c="dimmed" mt={40} ta="center">
           No payments have been created.
         </Text>  
       }
 
       {fields}
 
-      <Group justify="center" mt="sm">
+      <Group mt="sm" justify="right">
         <Button
-          variant='subtle'
           disabled={is_disabled}
+          variant='subtle'
+          leftSection={<IconPlus size={'14px'}/>}
+          style={{borderRadius: '15px', color: !is_disabled? '#0068FD' : 'gray'}}
           onClick={() =>
             form.insertListItem('payments', [ 1000, undefined ])
           }

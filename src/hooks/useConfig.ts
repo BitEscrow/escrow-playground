@@ -1,7 +1,6 @@
-import { createStore }    from '@cmdcode/use-store'
-import { Network }        from '@scrow/core'
-
-import { default_config as defaults } from '@/config'
+import { createStore } from '@cmdcode/use-store'
+import { Network }     from '@scrow/sdk/core'
+import { settings }    from '@/config'
 
 export interface ConfigStore {
   network : Network
@@ -18,4 +17,4 @@ const session_key = 'config'
 export const {
   StoreProvider : ConfigProvider,
   useStore      : useConfig
-} = createStore({ defaults, session_key })
+} = createStore({ defaults : settings, session_key })
