@@ -2,7 +2,7 @@
 
 View the live demo:
 
-https://bitescrow-playground.vercel.app
+https://playground.bitescrow.app
 
 Deploy your own:
 
