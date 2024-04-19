@@ -29,6 +29,10 @@ export default function () {
   const encoded    = params.get('enc')
   const navigate   = useNavigate()
 
+  const can_update = (
+    encoded !== DraftUtil.encode(draft.data)
+  )
+
   const can_endorse = (
     signer !== null &&
     signer.draft.is_member(draft.data)  &&
@@ -54,6 +58,7 @@ export default function () {
   const endorse_draft = () => {
     if (signer !== null) {
       draft.member.endorse(signer)
+      update_link()
     }
   }
 
@@ -85,10 +90,8 @@ export default function () {
       }
       <Group>
         <Button
-          style={{
-            backgroundColor: '#0068FD',
-            borderRadius: '15px',
-          }}
+          disabled={!can_update}
+          style={{ borderRadius: '15px' }}
           variant="filled"
           onClick={() => update_link()}
         >
