@@ -1,5 +1,5 @@
-import { useDraftStore } from '@/hooks/useDraft'
-import { useForm }       from '@mantine/form'
+import { useForm }     from '@mantine/form'
+import { PolicyStore } from '@scrow/hooks/draft'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
@@ -7,7 +7,6 @@ import {
   Box,
   Button,
   Fieldset,
-  TagsInput,
   TextInput,
   Group,
   ActionIcon,
@@ -17,15 +16,16 @@ import {
   Code
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  policy : PolicyStore
+}
 
-  const draft = useDraftStore()
-  const prop  = draft.proposal
+export default function ({ policy } : Props) {
 
-  const programs = prop.data.programs.map((item, idx) => (
+  const programs = policy.data.programs.map((item, idx) => (
     <Group key={idx} mb={15}>
       <Code>{JSON.stringify(item)}</Code>
-      <ActionIcon color="red" onClick={() => prop.program.rem(idx) }>
+      <ActionIcon color="red" onClick={() => policy.program.rem(idx) }>
         <IconTrash size="1rem" />
       </ActionIcon>
     </Group>
@@ -78,11 +78,6 @@ export default function () {
               style={{ flex: 1 }}
               {...form.getInputProps('threshold')}
             />
-            <TagsInput
-              label="Pubkeys"
-              style={{ flex: 1 }}
-              {...form.getInputProps('pubkeys')}
-            />
           </Group>
         </Stack>
       </Fieldset>
@@ -91,8 +86,8 @@ export default function () {
         leftSection={<IconPlus size={'14px'}/>}
         style={{borderRadius: '15px', color: '#0068FD' }}
         onClick={() => {
-          const { method, actions, paths, threshold, pubkeys } = form.values
-          prop.program.add([ method, actions, paths, threshold, ...pubkeys ])
+          const { method, actions, paths, threshold } = form.values
+          policy.program.add([ method, actions, paths, threshold ])
         }}
       >
         Add New Program

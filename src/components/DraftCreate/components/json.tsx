@@ -1,22 +1,18 @@
+import { useDraftStore } from '@/hooks/useDraft'
 import { Box, Button, JsonInput } from '@mantine/core'
-import { DraftSession } from '@scrow/sdk'
+import { useEffect, useState }    from 'react'
 
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
+export default function () {
 
-interface Props {
-  data    : DraftSession
-  setData : Dispatch<SetStateAction<DraftSession>>
-}
+  const draft = useDraftStore()
 
-export default function ({ data, setData } : Props) {
-
-  const [ json, setJson ]     = useState(JSON.stringify(data, null, 2))
+  const [ json, setJson ]     = useState(JSON.stringify(draft.data, null, 2))
   const [ isValid, setValid ] = useState(false)
 
   function submit () {
     if (isValid) {
-      const draft = JSON.parse(json)
-      setData(draft)
+      const data = JSON.parse(json)
+      draft.update(data)
     }
   }
 

@@ -1,11 +1,5 @@
-import { DraftSession } from '@scrow/sdk/client'
 import { ProposalData } from '@scrow/sdk/core'
-
-import {
-  Dispatch,
-  SetStateAction,
-  useState
-} from 'react'
+import { useState }     from 'react'
 
 import {
   DraftUtil,
@@ -18,22 +12,21 @@ import {
   NativeSelect
 } from '@mantine/core'
 
-import presets_json from '../presets.json' assert { type: 'json' }
+import presets_json from '@/presets.json' assert { type: 'json' }
+import { useDraftStore } from '@/hooks/useDraft'
 
 type PresetEnum = keyof typeof presets_json
 
-interface Props {
-  setData : Dispatch<SetStateAction<DraftSession>>
-}
+export default function () {
 
-export default function ({ setData } : Props) {
+  const draft = useDraftStore()
 
   const [ preset, setPreset ] = useState('default')
 
   const apply_preset = () => {
     const { proposal, roles } = presets_json[preset as PresetEnum]
-    const draft = DraftUtil.create(proposal as ProposalData, roles as RoleTemplate[])
-    setData(draft)
+    const data = DraftUtil.create(proposal as ProposalData, roles as RoleTemplate[])
+    draft.update(data)
   }
 
   return (

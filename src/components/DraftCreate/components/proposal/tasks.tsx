@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
-import { useForm }                  from '@mantine/form'
-import { IconPlus, IconTrash }      from '@tabler/icons-react'
-import { ScheduleEntry }            from '@scrow/sdk/core'
-import { DraftSession }             from '@scrow/sdk/client'
+import { useForm }             from '@mantine/form'
+import { useDraftStore }       from '@/hooks/useDraft'
+import { IconPlus, IconTrash } from '@tabler/icons-react'
 
 import {
   NumberInput,
@@ -16,37 +14,23 @@ import {
   Space,
 } from '@mantine/core'
 
-interface Props {
-  data    : DraftSession
-  setData : Dispatch<SetStateAction<DraftSession>>
-}
+export default function () {
 
-export default function ({ data, setData } : Props) {
-
-  const proposal = data.proposal
+  const draft = useDraftStore()
+  const prop  = draft.proposal
 
   const form = useForm({
     initialValues: {
-      timer   : 0,
-      actions : '',
-      paths   : ''
+      timer   : 60 * 60 * 24,
+      actions : '*',
+      paths   : '*'
     }
   })
 
-  function add_task (task : ScheduleEntry) {
-    const schedule = [ ...proposal.schedule, task ]
-    setData({ ...data, proposal : { ...proposal, schedule }})
-  }
-
-  function rem_task (idx : number) {
-    const schedule = [ ...proposal.schedule.slice(0, idx), ...proposal.schedule.slice(idx + 1) ]
-    setData({ ...data, proposal : { ...proposal, schedule }})
-  }
-
-  const schedule = proposal.schedule.map((itm, idx) => (
+  const schedule = prop.data.schedule.map((itm, idx) => (
     <Group key={idx} mb={15}>
       <Code>{JSON.stringify(itm)}</Code>
-      <ActionIcon color="red" onClick={() => rem_task(idx) }>
+      <ActionIcon color="red" onClick={() => prop.task.rem(idx) }>
         <IconTrash size="1rem" />
       </ActionIcon>
     </Group>
@@ -85,8 +69,7 @@ export default function ({ data, setData } : Props) {
         style={{borderRadius: '15px', color: '#0068FD' }}
         onClick={() => {
           const { timer, actions, paths } = form.values
-          add_task([ timer, actions, paths ])
-          form.reset()
+          prop.task.add([ timer, actions, paths ])
         }}
       >
         Add Scheduled Task

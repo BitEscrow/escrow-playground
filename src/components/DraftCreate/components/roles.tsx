@@ -1,29 +1,41 @@
-import { DraftSession } from '@scrow/sdk/client'
+import { useDraftStore } from '@/hooks/useDraft'
+import { useForm }       from '@mantine/form'
+import { IconPlus }      from '@tabler/icons-react'
 
-import {
-  Dispatch,
-  SetStateAction
-} from 'react'
+import { Accordion, Box, Button, Group, Space, Text, TextInput } from '@mantine/core'
 
-import { Box } from '@mantine/core'
+import PolicyForm from './roles/policy'
 
-interface Props {
-  data    : DraftSession
-  setData : Dispatch<SetStateAction<DraftSession | undefined>>
-}
+export default function () {
 
-export default function ({ data, setData }: Props) {
+  const draft = useDraftStore()
+  const roles = draft.roles
+  const form  = useForm({ initialValues : { title : '' }})
 
-  const roles = data.roles.map(e => (
-    <Box>
-      
-    </Box>
-  ))
-
+  const policies = roles.map(e => <PolicyForm policy={e}/>)
 
   return (
     <Box>
-
+      {policies.length === 0 && <Text mb={30} ml={30} c='dimmed' size='sm'>no roles have been created</Text>}
+      <Accordion mt="xs">{policies}</Accordion>
+      <Space h={10}/>
+      <Group>
+        <TextInput
+          description="Enter a name for the role."
+          {...form.getInputProps('title')}
+        />
+        <Space h={10}/>
+        <Button
+          variant='subtle'
+          leftSection={<IconPlus size={'14px'}/>}
+          style={{ borderRadius: '15px', color: '#0068FD', alignSelf: 'end' }}
+          onClick={() => {
+            draft.role.add(form.values)
+          }}
+        >
+          Create Role
+        </Button>
+      </Group>
     </Box>
   )
 }

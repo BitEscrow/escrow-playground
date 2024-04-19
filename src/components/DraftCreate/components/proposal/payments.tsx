@@ -1,8 +1,6 @@
-import { Dispatch, SetStateAction } from 'react'
-import { useForm }                  from '@mantine/form'
-import { IconPlus, IconTrash }      from '@tabler/icons-react'
-import { PaymentEntry }             from '@scrow/sdk/core'
-import { DraftSession }             from '@scrow/sdk/client'
+import { useForm }             from '@mantine/form'
+import { IconPlus, IconTrash } from '@tabler/icons-react'
+import { useDraftStore }       from '@/hooks/useDraft'
 
 import {
   NumberInput,
@@ -16,37 +14,22 @@ import {
   Space,
 } from '@mantine/core'
 
-interface Props {
-  data    : DraftSession
-  setData : Dispatch<SetStateAction<DraftSession>>
-}
+export default function () {
 
-export default function ({ data, setData } : Props) {
-
-  const proposal = data.proposal
+  const draft = useDraftStore()
+  const prop  = draft.proposal
 
   const form = useForm({
     initialValues: {
-      path    : '',
       value   : 540,
       address : ''
     }
   })
 
-  function add_payment (payment : PaymentEntry) {
-    const payments = [ ...proposal.payments, payment ]
-    setData({ ...data, proposal : { ...proposal, payments }})
-  }
-
-  function rem_payment (idx : number) {
-    const payments = [ ...proposal.payments.slice(0, idx), ...proposal.payments.slice(idx + 1) ]
-    setData({ ...data, proposal : { ...proposal, payments }})
-  }
-
-  const payments = proposal.payments.map((itm, idx) => (
+  const payments = prop.data.payments.map((item, idx) => (
     <Group key={idx} mb={15}>
-      <Code>{JSON.stringify(itm)}</Code>
-      <ActionIcon color="red" onClick={() => rem_payment(idx) }>
+      <Code>{JSON.stringify(item)}</Code>
+      <ActionIcon color="red" onClick={() => prop.payment.rem(idx) }>
         <IconTrash size="1rem" />
       </ActionIcon>
     </Group>
@@ -78,8 +61,7 @@ export default function ({ data, setData } : Props) {
         style={{borderRadius: '15px', color: '#0068FD' }}
         onClick={() => {
           const { value, address } = form.values
-          add_payment([ value, address ])
-          form.reset()
+          prop.payment.add([ value, address ])
         }}
       >
         Add Payment

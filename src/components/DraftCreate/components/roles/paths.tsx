@@ -1,6 +1,6 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { useDraftStore }       from '@/hooks/useDraft'
+import { PolicyStore }         from '@scrow/hooks/draft'
 
 import {
   NumberInput,
@@ -14,10 +14,11 @@ import {
   Space
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  policy : PolicyStore
+}
 
-  const draft = useDraftStore()
-  const prop  = draft.proposal
+export default function ({ policy } : Props) {
 
   const form = useForm({
     initialValues: {
@@ -27,10 +28,10 @@ export default function () {
     }
   })
 
-  const paths = prop.data.paths.map((itm, idx) => (
+  const paths = policy.data.paths.map((itm, idx) => (
     <Group key={idx} mb={15}>
       <Code>{JSON.stringify(itm)}</Code>
-      <ActionIcon color="red" onClick={() => prop.path.rem(idx) }>
+      <ActionIcon color="red" onClick={() => policy.path.rem(idx) }>
         <IconTrash size="1rem" />
       </ActionIcon>
     </Group>
@@ -54,11 +55,6 @@ export default function () {
           description="Payment Amount (in sats)"
           {...form.getInputProps('value')}
         />
-        <TextInput
-          description="Receive Address"
-          placeholder="receive address"
-          {...form.getInputProps('address')}
-        />
       </Group>
       <Space h={10}/>
       <Button
@@ -66,8 +62,8 @@ export default function () {
         leftSection={<IconPlus size={'14px'}/>}
         style={{borderRadius: '15px', color: '#0068FD' }}
         onClick={() => {
-          const { path, value, address } = form.values
-          prop.path.add([ path, value, address ])
+          const { path, value } = form.values
+          policy.path.add([ path, value ])
         }}
       >
         Add Spending Path
