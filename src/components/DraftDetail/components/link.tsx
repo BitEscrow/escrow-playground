@@ -23,7 +23,7 @@ export default function () {
             h={28}
             w={100}
             color={clip.copied ? 'teal' : 'blue'}
-            onClick={() => clip.copy('Hello, world!')}
+            onClick={() => clip.copy(link)}
           >
             {clip.copied ? 'Copied' : 'Copy'}
           </Button>

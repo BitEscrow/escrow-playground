@@ -1,31 +1,28 @@
-import {
-  DraftData,
-  DraftSession
-} from '@scrow/sdk/core'
+import { EscrowSigner }  from '@scrow/sdk/client'
+import { useDraftStore } from '@/hooks/useDraft'
 
 import {
   JsonInput,
-  ScrollArea,
   Stack
 } from '@mantine/core'
 
 interface Props {
-  data    : DraftData
-  session : DraftSession
+  signer : EscrowSigner
 }
 
-export default function ({ data } : Props) {
+export default function (props : Props) {
+
+  const draft = useDraftStore()
+
   return (
-    <ScrollArea h={730}>
-      <Stack>
-        { data.members.map((e, idx) => (
-          <JsonInput
-            autosize
-            key={idx} 
-            value={JSON.stringify(e, null, 2)}
-          />
-        ))}
-      </Stack>
-    </ScrollArea>
+    <Stack>
+      { draft.data.members.map((e) => (
+        <JsonInput
+          autosize
+          key={e.pub} 
+          value={JSON.stringify(e, null, 2)}
+        />
+      ))}
+    </Stack>
   )
 }

@@ -1,4 +1,6 @@
-import { DraftData, DraftSession }  from '@scrow/sdk/core'
+import { EscrowSigner }  from '@scrow/sdk/client'
+import { useDraftStore } from '@/hooks/useDraft'
+
 import { Box, Button, Group, Text } from '@mantine/core'
 
 import {
@@ -6,37 +8,36 @@ import {
   IconLogout
 } from '@tabler/icons-react'
 
-
 interface Props {
-  data    : DraftData
-  session : DraftSession
+  signer : EscrowSigner
 }
 
-export default function ({ data, session } : Props) {
+export default function ({ signer } : Props) {
+
+  const draft = useDraftStore()
 
   return (
-    <Box h={200}>
-      <Text size='lg' fw={700}>Seats</Text>
-      <Text size='sm' mb={30} c={'dimmed'}>Avalible seats in the contract - click to join or leave. </Text>
-      <Group h={20} gap={'xl'}>
-        { data.roles.map(e => {
-          const is_mbr  = session.is_member
-          const is_pol  = is_mbr && session.mship.pol === e.id
-          const curr    = data.members.filter(x => x.pol === e.id).length
-          const is_full = curr >= e.max_slots
+    <Box>
+      <Text size='sm' mb={10} c={'dimmed'}>Avalible seats in the contract.</Text>
+      <Group gap={'xl'}>
+        { draft.roles.map(e => {
+          const is_mbr  = signer.draft.is_member(draft.data)
+          const is_pol  = signer.draft.is_role(e.id, draft.data)
+          const curr    = draft.members.filter(x => x.pid === e.id).length
+          const is_full = curr >= e.data.max_num
           return (
             <Box key={ e.id }>
-              <Text ta={'center'}>{e.title}</Text>
-              <Text ta={'center'}>{`${e.min_slots} / ${curr} / ${e.max_slots}`}</Text>
+              <Text ta={'center'}>{e.data.title}</Text>
+              <Text ta={'center'}>{`${e.data.min_num} / ${curr} / ${e.data.max_num}`}</Text>
               <Button
-                style={{borderRadius: '15px', backgroundColor: is_pol && is_full ? '#0068FD' : '#F7F8F9'}}
+                style={{ borderRadius: '15px', backgroundColor: !is_pol && is_full ? '#F7F8F9' : '#0068FD' }}
                 leftSection={(is_pol) ? <IconLogout size={14}/> : <IconPlus size={14}/>}
                 disabled = {(!is_pol && is_full) || (is_mbr && !is_pol)}
                 onClick  = {() => {
                   if (is_pol) {
-                    session.leave()
+                    draft.member.leave(signer)
                   } else {
-                    session.join(e.id)
+                    draft.member.join(e.id, signer)
                   }
                 }}
               >
