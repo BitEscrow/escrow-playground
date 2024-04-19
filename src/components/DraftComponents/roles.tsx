@@ -12,7 +12,7 @@ export default function () {
   const roles = draft.roles
   const form  = useForm({ initialValues : { title : '' }})
 
-  const policies = roles.map(e => <PolicyForm policy={e}/>)
+  const policies = roles.map(e => <PolicyForm key={e.id} policy={e}/>)
 
   return (
     <Box>

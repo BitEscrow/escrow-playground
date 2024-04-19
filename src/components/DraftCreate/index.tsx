@@ -11,9 +11,10 @@ import {
   Tabs
 } from '@mantine/core'
 
-import DraftHeader  from './components/header'
-import FormView     from './components/form'
-import JsonView     from './components/json'
+import DraftHeader  from '../DraftComponents/header'
+import FormView     from '../DraftComponents/form'
+import JsonView     from '../DraftComponents/json'
+import PresetView   from '../DraftComponents/preset'
 
 export default function CreateDraftView () {
 
@@ -22,7 +23,7 @@ export default function CreateDraftView () {
 
   const [ view, setView ] = useState('fields')
 
-  const init_draft = () => {
+  const update_link = () => {
     try {
       const link = DraftUtil.encode(draft.data)
       navigate(`/draft/view?enc=${link}`)
@@ -35,6 +36,7 @@ export default function CreateDraftView () {
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
       <DraftHeader setView={setView} />
       <Divider mb={30} mt={20}/>
+      <PresetView />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
           <FormView />
@@ -51,7 +53,7 @@ export default function CreateDraftView () {
         }}
         maw = {150}
         variant="filled"
-        onClick={() => init_draft()}
+        onClick={() => update_link()}
       >
         Create Draft
       </Button>

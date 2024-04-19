@@ -8,7 +8,6 @@ import {
   IconRoute
 } from '@tabler/icons-react'
 
-import PresetView   from './preset'
 import ProposalForm from './proposal'
 import RoleForm     from './roles'
 
@@ -16,7 +15,6 @@ export default function () {
 
   return (
     <Box mb={30}>
-      <PresetView />
       <Tabs defaultValue="proposal">
         <Tabs.List grow w='100%' mb={20}>
           <Tabs.Tab leftSection={<IconLicense size={18}/>} value="proposal">Proposal</Tabs.Tab>
