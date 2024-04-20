@@ -543,21 +543,21 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.14.3.tgz#5b2fb4d8cd44c05deef8a7b0e6deb9ccb8939d18"
   integrity sha512-/BypzV0H1y1HzgYpxqRaXGBRqfodgoBBCcsrujT6QRcakDQdfU+Lq9PENPh5jB4I44YWq+0C2eHsHya+nZY1sA==
 
-"@scrow/hooks@^0.2.10":
-  version "0.2.10"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.10.tgz#b3ff7fe84fc647ea43935e59ea7501a1393aace2"
-  integrity sha512-lrHCf5p+FB41VLqjkG7ULxSEdu2ZsHAAJ/eSQ7cuyoO3TNmCnef2Ubr2Y3cBV4+H7cNiHZ4mAwNwoT5lcaHkOQ==
+"@scrow/hooks@^0.2.14":
+  version "0.2.14"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.14.tgz#e699d5bf1ed51d99ed036707626f89a8cefba7d9"
+  integrity sha512-zLHBOtF1Do0H/1QW0UHcNY0xbPej945c3z5Z2cWlZ1xxPRPJHajx2w4Tef2/YPTvmTUd8VDj6eVJ8hZnui5ziw==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.2"
     "@cmdcode/use-store" "^1.1.1"
-    "@scrow/sdk" "^0.9.14"
+    "@scrow/sdk" "^0.9.16"
     swr "^2.2.5"
 
-"@scrow/sdk@^0.9.14":
-  version "0.9.14"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.9.14.tgz#679f4301fb985a1df60d79c3ac1d4b0f22f3a646"
-  integrity sha512-yBaHLZNxc3wwnUhBb8OhB6QI9fClUieujcnwc1LuzZeDoKNR7/cNO8wIG3wTu5kj6KMaOESRdi/RA2q1xfTJrQ==
+"@scrow/sdk@^0.9.16":
+  version "0.9.16"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.9.16.tgz#89a99a216cf4ab0fe86eab451c4b7bde4bd160be"
+  integrity sha512-kMs5JPJqyg5IyKSYUE8d0N4pNAL/EwRK8/EClQnPh1F++vBTYQx6uc8Hzw8alYriteolbyZAUAKwXEhBmwivUg==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"
@@ -1863,6 +1863,11 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
+mantine-form-zod-resolver@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mantine-form-zod-resolver/-/mantine-form-zod-resolver-1.1.0.tgz#9c73aa6cd84fc838f10d728859aecd4c0a432e55"
+  integrity sha512-hidTuYq6agSF5XbkcVVcr0mkGs9ki/x8OC9ldZMxGLVGja6bdl+x4k1hCNrigCG90DBoMDnu0bo3hprGBBlUZA==
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -2640,3 +2645,8 @@ zod@^3.22.4:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
   integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
+
+zod@^3.22.5:
+  version "3.22.5"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.5.tgz#b9b09db03f6700b0d0b75bf0dbf0c5fc46155220"
+  integrity sha512-HqnGsCdVZ2xc0qWPLdO25WnseXThh0kEYKIdV5F/hTHO75hNZFp8thxSeHhiPrHZKrFTo1SOgkAj9po5bexZlw==

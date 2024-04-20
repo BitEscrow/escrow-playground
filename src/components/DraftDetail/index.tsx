@@ -5,7 +5,7 @@ import { DraftUtil }     from '@scrow/sdk/client'
 
 import { useEffect, useState }          from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { IconMail, IconRubberStamp }    from '@tabler/icons-react'
+import { IconEyeCheck, IconMail, IconRubberStamp }    from '@tabler/icons-react'
 
 import {
   Button,
@@ -30,7 +30,7 @@ export default function () {
   const navigate   = useNavigate()
 
   const can_update = (
-    encoded !== DraftUtil.encode(draft.data)
+    encoded !== draft.encoded
   )
 
   const can_endorse = (
@@ -53,6 +53,10 @@ export default function () {
     } catch {
       return
     }
+  }
+
+  const verify_draft = () => {
+    return
   }
 
   const endorse_draft = () => {
@@ -92,10 +96,11 @@ export default function () {
         <Button
           disabled={!can_update}
           style={{ borderRadius: '15px' }}
+          leftSection={<IconEyeCheck size={14}/>}
           variant="filled"
-          onClick={() => update_link()}
+          onClick={() => verify_draft()}
         >
-          Update Draft
+          Verify
         </Button>
         <Button 
           disabled={!can_endorse}

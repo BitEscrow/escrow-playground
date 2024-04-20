@@ -3,7 +3,7 @@ import {
 } from '@mantine/core'
 
 import InfoForm    from './proposal/info'
-import DetailForm  from './proposal/details'
+import DetailForm  from './proposal/terms'
 import PathForm    from './proposal/paths'
 import PaymentForm from './proposal/payments'
 import ProgramForm from './proposal/programs'
@@ -41,16 +41,16 @@ export default function () {
             <ProgramForm />
           </Accordion.Panel>
         </Accordion.Item>
-        <Accordion.Item key="settings" value="settings">
-          <Accordion.Control icon={<IconSettings size={18}/>}>Settings</Accordion.Control>
-          <Accordion.Panel>
-            <DetailForm />
-          </Accordion.Panel>
-        </Accordion.Item>
         <Accordion.Item key="tasks" value="tasks">
           <Accordion.Control icon={<IconList size={18}/>}>Tasks</Accordion.Control>
           <Accordion.Panel>
             <TaskForm />
+          </Accordion.Panel>
+        </Accordion.Item>
+        <Accordion.Item key="terms" value="terms">
+          <Accordion.Control icon={<IconSettings size={18}/>}>Terms</Accordion.Control>
+          <Accordion.Panel>
+            <DetailForm />
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>

@@ -1,3 +1,5 @@
+export const machines = [ 'cvm' ]
+
 export const settings = {
   engine  : 'cvm',
   network : 'mutiny'
