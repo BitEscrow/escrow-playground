@@ -8,7 +8,9 @@ import {
   Card,
   Divider,
   Space,
-  Tabs
+  Tabs,
+  Text,
+  Title
 } from '@mantine/core'
 
 import DraftHeader  from '../DraftComponents/header'
@@ -34,7 +36,16 @@ export default function CreateDraftView () {
   
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
-      <DraftHeader setView={setView} />
+      <DraftHeader setView={setView}>
+        <>
+          <Title order={2} mb={15}>
+            New Draft
+          </Title>
+          <Text>
+            Create a new draft for a contract.
+          </Text>
+        </>
+      </DraftHeader>
       <Divider mb={30} mt={20}/>
       <PresetView />
       <Tabs defaultValue="fields" value={view}>

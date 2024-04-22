@@ -5,24 +5,30 @@ import { useClient }     from '@scrow/hooks'
 
 import { useEffect, useState }          from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-
-import { IconEyeCheck, IconMail, IconRubberStamp } from '@tabler/icons-react'
+import { IconMail, IconRubberStamp }    from '@tabler/icons-react'
 
 import {
   Button,
   Space,
   Card,
   Group,
-  Divider
+  Divider,
+  Tabs,
+  Title,
+  Text
 } from '@mantine/core'
 
-import FormView   from '../DraftComponents/form'
-import LinkView   from './components/link'
-import SignerView from './components/signer'
+import DraftHeader from '../DraftComponents/header'
+import FormView    from '../DraftComponents/form'
+import JsonView    from '../DraftComponents/json'
+import LinkView    from './components/link'
+import SignerView  from './components/signer'
+import Seats from './components/seats'
 
 export default function () {
 
   const [ init, setInit ] = useState(false)
+  const [ view, setView ] = useState('fields')
   
   const { client } = useClient()
   const { signer } = useSigner()
@@ -30,10 +36,6 @@ export default function () {
   const draft      = useDraftStore()
   const encoded    = params.get('enc')
   const navigate   = useNavigate()
-
-  const can_update = (
-    encoded !== draft.encoded
-  )
 
   const can_endorse = (
     signer !== null &&
@@ -57,10 +59,6 @@ export default function () {
     }
   }
 
-  const verify_draft = () => {
-    return
-  }
-
   const endorse_draft = () => {
     if (signer !== null) {
       draft.member.endorse(signer)
@@ -75,7 +73,7 @@ export default function () {
       if (res.ok) {
         const cid = res.data.contract.cid
         console.log('cid:', cid)
-        navigate(`/contract/${cid}`)
+        navigate(`/contracts/${cid}`)
       }
     }
   }
@@ -89,26 +87,30 @@ export default function () {
 
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
+      <DraftHeader setView={setView}>
+        <>
+          <Title order={2} mb={15}>
+            Negotiate Draft
+          </Title>
+          <Text>
+            Share and update the draft with other members.
+          </Text>
+        </>
+      </DraftHeader>
       <LinkView />
       <Space h="xs" />
-      <FormView />
+      <Tabs defaultValue="fields" value={view}>
+        <Tabs.Panel value="fields">
+          <FormView />
+        </Tabs.Panel>
+        <Tabs.Panel value="json">
+          <JsonView />
+        </Tabs.Panel>
+      </Tabs>
       <Space h="xs" />
-      { signer !== null && 
-        <>
-          <SignerView signer={signer} />
-          <Divider mb={20} />
-        </>
-      }
+      { signer !== null && <Seats signer={signer} /> }
+      <Space h="xl" />
       <Group>
-        <Button
-          disabled={!can_update}
-          style={{ borderRadius: '15px' }}
-          leftSection={<IconEyeCheck size={14}/>}
-          variant="filled"
-          onClick={() => verify_draft()}
-        >
-          Verify
-        </Button>
         <Button 
           disabled={!can_endorse}
           style={{ borderRadius: '15px' }}

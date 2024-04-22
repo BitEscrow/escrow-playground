@@ -1,11 +1,13 @@
-import { Buff } from '@cmdcode/buff'
+import { Buff }        from '@cmdcode/buff'
+import { sort_record } from '@scrow/sdk/util'
 
 export function random (size = 8) {
   return Buff.random(size).b64url
 }
 
 export function is_diff(a : Object, b : Object) {
-  return JSON.stringify(a) !== JSON.stringify(b)
+
+  return JSON.stringify(sort_record(a)) !== JSON.stringify(sort_record(b))
 }
 
 export function shorten_str (

@@ -29,6 +29,7 @@ export default function () {
       actions : undefined,
       paths   : undefined
     },
+    validateInputOnChange : true,
     validate : {
       timer   : (e) => (e < 1) ? 'invalid timer value' : null,
       actions : (e) => {
@@ -107,7 +108,7 @@ export default function () {
         </Table>
       }
 
-      <Group mt="sm">
+      <Group mt="sm" align="flex-start">
         <NumberInput
           description="Delay timer (in seconds)."
           {...form.getInputProps('timer')}

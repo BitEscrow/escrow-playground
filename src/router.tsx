@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 
 import AccountView    from '@/components/AccountView'
 import DraftCreate    from '@/components/DraftCreate'
-import DraftDetail    from '@/components/DraftDetail'
+import DraftEdit      from '@/components/DraftEdit'
 import ContractDetail from '@/components/ContractDetail'
 import ContractView   from '@/components/ContractView'
 import DepositDetail  from '@/components/DepositDetail'
@@ -24,8 +24,8 @@ export default function () {
       <Route path="/contracts/:cid/vm"  element={<CVMView        />} />
       <Route path="/deposits"           element={<DepositView    />} />
       <Route path="/deposits/:dpid"     element={<DepositDetail  />} />
-      <Route path="/deposit/new"        element={<DepostitCreate/>}  />
-      <Route path="/draft/view"         element={<DraftDetail    />} />
+      <Route path="/deposit/new"        element={<DepostitCreate />} />
+      <Route path="/draft/view"         element={<DraftEdit      />} />
       <Route path="/draft/new"          element={<DraftCreate    />} />
       <Route path="/settings"           element={<SettingsView   />} />
       <Route path="/*"                  element={<Error404View   />} />

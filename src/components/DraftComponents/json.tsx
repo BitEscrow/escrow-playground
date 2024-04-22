@@ -1,8 +1,8 @@
 import { useDraftStore } from '@/hooks/useDraft'
 import { DraftUtil }     from '@scrow/sdk'
 
-import { Box, Button, JsonInput, Text } from '@mantine/core'
-import { useEffect, useState }  from 'react'
+import { Box, Button, JsonInput } from '@mantine/core'
+import { useEffect, useState }    from 'react'
 
 export default function () {
 

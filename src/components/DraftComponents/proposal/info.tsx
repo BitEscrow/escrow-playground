@@ -1,5 +1,5 @@
+import { ProposalData }      from '@scrow/sdk'
 import { UseFormReturnType } from '@mantine/form'
-import { ProposalData }      from '@scrow/sdk/core'
 import { machines }          from '@/config'
 
 import {
@@ -11,7 +11,7 @@ import {
 } from '@mantine/core'
 
 interface Props {
-  form : UseFormReturnType<any>
+  form : UseFormReturnType<ProposalData>
 }
 
 export default function ({ form } : Props) {
@@ -37,14 +37,6 @@ export default function ({ form } : Props) {
         description="The virtual machine to use for this contract."
         {...form.getInputProps('engine')}
         data={machines}
-      />
-
-      <NativeSelect
-        mt={15}
-        label="Network"
-        description="The blockchain network to use for this contract."
-        {...form.getInputProps('network')}
-        data={[ 'regtest', 'mutiny', 'signet', 'testnet' ]}
       />
 
       <NumberInput

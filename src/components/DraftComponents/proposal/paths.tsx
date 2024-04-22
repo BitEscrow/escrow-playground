@@ -28,6 +28,7 @@ export default function () {
       value    : 540,
       address  : ''
     },
+    validateInputOnChange : true,
     validate : {
       pathname : validate_path,
       value    : validate_value,
@@ -86,7 +87,7 @@ export default function () {
       }
 
       <Fieldset legend="Add Path Output">
-        <Group mt="sm">
+        <Group mt="sm" align="flex-start">
           <TextInput
             description="Pathname"
             placeholder="payout"

@@ -1,23 +1,24 @@
-import { Dispatch, SetStateAction } from 'react'
-
-import { Box, Group, Title } from '@mantine/core'
+import { Dispatch, ReactElement, SetStateAction } from 'react'
+import { Box, Divider, Group } from '@mantine/core'
 
 import Controls from './controls'
 
 interface Props {
-  setView : Dispatch<SetStateAction<string>>
+  children : ReactElement
+  setView  : Dispatch<SetStateAction<string>>
 }
 
-export default function ({ setView } : Props) {
+export default function ({ children, setView } : Props) {
 
   return (
-    <Box>
+    <Box mb={15}>
       <Group mb={20} style={{ justifyContent : 'space-between' }}>
-        <Title order={2} mb={15}>
-          Create a Contract
-        </Title>
+        <Box>
+          {children}
+        </Box>
         <Controls setView={setView} />
       </Group>
+      <Divider />
     </Box>
   )
 }

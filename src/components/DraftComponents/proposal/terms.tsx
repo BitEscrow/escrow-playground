@@ -10,7 +10,7 @@ import {
 } from '@mantine/core'
 
 interface Props {
-  form : UseFormReturnType<any>
+  form : UseFormReturnType<ProposalData>
 }
 
 

@@ -66,6 +66,7 @@ export default function () {
       threshold : 1,
       pubkeys   : [] as string[]
     },
+    validateInputOnChange : true,
     validate : {
       method  : validate_method(vm.methods),
       actions : validate_actions(vm.actions),
@@ -98,7 +99,7 @@ export default function () {
       {rows.length !== 0 && rows}
 
       <Fieldset legend="Add Program Interface">
-        <Group>
+        <Group align="flex-start">
           <TextInput
             label="Method"
             description="The method called within the VM."

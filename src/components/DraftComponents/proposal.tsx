@@ -19,7 +19,7 @@ import {
   IconCoins,
   IconPrompt,
   IconList,
-  IconSettings,
+  IconClockHour4,
 } from '@tabler/icons-react'
 
 export default function () {
@@ -28,17 +28,7 @@ export default function () {
   const prop   = draft.proposal
 
   const form   = useForm({
-    initialValues : {
-      title     : prop.data.title,
-      content   : prop.data.content,
-      engine    : prop.data.engine,
-      network   : prop.data.network,
-      value     : prop.data.value,
-      deadline  : prop.data.deadline,
-      duration  : prop.data.duration,
-      effective : prop.data.effective,
-      feerate   : prop.data.feerate
-    },
+    initialValues : prop.data,
     validateInputOnChange: true,
     validate : {
       title   : validate_title,
@@ -46,16 +36,20 @@ export default function () {
       value   : validate_value
     },
     onValuesChange: (values) => {
-      const { effective, ...rest } = values
-      prop.update({ ...rest, effective })
+      const { paths, payments, programs, schedule, ...rest } = prop.data
+      if (is_diff(rest, values)) {
+        console.log('update fired')
+        prop.update(values)
+      }
     }
   })
 
   useEffect(() => {
-    const { paths, payments, programs, schedule, ...rest } = prop.data
-    if (is_diff(rest, form.getValues())) {
-      form.setInitialValues(rest as any)
-      form.setValues(rest)
+    const values = form.getValues()
+    if (is_diff(prop.data, values)) {
+      console.log('effect fired')
+      form.setInitialValues(prop.data)
+      form.setValues(prop.data)
     }
   }, [ prop.data ])
 
@@ -82,13 +76,13 @@ export default function () {
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="tasks" value="tasks">
-          <Accordion.Control icon={<IconList size={18}/>}>Tasks</Accordion.Control>
+          <Accordion.Control icon={<IconClockHour4 size={18}/>}>Tasks</Accordion.Control>
           <Accordion.Panel>
             <TaskForm />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="terms" value="terms">
-          <Accordion.Control icon={<IconSettings size={18}/>}>Terms</Accordion.Control>
+          <Accordion.Control icon={<IconList size={18}/>}>Terms</Accordion.Control>
           <Accordion.Panel>
             <TermsForm form={form} />
           </Accordion.Panel>

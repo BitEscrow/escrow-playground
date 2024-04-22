@@ -13,7 +13,7 @@ interface Props {
 
 export default function ({ policy } : Props) {
 
-  const form   = useForm({
+  const form = useForm({
     initialValues : policy.data
   })
 

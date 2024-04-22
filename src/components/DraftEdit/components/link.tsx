@@ -26,11 +26,11 @@ export default function () {
   }, [ data, draft.encoded ])
 
   return (
-    <Box>
+    <Box mt={15} mb={15}>
       <TextInput
         mb={15}
         readOnly
-        label="Contract Data" description="Copy, paste, or share this data blob with others to collaborate."
+        description="Copy, paste, or share this data blob with others to collaborate."
         value={data}
         onChange={(e) => setData(e.target.value)}
       />

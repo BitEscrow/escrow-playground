@@ -27,6 +27,7 @@ export default function () {
       value   : 540,
       address : ''
     },
+    validateInputOnChange : true,
     validate : {
       value   : validate_value,
       address : validate_address(prop.data.network)
@@ -82,7 +83,7 @@ export default function () {
       }
       
       <Fieldset legend="Add Payment Output">
-        <Group mt="sm">
+        <Group mt="sm" align="flex-start">
           <NumberInput
             description="Payment Amount (in sats)"
             {...form.getInputProps('value')}
