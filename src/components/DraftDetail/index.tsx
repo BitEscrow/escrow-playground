@@ -1,11 +1,12 @@
-import { Buff }          from '@cmdcode/buff'
 import { useSigner }     from '@/hooks/useSigner'
 import { useDraftStore } from '@/hooks/useDraft'
 import { DraftUtil }     from '@scrow/sdk/client'
+import { useClient }     from '@scrow/hooks'
 
 import { useEffect, useState }          from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { IconEyeCheck, IconMail, IconRubberStamp }    from '@tabler/icons-react'
+
+import { IconEyeCheck, IconMail, IconRubberStamp } from '@tabler/icons-react'
 
 import {
   Button,
@@ -23,6 +24,7 @@ export default function () {
 
   const [ init, setInit ] = useState(false)
   
+  const { client } = useClient()
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
   const draft      = useDraftStore()
@@ -66,16 +68,21 @@ export default function () {
     }
   }
 
-  const publish_draft = () => {
+  const publish_draft = async () => {
     if (signer !== null) {
-      draft.member.endorse(signer)
+      const req = draft.publish()
+      const res = await client.contract.create(req)
+      if (res.ok) {
+        const cid = res.data.contract.cid
+        console.log('cid:', cid)
+        navigate(`/contract/${cid}`)
+      }
     }
   }
 
   useEffect(() => {
     if (!init && encoded !== null) {
-      const data = Buff.b64url(encoded).to_json()
-      draft.update(data)
+      draft.decode(encoded)
       setInit(true)
     }
   }, [ draft, encoded, init ])

@@ -4,6 +4,10 @@ export function random (size = 8) {
   return Buff.random(size).b64url
 }
 
+export function is_diff(a : Object, b : Object) {
+  return JSON.stringify(a) !== JSON.stringify(b)
+}
+
 export function shorten_str (
   str : string, 
   max : number = 15

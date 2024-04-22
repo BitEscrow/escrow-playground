@@ -66,10 +66,10 @@
     "@scure/bip32" "^1.3.2"
     "@scure/bip39" "^1.2.1"
 
-"@cmdcode/use-store@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@cmdcode/use-store/-/use-store-1.1.1.tgz#47ccd458d3220f3d75e9727fc366defc2c0d021c"
-  integrity sha512-MRC2knx0qdLkU1LZWfmHG3tOc14S8iBFtI0Zt3nEskWh0cY/c6N2j/VxqLiooYOhe1sdL4zRGPZZkbHzIbvmcA==
+"@cmdcode/use-store@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@cmdcode/use-store/-/use-store-1.1.2.tgz#22e4fdd6a90e6b7f1437c9008b7fe9fa313e7a94"
+  integrity sha512-lkUH7eoJ2W07QvMXPAZjPLjtuwHX7T6m0Kn6wb1ruWOuR4qPO6oTpBc8uOzboZJmZ+dDzDZPyaGIP2yujnu1ww==
 
 "@esbuild/aix-ppc64@0.19.12":
   version "0.19.12"
@@ -543,21 +543,21 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.14.3.tgz#5b2fb4d8cd44c05deef8a7b0e6deb9ccb8939d18"
   integrity sha512-/BypzV0H1y1HzgYpxqRaXGBRqfodgoBBCcsrujT6QRcakDQdfU+Lq9PENPh5jB4I44YWq+0C2eHsHya+nZY1sA==
 
-"@scrow/hooks@^0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.14.tgz#e699d5bf1ed51d99ed036707626f89a8cefba7d9"
-  integrity sha512-zLHBOtF1Do0H/1QW0UHcNY0xbPej945c3z5Z2cWlZ1xxPRPJHajx2w4Tef2/YPTvmTUd8VDj6eVJ8hZnui5ziw==
+"@scrow/hooks@^0.2.22":
+  version "0.2.22"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.22.tgz#c33f84b9b9015856419b3f2170646abc88c7715b"
+  integrity sha512-aXg/A9Pg9IB3jCg+fPA+BQKLRxw7C+xR34D4JobYrHeEIYLRMAbOMGgoGWFcVtZSQfsIhr4zRXLeQTVwt+A5Qg==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.2"
-    "@cmdcode/use-store" "^1.1.1"
-    "@scrow/sdk" "^0.9.16"
+    "@cmdcode/use-store" "^1.1.2"
+    "@scrow/sdk" "^0.9.17"
     swr "^2.2.5"
 
-"@scrow/sdk@^0.9.16":
-  version "0.9.16"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.9.16.tgz#89a99a216cf4ab0fe86eab451c4b7bde4bd160be"
-  integrity sha512-kMs5JPJqyg5IyKSYUE8d0N4pNAL/EwRK8/EClQnPh1F++vBTYQx6uc8Hzw8alYriteolbyZAUAKwXEhBmwivUg==
+"@scrow/sdk@^0.9.17":
+  version "0.9.17"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.9.17.tgz#9c82347dcc0bb2f2a9ac6538998d3e392de038b1"
+  integrity sha512-WFqU0gYOX/DiMNReb/Gu6gmQAEzdT+G3wQJ0Qly0hl2K4JOf5z0PqfBKfeDoaMp0bO9aF6NCUmJzVK7c6c0eSw==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"

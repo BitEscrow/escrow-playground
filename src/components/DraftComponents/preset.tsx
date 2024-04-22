@@ -1,5 +1,6 @@
-import { ProposalData } from '@scrow/sdk/core'
-import { useState }     from 'react'
+import { ProposalData }  from '@scrow/sdk/core'
+import { useState }      from 'react'
+import { useDraftStore } from '@/hooks/useDraft'
 
 import {
   DraftUtil,
@@ -13,20 +14,22 @@ import {
 } from '@mantine/core'
 
 import presets_json from '@/presets.json' assert { type: 'json' }
-import { useDraftStore } from '@/hooks/useDraft'
+import { useConfig } from '@/hooks/useConfig'
 
 type PresetEnum = keyof typeof presets_json
 
 export default function () {
 
-  const draft = useDraftStore()
+  const config = useConfig()
+  const draft  = useDraftStore()
 
   const [ preset, setPreset ] = useState('default')
 
   const apply_preset = () => {
     const { proposal, roles } = presets_json[preset as PresetEnum]
+    proposal.network = config.store.network
     const data = DraftUtil.create(proposal as ProposalData, roles as RoleTemplate[])
-    draft.update(data)
+    draft.set(data)
   }
 
   return (

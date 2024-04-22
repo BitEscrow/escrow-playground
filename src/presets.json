@@ -1,7 +1,7 @@
 {
   "default" : {
     "proposal": {
-      "title": "Basic two-party contract with third-party arbitration.",
+      "title": "Basic two-party contract with third-party arbitration",
       "duration": 14400,
       "network": "mutiny",
       "schedule": [[7200, "close", "*"]],
