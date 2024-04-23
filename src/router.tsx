@@ -1,4 +1,9 @@
+import { useEffect }     from 'react'
 import { Routes, Route } from 'react-router-dom'
+
+import { useConfig } from '@/hooks/useConfig'
+import { useClient } from '@/hooks/useClient'
+import { useSigner } from '@/hooks/useSigner'
 
 import DraftCreate    from '@/components/DraftCreate'
 import DraftEdit      from '@/components/DraftEdit'
@@ -12,7 +17,20 @@ import LandingView    from '@/components/Landing'
 import CVMView        from '@/components/CVMView'
 import DepostitCreate from './components/DepositCreate'
 
+import CONFIG from '@/config/index.js'
+
 export default function () {
+
+  const config = useConfig()
+  const { update: update_client } = useClient()
+  const { update: update_signer } = useSigner()
+
+  useEffect(() => {
+    const network = config.store.network
+    const options = CONFIG.servers[network as keyof typeof CONFIG.servers]
+    update_client(options)
+    update_signer(options)
+  }, [ config ])
 
   return (
     <Routes>

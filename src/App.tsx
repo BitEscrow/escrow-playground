@@ -32,7 +32,7 @@ export default function AppDemo() {
   const [ side_mobi_open, { toggle : toggle_side_mobi } ] = useDisclosure()
 
   const isMobile = useMediaQuery('(max-width: 768px)')
-  
+
   const [ view, setView ] = useState('')
 
   const navigate = useNavigate()
@@ -75,7 +75,6 @@ export default function AppDemo() {
 
     trackPageview()
   }, [])
-  
   
   // --------------------------------------
   // ------------End Analytics-------------

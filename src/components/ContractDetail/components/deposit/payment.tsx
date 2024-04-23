@@ -1,8 +1,10 @@
 import { UseFormReturnType } from '@mantine/form'
-import { Box, Loader, LoadingOverlay, Text } from '@mantine/core'
-import QRCode  from 'react-qr-code'
+import { useClient }         from '@/hooks/useClient'
+import { usePayAddress }     from '@scrow/hooks'
 
-import { useClient, usePayAddress } from '@scrow/hooks'
+import QRCode from 'react-qr-code'
+
+import { Box, Loader, LoadingOverlay, Text } from '@mantine/core'
 
 import {
   Dispatch,

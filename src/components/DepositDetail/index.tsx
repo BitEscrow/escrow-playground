@@ -1,7 +1,7 @@
 import { useState }   from 'react'
 import { useParams }  from 'react-router-dom'
 import { useDeposit } from '@scrow/hooks/deposit'
-import { useClient }  from '@scrow/hooks/client'
+import { useClient }  from '@/hooks/useClient'
 
 import {
   Card,

@@ -3,7 +3,7 @@ import { ContractData } from '@scrow/sdk/core'
 
 import { Box, Divider, Tabs } from '@mantine/core'
 
-import ActionButtons  from './actions'
+import CancelButton   from './cancel'
 import InfoView       from './info'
 import DepositView    from './deposit'
 import SettlementView from './settlement'
@@ -53,7 +53,7 @@ export default function ({ data } : Props) {
           <SettlementView data={data} />
         </Tabs.Panel>
       </Tabs>
-      { signer !== null && <ActionButtons data={data} signer={signer} /> }
+      { signer !== null && <CancelButton contract={data} signer={signer} />}
     </Box>
   )
 }

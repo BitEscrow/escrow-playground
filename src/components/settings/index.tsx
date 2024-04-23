@@ -1,8 +1,6 @@
 import { useState }  from 'react'
 import { Network }   from '@scrow/sdk/core'
 import { useConfig } from '@/hooks/useConfig'
-import { useClient } from '@/hooks/useClient'
-import { useSigner } from '@/hooks/useSigner'
 
 import CONFIG from '@/config/index.js'
 
@@ -28,18 +26,14 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function SettingsView () {
 
-  const { store, update : update_config } = useConfig()
-  const { update : update_client } = useClient()
-  const { update : update_signer } = useSigner()
+  const { store, update } = useConfig()
 
   const [ network, setNetwork ] = useState<Network>(store.network as Network)
 
-  const update = () => {
+  const update_config = () => {
     const config = CONFIG.servers[network as keyof typeof CONFIG.servers]
-    update_client(config)
-    update_signer(config)
     setNetwork(network)
-    update_config({ network })
+    update({ network })
     console.log('updated config:', config)
     toast.success(`Settings Updated`, {
       position: "bottom-center",
@@ -65,7 +59,7 @@ export default function SettingsView () {
           <Box>
             <NativeSelect
               label="Choose Network"
-              data={[ 'mutiny', 'regtest', 'signet', 'testnet' ]}
+              data={CONFIG.settings.networks}
               maw={300}
               value={network}
               onChange={(e) => setNetwork(e.target.value as Network)}
@@ -76,7 +70,7 @@ export default function SettingsView () {
                 borderRadius: '15px',
                 backgroundColor: '#0068FD'
               }}
-              onClick={update}
+              onClick={update_config}
             >
               Update
             </Button>

@@ -16,7 +16,7 @@ import {
 import { IconZoomScan } from '@tabler/icons-react';
 import { ContractData } from '@scrow/sdk/core';
 import styles from './styles.module.sass'
-import { useClient } from '@scrow/hooks';
+import { useClient } from '@/hooks/useClient'
 
 
 interface Props {

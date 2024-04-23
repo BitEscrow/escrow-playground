@@ -1,7 +1,7 @@
 import { useSigner }     from '@/hooks/useSigner'
 import { useDraftStore } from '@/hooks/useDraft'
 import { DraftUtil }     from '@scrow/sdk/client'
-import { useClient }     from '@scrow/hooks'
+import { useClient }     from '@/hooks/useClient'
 
 import { useEffect, useState }          from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
@@ -12,7 +12,6 @@ import {
   Space,
   Card,
   Group,
-  Divider,
   Tabs,
   Title,
   Text
@@ -22,8 +21,7 @@ import DraftHeader from '../DraftComponents/header'
 import FormView    from '../DraftComponents/form'
 import JsonView    from '../DraftComponents/json'
 import LinkView    from './components/link'
-import SignerView  from './components/signer'
-import Seats from './components/seats'
+import SeatView    from './components/seats'
 
 export default function () {
 
@@ -108,7 +106,7 @@ export default function () {
         </Tabs.Panel>
       </Tabs>
       <Space h="xs" />
-      { signer !== null && <Seats signer={signer} /> }
+      { signer !== null && <SeatView signer={signer} /> }
       <Space h="xl" />
       <Group>
         <Button 

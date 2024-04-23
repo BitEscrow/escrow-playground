@@ -2,11 +2,12 @@ import { useState }       from 'react'
 import { useForm }        from '@mantine/form'
 import { is_btc_address } from '@scrow/sdk/util'
 import { useConfig }      from '@/hooks/useConfig'
+import { useClient }      from '@/hooks/useClient'
 
 import { AccountData, ContractData, DepositData, EscrowSigner, Network } from '@scrow/sdk'
 
 import { Box, Button, NumberInput, Slider, Text, TextInput } from '@mantine/core'
-import { useClient, useFeeRates } from '@scrow/hooks'
+import { useFeeRates } from '@scrow/hooks'
 
 import PaymentView from './payment'
 

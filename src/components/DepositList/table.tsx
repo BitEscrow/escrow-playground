@@ -1,5 +1,5 @@
 import { EscrowSigner }   from '@scrow/sdk/client'
-import { useClient }      from '@scrow/hooks'
+import { useClient }      from '@/hooks/useClient'
 import { useDepositList } from '@scrow/hooks/deposit'
 import { DepositData }    from '@scrow/sdk/core'
 import { IconZoomScan }   from '@tabler/icons-react'

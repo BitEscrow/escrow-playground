@@ -1,11 +1,8 @@
 import { useState }    from 'react'
 import { DepositData } from '@scrow/sdk/core'
 import { useSigner }   from '@/hooks/useSigner'
-
-import {
-  useClient,
-  useFeeRates
-} from '@scrow/hooks'
+import { useFeeRates } from '@scrow/hooks'
+import { useClient }   from '@/hooks/useClient'
 
 import { Box, Button, NumberInput, Slider, Text } from '@mantine/core'
 import { assert } from '@scrow/sdk/util'
@@ -28,7 +25,7 @@ export default function ({ data, opened } : Props) {
     assert.exists(signer)
     const fee = feerate * 65
     const req = signer.deposit.close(data, fee)
-    const res = await client.deposit.close(data.dpid, req)
+    const res = await client.deposit.close(req)
     if (!res.ok) throw new Error(res.error)
   }
 

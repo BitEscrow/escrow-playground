@@ -1,9 +1,6 @@
-import { IconLink } from '@tabler/icons-react'
-
-import {
-  useClient,
-  useContractFunds
-} from '@scrow/hooks'
+import { IconLink }         from '@tabler/icons-react'
+import { useContractFunds } from '@scrow/hooks'
+import { useClient }        from '@/hooks/useClient'
 
 import { ActionIcon, Box, Table, Text } from '@mantine/core'
 

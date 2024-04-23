@@ -1,6 +1,6 @@
 import { ProposalData }      from '@scrow/sdk'
 import { UseFormReturnType } from '@mantine/form'
-import { machines }          from '@/config'
+import CONFIG                from '@/config/index.js'
 
 import {
   Box,
@@ -36,7 +36,7 @@ export default function ({ form } : Props) {
         label="Engine"
         description="The virtual machine to use for this contract."
         {...form.getInputProps('engine')}
-        data={machines}
+        data={CONFIG.settings.engines}
       />
 
       <NumberInput

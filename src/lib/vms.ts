@@ -1,7 +1,7 @@
-import { machines }          from '@/config'
 import { VirtualMachineAPI } from '@scrow/sdk'
 
-import CVM from '@scrow/sdk/cvm'
+import CONFIG from '@/config/index.js'
+import CVM    from '@scrow/sdk/cvm'
 
 export function get_vm_engine (machine : string) : VirtualMachineAPI {
   switch (machine) {
@@ -13,6 +13,6 @@ export function get_vm_engine (machine : string) : VirtualMachineAPI {
 }
 
 export function has_vm_engine (machine : string) : boolean {
-  const allowed = machines
+  const allowed = CONFIG.settings.engines
   return allowed.includes(machine)
 }

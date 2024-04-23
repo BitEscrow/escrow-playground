@@ -8,7 +8,7 @@ import {
 } from '@mantine/core'
 
 import DepositTable from './table'
-import { useClient } from '@scrow/hooks';
+import { useClient } from '@/hooks/useClient'
 
 interface Props {
   signer: EscrowSigner;
