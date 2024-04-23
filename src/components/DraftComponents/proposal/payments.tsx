@@ -1,8 +1,8 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { useDraftStore }       from '@/hooks/useDraft'
-import { Network }             from '@scrow/sdk'
-import { is_btc_address }      from '@scrow/sdk/util'
+
+import * as util from '@/lib/draft.js'
 
 import {
   NumberInput,
@@ -29,8 +29,8 @@ export default function () {
     },
     validateInputOnChange : true,
     validate : {
-      value   : validate_value,
-      address : validate_address(prop.data.network)
+      value   : util.validate_path_value,
+      address : util.validate_address(prop.data.network)
     }
   })
 
@@ -106,24 +106,4 @@ export default function () {
       </Fieldset>
     </Box>
   )
-}
-
-function validate_value (value : number) {
-  if (typeof value !== 'number') {
-    return 'Invalid value!'
-  } else if (value > Number.MAX_SAFE_INTEGER) {
-    return 'Payment value is too large.'
-  } else if (value < 540) {
-    return 'Payment value is below dust limit.'
-  } else {
-    return null
-  }
-}
-
-function validate_address (
-  network : Network
-) {
-  return (address : string) => {
-    return is_btc_address(address, network)
-  }
 }

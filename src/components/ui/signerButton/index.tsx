@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { sleep }               from '@scrow/sdk/util'
 import { useMediaQuery }       from '@mantine/hooks'
 import { useSigner }           from '@/hooks/useSigner'
 import { IconKey }             from '@tabler/icons-react'
@@ -27,10 +26,7 @@ export default function SignerButton () {
 
   useEffect(() => {
     if (opened && signer !== null) {
-      (async () => { 
-        await sleep(2000)
-        setOpened(false)
-      })()
+      setOpened(false)
     }
   }, [ signer ])
 

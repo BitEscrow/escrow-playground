@@ -1,10 +1,9 @@
-import { UseFormReturnType } from '@mantine/form'
 import { useClient }         from '@/hooks/useClient'
 import { usePayAddress }     from '@scrow/hooks'
+import { DepositForm }       from './commit'
+import QRCode                from 'react-qr-code'
 
-import QRCode from 'react-qr-code'
-
-import { Box, Loader, LoadingOverlay, Text } from '@mantine/core'
+import { Box, Card, Code, Group, Loader, LoadingOverlay, Text, Title } from '@mantine/core'
 
 import {
   Dispatch,
@@ -18,18 +17,13 @@ import {
   DepositData,
   EscrowSigner
 } from '@scrow/sdk'
-
-type FormData = UseFormReturnType<{
-  address  : string
-  feerate  : number
-  locktime : number
-  value    : number
-}>
+import CopyBtn from '@/components/ui/copyBtn'
+import { truncate_id } from '@/lib/draft'
 
 interface Props {
   account    : AccountData
   contract   : ContractData
-  form       : FormData
+  form       : DepositForm
   setDeposit : Dispatch<SetStateAction<DepositData | null>>
   signer     : EscrowSigner
 }
@@ -57,12 +51,33 @@ export default function ({ account, contract, form, setDeposit, signer } : Props
   }, [ data ])
 
   return (
-    <Box>
-      <LoadingOverlay visible={isLoading} loaderProps={{ children : <Loader /> }} />
-      <Text>Deposit Address: {account.deposit_addr}</Text>
-      <Text>Deposit Amount: {value}</Text>
-      <QRCode value={addr_uri}/>
-      { has_utxo && <Text>{JSON.stringify(data, null, 2)}</Text> }
-    </Box>
+    <Card withBorder maw={300}>
+      <Title ta='center' mb={15} order={3}>Send a Deposit</Title>
+      <Box mb={15}>
+        <LoadingOverlay visible={isLoading} loaderProps={{ children : <Loader /> }} />
+        <QRCode value={addr_uri}/>
+      </Box>
+      
+      <Group>
+        <Text w={50} ff='monospace' size='sm'>Address</Text>
+        <Text>:</Text>
+        <Code>{truncate_id(account.deposit_addr)}</Code>
+      </Group>
+
+      <Group mb={15}>
+        <Text w={50} ff='monospace' size='sm'>Amount</Text>
+        <Text>:</Text>
+        <Code>{value}</Code>
+      </Group>
+
+      <CopyBtn data={account.deposit_addr} label='Copy Address'/>
+
+      <Group mt={15}>
+        { !has_utxo && <Text>checking for deposits</Text>}
+        { has_utxo &&  <Text>registering deposit</Text>}
+        <Loader color="blue" type="dots" />
+      </Group>
+
+    </Card>
   )
 }

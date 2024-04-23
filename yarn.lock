@@ -543,10 +543,10 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.14.3.tgz#5b2fb4d8cd44c05deef8a7b0e6deb9ccb8939d18"
   integrity sha512-/BypzV0H1y1HzgYpxqRaXGBRqfodgoBBCcsrujT6QRcakDQdfU+Lq9PENPh5jB4I44YWq+0C2eHsHya+nZY1sA==
 
-"@scrow/hooks@^0.2.25":
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.25.tgz#a115d654e607e1150d40f35b4246e8b88f75cac3"
-  integrity sha512-21jUGFvR4pNd9oaDFBPHqKEwK6XAOKk9UF7rdrf6cexJKAJzmiQFprHW5iQ+47Pkm+DuRZrGd6sKT5nylpqi2A==
+"@scrow/hooks@^0.2.27":
+  version "0.2.27"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.2.27.tgz#98c7fa27c95ff5061da04d8f9e614e9f1251b969"
+  integrity sha512-+K+hWqVXAQexffxkkEc3+glrQHIufH+H/AyRLSZ13UpJRXj3WSLfBZ8seKtmf36K8sBtBT9pghuyZJqv/sjL0g==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.2"

@@ -18,7 +18,7 @@ import {
 } from '@mantine/core'
 
 import DraftHeader from '../DraftComponents/header'
-import FormView    from '../DraftComponents/form'
+import FormView    from '../DraftComponents/tabs'
 import JsonView    from '../DraftComponents/json'
 import LinkView    from './components/link'
 import SeatView    from './components/seats'

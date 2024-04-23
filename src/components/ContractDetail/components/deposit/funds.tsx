@@ -12,6 +12,7 @@ interface Props {
 export default function ({ cid } : Props) {
 
   const { client } = useClient()
+
   const { data, isLoading } = useContractFunds(client, cid)
 
   const open_mempool = (txid : string) => {
@@ -28,7 +29,7 @@ export default function ({ cid } : Props) {
         <Table.Td>{utxo.value}</Table.Td>
         <Table.Td>{getTimeRemaining(expires_at)}</Table.Td>
         <Table.Td>
-          <ActionIcon color="red" onClick={() =>  open_mempool(utxo.txid)}>
+          <ActionIcon color="blue" onClick={() =>  open_mempool(utxo.txid)}>
             <IconLink size="1rem" />
           </ActionIcon>
         </Table.Td>

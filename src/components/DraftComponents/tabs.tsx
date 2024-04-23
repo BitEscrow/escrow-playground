@@ -15,11 +15,13 @@ import RoleForm     from './roles'
 
 export default function () {
 
+  const is_edit = window.location.pathname === '/draft/view'
+
   return (
     <Box mb={30}>
       <Tabs defaultValue="proposal">
         <Tabs.List grow w='100%' mb={20}>
-          <Tabs.Tab leftSection={<IconUsers size={18}/>}   value="members">Members</Tabs.Tab>
+          {is_edit && <Tabs.Tab leftSection={<IconUsers size={18}/>} value="members">Members</Tabs.Tab> }
           <Tabs.Tab leftSection={<IconLicense size={18}/>} value="proposal">Proposal</Tabs.Tab>
           <Tabs.Tab leftSection={<IconTie size={18}/>}     value="roles">Roles</Tabs.Tab>
         </Tabs.List>

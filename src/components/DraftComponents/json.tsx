@@ -1,30 +1,14 @@
-import { useDraftStore } from '@/hooks/useDraft'
-import { DraftUtil }     from '@scrow/sdk'
-
-import { Box, Button, JsonInput } from '@mantine/core'
-import { useEffect, useState }    from 'react'
+import { useDraftStore }  from '@/hooks/useDraft'
+import { Box, JsonInput } from '@mantine/core'
 
 export default function () {
 
   const draft = useDraftStore()
 
-  const [ json, setJson ]     = useState(JSON.stringify(draft.data, null, 2))
-  const [ isValid, setValid ] = useState(false)
-
-  useEffect(() => {
-    try {
-      const data = JSON.parse(json)
-      DraftUtil.verify(data)
-      setValid(true)
-      draft.set(data)
-    } catch {
-      setValid(false)
-    }
-  }, [ json ])
-
   return (
     <Box mb={15} maw={700}>
       <JsonInput
+        readOnly
         label="JSON Template"
         description="The JSON template for your draft session."
         placeholder="copy/paste your proposal JSON"
@@ -32,16 +16,8 @@ export default function () {
         autosize
         minRows={4}
         maxRows={15}
-        value={json}
-        onChange={(e) => setJson(e)}
-        styles={{ input : { color : (isValid) ? 'black' : 'red' } }}
+        value={JSON.stringify(draft.data, null, 2)}
       />
-      <Button
-        mt={5}
-        onClick={() => setJson(JSON.stringify(draft.data, null, 2)) }
-      >
-        Reset
-      </Button>
     </Box>
   )
 }

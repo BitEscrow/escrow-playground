@@ -7,6 +7,7 @@ import {
   IconPlus,
   IconLogout
 } from '@tabler/icons-react'
+import { format_label } from '@/lib/draft'
 
 interface Props {
   signer : EscrowSigner
@@ -27,7 +28,7 @@ export default function ({ signer } : Props) {
           const is_full = curr >= e.data.max_num
           return (
             <Box key={ e.id }>
-              <Text ta={'center'}>{e.data.title}</Text>
+              <Text ta={'center'}>{format_label(e.data.title)}</Text>
               <Text ta={'center'}>{`${e.data.min_num} / ${curr} / ${e.data.max_num}`}</Text>
               <Button
                 style={{ borderRadius: '15px', backgroundColor: !is_pol && is_full ? '#F7F8F9' : '#0068FD' }}

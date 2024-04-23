@@ -1,11 +1,11 @@
 import { Accordion }    from '@mantine/core'
 import { ContractData } from '@scrow/sdk'
 
-import DetailsPanel from './panels/details'
-import FundsPanel   from './panels/funds'
-import SessionPanel from './panels/session'
-import TermsPanel   from './panels/terms'
-import TxPanel      from './panels/tx'
+import DetailsPanel from '../panels/base'
+import FundsPanel   from '../panels/funds'
+import SessionPanel from '../panels/exec'
+import TermsPanel   from '../panels/terms'
+import TxPanel      from '../panels/tx'
 
 
 interface Props {

@@ -1,11 +1,10 @@
 import { useDraftStore }    from '@/hooks/useDraft'
 import { useForm }          from '@mantine/form'
 import { get_vm_engine }    from '@/lib/vms'
-import { convert_regex }    from '@/lib/util'
-import { is_bip340_pubkey } from '@scrow/sdk/util'
-import { get_path_names }   from '@scrow/sdk/proposal'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
+
+import * as util from '@/lib/draft.js'
 
 import {
   Box,
@@ -22,15 +21,14 @@ import {
 
 export default function () {
 
-  const draft  = useDraftStore()
-  const prop   = draft.proposal
-  const pnames = get_path_names(prop.data.paths)
-  const vm     = get_vm_engine(prop.data.engine)
+  const draft = useDraftStore()
+  const prop  = draft.proposal
+  const vm    = get_vm_engine(prop.data.engine)
 
   const rows = prop.data.programs.map((elem, idx) => {
     const [ method, actions, paths, thold, ...pubkeys ] = elem
     return (
-      <Fieldset variant="filled" legend={format_method_name(method)} mb={15} key={elem.toString()}>
+      <Fieldset variant="filled" legend={util.format_method_name(method)} mb={15} key={elem.toString()}>
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>
@@ -68,10 +66,10 @@ export default function () {
     },
     validateInputOnChange : true,
     validate : {
-      method  : validate_method(vm.methods),
-      actions : validate_actions(vm.actions),
-      paths   : validate_paths(pnames),
-      pubkeys : validate_pubkeys
+      method  : util.validate_method(vm.methods),
+      actions : util.validate_actions(vm.actions),
+      paths   : util.validate_paths(draft.pnames),
+      pubkeys : util.validate_pubkeys
     }
   })
 
@@ -143,52 +141,4 @@ export default function () {
       </Fieldset>
     </Box>
   )
-}
-
-function format_method_name (name : string) {
-  const prefix = name.slice(0, 1).toUpperCase()
-  const suffix = name.slice(1) + ' Interface'
-  return prefix + suffix
-}
-
-function validate_method (vm_methods : string[]) {
-  return (method : string) => {
-    return (vm_methods.includes(method))
-    ? null
-    : 'method not supported in vm'
-  }
-}
-
-function validate_actions (vm_actions : string[]) {
-  return (regex ?: string) => {
-    const actions = convert_regex(regex, vm_actions)
-    if (actions === undefined) return 'action is undefined'
-    for (const action of actions) {
-      if (!vm_actions.includes(action)) {
-        return 'action is not supported in vm: ' + action
-      }
-    }
-    return null
-  }
-}
-
-function validate_paths (prop_paths : string[]) {
-  return (regex ?: string) => {
-    const paths = convert_regex(regex, prop_paths)
-    if (paths === undefined) return 'path is undefined'
-    for (const path of paths) {
-      if (!prop_paths.includes(path)) {
-        return 'path does not exist in proposal: ' + path
-      }
-    }
-    return null
-  }
-}
-
-function validate_pubkeys (pubkeys : string[]) {
-  for (const pub of pubkeys) {
-    const err = is_bip340_pubkey(pub)
-    if (err !== null) return err + ': ' + pub
-  }
-  return null
 }

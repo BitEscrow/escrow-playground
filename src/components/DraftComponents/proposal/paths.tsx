@@ -1,8 +1,8 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { is_btc_address }      from '@scrow/sdk/util'
 import { useDraftStore }       from '@/hooks/useDraft'
-import { Network }             from '@scrow/sdk'
+
+import * as util from '@/lib/draft.js'
 
 import {
   NumberInput,
@@ -30,9 +30,9 @@ export default function () {
     },
     validateInputOnChange : true,
     validate : {
-      pathname : validate_path,
-      value    : validate_value,
-      address  : validate_address(prop.data.network)
+      pathname : util.validate_path,
+      value    : util.validate_path_value,
+      address  : util.validate_address(prop.data.network)
     }
   })
 
@@ -113,38 +113,4 @@ export default function () {
       </Fieldset>
     </Box>
   )
-}
-
-function validate_path (path : string) {
-  if (typeof path !== 'string') {
-    return 'Path label must be a string!'
-  } else if (path.length > 32) {
-    return 'Path label too long!'
-  } else if (path.length < 4) {
-    return 'Path label is too short!'
-  } else if (!/^[a-zA-Z0-9\-_]+$/.test(path)) {
-    return 'Path label contains invalid characters!'
-  } else {
-    return null
-  }
-}
-
-function validate_value (value : number) {
-  if (typeof value !== 'number') {
-    return 'Invalid value!'
-  } else if (value > Number.MAX_SAFE_INTEGER) {
-    return 'Path value is too large.'
-  } else if (value < 540) {
-    return 'Path value is below dust limit.'
-  } else {
-    return null
-  }
-}
-
-function validate_address (
-  network : Network
-) {
-  return (address : string) => {
-    return is_btc_address(address, network)
-  }
 }

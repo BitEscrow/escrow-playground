@@ -13,7 +13,7 @@ import {
 } from '@mantine/core'
 
 import DraftHeader  from '../DraftComponents/header'
-import FormView     from '../DraftComponents/form'
+import FormView     from '../DraftComponents/tabs'
 import JsonView     from '../DraftComponents/json'
 import PresetView   from '../DraftComponents/preset'
 

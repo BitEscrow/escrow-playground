@@ -1,7 +1,11 @@
 import { useDraftStore } from '@/hooks/useDraft'
 
+import { format_label, truncate_id } from '@/lib/draft'
+
 import {
-  JsonInput,
+  Card,
+  Code,
+  Group,
   Stack,
   Text
 } from '@mantine/core'
@@ -10,13 +14,34 @@ export default function () {
 
   const draft = useDraftStore()
 
-  const rows = draft.data.members.map((e) => (
-    <JsonInput
-      autosize
-      key={e.pub} 
-      value={JSON.stringify(e, null, 2)}
-    />
-  ))
+  const rows = draft.data.members.map((mbr) => {
+    const role = draft.data.roles.find(e => e.id === mbr.pid)
+    if (role === undefined) throw new Error('Role not found: ' + mbr.pid)
+    return (
+      <Card withBorder key={mbr.pub}>
+        <Group>
+          <Text size='sm' w={75} ff="monospace">Endorsed</Text>
+          <Text>:</Text>
+          <Code>{mbr.sig !== undefined ? 'True' : 'False'}</Code>
+        </Group>
+        <Group>
+          <Text size='sm' w={75} ff="monospace">Pubkey</Text>
+          <Text>:</Text>
+          <Code>{truncate_id(mbr.pub)}</Code>
+        </Group>
+        <Group>
+          <Text size='sm' w={75} ff="monospace">Role</Text>
+          <Text>:</Text>
+          <Code>{format_label(role.title)}</Code>
+        </Group>
+        <Group>
+          <Text size='sm' w={75} ff="monospace">XPub</Text>
+          <Text>:</Text>
+          <Code>{truncate_id(mbr.xpub)}</Code>
+        </Group>
+      </Card>
+    )
+  })
 
   return (
     <Stack>

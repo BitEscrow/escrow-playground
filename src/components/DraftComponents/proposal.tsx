@@ -3,6 +3,8 @@ import { useForm }       from '@mantine/form'
 import { useEffect }     from 'react'
 import { is_diff }       from '@/lib/util'
 
+import * as util from '@/lib/draft.js'
+
 import {
   Accordion, Box,
 } from '@mantine/core'
@@ -31,9 +33,9 @@ export default function () {
     initialValues : prop.data,
     validateInputOnChange: true,
     validate : {
-      title   : validate_title,
-      content : validate_content,
-      value   : validate_value
+      title   : util.validate_title,
+      content : util.validate_content,
+      value   : util.validate_value
     },
     onValuesChange: (values) => {
       const { paths, payments, programs, schedule, ...rest } = prop.data
@@ -90,42 +92,4 @@ export default function () {
       </Accordion>
     </Box>
   )
-}
-
-function validate_title (title : string) {
-  if (typeof title !== 'string') {
-    return 'Contract title must be a string!'
-  } else if (title.length > 256) {
-    return 'Contract title is too long!'
-  } else if (title.length < 32) {
-    return 'Contract title is too short!'
-  } else if (!/^[a-zA-Z0-9\-_\s]+$/.test(title)) {
-    return 'Contract title contains invalid characters!'
-  } else {
-    return null
-  }
-}
-
-function validate_value (value : number) {
-  if (typeof value !== 'number') {
-    return 'Invalid value!'
-  } else if (value > Number.MAX_SAFE_INTEGER) {
-    return 'Contract value is too large.'
-  } else if (value < 10000) {
-    return 'Contract value must be a minimum of 10000 sats.'
-  } else {
-    return null
-  }
-}
-
-function validate_content (content ?: string) {
-  if (content === undefined) {
-    return null
-  } else if (typeof content !== 'string') {
-    return 'Content value must be a string!'
-  } else if (content.length > 4096) {
-    return 'Contract title is too long!'
-  } else {
-    return null
-  }
 }
