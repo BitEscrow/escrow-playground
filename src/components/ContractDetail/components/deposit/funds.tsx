@@ -3,6 +3,7 @@ import { useContractFunds } from '@scrow/hooks'
 import { useClient }        from '@/hooks/useClient'
 
 import { ActionIcon, Box, Table, Text } from '@mantine/core'
+import { getTimeRemaining } from '@/lib/time'
 
 interface Props {
   cid : string
@@ -19,13 +20,13 @@ export default function ({ cid } : Props) {
   }
 
   const rows = data.map((elem) => {
-    const { confirmed, expires_at, utxo } = elem
+    const { expires_at, status, utxo } = elem
     return (
       <Table.Tr key={utxo.txid}>
-        <Table.Td>{confirmed}</Table.Td>
         <Table.Td>{utxo.vout}</Table.Td>
+        <Table.Td>{status}</Table.Td>
         <Table.Td>{utxo.value}</Table.Td>
-        <Table.Td>{expires_at}</Table.Td>
+        <Table.Td>{getTimeRemaining(expires_at)}</Table.Td>
         <Table.Td>
           <ActionIcon color="red" onClick={() =>  open_mempool(utxo.txid)}>
             <IconLink size="1rem" />
@@ -34,8 +35,6 @@ export default function ({ cid } : Props) {
       </Table.Tr>
     )
   })
-
-  console.log('funds:', data)
 
   return (
     <Box>
@@ -46,10 +45,10 @@ export default function ({ cid } : Props) {
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Confirmed</Table.Th>
               <Table.Th>Output</Table.Th>
+              <Table.Th>Status</Table.Th>
               <Table.Th>Value</Table.Th>
-              <Table.Th>Expires At</Table.Th>
+              <Table.Th>Expires</Table.Th>
               <Table.Th>Link</Table.Th>
             </Table.Tr>
           </Table.Thead>
