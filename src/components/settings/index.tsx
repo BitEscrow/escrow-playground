@@ -1,9 +1,10 @@
 import { useState }  from 'react'
-import { servers }   from '@/config'
 import { Network }   from '@scrow/sdk/core'
 import { useConfig } from '@/hooks/useConfig'
-import { useClient } from '@scrow/hooks/client'
+import { useClient } from '@/hooks/useClient'
 import { useSigner } from '@/hooks/useSigner'
+
+import CONFIG from '@/config/index.js'
 
 import {
   Card,
@@ -28,13 +29,13 @@ import 'react-toastify/dist/ReactToastify.css'
 export default function SettingsView () {
 
   const { store, update : update_config } = useConfig()
-  const { update_config : update_client } = useClient()
-  const { update_config : update_signer } = useSigner()
+  const { update : update_client } = useClient()
+  const { update : update_signer } = useSigner()
 
   const [ network, setNetwork ] = useState<Network>(store.network as Network)
 
   const update = () => {
-    const config = servers[network as keyof typeof servers]
+    const config = CONFIG.servers[network as keyof typeof CONFIG.servers]
     update_client(config)
     update_signer(config)
     setNetwork(network)

@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 
-import AccountView    from '@/components/AccountView'
 import DraftCreate    from '@/components/DraftCreate'
 import DraftEdit      from '@/components/DraftEdit'
 import ContractDetail from '@/components/ContractDetail'
@@ -18,7 +17,6 @@ export default function () {
   return (
     <Routes>
       <Route path="/"                   element={<LandingView    />} />
-      <Route path="/account"            element={<AccountView    />} />
       <Route path="/contracts"          element={<ContractView   />} />
       <Route path="/contracts/:cid"     element={<ContractDetail />} />
       <Route path="/contracts/:cid/vm"  element={<CVMView        />} />

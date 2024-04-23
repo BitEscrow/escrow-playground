@@ -1,0 +1,7 @@
+{
+  "defaults" : {
+    "network" : "mutiny"
+  },
+  "engines"  : [ "cvm" ],
+  "networks" : [ "regtest", "mutiny", "signet", "testnet" ]
+}

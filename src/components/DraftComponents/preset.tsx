@@ -1,6 +1,7 @@
 import { ProposalData }  from '@scrow/sdk/core'
 import { useState }      from 'react'
 import { useDraftStore } from '@/hooks/useDraft'
+import { useConfig }     from '@/hooks/useConfig'
 
 import {
   DraftUtil,
@@ -13,8 +14,7 @@ import {
   NativeSelect
 } from '@mantine/core'
 
-import presets_json from '@/presets.json' assert { type: 'json' }
-import { useConfig } from '@/hooks/useConfig'
+import presets_json from '@/config/presets.json' assert { type: 'json' }
 
 type PresetEnum = keyof typeof presets_json
 

@@ -6,11 +6,13 @@ import { useClient }   from '@scrow/hooks/client'
 import {
   Card,
   Loader,
-  Center
+  Center,
+  Tabs
 } from '@mantine/core'
 
-import ContractPanel  from './components/panel'
 import ContractHeader from './components/header'
+import ContractJson   from './components/json'
+import ContractPanel  from './components/panel'
 
 export default function () {
   const { cid }    = useParams()
@@ -24,7 +26,16 @@ export default function () {
     <Card>
       <ContractHeader data={ data } setView={setView} />
       { isLoading && <Center><Loader color="#0068FD" /></Center> }
-      { data && !isLoading && <ContractPanel data={data} view={view} /> }
+      { data && !isLoading && 
+        <Tabs defaultValue="fields" value={view}>
+          <Tabs.Panel value="fields">
+            <ContractPanel data={data} />
+          </Tabs.Panel>
+          <Tabs.Panel value="json">
+            <ContractJson data={data} />
+          </Tabs.Panel>
+        </Tabs>
+      }
     </Card>
   )
 }

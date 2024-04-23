@@ -1,8 +1,8 @@
-import { createSignerStore } from '@scrow/hooks/signer'
+import { createClientStore } from '@scrow/hooks/client'
 
 import CONFIG from '@/config/index.js'
 
 const network = CONFIG.settings.defaults.network
 const config  = CONFIG.servers[network as keyof typeof CONFIG.servers]
 
-export const { SignerProvider, useSigner } = createSignerStore(config)
+export const { ClientProvider, useClient } = createClientStore(config)

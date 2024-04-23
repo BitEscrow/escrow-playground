@@ -1,12 +1,12 @@
 import { create_provider } from '@cmdcode/use-store'
 import { Network }         from '@scrow/sdk/core'
-import { settings }        from '@/config'
+import CONFIG              from '@/config/index.js'
 
 export interface ConfigStore {
   network : Network
-  relay   : string
 }
 
+const defaults  = CONFIG.settings.defaults
 const store_key = 'config'
 
 // const middleware = (store : StoreAPI<DemoStore>) => {
@@ -17,4 +17,4 @@ const store_key = 'config'
 export const {
   StoreProvider : ConfigProvider,
   useStore      : useConfig
-} = create_provider({ defaults : settings, store_key })
+} = create_provider({ defaults, store_key })

@@ -6,7 +6,6 @@ import { DraftUtil }     from '@scrow/sdk/client'
 import {
   Button,
   Card,
-  Divider,
   Space,
   Tabs,
   Text,
@@ -46,7 +45,6 @@ export default function CreateDraftView () {
           </Text>
         </>
       </DraftHeader>
-      <Divider mb={30} mt={20}/>
       <PresetView />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
