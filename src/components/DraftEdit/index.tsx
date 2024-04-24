@@ -1,7 +1,9 @@
-import { useSigner }     from '@/hooks/useSigner'
-import { useDraftStore } from '@/hooks/useDraft'
-import { DraftUtil }     from '@scrow/sdk/client'
-import { useClient }     from '@/hooks/useClient'
+import { useSigner }      from '@/hooks/useSigner'
+import { useDraftStore }  from '@/hooks/useDraft'
+import { DraftUtil }      from '@scrow/sdk/client'
+import { useClient }      from '@/hooks/useClient'
+import { parse_err }      from '@scrow/sdk/util'
+import { useErrorToast }  from '@/hooks/useToast'
 
 import { useEffect, useState }          from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
@@ -52,8 +54,9 @@ export default function () {
     try {
       const link = DraftUtil.encode(draft.data)
       navigate(`/draft/view?enc=${link}`)
-    } catch {
-      return
+    } catch (err) {
+      const msg = parse_err(err)
+      useErrorToast('Error Updating Link', msg)
     }
   }
 
@@ -72,6 +75,8 @@ export default function () {
         const cid = res.data.contract.cid
         console.log('cid:', cid)
         navigate(`/contracts/${cid}`)
+      } else {
+        
       }
     }
   }

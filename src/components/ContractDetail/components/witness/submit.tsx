@@ -3,21 +3,23 @@ import { get_path_names } from '@scrow/sdk/proposal'
 import { get_vm_engine }  from '@/lib/vms'
 import { get_vm_config }  from '@scrow/sdk/vm'
 import { useClient }      from '@/hooks/useClient'
+import { useErrResToast } from '@/hooks/useToast'
 
 import { Button, Fieldset, Group, NativeSelect, TagsInput } from '@mantine/core'
 
 import {
   ContractData,
-  EscrowSigner
+  EscrowSigner,
+  WitnessReceipt
 } from '@scrow/sdk'
-
 
 interface Props {
   contract : ContractData
   signer   : EscrowSigner
+  update   : (receipts : WitnessReceipt[]) => void
 }
 
-export default function ({ contract, signer } : Props) {
+export default function ({ contract, signer, update } : Props) {
   const { activated, terms, vmid }  = contract
   const { client } = useClient()
 
@@ -42,7 +44,9 @@ export default function ({ contract, signer } : Props) {
       const req    = signer.witness.create(config, tmpl)
       client.vm.submit(vmid, req).then(res => {
         if (res.ok) {
-          console.log(res.data.receipt)
+          update([ res.data.receipt ])
+        } else {
+          useErrResToast(res)
         }
       })
     }

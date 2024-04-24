@@ -1,22 +1,17 @@
+import { getTimeRemaining } from '@/lib/time'
+import { FundingData }      from '@scrow/sdk'
 import { IconLink }         from '@tabler/icons-react'
-import { useContractFunds } from '@scrow/hooks'
-import { useClient }        from '@/hooks/useClient'
 
 import { ActionIcon, Box, Table, Text } from '@mantine/core'
-import { getTimeRemaining } from '@/lib/time'
 
 interface Props {
-  cid : string
+  data   : FundingData[]
+  oracle : string
 }
 
-export default function ({ cid } : Props) {
-
-  const { client } = useClient()
-
-  const { data, isLoading } = useContractFunds(client, cid)
-
+export default function ({ data, oracle } : Props) {
   const open_mempool = (txid : string) => {
-    const url = `${client.oracle_url}/tx/${txid}`
+    const url = `${oracle}/tx/${txid}`
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
@@ -39,10 +34,10 @@ export default function ({ cid } : Props) {
 
   return (
     <Box>
-      {!isLoading && rows.length === 0 && 
+      { rows.length === 0 && 
         <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no deposits have been collected</Text>}
 
-      {!isLoading && rows.length !== 0 &&
+      { rows.length !== 0 &&
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>

@@ -1,21 +1,16 @@
-import { IconLink }         from '@tabler/icons-react'
-import { useStatementList } from '@scrow/hooks'
-import { useClient }        from '@/hooks/useClient'
+import { WitnessReceipt } from '@scrow/sdk'
+import { IconLink }       from '@tabler/icons-react'
 
 import { ActionIcon, Box, Table, Text } from '@mantine/core'
 
 interface Props {
-  vmid : string
+  data : WitnessReceipt[]
+  host : string
 }
 
-export default function ({ vmid } : Props) {
-
-  const { client } = useClient()
-
-  const { data, isLoading } = useStatementList(client, vmid)
-
+export default function ({ data, host } : Props) {
   const view_statement = (wid : string) => {
-    const url = `${client.server_url}/api/witness/${wid}`
+    const url = `${host}/api/witness/${wid}`
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
@@ -38,10 +33,11 @@ export default function ({ vmid } : Props) {
 
   return (
     <Box>
-      {!isLoading && rows.length === 0 && 
-        <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no statements have been submitted</Text>}
+      { rows.length === 0 && 
+        <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no statements have been submitted</Text>
+      }
 
-      {!isLoading && rows.length !== 0 &&
+      { rows.length !== 0 &&
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>

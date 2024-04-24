@@ -20,15 +20,15 @@ export default function ({ contract } : Props) {
 
 function get_fund_status (contract : ContractData) {
   const { canceled, canceled_at, deadline_at, fund_value, fund_pend, tx_total } = contract
-  const fund_total = fund_value + fund_pend 
-  if (fund_value >= tx_total) {
+  const fund_total = fund_value + fund_pend
+  if (canceled) {
+    return 'contract canceled'
+  } else if (fund_value >= tx_total) {
     return 'contract paid'
   } else if (fund_total >= tx_total) {
     return 'confirming funds'
   } else if (canceled && canceled_at >= deadline_at) {
     return 'funding expired'
-  } else if (canceled) {
-    return 'funding canceled'
   } else {
     return 'awaiting funds'
   }

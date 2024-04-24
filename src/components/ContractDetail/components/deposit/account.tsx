@@ -1,12 +1,13 @@
-import { useFeeRates } from '@scrow/hooks'
-import { useClient }   from '@/hooks/useClient'
-import { DepositForm } from './commit'
+import { useFeeRates }    from '@scrow/hooks'
+import { useClient }      from '@/hooks/useClient'
+import { DepositForm }    from './commit'
+import { IconRotate }     from '@tabler/icons-react'
+import { now }            from '@scrow/sdk/util'
+import { useErrResToast } from '@/hooks/useToast'
 
 import { Dispatch, SetStateAction, useState }               from 'react'
 import { AccountData, EscrowSigner }                        from '@scrow/sdk'
 import { Button, Fieldset, NumberInput, Slider, TextInput } from '@mantine/core'
-import { IconRotate } from '@tabler/icons-react'
-import { now } from '@scrow/sdk/util'
 
 interface Props {
   form       : DepositForm
@@ -34,6 +35,8 @@ export default function ({ form, setAccount, signer } : Props) {
       const res = await client.deposit.request(req)
       if (res.ok) {
         setAccount(res.data.account)
+      } else {
+        useErrResToast(res)
       }
     }
   }

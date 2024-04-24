@@ -7,7 +7,7 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@babel/runtime@^7.20.13":
+"@babel/runtime@^7.20.13", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
   version "7.24.4"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.4.tgz#de795accd698007a66ba44add6cc86542aff1edd"
   integrity sha512-dkxf7+hn8mFBwKjs9bvBlArzLVxVbS8usaPUDd5p2a9JCL9tB8OaOVN1isD4+Xyk4ns89/xeOmbQvgdK7IIVdA==
@@ -412,6 +412,19 @@
   resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-7.8.1.tgz#cc1e9c2e2acc07aac8f8d963c963d6993dd092bb"
   integrity sha512-zCLqnxTUR2N6Awbt4rv/26UKTc75dXTVmCPsWUb6wdQExuC28fucG6kMoNYHVmOBDq9f3KP9zWOGDelHM2ogZA==
 
+"@mantine/notifications@^7.8.1":
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-7.8.1.tgz#ce2a9e97753a4f18a5e7b1822c3be42bda43fd85"
+  integrity sha512-HpjZs45EmBYYmJj72+hbwLVxbO7nbZrkpjcrYc40/VIbcDjjJBXDZrAX4VLu7ZIjkbeoxxPgxp245XheC68ikA==
+  dependencies:
+    "@mantine/store" "7.8.1"
+    react-transition-group "4.4.5"
+
+"@mantine/store@7.8.1":
+  version "7.8.1"
+  resolved "https://registry.yarnpkg.com/@mantine/store/-/store-7.8.1.tgz#75edadd8b42491466f681f1d23de528826b7cdff"
+  integrity sha512-lX1l8zPd7LazenTKqmI/E17BssRLpf/c8aKYiwV1ZgNONWc+XlWr+6MW3GLKB5uM/DS1Zg0bAYAaRUtKGP1MIQ==
+
 "@noble/ciphers@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@noble/ciphers/-/ciphers-0.4.1.tgz#977fc35f563a4ca315ebbc4cbb1f9b670bd54456"
@@ -535,21 +548,33 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.16.4.tgz#c09ad9a132ccb5a67c4f211d909323ab1294f95f"
   integrity sha512-YunpoOAyGLDseanENHmbFvQSfVL5BxW3k7hhy0eN4rb3gS/ct75dVD0EXOWIqFT/nE8XYW6LP6vz6ctKRi0k9A==
 
-"@scrow/hooks@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.3.0.tgz#b12b0f98742d28116315a2197ea28f2a66fb00e2"
-  integrity sha512-0HNUGRKuBxScyneWjtoOLUrQXPzCnWlEc672rYYGLlVx1fhYglIoRHDx0TdhY2B4M00A1FEq5mDsPZ4VhPFSWQ==
+"@scrow/hooks@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.3.1.tgz#424ef8da9d5e26938543c29632ab555d1818b746"
+  integrity sha512-KBh/gzo/KBPzkBxnzmW3UmvoRvqxXEzUIVrW8BpcITDKANrEGWDMDp9qK3dVsumdohygGUn9XphSN1n9Y+12tQ==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.7"
     "@cmdcode/use-store" "^1.1.2"
-    "@scrow/sdk" "^0.10.0"
+    "@scrow/sdk" "^0.10.2"
     swr "^2.2.5"
 
 "@scrow/sdk@^0.10.0":
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.0.tgz#f1e3947867a8527afbc644732feefb4bdba8667d"
   integrity sha512-p/PWrC7Id7Wk2o/EWkan08c/Bbn5MFdYfIiBwYJKy/VJgpXjic0EtYsxSs+6XAMJijy1sAMwVnoFJL+fR9AaJg==
+  dependencies:
+    "@cmdcode/buff" "2.2.5"
+    "@cmdcode/crypto-tools" "2.7.6"
+    "@cmdcode/musig2" "2.4.3"
+    "@cmdcode/signer" "1.4.7"
+    "@scrow/tapscript" "2.2.2"
+    zod "^3.22.4"
+
+"@scrow/sdk@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.2.tgz#24dcee59c42b126027d5375aa1ea172b46ea8431"
+  integrity sha512-cg5O//frbjpLDMbz3yzBzQh2kukjHE4W+zne5d1PC/WDvq1DdSPWduaOWPelDx+bt9DirQlJ0+aWZPD9OQ/J2Q==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"
@@ -1212,6 +1237,14 @@ dir-glob@^3.0.1:
   integrity sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==
   dependencies:
     path-type "^4.0.0"
+
+dom-helpers@^5.0.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-5.2.1.tgz#d9400536b2bf8225ad98fe052e029451ac40e902"
+  integrity sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==
+  dependencies:
+    "@babel/runtime" "^7.8.7"
+    csstype "^3.0.2"
 
 ee-first@1.1.1:
   version "1.1.1"
@@ -2096,7 +2129,7 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -2236,6 +2269,16 @@ react-toastify@^10.0.5:
   integrity sha512-mNKt2jBXJg4O7pSdbNUfDdTsK9FIdikfsIE/yUCxbAEXl4HMyJaivrVFcn3Elvt5xvCQYhUZm+hqTIu1UXM3Pw==
   dependencies:
     clsx "^2.1.0"
+
+react-transition-group@4.4.5:
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.5.tgz#e53d4e3f3344da8521489fbef8f2581d42becdd1"
+  integrity sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    dom-helpers "^5.0.1"
+    loose-envify "^1.4.0"
+    prop-types "^15.6.2"
 
 react@^18.2.0:
   version "18.2.0"

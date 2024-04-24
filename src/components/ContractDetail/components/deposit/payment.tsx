@@ -1,14 +1,14 @@
-import { useClient }     from '@/hooks/useClient'
-import { usePayAddress } from '@scrow/hooks'
-import { DepositForm }   from './commit'
-import { truncate_id }   from '@/lib/draft'
-import QRCode            from 'react-qr-code'
+import { useClient }      from '@/hooks/useClient'
+import { usePayAddress }  from '@scrow/hooks'
+import { DepositForm }    from './commit'
+import { truncate_id }    from '@/lib/draft'
+import { useErrResToast } from '@/hooks/useToast'
+import QRCode             from 'react-qr-code'
+import CopyBtn            from '@/components/ui/copyBtn'
 
 import { Box, Card, Code, Group, Loader, LoadingOverlay, NumberInput, Text } from '@mantine/core'
 
 import {
-  Dispatch,
-  SetStateAction,
   useEffect,
   useState
 } from 'react'
@@ -20,17 +20,17 @@ import {
   EscrowSigner
 } from '@scrow/sdk'
 
-import CopyBtn from '@/components/ui/copyBtn'
+
 
 interface Props {
   account    : AccountData
+  addDeposit : (deposit : DepositData) => void
   contract   : ContractData
   form       : DepositForm
-  setDeposit : Dispatch<SetStateAction<DepositData | null>>
   signer     : EscrowSigner
 }
 
-export default function ({ account, contract, form, setDeposit, signer } : Props) {
+export default function ({ account, contract, form, addDeposit, signer } : Props) {
   const { fund_pend, fund_txfee, fund_value, tx_total } = contract
 
   const { client }          = useClient()
@@ -46,8 +46,11 @@ export default function ({ account, contract, form, setDeposit, signer } : Props
       const utxo = data[0].txout
       const req  = signer.deposit.commit(account, contract, feerate, utxo)
       client.contract.commit(req).then(res => {
-        if (!res.ok) throw new Error(res.error)
-        void setDeposit(res.data.deposit)
+        if (res.ok) {
+          void addDeposit(res.data.deposit)
+        } else {
+          useErrResToast(res)
+        }
       })
     }
   }, [ data ])
