@@ -83,7 +83,7 @@ export default function ({ contract, signer, update } : Props) {
         />
       }
       { account !== null && deposit !== null &&
-        <Card>
+        <Card withBorder>
           <Text>Your deposit has been registered!</Text>
           <LineItem label="DPID"  value={truncate_id(deposit.dpid)} />
           <LineItem label="TXID"  value={deposit.utxo.txid} />

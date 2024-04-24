@@ -1,11 +1,12 @@
-import { EscrowSigner } from '@scrow/sdk/client';
-import { useContractList } from '@scrow/hooks/contract';
+import { EscrowSigner }    from '@scrow/sdk/client'
+import { useContractList } from '@scrow/hooks/contract'
+import { useClient }       from '@/hooks/useClient'
+import ContractTable       from './table'
+
 import { Center, Loader, Text } from '@mantine/core';
-import ContractTable from './table';
-import { useClient } from '@/hooks/useClient'
 
 interface Props {
-  signer: EscrowSigner;
+  signer: EscrowSigner
 }
 
 export default function Home({ signer }: Props) {
@@ -13,7 +14,7 @@ export default function Home({ signer }: Props) {
   const { data, isLoading } = useContractList(client, signer)
 
   if (isLoading) {
-    return <Center><Loader color="#0068FD" /></Center>;
+    return <Center><Loader color="#0068FD" /></Center>
   }
 
   if (data?.length === 0) {

@@ -18,7 +18,7 @@ export default function ({ contract } : Props) {
   const { client } = useClient()
   const { signer } = useSigner()
 
-  const { data, error, isLoading, update } = useContractFunds(client, cid, (!activated && !canceled))
+  const { data, error, isLoading, update } = useContractFunds(client, cid, !canceled)
 
   const can_commit = (signer !== null && !canceled && !activated)
 
@@ -28,9 +28,9 @@ export default function ({ contract } : Props) {
 
   return (
     <Box>
-      { isLoading  && <Loader /> }
-      { !isLoading && <FundsList data={data} oracle={client.oracle_url}/> }
-      { can_commit && <CommitForm contract={contract} signer={signer} update={update} /> }
+      { isLoading  &&         <Loader /> }
+      { !isLoading && data && <FundsList data={data} oracle={client.oracle_url}/> }
+      { can_commit &&         <CommitForm contract={contract} signer={signer} update={update} /> }
     </Box>
   )
 }

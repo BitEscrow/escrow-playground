@@ -1,5 +1,5 @@
 import { useNavigate }  from 'react-router-dom'
-import { ContractData } from '@scrow/core'
+import { ContractData } from '@scrow/sdk/core'
 import { IconLink }     from '@tabler/icons-react'
 
 import { ActionIcon, Grid, Group, Paper, Text } from '@mantine/core'
@@ -38,7 +38,7 @@ export default function ({ data } : Props) {
             </Group>
             <Group>
               <Text>Total:</Text>
-              <Text>{data.total} sats</Text>
+              <Text>{data.tx_total} sats</Text>
             </Group>
           </Group>
         </Grid.Col>

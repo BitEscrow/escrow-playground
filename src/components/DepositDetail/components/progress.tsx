@@ -1,29 +1,31 @@
-import { ContractData }      from '@scrow/sdk/core'
-import { Progress, Tooltip } from '@mantine/core'
+import { now } from '@scrow/sdk/util'
+
+import { DepositData, TxConfirmedState } from '@scrow/sdk/core'
+import { Progress, Tooltip }             from '@mantine/core'
 
 interface Props {
-  data : ContractData
+  data : DepositData & TxConfirmedState
 }
 
 export default function ({ data } : Props) {
-  const pending = (data.fund_pend > 0)
-    ? Math.max(Math.floor(data.tx_total / data.fund_pend) * 100, 100)
-    : 0
-  const balance = (data.fund_value > 0)
-    ? Math.max(Math.floor(data.tx_total / data.fund_value) * 100, 100)
-    : 0
+  const current = now()
+  const elapsed = current - data.block_time
+  const remain  = data.expires_at - current
+
+  const elapsed_pct = Math.min(Math.floor((elapsed / remain) * 100), 100)
+  const remain_pct  = Math.min(100 - elapsed_pct, 0)
+
+  const elapsed_val = (data.spent) ? 100 : elapsed_pct
+  const elapsed_clr = (data.spent) ? 'darkslateblue' : 'darkgreen'
 
   return (
-    <Progress.Root size={30}>
-      <Tooltip label={`Pending: ${data.fund_pend} sats`}>
-        <Progress.Section value={pending} color="orange">
-          <Progress.Label>{`Pending: ${data.fund_pend} sats`}</Progress.Label>
+    <Progress.Root size={10}>
+      <Tooltip label={`Time Elapsed: ${elapsed} seconds`}>
+        <Progress.Section value={elapsed_val} color={elapsed_clr}>
         </Progress.Section>
       </Tooltip>
-
-      <Tooltip label={`Secured: ${data.fund_value} sats`}>
-        <Progress.Section value={balance} color="#3F8C4F">
-          <Progress.Label>{`Secured: ${data.fund_value} sats`}</Progress.Label>
+      <Tooltip label={`Time Remaining: ${remain} seconds`}>
+        <Progress.Section value={remain_pct} color="#3F8C4F">
         </Progress.Section>
       </Tooltip>
     </Progress.Root>

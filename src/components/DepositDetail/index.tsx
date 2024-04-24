@@ -6,25 +6,49 @@ import { useClient }  from '@/hooks/useClient'
 import {
   Card,
   Loader,
-  Center
+  Center,
+  Divider,
+  Tabs,
+  Space
 } from '@mantine/core'
 
-import DepositPanel  from './components/panel'
-import DepositHeader from './components/header'
+import DepositHeader   from './components/header'
+import DepositJson     from './components/json'
+import DepositPanel    from './components/panel'
+import DepositProgress from './components/progress'
+import DepositTabs     from './components/tabs'
 
 export default function () {
   const { dpid }   = useParams()
   const { client } = useClient()
 
-  const { data, isLoading } = useDeposit(client, dpid || '')
+  const { data, isLoading, update } = useDeposit(client, dpid || '')
 
   const [ view, setView ] = useState('fields')
 
   return (
     <Card>
-      <DepositHeader data={ data } setView={setView} />
       { isLoading && <Center><Loader color="#0068FD" /></Center> }
-      { data && !isLoading && <DepositPanel data={data} view={view} /> }
+      { data && !isLoading &&
+        <>
+          <DepositHeader data={ data } setView={setView} />
+          <Divider mt={20} mb={20} />
+          { data.confirmed &&
+            <DepositProgress data={data} />
+          }
+          <Space />
+          <Tabs defaultValue="fields" value={view}>
+            <Tabs.Panel value="fields">
+              <DepositPanel data={data} />
+            </Tabs.Panel>
+            <Tabs.Panel value="json">
+              <DepositJson data={data} />
+            </Tabs.Panel>
+          </Tabs>
+          <DepositTabs deposit={data} update={update}/>
+        </>
+      }
     </Card>
   )
 }
+

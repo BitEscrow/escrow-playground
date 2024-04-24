@@ -14,12 +14,12 @@ interface Props {
 }
 
 export default function ({ contract, vmid } : Props) {
-  const { activated, closed, terms } = contract
+  const { activated, canceled, terms } = contract
 
   const { client } = useClient()
   const { signer } = useSigner()
 
-  const { data, isLoading, update } = useStatementList(client, vmid, (activated && !closed))
+  const { data, isLoading, update } = useStatementList(client, vmid, (activated && !canceled))
 
   const can_submit = signer !== null && has_pubkey(terms.programs, signer.pubkey)
 
