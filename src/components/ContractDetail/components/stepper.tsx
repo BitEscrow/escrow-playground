@@ -37,7 +37,7 @@ function get_fund_status (contract : ContractData) {
 function get_engine_status (contract : ContractData) {
   const { activated, closed, closed_at, closed_path, expires_at } = contract
   if (closed && closed_path) {
-    return 'contract settled'
+    return 'contract closed'
   } else if (activated && closed && closed_at >= expires_at) {
     return 'contract expired'
   } else if (activated && closed) {

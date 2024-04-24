@@ -26,12 +26,9 @@ export type DepositForm = UseFormReturnType<{
   address  : string
   feerate  : number
   locktime : number
-  value    : number
 }>
 
 export default function ({ contract, signer } : Props) {
-  const { created_at, fund_pend, fund_txfee, fund_value, tx_total } = contract
-
   const [ account, setAccount ] = useState<AccountData | null>(null)
   const [ deposit, setDeposit ] = useState<DepositData | null>(null)
 
@@ -39,10 +36,9 @@ export default function ({ contract, signer } : Props) {
 
   const form = useForm({
     initialValues : {
-      address  : signer.address.new(created_at),
+      address  : '',
       feerate  : 1,
-      locktime : 60 * 60 * 48,
-      value    : (tx_total - (fund_value + fund_pend)) + fund_txfee
+      locktime : contract.terms.duration + (60 * 60 * 48),
     },
     validate : {
       address : validate_address(config.store.network as Network)

@@ -8,16 +8,16 @@ interface Props {
 
 export default function ({ data } : Props) {
   const fund_pend_pct = (data.fund_pend > 0)
-    ? Math.max(Math.floor(data.fund_pend / data.tx_total) * 100, 100)
+    ? Math.min(Math.floor((data.fund_pend / data.tx_total) * 100), 100)
     : 0
   const fund_value_pct = (data.fund_value > 0)
-    ? Math.max(Math.floor(data.fund_value / data.tx_total) * 100, 100)
+    ? Math.min(Math.floor((data.fund_value / data.tx_total) * 100), 100)
     : 0
 
-  const fund_total_pct   = Math.max(fund_pend_pct + fund_value_pct, 100)
+  const fund_total_pct   = Math.min(fund_pend_pct + fund_value_pct, 100)
   const fund_balance_pct = Math.max(100 - fund_total_pct, 0)
   const is_paid    = fund_balance_pct === 0
-  const paid_label = is_paid ? 'paid' : 'secured' 
+  const paid_label = is_paid ? 'paid' : 'secured'
 
   return (
     <Box>
@@ -28,13 +28,12 @@ export default function ({ data } : Props) {
           </Progress.Section>
         </Tooltip>
         <Tooltip label={'secured'}>
-          <Progress.Section value={fund_value_pct} color="#3F8C4F">
+          <Progress.Section value={fund_value_pct} color="rgb(63, 140, 79)">
             <Progress.Label>{paid_label}</Progress.Label>
           </Progress.Section>
         </Tooltip>
         <Tooltip label={'balance'}>
-          <Progress.Section value={fund_balance_pct} color="#3F8C4F">
-            <Progress.Label>{'balance'}</Progress.Label>
+          <Progress.Section value={fund_balance_pct} color="grey">
           </Progress.Section>
         </Tooltip>
       </Progress.Root>
