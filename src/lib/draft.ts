@@ -16,6 +16,15 @@ export function format_method_name (name : string) {
   return prefix + suffix
 }
 
+export function rem_empty_strings (obj : Record<string, any>) {
+  for (const key in obj) {
+    if (obj[key] === '') {
+      obj[key] = undefined
+    }
+  }
+  return obj
+}
+
 export function truncate_id (id : string) {
   return (id.length > 16)
     ? `${id.slice(0, 8)} ... ${id.slice(-8)}`
@@ -70,7 +79,9 @@ export function validate_actions (vm_actions : string[]) {
     const actions = convert_regex(regex, vm_actions)
     if (actions === undefined) return 'action is undefined'
     for (const action of actions) {
-      if (!vm_actions.includes(action)) {
+      if (action === '') {
+        return 'invalid regex string'
+      } else if (!vm_actions.includes(action)) {
         return 'action is not supported in vm: ' + action
       }
     }
@@ -84,7 +95,7 @@ export function validate_paths (prop_paths : string[]) {
     if (paths === undefined) return 'path is undefined'
     for (const path of paths) {
       if (!prop_paths.includes(path)) {
-        return 'path does not exist in proposal: ' + path
+        return 'path does not exist in draft: ' + path
       }
     }
     return null

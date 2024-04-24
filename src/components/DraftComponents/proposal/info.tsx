@@ -9,12 +9,15 @@ import {
   TextInput,
   Textarea,
 } from '@mantine/core'
+import { useDraftStore } from '@/hooks/useDraft'
 
 interface Props {
   form : UseFormReturnType<ProposalData>
 }
 
 export default function ({ form } : Props) {
+
+  const draft = useDraftStore()
 
   return (
     <Box>
@@ -37,6 +40,14 @@ export default function ({ form } : Props) {
         description="The virtual machine to use for this contract."
         {...form.getInputProps('engine')}
         data={CONFIG.settings.engines}
+      />
+
+      <TextInput
+        disabled
+        mt={15}
+        label="Network"
+        description="The blockchain network to use for this contract."
+        value={draft.proposal.data.network}
       />
 
       <NumberInput

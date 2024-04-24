@@ -39,9 +39,9 @@ export default function () {
     },
     onValuesChange: (values) => {
       const { paths, payments, programs, schedule, ...rest } = prop.data
-      if (is_diff(rest, values)) {
-        console.log('update fired')
-        prop.update(values)
+      const fixed = util.rem_empty_strings(values)
+      if (is_diff(fixed, rest)) {
+        prop.update(fixed)
       }
     }
   })
@@ -49,7 +49,6 @@ export default function () {
   useEffect(() => {
     const values = form.getValues()
     if (is_diff(prop.data, values)) {
-      console.log('effect fired')
       form.setInitialValues(prop.data)
       form.setValues(prop.data)
     }

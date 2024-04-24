@@ -87,12 +87,8 @@ export default function () {
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
       <DraftHeader setView={setView}>
         <>
-          <Title order={2} mb={15}>
-            Negotiate Draft
-          </Title>
-          <Text>
-            Share and update the draft with other members.
-          </Text>
+          <Title order={2} mb={15}>Negotiate Draft</Title>
+          <Text>Share and update this draft with other contract members.</Text>
         </>
       </DraftHeader>
       <LinkView />

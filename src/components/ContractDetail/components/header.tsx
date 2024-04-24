@@ -1,9 +1,12 @@
+import { ContractData } from '@scrow/sdk/core'
+import { useClipboard } from '@mantine/hooks'
+import { IconCopy }     from '@tabler/icons-react'
+import { truncate_id }  from '@/lib/draft'
+
 import { Dispatch, SetStateAction } from 'react'
-import { ContractData }             from '@scrow/sdk/core'
+import { Anchor, Badge, Box, Button, Group, Text, Title } from '@mantine/core'
 
-import { Anchor, Badge, Box, Group, Text, Title } from '@mantine/core'
-
-import Controls     from './controls'
+import Controls from './controls'
 
 interface Props {
   data ?: ContractData
@@ -11,6 +14,8 @@ interface Props {
 }
 
 export default function ({ data, setView } : Props) {
+
+  const clip  = useClipboard({ timeout: 500 })
 
   const color = () => {
     switch (data?.status) {
@@ -27,23 +32,31 @@ export default function ({ data, setView } : Props) {
     }
   }
 
-  const cid   = (data !== undefined) ? data.cid.slice(0, 8) +  ' ... ' + data.cid.slice(-8) : ''
+  const cid   = (data !== undefined) ? truncate_id(data.cid) : ''
   const title = (data !== undefined) ? data.terms.title : ''
 
   return (
     <Box>
       <Group style={{ justifyContent : 'space-between', alignItems: 'flex-start' }}>
-        <Title order={3} mb={20} styles={{ }} maw="75%" lineClamp={2}>
+        <Title order={3} mb={20} maw="75%" lineClamp={2}>
           {title}
         </Title>
         <Controls setView={setView} />
       </Group>
       <Group mb={10}>
-        <Text w={50}>{`CID:`}</Text>
-        <Anchor href={window.location.href} >{cid}</Anchor>
+        <Text w={50}>CID</Text>
+        <Text>:</Text>
+        <Anchor href={window.location.href}>{cid}</Anchor>
+        <Button h={20} w={20} p={2}
+          color={clip.copied ? 'teal' : 'blue'}
+          onClick={() => clip.copy(data?.cid ?? '')}
+        >
+          <IconCopy size={12}/>
+        </Button>
       </Group>
       <Group>
-        <Text w={50}>{`Status:`}</Text>
+        <Text w={50}>Status</Text>
+        <Text>:</Text>
         <Badge
           mb={2}
           radius={15}

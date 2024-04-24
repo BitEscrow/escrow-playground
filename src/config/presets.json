@@ -1,5 +1,5 @@
 {
-  "default" : {
+  "Basic two-party contract with third-party arbitration" : {
     "proposal": {
       "title": "Basic two-party contract with third-party arbitration",
       "duration": 14400,

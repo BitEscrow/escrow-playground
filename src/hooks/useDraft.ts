@@ -8,7 +8,9 @@ import {
 
 import CONFIG from '@/config/index.js'
 
-const { proposal, roles } = CONFIG.presets['default']
+const templ = Object.keys(CONFIG.presets)[0]
+
+const { proposal, roles } = CONFIG.presets[templ as keyof typeof CONFIG.presets]
 
 const defaults = DraftUtil.create(proposal as ProposalData, roles as RoleTemplate[])
 

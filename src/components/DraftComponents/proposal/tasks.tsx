@@ -4,6 +4,7 @@ import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { get_path_names }      from '@scrow/sdk/proposal'
 import { convert_regex }       from '@/lib/util'
 import { get_vm_engine }       from '@/lib/vms'
+import NoData                  from '@/components/ui/NoData'
 
 import {
   NumberInput,
@@ -93,7 +94,7 @@ export default function () {
         You can specify multiple actions and paths for each task. Each task item will run from left-to-right. Invalid options will be skipped.
       </Text>
 
-      {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no tasks have been scheduled</Text>}
+      {rows.length === 0 && <NoData>no tasks have been scheduled</NoData>}
 
       {rows.length !== 0 &&
         <Table mb={15}>

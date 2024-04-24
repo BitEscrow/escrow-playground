@@ -2,7 +2,7 @@ import { useDraftStore } from '@/hooks/useDraft'
 import { useForm }       from '@mantine/form'
 import { IconPlus }      from '@tabler/icons-react'
 
-import { Accordion, Box, Button, Group, Space, Text, TextInput } from '@mantine/core'
+import { Accordion, Box, Button, Fieldset, Group, Space, Text, TextInput } from '@mantine/core'
 
 import PolicyForm from './roles/policy'
 
@@ -21,11 +21,11 @@ export default function () {
       {policies.length === 0 && <Text mb={30} ml={30} c='dimmed' size='sm'>no roles have been created</Text>}
       <Accordion mt="xs">{policies}</Accordion>
       { is_create &&
-        <>
+        <Fieldset legend="New Policy">
           <Space h={10}/>
           <Group>
             <TextInput
-              description="Enter a name for the role."
+              description="Enter a name for the policy."
               {...form.getInputProps('title')}
             />
             <Space h={10}/>
@@ -37,10 +37,10 @@ export default function () {
                 draft.role.add(form.values)
               }}
             >
-              Create Role
+              Create Policy
             </Button>
           </Group>
-        </>
+        </Fieldset>
       }
     </Box>
   )

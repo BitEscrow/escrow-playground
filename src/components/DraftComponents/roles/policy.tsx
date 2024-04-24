@@ -39,7 +39,7 @@ export default function ({ policy }: Props) {
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="settings" value="settings">
-          <Accordion.Control icon={<IconSettings size={18}/>}>Terms</Accordion.Control>
+          <Accordion.Control icon={<IconSettings size={18}/>}>Settings</Accordion.Control>
           <Accordion.Panel>
             <TermsForm policy={policy} />
           </Accordion.Panel>

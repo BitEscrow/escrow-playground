@@ -1,6 +1,7 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { useDraftStore }       from '@/hooks/useDraft'
+import NoData                  from '@/components/ui/NoData'
 
 import * as util from '@/lib/draft.js'
 
@@ -65,10 +66,10 @@ export default function () {
   return (
     <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
-        A non-conditional payment. Payments are included within all spending paths.
+        A non-conditional payment. These payments are included within all transaction templates.
       </Text>
 
-      {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no payments have been created</Text>}
+      {rows.length === 0 && <NoData>no payments have been created</NoData>}
 
       {rows.length !== 0 &&
         <Table mb={15}>

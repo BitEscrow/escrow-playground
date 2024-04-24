@@ -1,6 +1,7 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { PolicyStore }         from '@scrow/hooks/draft'
+import NoData                  from '@/components/ui/NoData'
 import * as util               from '@/lib/draft.js'
 
 import {
@@ -75,7 +76,7 @@ export default function ({ policy } : Props) {
           A spending path represents a conditional payment in a contract. When published, each path is grouped by label and converted into a partially signed transaction. The contract VM can select from these transactions when spending.
         </Text>
 
-        {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no spending paths have been created</Text>}
+        {rows.length === 0 && <NoData>no spending paths have been defined</NoData>}
 
         {rows.length !== 0 &&
           <Table mb={15}>

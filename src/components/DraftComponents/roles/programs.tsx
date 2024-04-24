@@ -3,6 +3,7 @@ import { PolicyStore }    from '@scrow/hooks/draft'
 import * as util          from '@/lib/draft.js'
 import { get_vm_engine }  from '@/lib/vms'
 import { useDraftStore }  from '@/hooks/useDraft'
+import NoData             from '@/components/ui/NoData'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 
@@ -95,10 +96,10 @@ export default function ({ policy } : Props) {
   return (
     <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
-        A program is used to execute an action within the contract. Each program specifies a set of actions that can be taken, and which spending paths can be selected.
+        A program is used to call methods within the contract's virtual machine. Each program specifies a set of actions that can be taken, which spending paths can be selected, and which members can execute the program.
       </Text>
 
-      {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no program interfaces have been defined</Text>}
+      {rows.length === 0 && <NoData>no program interfaces have been defined</NoData>}
 
       {rows.length !== 0 && rows}
 

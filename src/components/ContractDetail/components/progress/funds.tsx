@@ -7,16 +7,18 @@ interface Props {
 }
 
 export default function ({ data } : Props) {
-  const fund_pend_pct = (data.fund_pend > 0)
-    ? Math.min(Math.floor((data.fund_pend / data.tx_total) * 100), 100)
+  const { fund_count, fund_pend, fund_value, tx_total } = data
+  const fund_pend_pct = (fund_pend > 0)
+    ? Math.min(Math.floor((fund_pend / tx_total) * 100), 100)
     : 0
-  const fund_value_pct = (data.fund_value > 0)
-    ? Math.min(Math.floor((data.fund_value / data.tx_total) * 100), 100)
+  const fund_value_pct = (fund_value > 0)
+    ? Math.min(Math.floor((fund_value / tx_total) * 100), 100)
     : 0
 
   const fund_total_pct   = Math.min(fund_pend_pct + fund_value_pct, 100)
   const fund_balance_pct = Math.max(100 - fund_total_pct, 0)
   const is_paid    = fund_balance_pct === 0
+  const zero_label = fund_count === 0 ? 'no funds' : ''
   const paid_label = is_paid ? 'paid' : 'secured'
 
   return (
@@ -34,6 +36,7 @@ export default function ({ data } : Props) {
         </Tooltip>
         <Tooltip label={'balance'}>
           <Progress.Section value={fund_balance_pct} color="grey">
+          <Progress.Label>{zero_label}</Progress.Label>
           </Progress.Section>
         </Tooltip>
       </Progress.Root>

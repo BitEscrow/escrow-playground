@@ -16,8 +16,10 @@ import {
   ActionIcon,
   Text,
   NumberInput,
-  Table
+  Table,
+  NativeSelect
 } from '@mantine/core'
+import NoData from '@/components/ui/NoData'
 
 export default function () {
 
@@ -89,18 +91,19 @@ export default function () {
   return (
     <Box>
       <Text mt={5} mb={30} c='dimmed' size='sm'>
-        A program is used to execute an action within the contract. Each program specifies a set of actions that can be taken, and which spending paths can be selected.
+        A program is used to call methods within the contract's virtual machine. Each program specifies a set of actions that can be taken, which spending paths can be selected, and which members can execute the program.
       </Text>
 
-      {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no program interfaces have been defined</Text>}
+      {rows.length === 0 && <NoData>no program interfaces have been defined</NoData>}
 
       {rows.length !== 0 && rows}
 
-      <Fieldset legend="Add Program Interface">
+      <Fieldset legend="Add Program Interface" mb={10}>
         <Group align="flex-start">
-          <TextInput
+          <NativeSelect
             label="Method"
             description="The method called within the VM."
+            data={vm.methods}
             {...form.getInputProps('method')}
           />
           <TextInput
@@ -117,14 +120,14 @@ export default function () {
           />    
           <NumberInput
             label="Threshold"
-            description="Required # of signatures to activate."
+            description="Required # of signatures to execute."
             min={1}
             {...form.getInputProps('threshold')}
           />
           <TagsInput
             label="Pubkeys"
             splitChars={[' ', ',']}
-            description="Pubkeys allowed to submit signatures."
+            description="List of pubkeys allowed to participate."
             placeholder='enter a list of pubkeys'
             {...form.getInputProps('pubkeys')}
           />

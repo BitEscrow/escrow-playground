@@ -37,12 +37,8 @@ export default function CreateDraftView () {
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
       <DraftHeader setView={setView}>
         <>
-          <Title order={2} mb={15}>
-            New Draft
-          </Title>
-          <Text>
-            Create a new draft for a contract.
-          </Text>
+          <Title order={2} mb={15}>New Contract</Title>
+          <Text>Create an initial draft of a contract.</Text>
         </>
       </DraftHeader>
       <PresetView />
