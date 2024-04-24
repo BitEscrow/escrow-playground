@@ -1,4 +1,4 @@
-import { ContractData } from '@scrow/core'
+import { ContractData }      from '@scrow/sdk/core'
 import { Progress, Tooltip } from '@mantine/core'
 
 interface Props {
