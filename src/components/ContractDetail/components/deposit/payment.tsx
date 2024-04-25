@@ -20,8 +20,6 @@ import {
   EscrowSigner
 } from '@scrow/sdk'
 
-
-
 interface Props {
   account    : AccountData
   addDeposit : (deposit : DepositData) => void

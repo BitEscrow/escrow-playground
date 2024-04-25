@@ -38,7 +38,7 @@ export default function ({ data, host } : Props) {
       }
 
       { rows.length !== 0 &&
-        <Table mb={15}>
+        <Table mb={15} striped>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Method</Table.Th>

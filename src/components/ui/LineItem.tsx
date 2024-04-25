@@ -8,7 +8,7 @@ interface Props {
 export default function ({ label, value } : Props) {
   return (
     <Group>
-      <Text w={50} size='xs'>{label}</Text>
+      <Text w={100} size='sm'>{label}</Text>
       <Text>:</Text>
       <Code>{value}</Code>
     </Group>

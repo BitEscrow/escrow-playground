@@ -559,10 +559,10 @@
     "@scrow/sdk" "^0.10.2"
     swr "^2.2.5"
 
-"@scrow/sdk@^0.10.0":
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.0.tgz#f1e3947867a8527afbc644732feefb4bdba8667d"
-  integrity sha512-p/PWrC7Id7Wk2o/EWkan08c/Bbn5MFdYfIiBwYJKy/VJgpXjic0EtYsxSs+6XAMJijy1sAMwVnoFJL+fR9AaJg==
+"@scrow/sdk@^0.10.2":
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.2.tgz#24dcee59c42b126027d5375aa1ea172b46ea8431"
+  integrity sha512-cg5O//frbjpLDMbz3yzBzQh2kukjHE4W+zne5d1PC/WDvq1DdSPWduaOWPelDx+bt9DirQlJ0+aWZPD9OQ/J2Q==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"
@@ -571,10 +571,10 @@
     "@scrow/tapscript" "2.2.2"
     zod "^3.22.4"
 
-"@scrow/sdk@^0.10.2":
-  version "0.10.2"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.2.tgz#24dcee59c42b126027d5375aa1ea172b46ea8431"
-  integrity sha512-cg5O//frbjpLDMbz3yzBzQh2kukjHE4W+zne5d1PC/WDvq1DdSPWduaOWPelDx+bt9DirQlJ0+aWZPD9OQ/J2Q==
+"@scrow/sdk@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.10.3.tgz#1377f8a6b81c67c29662c50c44d3176a96e4dcee"
+  integrity sha512-V3ymk3mdMnLaJJ9YT0SO+HDZxtNrhy4DJOZeWiW0Ut7eI5nn0qJ9JLiyEm8QYKRcGkEqYEzy6cGEB3xvtvLl/g==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"

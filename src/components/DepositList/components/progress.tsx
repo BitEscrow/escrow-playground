@@ -1,6 +1,6 @@
-import { DepositData } from '@scrow/core'
+import { DepositData } from '@scrow/sdk/core'
 import { Progress }    from '@mantine/core'
-import { now }         from '@scrow/core/util'
+import { now }         from '@scrow/sdk/util'
 
 interface Props {
   data : DepositData
@@ -36,6 +36,6 @@ function get_progress (
   const total   = expires_at - created_at
   const elapsed = current - created_at
   const percent = (elapsed / total) * 100
-  const value   =100 - percent
+  const value   = 100 - percent
   return  Math.floor(Math.max(0, Math.min(100, value)))
 }

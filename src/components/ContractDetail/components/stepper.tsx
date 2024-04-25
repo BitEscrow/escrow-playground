@@ -10,7 +10,7 @@ export default function ({ contract } : Props) {
   const enum_state = get_enum_state(contract)
 
   return (
-    <Stepper active={enum_state} mx={20}>
+    <Stepper active={enum_state} mx={20} styles={{ separator : { width : 10 }}}>
       <Stepper.Step label="Funding"    description={get_fund_status(contract)} />
       <Stepper.Step label="Execution"  description={get_engine_status(contract)} />
       <Stepper.Step label="Settlement" description={get_settlement_status(contract)} />

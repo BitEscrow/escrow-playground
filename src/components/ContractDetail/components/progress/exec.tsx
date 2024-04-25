@@ -1,6 +1,6 @@
 // Progress bar for contract execution
 
-import { Box }          from '@mantine/core'
+import TimerProgress    from '@/components/ui/TimerProgress'
 import { ContractData } from '@scrow/sdk'
 
 // Should show progress of running, from created to now, to expiration.
@@ -13,6 +13,9 @@ interface Props {
 
 export default function ({ data } : Props) {
   return (
-    <Box></Box>
+    <>
+      { data.activated && <TimerProgress start={data.active_at} end={data.expires_at} /> }
+    </>
+    
   )
 }
