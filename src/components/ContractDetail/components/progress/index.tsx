@@ -1,6 +1,7 @@
 import { get_enum_state } from '@/lib/contract'
-import { Loader, Tabs, Text }           from '@mantine/core'
 import { ContractData }   from '@scrow/sdk'
+
+import { Loader, Tabs, Text } from '@mantine/core'
 
 import FundProgress  from './funds'
 import ExecProgress  from './exec'

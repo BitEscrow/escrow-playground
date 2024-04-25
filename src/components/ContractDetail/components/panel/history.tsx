@@ -17,8 +17,8 @@ export default function ({ data }: Props) {
   return (
     <Stack>
       <SegmentedControl
-        readOnly 
-        fullWidth
+        readOnly
+        size='xs'
         data  = {[ 'Canceled', 'Activated', 'Closed', 'Spent', 'Settled' ]}
         value = {state}
       />

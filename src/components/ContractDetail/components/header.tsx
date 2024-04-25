@@ -38,7 +38,7 @@ export default function ({ data, setView } : Props) {
   return (
     <Box>
       <Group style={{ justifyContent : 'space-between', alignItems: 'flex-start' }}>
-        <Anchor mb={20} maw="75%" href={window.location.href} c='dark'>
+        <Anchor mb={20} maw="70%" href={window.location.href} c='dark'>
           <Title order={3} lineClamp={2}>{title}</Title>
         </Anchor>
         <Controls setView={setView} />
