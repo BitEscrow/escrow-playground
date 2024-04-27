@@ -1,14 +1,21 @@
-import { useSigner }     from '@/hooks/useSigner'
-import { DraftUtil }     from '@scrow/sdk/client'
-import { useClient }     from '@/hooks/useClient'
-import { parse_err }     from '@scrow/sdk/util'
-import { useDraftStore } from '@scrow/hooks'
-import CONFIG            from '@/config/index.js'
+import { useSigner }       from '@/hooks/useSigner'
+import { DraftUtil }       from '@scrow/sdk/client'
+import { useClient }       from '@/hooks/useClient'
+import { parse_err }       from '@scrow/sdk/util'
+import { useDraftStore }   from '@scrow/hooks'
+import { useWindowScroll } from '@mantine/hooks'
+import CONFIG              from '@/config/index.js'
 
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 import { useEffect, useState }           from 'react'
 import { useNavigate, useSearchParams }  from 'react-router-dom'
-import { IconMail, IconRubberStamp }     from '@tabler/icons-react'
+
+import {
+  IconArmchair,
+  IconMail,
+  IconRubberStamp,
+  IconUsers
+} from '@tabler/icons-react'
 
 import {
   Button,
@@ -24,11 +31,13 @@ import DraftHeader from '../DraftComponents/header'
 import FormView    from '../DraftComponents'
 import JsonView    from '../DraftComponents/json'
 import LinkView    from './components/link'
+import MemberView  from './components/members'
 import SeatView    from './components/seats'
 
 export default function () {
   const [ init, setInit ] = useState(false)
   const [ view, setView ] = useState('fields')
+  const [ _, scrollTo ]   = useWindowScroll()
   
   const { client } = useClient()
   const { signer } = useSigner()
@@ -65,7 +74,6 @@ export default function () {
     if (signer !== null) {
       try {
         draft.member.endorse(signer)
-        console.log('endorse:', draft.data)
         update_link()
       } catch (err) {
         useErrorToast('Error Endorsing Draft', err)
@@ -92,10 +100,9 @@ export default function () {
       try {
         const dec = DraftUtil.decode(encoded)
         DraftUtil.verify(dec)
-        console.log('dec:', dec)
         draft.set(dec)
-        console.log(draft.data)
         setInit(true)
+        scrollTo({ y: 0 })
       } catch (err) {
         useErrorToast('Error Importing Draft', err)
       }
@@ -104,12 +111,11 @@ export default function () {
 
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
-      <DraftHeader setView={setView}>
-        <>
-          <Title order={2} mb={15}>Negotiate Draft</Title>
-          <Text>Share and update this draft with other contract members.</Text>
-        </>
-      </DraftHeader>
+      <DraftHeader
+        setView={setView}
+        title={<Title order={2} mb={15}>Negotiate Draft</Title>}
+        desc={<Text>Share and update this draft with other contract members.</Text>}
+      />
       <LinkView draft={draft} />
       <Space h="xs" />
       <Tabs defaultValue="fields" value={view}>
@@ -120,8 +126,18 @@ export default function () {
           <JsonView draft={draft} />
         </Tabs.Panel>
       </Tabs>
-      <Space h="xs" />
-      { signer !== null && <SeatView draft={draft} signer={signer} /> }
+      <Tabs defaultValue="seats">
+        <Tabs.List grow w='100%' mb={20}>
+          <Tabs.Tab leftSection={<IconUsers size={18}/>}    value="members">Members</Tabs.Tab>
+          <Tabs.Tab leftSection={<IconArmchair size={18}/>} value="seats">Seats</Tabs.Tab>
+        </Tabs.List>
+        <Tabs.Panel value="members">
+          <MemberView draft={draft} />
+        </Tabs.Panel>
+        <Tabs.Panel value="seats">
+          <SeatView draft={draft} />
+        </Tabs.Panel>
+      </Tabs>
       <Space h="xl" />
       <Group>
         <Button 

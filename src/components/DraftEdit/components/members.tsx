@@ -45,7 +45,7 @@ export default function ({ draft } : Props) {
   })
 
   return (
-    <Stack>
+    <Stack align='center'>
       {rows.length === 0 && <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no members have joined the proposal</Text>}
       {rows.length !== 0 && rows}
     </Stack>

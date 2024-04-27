@@ -4,21 +4,21 @@ import { Box, Divider, Group } from '@mantine/core'
 import Controls from './controls'
 
 interface Props {
-  children : ReactElement
-  setView  : Dispatch<SetStateAction<string>>
+  title   : ReactElement
+  desc    : ReactElement
+  setView : Dispatch<SetStateAction<string>>
 }
 
-export default function ({ children, setView } : Props) {
+export default function ({ title, desc, setView } : Props) {
 
   return (
-    <Box mb={15}>
-      <Group mb={20} style={{ justifyContent : 'space-between' }}>
-        <Box>
-          {children}
-        </Box>
+    <Box mb={20}>
+      <Group mb={10} align='flex-start' justify='space-between'>
+        {title}
         <Controls setView={setView} />
       </Group>
-      <Divider />
+      {desc}
+      <Divider mt={10} />
     </Box>
   )
 }

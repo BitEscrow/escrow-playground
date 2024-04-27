@@ -2,7 +2,7 @@ import { DraftStore } from '@scrow/hooks'
 import { useForm }    from '@mantine/form'
 import { IconPlus }   from '@tabler/icons-react'
 
-import { Accordion, Box, Button, Fieldset, Group, Space, Text, TextInput } from '@mantine/core'
+import { Accordion, Box, Button, Fieldset, Group, Text, TextInput } from '@mantine/core'
 
 import PolicyForm from './roles/policy'
 
@@ -24,20 +24,16 @@ export default function ({ draft } : Props) {
       <Accordion mt="xs">{policies}</Accordion>
       { is_create &&
         <Fieldset legend="New Policy">
-          <Space h={10}/>
           <Group>
             <TextInput
               description="Enter a name for the policy."
               {...form.getInputProps('title')}
             />
-            <Space h={10}/>
             <Button
               variant='subtle'
               leftSection={<IconPlus size={'14px'}/>}
               style={{ borderRadius: '15px', color: '#0068FD', alignSelf: 'end' }}
-              onClick={() => {
-                draft.role.add(form.values)
-              }}
+              onClick={() => { draft.role.add(form.values) }}
             >
               Create Policy
             </Button>

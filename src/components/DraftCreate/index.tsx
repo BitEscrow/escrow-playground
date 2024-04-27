@@ -43,12 +43,11 @@ export default function CreateDraftView () {
   
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
-      <DraftHeader setView={setView}>
-        <>
-          <Title order={2} mb={15}>New Contract</Title>
-          <Text>Create an initial draft of a contract.</Text>
-        </>
-      </DraftHeader>
+      <DraftHeader
+        setView = {setView}
+        title   = {<Title order={2} mb={15}>New Contract</Title>}
+        desc    = {<Text>Create an initial draft of a contract.</Text>}
+      />
       <PresetView draft={draft} />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">

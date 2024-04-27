@@ -32,7 +32,7 @@ export default function ({ draft } : Props) {
   }
 
   return (
-    <Group style={{ width: '100%' }} mb={50}>
+    <Group style={{ width: '100%' }} mb={20} mt={10}>
       <NativeSelect
         label="Example Templates"
         description="Select a pre-built template to start with."

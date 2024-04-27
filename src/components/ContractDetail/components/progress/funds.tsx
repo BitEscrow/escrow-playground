@@ -1,6 +1,7 @@
 import { ContractData } from '@scrow/sdk/core'
 
 import { Box, Group, Progress, Text, Tooltip } from '@mantine/core'
+import TimerProgress from '@/components/ui/TimerProgress'
 
 interface Props {
   data : ContractData
@@ -23,7 +24,7 @@ export default function ({ data } : Props) {
 
   return (
     <Box>
-      <Progress.Root size={24} radius="sm">
+      <Progress.Root size={24} radius="5px 5px 0 0">
         <Tooltip label={'pending'}>
           <Progress.Section value={fund_pend_pct} color="orange">
             <Progress.Label>{'pending'}</Progress.Label>
@@ -40,6 +41,7 @@ export default function ({ data } : Props) {
           </Progress.Section>
         </Tooltip>
       </Progress.Root>
+      <TimerProgress active={!data.canceled} start={data.created_at} end={data.deadline_at} radius='0 0 5px 5px'/>
       <Group mt={10} justify='center'>
         <Text>{`${data.fund_pend} pending`}</Text>
         <Text>/</Text>

@@ -17,7 +17,7 @@ export default function ({ data } : Props) {
   const state      = get_enum_state(data).toString()
 
   return (
-    <Tabs defaultValue='0' value={state} mt={breakpoint ? 40 : 0} mb={20}>
+    <Tabs defaultValue='0' value={state} mt={breakpoint ? 40 : 0} mb={10}>
       <Tabs.Panel value='0'>
         { !data.canceled && <FundProgress data={data} /> }
       </Tabs.Panel>
