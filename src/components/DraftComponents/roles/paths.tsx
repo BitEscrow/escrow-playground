@@ -44,9 +44,7 @@ export default function ({ policy } : Props) {
     form.validate()
     try {
       if (form.isValid()) {
-        console.log('adding path')
         policy.path.add(path as any)
-        console.log(policy)
       }
     } catch (err) {
       throw new Error('invalid path entry')

@@ -1,7 +1,11 @@
-import { useState }      from 'react'
 import { useNavigate }   from 'react-router-dom'
-import { useDraftStore } from '@/hooks/useDraft'
 import { DraftUtil }     from '@scrow/sdk/client'
+import { useDraftStore } from '@scrow/hooks'
+import { useConfig }     from '@/hooks/useConfig'
+import { Network }       from '@scrow/sdk'
+import CONFIG            from '@/config/index.js'
+
+import { useEffect, useState } from 'react'
 
 import {
   Button,
@@ -13,13 +17,13 @@ import {
 } from '@mantine/core'
 
 import DraftHeader  from '../DraftComponents/header'
-import FormView     from '../DraftComponents/tabs'
+import FormView     from '../DraftComponents'
 import JsonView     from '../DraftComponents/json'
 import PresetView   from '../DraftComponents/preset'
 
 export default function CreateDraftView () {
-
-  const draft    = useDraftStore()
+  const config   = useConfig()
+  const draft    = useDraftStore(CONFIG.default_session)
   const navigate = useNavigate()
 
   const [ view, setView ] = useState('fields')
@@ -32,6 +36,10 @@ export default function CreateDraftView () {
       return
     }
   }
+
+  useEffect(() => {
+    draft.proposal.update({ network : config.store.network as Network })
+  }, [ config.store.network ])
   
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
@@ -41,13 +49,13 @@ export default function CreateDraftView () {
           <Text>Create an initial draft of a contract.</Text>
         </>
       </DraftHeader>
-      <PresetView />
+      <PresetView draft={draft} />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
-          <FormView />
+          <FormView draft={draft}/>
         </Tabs.Panel>
         <Tabs.Panel value="json">
-          <JsonView />
+          <JsonView draft={draft} />
         </Tabs.Panel>
       </Tabs>
       <Space h="xs" />

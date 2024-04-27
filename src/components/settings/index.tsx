@@ -28,7 +28,7 @@ export default function SettingsView () {
 
   const { store, update } = useConfig()
 
-  const [ network, setNetwork ] = useState<Network>(store.network as Network)
+  const [ network, setNetwork ] = useState(store.network)
 
   const update_config = () => {
     const config = CONFIG.servers[network as keyof typeof CONFIG.servers]

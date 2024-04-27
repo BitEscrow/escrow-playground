@@ -12,7 +12,6 @@ import { Notifications }   from '@mantine/notifications'
 import { ClientProvider }  from '@/hooks/useClient'
 import { SignerProvider }  from '@/hooks/useSigner'
 import { ConfigProvider }  from '@/hooks/useConfig'
-import { DraftProvider }   from '@/hooks/useDraft'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.Fragment>
@@ -22,9 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <ConfigProvider>
           <ClientProvider>
             <SignerProvider>
-              <DraftProvider>
-                <App />
-              </DraftProvider>
+              <App />
             </SignerProvider>
           </ClientProvider>
         </ConfigProvider>

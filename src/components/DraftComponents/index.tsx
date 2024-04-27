@@ -1,3 +1,5 @@
+import { DraftStore } from '@scrow/hooks'
+
 import {
   Box,
   Tabs
@@ -13,7 +15,11 @@ import MemberView   from './members'
 import ProposalForm from './proposal'
 import RoleForm     from './roles'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
+
+export default function ({ draft } : Props) {
 
   const is_edit = window.location.pathname === '/draft/view'
 
@@ -26,13 +32,13 @@ export default function () {
           <Tabs.Tab leftSection={<IconTie size={18}/>}     value="roles">Roles</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="members">
-          <MemberView />
+          <MemberView draft={draft} />
         </Tabs.Panel>
         <Tabs.Panel value="proposal">
-          <ProposalForm />
+          <ProposalForm draft={draft} />
         </Tabs.Panel>
         <Tabs.Panel value="roles">
-          <RoleForm />
+          <RoleForm draft={draft}/>
         </Tabs.Panel>
       </Tabs>
     </Box>

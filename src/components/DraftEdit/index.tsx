@@ -1,13 +1,14 @@
-import { useSigner }      from '@/hooks/useSigner'
-import { useDraftStore }  from '@/hooks/useDraft'
-import { DraftUtil }      from '@scrow/sdk/client'
-import { useClient }      from '@/hooks/useClient'
-import { parse_err }      from '@scrow/sdk/util'
-import { useErrorToast }  from '@/hooks/useToast'
+import { useSigner }     from '@/hooks/useSigner'
+import { DraftUtil }     from '@scrow/sdk/client'
+import { useClient }     from '@/hooks/useClient'
+import { parse_err }     from '@scrow/sdk/util'
+import { useDraftStore } from '@scrow/hooks'
+import CONFIG            from '@/config/index.js'
 
-import { useEffect, useState }          from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
-import { IconMail, IconRubberStamp }    from '@tabler/icons-react'
+import { useErrResToast, useErrorToast } from '@/hooks/useToast'
+import { useEffect, useState }           from 'react'
+import { useNavigate, useSearchParams }  from 'react-router-dom'
+import { IconMail, IconRubberStamp }     from '@tabler/icons-react'
 
 import {
   Button,
@@ -20,20 +21,19 @@ import {
 } from '@mantine/core'
 
 import DraftHeader from '../DraftComponents/header'
-import FormView    from '../DraftComponents/tabs'
+import FormView    from '../DraftComponents'
 import JsonView    from '../DraftComponents/json'
 import LinkView    from './components/link'
 import SeatView    from './components/seats'
 
 export default function () {
-
   const [ init, setInit ] = useState(false)
   const [ view, setView ] = useState('fields')
   
   const { client } = useClient()
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
-  const draft      = useDraftStore()
+  const draft      = useDraftStore(CONFIG.default_session)
   const encoded    = params.get('enc')
   const navigate   = useNavigate()
 
@@ -52,6 +52,7 @@ export default function () {
 
   const update_link = () => {
     try {
+      draft.verify()
       const link = DraftUtil.encode(draft.data)
       navigate(`/draft/view?enc=${link}`)
     } catch (err) {
@@ -62,8 +63,13 @@ export default function () {
 
   const endorse_draft = () => {
     if (signer !== null) {
-      draft.member.endorse(signer)
-      update_link()
+      try {
+        draft.member.endorse(signer)
+        console.log('endorse:', draft.data)
+        update_link()
+      } catch (err) {
+        useErrorToast('Error Endorsing Draft', err)
+      }
     }
   }
 
@@ -76,17 +82,25 @@ export default function () {
         console.log('cid:', cid)
         navigate(`/contracts/${cid}`)
       } else {
-        
+        useErrResToast(res)
       }
     }
   }
 
   useEffect(() => {
     if (!init && encoded !== null) {
-      draft.decode(encoded)
-      setInit(true)
+      try {
+        const dec = DraftUtil.decode(encoded)
+        DraftUtil.verify(dec)
+        console.log('dec:', dec)
+        draft.set(dec)
+        console.log(draft.data)
+        setInit(true)
+      } catch (err) {
+        useErrorToast('Error Importing Draft', err)
+      }
     }
-  }, [ draft, encoded, init ])
+  }, [ encoded ])
 
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
@@ -96,18 +110,18 @@ export default function () {
           <Text>Share and update this draft with other contract members.</Text>
         </>
       </DraftHeader>
-      <LinkView />
+      <LinkView draft={draft} />
       <Space h="xs" />
       <Tabs defaultValue="fields" value={view}>
         <Tabs.Panel value="fields">
-          <FormView />
+          <FormView draft={draft} />
         </Tabs.Panel>
         <Tabs.Panel value="json">
-          <JsonView />
+          <JsonView draft={draft} />
         </Tabs.Panel>
       </Tabs>
       <Space h="xs" />
-      { signer !== null && <SeatView signer={signer} /> }
+      { signer !== null && <SeatView draft={draft} signer={signer} /> }
       <Space h="xl" />
       <Group>
         <Button 

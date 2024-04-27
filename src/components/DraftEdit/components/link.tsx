@@ -1,5 +1,5 @@
-import { useClipboard }  from '@mantine/hooks'
-import { useDraftStore } from '@/hooks/useDraft'
+import { useClipboard } from '@mantine/hooks'
+import { DraftStore }   from '@scrow/hooks'
 
 import { useEffect, useState } from 'react'
 
@@ -10,11 +10,14 @@ import {
   TextInput
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
+
+export default function ({ draft } : Props) {
 
   const { origin, pathname } = window.location
 
-  const draft = useDraftStore()
   const clip  = useClipboard({ timeout: 500 })
 
   const [ data, setData ] = useState(draft.encoded)

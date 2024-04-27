@@ -13,7 +13,6 @@ interface Props {
   form : UseFormReturnType<ProposalData>
 }
 
-
 export default function ({ form } : Props) {
 
   return (

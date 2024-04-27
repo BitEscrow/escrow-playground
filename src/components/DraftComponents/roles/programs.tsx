@@ -2,7 +2,6 @@ import { useForm }        from '@mantine/form'
 import { PolicyStore }    from '@scrow/hooks/draft'
 import * as util          from '@/lib/draft.js'
 import { get_vm_engine }  from '@/lib/vms'
-import { useDraftStore }  from '@/hooks/useDraft'
 import NoData             from '@/components/ui/NoData'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
@@ -25,10 +24,9 @@ interface Props {
 }
 
 export default function ({ policy } : Props) {
-
-  const draft  = useDraftStore()
-  const prop   = draft.proposal
-  const vm     = get_vm_engine(prop.data.engine)
+  const draft = policy._draft
+  const prop  = draft.proposal
+  const vm    = get_vm_engine(prop.data.engine)
 
   const is_create = window.location.pathname === '/draft/new'
 

@@ -1,14 +1,16 @@
-import { useDraftStore } from '@/hooks/useDraft'
-import { useForm }       from '@mantine/form'
-import { IconPlus }      from '@tabler/icons-react'
+import { DraftStore } from '@scrow/hooks'
+import { useForm }    from '@mantine/form'
+import { IconPlus }   from '@tabler/icons-react'
 
 import { Accordion, Box, Button, Fieldset, Group, Space, Text, TextInput } from '@mantine/core'
 
 import PolicyForm from './roles/policy'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
+export default function ({ draft } : Props) {
   const roles = draft.roles
   const form  = useForm({ initialValues : { title : '' }})
 

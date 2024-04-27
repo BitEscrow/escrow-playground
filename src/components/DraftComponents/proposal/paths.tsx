@@ -1,6 +1,6 @@
 import { useForm }             from '@mantine/form'
+import { DraftStore }          from '@scrow/hooks'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { useDraftStore }       from '@/hooks/useDraft'
 import NoData                  from '@/components/ui/NoData'
 
 import * as util from '@/lib/draft.js'
@@ -18,9 +18,11 @@ import {
   Fieldset
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
+export default function ({ draft } : Props) {
   const prop  = draft.proposal
 
   const form = useForm({

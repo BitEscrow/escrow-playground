@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom'
 
 import { useConfig }     from '@/hooks/useConfig'
 import { useClient }     from '@/hooks/useClient'
-import { useDraftStore } from '@/hooks/useDraft'
 import { useSigner }     from '@/hooks/useSigner'
 
 import DraftCreate    from '@/components/DraftCreate'
@@ -26,14 +25,12 @@ export default function () {
 
 
   const config = useConfig()
-  const draft  = useDraftStore()
   const { update: update_client } = useClient()
   const { update: update_signer } = useSigner()
 
   useEffect(() => {
     const network = parse_network(config.store.network)
     const options = CONFIG.servers[network as keyof typeof CONFIG.servers]
-    draft.proposal.update({ network })
     update_client(options)
     update_signer(options)
   }, [ config ])

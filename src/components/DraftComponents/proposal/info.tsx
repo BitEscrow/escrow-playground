@@ -1,5 +1,6 @@
 import { ProposalData }      from '@scrow/sdk'
 import { UseFormReturnType } from '@mantine/form'
+import { DraftStore }        from '@scrow/hooks'
 import CONFIG                from '@/config/index.js'
 
 import {
@@ -9,15 +10,13 @@ import {
   TextInput,
   Textarea,
 } from '@mantine/core'
-import { useDraftStore } from '@/hooks/useDraft'
 
 interface Props {
-  form : UseFormReturnType<ProposalData>
+  draft : DraftStore 
+  form  : UseFormReturnType<ProposalData>
 }
 
-export default function ({ form } : Props) {
-
-  const draft = useDraftStore()
+export default function ({ draft, form } : Props) {
 
   return (
     <Box>

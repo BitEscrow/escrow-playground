@@ -1,6 +1,6 @@
 import { ProposalData }  from '@scrow/sdk/core'
 import { useState }      from 'react'
-import { useDraftStore } from '@/hooks/useDraft'
+import { DraftStore }    from '@scrow/hooks'
 import { useConfig }     from '@/hooks/useConfig'
 import CONFIG            from '@/config/index.js'
 
@@ -15,17 +15,17 @@ import {
   NativeSelect
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
+export default function ({ draft } : Props) {
   const config  = useConfig()
-  const draft   = useDraftStore()
-  const presets = Object.keys(CONFIG.presets)
-  const templ   = CONFIG.presets[presets[0] as keyof typeof CONFIG.presets]
-
-  const [ preset, setPreset ] = useState(presets[0])
+  const labels  = CONFIG.presets
+  const [ preset, setPreset ] = useState(labels[0])
 
   const apply_preset = () => {
-    const { proposal, roles } = templ
+    const { proposal, roles } = CONFIG.templates[preset as keyof typeof CONFIG.templates]
     proposal.network = config.store.network
     const data = DraftUtil.create(proposal as ProposalData, roles as RoleTemplate[])
     draft.set(data)
@@ -38,8 +38,7 @@ export default function () {
         description="Select a pre-built template to start with."
         value={preset}
         onChange={(e) => setPreset(e.currentTarget.value)}
-        data={presets}
-        flex={{}}
+        data={labels}
       />
       <Button
         variant="filled"

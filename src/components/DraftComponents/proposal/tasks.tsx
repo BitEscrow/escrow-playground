@@ -1,9 +1,9 @@
 import { useForm }             from '@mantine/form'
-import { useDraftStore }       from '@/hooks/useDraft'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { get_path_names }      from '@scrow/sdk/proposal'
 import { convert_regex }       from '@/lib/util'
 import { get_vm_engine }       from '@/lib/vms'
+import { DraftStore }          from '@scrow/hooks'
 import NoData                  from '@/components/ui/NoData'
 
 import {
@@ -18,9 +18,11 @@ import {
   Table,
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
+export default function ({ draft } : Props) {
   const prop  = draft.proposal
   const vm    = get_vm_engine(prop.data.engine)
 

@@ -1,6 +1,6 @@
 import { IconRubberStamp } from '@tabler/icons-react'
-import { useDraftStore }   from '@/hooks/useDraft'
 import { EscrowSigner }    from '@scrow/sdk'
+import { DraftStore }      from '@scrow/hooks'
 
 import {
   Box,
@@ -11,13 +11,11 @@ import {
 } from '@mantine/core'
 
 interface Props {
+  draft  : DraftStore
   signer : EscrowSigner
 }
 
-export default function ({ signer } : Props) {
-
-  const draft = useDraftStore()
-
+export default function ({ draft, signer } : Props) {
   const can_sign = (
     signer.draft.is_member(draft.data)  &&
     !signer.draft.is_signed(draft.data)

@@ -1,10 +1,10 @@
-import { useDraftStore }    from '@/hooks/useDraft'
-import { useForm }          from '@mantine/form'
-import { get_vm_engine }    from '@/lib/vms'
+import { useForm }       from '@mantine/form'
+import { get_vm_engine } from '@/lib/vms'
+import { DraftStore }    from '@scrow/hooks'
+import NoData            from '@/components/ui/NoData'
+import * as util         from '@/lib/draft.js'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-
-import * as util from '@/lib/draft.js'
 
 import {
   Box,
@@ -19,11 +19,12 @@ import {
   Table,
   NativeSelect
 } from '@mantine/core'
-import NoData from '@/components/ui/NoData'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
+export default function ({ draft } : Props) {
   const prop  = draft.proposal
   const vm    = get_vm_engine(prop.data.engine)
 

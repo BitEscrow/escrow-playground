@@ -1,4 +1,4 @@
-import { useDraftStore } from '@/hooks/useDraft'
+import { DraftStore } from '@scrow/hooks'
 
 import { format_label, truncate_id } from '@/lib/draft'
 
@@ -10,10 +10,11 @@ import {
   Text
 } from '@mantine/core'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
-
+export default function ({ draft } : Props) {
   const rows = draft.data.members.map((mbr) => {
     const role = draft.data.roles.find(e => e.id === mbr.pid)
     if (role === undefined) throw new Error('Role not found: ' + mbr.pid)

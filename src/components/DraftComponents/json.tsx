@@ -1,10 +1,11 @@
-import { useDraftStore }  from '@/hooks/useDraft'
 import { Box, JsonInput } from '@mantine/core'
+import { DraftStore }     from '@scrow/hooks'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft = useDraftStore()
-
+export default function ({ draft } : Props) {
   return (
     <Box mb={15} maw={700}>
       <JsonInput

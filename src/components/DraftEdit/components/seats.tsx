@@ -1,5 +1,6 @@
-import { EscrowSigner }  from '@scrow/sdk/client'
-import { useDraftStore } from '@/hooks/useDraft'
+import { EscrowSigner } from '@scrow/sdk/client'
+import { format_label } from '@/lib/draft'
+import { DraftStore }   from '@scrow/hooks'
 
 import { Box, Button, Group, Text } from '@mantine/core'
 
@@ -7,16 +8,13 @@ import {
   IconPlus,
   IconLogout
 } from '@tabler/icons-react'
-import { format_label } from '@/lib/draft'
 
 interface Props {
+  draft  : DraftStore
   signer : EscrowSigner
 }
 
-export default function ({ signer } : Props) {
-
-  const draft = useDraftStore()
-
+export default function ({ draft, signer } : Props) {
   return (
     <Box>
       <Text size='sm' mb={10} c={'dimmed'}>Avalible seats in the contract.</Text>

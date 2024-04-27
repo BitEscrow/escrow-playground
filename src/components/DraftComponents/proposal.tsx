@@ -1,7 +1,7 @@
-import { useDraftStore } from '@/hooks/useDraft'
-import { useForm }       from '@mantine/form'
-import { useEffect }     from 'react'
-import { is_diff }       from '@/lib/util'
+import { useForm }    from '@mantine/form'
+import { useEffect }  from 'react'
+import { is_diff }    from '@/lib/util'
+import { DraftStore } from '@scrow/hooks'
 
 import * as util from '@/lib/draft.js'
 
@@ -24,12 +24,14 @@ import {
   IconClockHour4,
 } from '@tabler/icons-react'
 
-export default function () {
+interface Props {
+  draft : DraftStore
+}
 
-  const draft  = useDraftStore()
-  const prop   = draft.proposal
+export default function ({ draft } : Props) {
+  const prop = draft.proposal
 
-  const form   = useForm({
+  const form = useForm({
     initialValues : prop.data,
     validateInputOnChange: true,
     validate : {
@@ -56,30 +58,30 @@ export default function () {
 
   return (
     <Box>
-      <InfoForm form={form}/>
+      <InfoForm draft={draft} form={form}/>
       <Accordion mt="xs">
         <Accordion.Item key="paths" value="paths">
           <Accordion.Control icon={<IconRoute size={18}/>}>Paths</Accordion.Control>
           <Accordion.Panel>
-            <PathForm />
+            <PathForm draft={draft} />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="payments" value="payments">
           <Accordion.Control icon={<IconCoins size={18}/>}>Payments</Accordion.Control>
           <Accordion.Panel>
-            <PaymentForm />
+            <PaymentForm draft={draft} />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="programs" value="programs">
           <Accordion.Control icon={<IconPrompt size={18}/>}>Programs</Accordion.Control>
           <Accordion.Panel>
-            <ProgramForm />
+            <ProgramForm draft={draft} />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="tasks" value="tasks">
           <Accordion.Control icon={<IconClockHour4 size={18}/>}>Tasks</Accordion.Control>
           <Accordion.Panel>
-            <TaskForm />
+            <TaskForm draft={draft} />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item key="terms" value="terms">
