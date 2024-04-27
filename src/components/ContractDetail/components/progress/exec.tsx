@@ -1,21 +1,67 @@
-// Progress bar for contract execution
+import { get_countdown_timer } from '@/lib/time'
+import { ContractData }        from '@scrow/sdk'
+import { now }                 from '@scrow/sdk/util'
+import { useEffect, useState } from 'react'
 
-import TimerProgress    from '@/components/ui/TimerProgress'
-import { ContractData } from '@scrow/sdk'
+import { Box, Code, Group, Stack, Text } from '@mantine/core'
 
-// Should show progress of running, from created to now, to expiration.
-// Should change from running to closed based on status
-// Should also show current output, current hash, current stamp
+import TimerProgress from '@/components/ui/TimerProgress'
 
 interface Props {
-  data : ContractData
+  data : ContractData & { activated : true }
 }
 
 export default function ({ data } : Props) {
+  const { activated, active_at, expires_at } = data
+
+  const current = now()
+  const remains = expires_at - current
+  const message = get_countdown_timer(expires_at, current)
+
+  const [ seconds, setSeconds ] = useState(remains)
+
+  useEffect(() => {
+    let interval : any = null
+    if (activated && seconds > 0) {
+      interval = setInterval(() => {
+        setSeconds(seconds - 1)
+      }, 1000)
+    } else if (!activated && seconds !== 0 && interval) {
+      clearInterval(interval)
+    }
+    return () => clearInterval(interval)
+  }, [ activated, seconds ])
+
   return (
-    <>
-      { data.activated && <TimerProgress start={data.active_at} end={data.expires_at} /> }
-    </>
+    <Box>
+      <TimerProgress active={activated} start={active_at} end={expires_at} />
+      <Group mt={15} justify='center'>
+        <Stack gap={5}>
+          <Group gap='xs' h={24} justify='flex-start'>
+            <Text w={50}>Engine</Text>
+            <Text>:</Text>
+            <Code>{data.terms.engine}</Code>
+          </Group>
+          <Group gap='xs' h={24} justify='flex-start'>
+            <Text w={50} >Output</Text>
+            <Text>:</Text>
+            <Code>{data.closed_path ?? 'null'}</Code>
+          </Group>
+        </Stack>
+        <Stack gap={5} justify='center'>
+          <Group gap='xs' h={24} justify='flex-start'>
+            <Text w={50} >Expires</Text>
+            <Text>:</Text>
+            <Code>{message}</Code>
+          </Group>
+          <Group gap='xs' h={24} justify='flex-start'>
+            <Text w={50} >Status</Text>
+            <Text>:</Text>
+            <Code>{data.closed ? 'closed' : 'running'}</Code>
+          </Group>
+        </Stack>
+      </Group>
+    </Box>
     
   )
 }

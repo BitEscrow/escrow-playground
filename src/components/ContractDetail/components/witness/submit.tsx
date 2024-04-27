@@ -3,7 +3,7 @@ import { get_path_names } from '@scrow/sdk/proposal'
 import { get_vm_engine }  from '@/lib/vms'
 import { get_vm_config }  from '@scrow/sdk/vm'
 import { useClient }      from '@/hooks/useClient'
-import { useErrResToast } from '@/hooks/useToast'
+import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
 import { Button, Fieldset, Group, NativeSelect, TagsInput } from '@mantine/core'
 
@@ -38,17 +38,21 @@ export default function ({ contract, signer, update } : Props) {
   const submit = () => {
     form.validate()
     if (activated && form.isValid()) {
-      const config = get_vm_config(contract) 
-      const tmpl   = form.getValues()
-      console.log('template:', tmpl)
-      const req    = signer.witness.create(config, tmpl)
-      client.vm.submit(vmid, req).then(res => {
-        if (res.ok) {
-          update([ res.data.receipt ])
-        } else {
-          useErrResToast(res)
-        }
-      })
+      try {
+        const config = get_vm_config(contract) 
+        const tmpl   = form.getValues()
+        console.log('witness template:', tmpl)
+        const req    = signer.witness.create(config, tmpl)
+        client.vm.submit(vmid, req).then(res => {
+          if (res.ok) {
+            update([ res.data.receipt ])
+          } else {
+            useErrResToast(res)
+          }
+        })
+      } catch (err) {
+        useErrorToast('Submit Error', err)
+      }
     }
   }
 

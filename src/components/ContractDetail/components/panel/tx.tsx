@@ -26,11 +26,13 @@ export default function ({ data }: Props) {
         value={data.tx_vsize}
       />
       <TextInput
+        readOnly
         label="Transaction Id"
         value={data.spent_txid ?? 'N/A'}
         styles={{ input : { fontFamily : 'monospace' }}}
       />
       <TextInput
+        readOnly
         label="Transaction Hex"
         value={data.spent_txhex ?? 'N/A'}
         styles={{ input : { fontFamily : 'monospace' }}}
@@ -39,8 +41,9 @@ export default function ({ data }: Props) {
       <Stack gap={5}>
         {data.outputs.map((e) => (
           <TextInput
-            ml={20}
-            label={e[0]}
+            readOnly
+            ml     = {20}
+            label  = {e[0]}
             value  = {e[1]}
             styles = {{ input : { fontFamily : 'monospace' }}}
           />

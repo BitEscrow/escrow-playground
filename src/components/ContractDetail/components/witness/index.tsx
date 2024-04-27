@@ -21,7 +21,11 @@ export default function ({ contract, vmid } : Props) {
 
   const { data, isLoading, update } = useStatementList(client, vmid, (activated && !canceled))
 
-  const can_submit = signer !== null && has_pubkey(terms.programs, signer.pubkey)
+  const can_submit = (
+    signer !== null                          && 
+    (contract.activated && !contract.closed) &&
+    has_pubkey(terms.programs, signer.pubkey)
+  )
 
   return (
     <Box>

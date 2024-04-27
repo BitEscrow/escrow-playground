@@ -17,7 +17,7 @@ export default function ContractFunds({ data }: Props) {
       />
       <NumberInput
         readOnly
-        label="Contract Fees"
+        label="Provider Fees"
         value={data.fees.reduce((p, c) => p + c[0], 0)}
         suffix=' sats'
         thousandSeparator
@@ -31,14 +31,14 @@ export default function ContractFunds({ data }: Props) {
       />
       <NumberInput
         readOnly
-        label="Tx Fees"
+        label="Transaction Fees"
         value={data.tx_fees}
         suffix=' sats'
         thousandSeparator
       />
       <NumberInput
         readOnly
-        label="Tx Total"
+        label="Transaction Total"
         value={data.tx_total}
         suffix=' sats'
         thousandSeparator

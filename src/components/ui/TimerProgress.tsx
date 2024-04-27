@@ -1,8 +1,9 @@
-import { now } from '@scrow/sdk/util'
+import { now }                 from '@scrow/sdk/util'
 
-import { Progress, ProgressRootProps } from '@mantine/core'
+import { Box, Progress, ProgressRootProps } from '@mantine/core'
 
 interface Props extends ProgressRootProps {
+  active  : boolean
   start   : number
   end     : number
   colors ?: (pct : number) => string 
@@ -16,28 +17,37 @@ const default_colors = (pct : number) => {
   return 'purple'
 }
 
-export default function ({ start, end, colors, ...props } : Props) {
+export default function ({ active, start, end, colors, ...props } : Props) {
 
-  const progress = get_progress(start, end)
+
+  const current  = now()
+  const progress = get_progress(start, current, end)
 
   colors = colors ?? default_colors
 
   return (
-    <Progress.Root size={10} radius={0} { ...props }>
-        <Progress.Section value={progress} color={colors(progress)} />
-    </Progress.Root>
+    <Box>
+      <Progress.Root size={10} radius={0} { ...props }>
+          <Progress.Section value={progress} color={colors(progress)} />
+      </Progress.Root>
+    </Box>
   )
 }
 
 function get_progress (
   created_at : number,
+  current    : number,
   expires_at : number
 ) {
-  const current = now()
-  if (expires_at <= current) return 100
-  const total   = expires_at - created_at
-  const elapsed = current - created_at
-  const percent = (elapsed / total) * 100
-  const value   = 100 - percent
-  return  Math.floor(Math.max(0, Math.min(100, value)))
+  const total_time   = expires_at - created_at // Total duration in seconds.
+  const elapsed_time = current - created_at    // Elapsed time in seconds.
+
+  // Check if the current time is within the range
+  if (current < created_at) {
+    return 0   // If current time is before the start, return 0%.
+  } else if (current > expires_at) {
+    return 100 // If current time is after the end, return 100%.
+  }
+
+  return (elapsed_time / total_time) * 100
 }

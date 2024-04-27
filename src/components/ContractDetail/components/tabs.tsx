@@ -17,7 +17,7 @@ export default function ({ data } : Props) {
   const { activated, vmid } = data
 
   return (
-    <Tabs defaultValue="deposits">
+    <Tabs defaultValue={activated ? 'statements' : 'deposits'}>
       <Tabs.List grow w='100%' mb={20}>
         <Tabs.Tab 
           disabled={data.canceled}

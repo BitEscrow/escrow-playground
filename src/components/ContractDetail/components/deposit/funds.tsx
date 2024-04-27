@@ -1,6 +1,6 @@
-import { getTimeRemaining } from '@/lib/time'
-import { FundingData }      from '@scrow/sdk'
-import { IconLink }         from '@tabler/icons-react'
+import { get_time_remaining } from '@/lib/time'
+import { FundingData }        from '@scrow/sdk'
+import { IconLink }           from '@tabler/icons-react'
 
 import { ActionIcon, Box, Table, Text } from '@mantine/core'
 
@@ -22,7 +22,7 @@ export default function ({ data, oracle } : Props) {
         <Table.Td>{utxo.vout}</Table.Td>
         <Table.Td>{status}</Table.Td>
         <Table.Td>{utxo.value}</Table.Td>
-        <Table.Td>{getTimeRemaining(expires_at)}</Table.Td>
+        <Table.Td>{get_time_remaining(expires_at)}</Table.Td>
         <Table.Td>
           <ActionIcon color="blue" onClick={() =>  open_mempool(utxo.txid)}>
             <IconLink size="1rem" />

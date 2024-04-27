@@ -1,7 +1,8 @@
 import { get_enum_state } from '@/lib/contract'
 import { ContractData }   from '@scrow/sdk'
+import { useMediaQuery }  from '@mantine/hooks'
 
-import { Loader, Tabs, Text } from '@mantine/core'
+import { Group, Loader, Tabs, Text } from '@mantine/core'
 
 import FundProgress  from './funds'
 import ExecProgress  from './exec'
@@ -12,23 +13,23 @@ interface Props {
 }
 
 export default function ({ data } : Props) {
-
-  const state = get_enum_state(data).toString()
+  const breakpoint = useMediaQuery('(min-width: 650px)')
+  const state      = get_enum_state(data).toString()
 
   return (
-    <Tabs defaultValue='0' value={state} mt={20} mb={20}>
+    <Tabs defaultValue='0' value={state} mt={breakpoint ? 40 : 0} mb={20}>
       <Tabs.Panel value='0'>
-        <FundProgress data={data} />
+        { !data.canceled && <FundProgress data={data} /> }
       </Tabs.Panel>
       <Tabs.Panel value='1'>
-        <ExecProgress data={data} />
+        { data.activated && <ExecProgress data={data} /> }
       </Tabs.Panel>
       <Tabs.Panel value='2'>
         { data.spent &&
-          <>
+          <Group justify='center'>
             <TxLink data={data} />
             <Loader color="blue" type="dots" />
-          </>
+          </Group>
         }
       </Tabs.Panel>
       <Tabs.Panel value='3'>

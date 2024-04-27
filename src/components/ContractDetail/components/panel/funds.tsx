@@ -16,14 +16,14 @@ export default function ContractFunds({ data }: Props) {
       />
       <NumberInput
         readOnly
-        label="Deposit Tx Fee"
+        label="Deposit Fee"
         value={data.fund_txfee}
         suffix=' sats'
         thousandSeparator
       />
       <NumberInput
         readOnly
-        label="Feerate"
+        label="Tx Feerate"
         value={data.feerate}
         suffix=' sats/vb'
       />

@@ -1,5 +1,6 @@
 import { ContractData }   from '@scrow/sdk'
 import { Stepper }        from '@mantine/core'
+import { useMediaQuery }  from '@mantine/hooks'
 import { get_enum_state } from '@/lib/contract'
 
 interface Props {
@@ -7,10 +8,11 @@ interface Props {
 }
 
 export default function ({ contract } : Props) {
+  const breakpoint = useMediaQuery('(min-width: 650px)')
   const enum_state = get_enum_state(contract)
 
   return (
-    <Stepper active={enum_state} mx={20} styles={{ separator : { width : 10 }}}>
+    <Stepper active={enum_state} mx={20} orientation={breakpoint ? 'horizontal' : 'vertical'}  styles={{ separator : { width : 10 }}}>
       <Stepper.Step label="Funding"    description={get_fund_status(contract)} />
       <Stepper.Step label="Execution"  description={get_engine_status(contract)} />
       <Stepper.Step label="Settlement" description={get_settlement_status(contract)} />

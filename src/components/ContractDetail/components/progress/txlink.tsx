@@ -25,17 +25,17 @@ export default function ({ data } : Props) {
 
   return (
     <Flex justify='center'>
-        <Group gap='xs' h={24} align='center'>
-          <Text fw={700}>Txid</Text>
-          <Text>:</Text>
-          <Code>{truncate_id(txid)}</Code>
-          <Button h={24} w={24} p={0} onClick={() => clip.copy(txid)} bg={color}>
-            <IconCopy size={16} />
-          </Button>
-          <Button h={24} w={24} p={0} onClick={open_link}>
-            <IconExternalLink size={18} />
-          </Button>
-        </Group>
+      <Group gap='xs' h={24} align='center'>
+        <Text fw={700}>Txid</Text>
+        <Text>:</Text>
+        <Code>{truncate_id(txid)}</Code>
+        <Button h={24} w={24} p={0} onClick={() => clip.copy(txid)} bg={color}>
+          <IconCopy size={16} />
+        </Button>
+        <Button h={24} w={24} p={0} onClick={open_link}>
+          <IconExternalLink size={18} />
+        </Button>
+      </Group>
     </Flex>
   )
 }
