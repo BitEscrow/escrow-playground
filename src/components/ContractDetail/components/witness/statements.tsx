@@ -23,7 +23,7 @@ export default function ({ data, host } : Props) {
         <Table.Td>{path}</Table.Td>
         <Table.Td>{stamp}</Table.Td>
         <Table.Td>
-          <ActionIcon color="blue" onClick={() =>  view_statement(wid)}>
+          <ActionIcon color="blue" onClick={() => view_statement(wid)}>
             <IconLink size="1rem" />
           </ActionIcon>
         </Table.Td>
