@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { DepositData } from '@scrow/core'
+import { DepositData } from '@scrow/sdk/core'
 import { IconLink }    from '@tabler/icons-react'
 
 import { ActionIcon, Grid, Group, Paper, Text } from '@mantine/core'
@@ -28,7 +28,7 @@ export default function ({ data } : Props) {
       m={5}
       maw={500}
     >
-      <Text p={5} truncate="end">{data.txid}</Text>
+      <Text p={5} truncate="end">{data.utxo.txid}</Text>
       <Text p={5}>{`Expires at ${expires_at}` ?? 'Unconfirmed'}</Text>
       <Grid grow p={5}>
         <Grid.Col span={10}>
@@ -39,7 +39,7 @@ export default function ({ data } : Props) {
             </Group>
             <Group>
               <Text>Value:</Text>
-              <Text>{data.value} sats</Text>
+              <Text>{data.utxo.value} sats</Text>
             </Group>
           </Group>
         </Grid.Col>

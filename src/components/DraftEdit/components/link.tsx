@@ -22,6 +22,11 @@ export default function ({ draft } : Props) {
 
   const [ data, setData ] = useState(draft.encoded)
 
+  const paste = async () => {
+    const data = await navigator.clipboard.readText()
+    draft.decode(data)
+  }
+
   useEffect(() => {
     if (data !== draft.encoded) {
       setData(draft.encoded)
@@ -44,20 +49,12 @@ export default function ({ draft } : Props) {
         >
           {clip.copied ? 'Copied' : 'Copy'}
         </Button>
-        <Button
-          onClick={async () => {
-            const data = await navigator.clipboard.readText()
-            draft.decode(data)
-          }}
-        >
+        <Button onClick={paste}>
           Paste
         </Button>
-        <Button
-          onClick={() => clip.copy(`${origin}${pathname}?enc=${data}`)}
-        >
+        <Button onClick={() => clip.copy(`${origin}${pathname}?enc=${data}`)}>
           Share
         </Button>
-
       </Group>
     </Box>
   )

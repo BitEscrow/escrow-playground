@@ -14,7 +14,7 @@ import {
 
 import DepositHeader   from './components/header'
 import DepositJson     from './components/json'
-import DepositPanel    from './components/panel'
+import DepositPanel    from './components/accordion'
 import DepositProgress from './components/progress'
 import DepositTabs     from './components/tabs'
 

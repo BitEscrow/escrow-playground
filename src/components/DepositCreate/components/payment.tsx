@@ -43,12 +43,10 @@ export default function ({ account, contract, form, addDeposit, signer } : Props
     if (has_utxo) {
       const utxo = data[0].txout
       const req  = signer.deposit.commit(account, contract, feerate, utxo)
-      console.log('commit req:', req)
       client.contract.commit(req).then(res => {
         if (res.ok) {
           void addDeposit(res.data.deposit)
         } else {
-          console.log(res)
           useErrResToast(res)
         }
       })

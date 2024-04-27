@@ -14,7 +14,6 @@ import DepositView    from '@/components/DepositView'
 import SettingsView   from '@/components/settings'
 import Error404View   from '@/components/ui/404'
 import LandingView    from '@/components/Landing'
-import CVMView        from '@/components/CVMView'
 import DepostitCreate from './components/DepositCreate'
 
 import CONFIG from '@/config/index.js'
@@ -40,7 +39,6 @@ export default function () {
       <Route path="/"                   element={<LandingView    />} />
       <Route path="/contracts"          element={<ContractView   />} />
       <Route path="/contracts/:cid"     element={<ContractDetail />} />
-      <Route path="/contracts/:cid/vm"  element={<CVMView        />} />
       <Route path="/deposits"           element={<DepositView    />} />
       <Route path="/deposits/:dpid"     element={<DepositDetail  />} />
       <Route path="/deposit/new"        element={<DepostitCreate />} />

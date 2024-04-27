@@ -42,6 +42,7 @@ export default function ({ data }: Props) {
         {data.outputs.map((e) => (
           <TextInput
             readOnly
+            key    = {e[0]}
             ml     = {20}
             label  = {e[0]}
             value  = {e[1]}

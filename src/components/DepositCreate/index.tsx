@@ -1,23 +1,37 @@
-import {
-    Card,
-    Title,
-    Text
-} from '@mantine/core'
+import { useEffect }        from 'react'
+import { ContractData }     from '@scrow/sdk'
+import { useClient }        from '@/hooks/useClient'
+import { useSigner }        from '@/hooks/useSigner'
+import { Box, Loader }      from '@mantine/core'
+import { useSearchParams }  from 'react-router-dom'
 
-import AccountDetails from './components/account'
-import Invoice from './components/invoice'
+import FundsList  from './components/funds'
+import CommitForm from './components/commit'
+import { useForm } from '@mantine/form'
 
+interface Props {
+  contract : ContractData
+}
 
-export default function DepostitCreate() {
+export default function () {
+  const { client } = useClient()
+  const { signer } = useSigner()
+  const [ params ] = useSearchParams()
+
+  const form = useForm({
+    initialValues : {
+      cid      : params.get('cid')  ?? '',
+      address  : params.get('addr') ?? '',
+      duration : params.get('dur')  ?? 0,
+      feerate  : params.get('fr')   ?? 1
+    }
+  })
 
   return (
-      <Card maw={500}>
-        <Title order={2} mb={15}>Create New Deposit</Title>
-        <Text c="dimmed" style={{ marginBottom: '20px' }} maw='500px'>
-            Est officia tempor proident do tempor.
-        </Text>
-        <AccountDetails />
-        <Invoice/>
-    </Card>
+    <Box>
+      {/* { isLoading  &&         <Loader /> }
+      { !isLoading && data && <FundsList data={data} oracle={client.oracle_url}/> }
+      { can_commit &&         <CommitForm contract={contract} signer={signer} update={update} /> } */}
+    </Box>
   )
 }

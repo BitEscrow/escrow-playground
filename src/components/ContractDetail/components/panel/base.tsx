@@ -37,6 +37,7 @@ export default function ({ data }: Props) {
         {data.signatures.map((e) => (
           <TextInput
             readOnly
+            key    = {e}
             ml     = {20}
             value  = {e} 
             styles = {{ input : { fontFamily : 'monospace' }}}
