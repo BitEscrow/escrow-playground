@@ -71,7 +71,7 @@ export default function ({ contract, signer, update } : Props) {
   return (
     <Box>
       { account === null && deposit === null &&
-        <AccountForm form={form} setAccount={setAccount} signer={signer} />
+        <AccountForm contract={contract} form={form} setAccount={setAccount} signer={signer} />
       }
       { account !== null && deposit === null &&
         <PaymentForm

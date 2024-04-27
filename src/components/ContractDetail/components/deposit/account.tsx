@@ -1,21 +1,22 @@
+import { Buff }           from '@cmdcode/buff'
 import { useFeeRates }    from '@scrow/hooks'
 import { useClient }      from '@/hooks/useClient'
 import { DepositForm }    from './commit'
 import { IconRotate }     from '@tabler/icons-react'
-import { now }            from '@scrow/sdk/util'
 import { useErrResToast } from '@/hooks/useToast'
 
 import { Dispatch, SetStateAction, useState }               from 'react'
-import { AccountData, EscrowSigner }                        from '@scrow/sdk'
+import { AccountData, ContractData, EscrowSigner }          from '@scrow/sdk'
 import { Button, Fieldset, NumberInput, Slider, TextInput } from '@mantine/core'
 
 interface Props {
+  contract   : ContractData
   form       : DepositForm
   setAccount : Dispatch<SetStateAction<AccountData | null>>
   signer     : EscrowSigner
 }
 
-export default function ({ form, setAccount, signer } : Props) {
+export default function ({ contract, form, setAccount, signer } : Props) {
   const [ slider, setSlider   ] = useState(1)
 
   const { client } = useClient()
@@ -23,7 +24,8 @@ export default function ({ form, setAccount, signer } : Props) {
   const { data : feerates } = useFeeRates(client)
 
   const gen_address = () => {
-    const addr = signer.address.new(now())
+    const hash = Buff.json([ contract.cid, contract.fund_count ]).digest
+    const addr = signer.address.new(hash.slice(0, 4).num)
     form.setFieldValue('address', addr)
   }
 

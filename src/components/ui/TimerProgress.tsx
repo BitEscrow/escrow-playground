@@ -6,7 +6,8 @@ interface Props extends ProgressRootProps {
   active  : boolean
   start   : number
   end     : number
-  colors ?: (pct : number) => string 
+  colors ?: (pct : number) => string
+  
 }
 
 const default_colors = (pct : number) => {
