@@ -1,5 +1,35 @@
 import { now } from '@scrow/sdk/util'
 
+export function get_time_elapsed (
+  created : number,
+  current : number = now()
+) : string {
+  const past = new Date(created * 1000)
+  const now  = new Date(current * 1000)
+
+  let elapsed = (now.getTime() - past.getTime()) / 1000
+
+  const days = Math.floor(elapsed / (24 * 60 * 60))
+
+  if (days !== 0) {
+    return (days > 1) ? `${days} days` : `${days} day`
+  } else {
+    elapsed -= days * 24 * 60 * 60
+  }
+
+  const hours = Math.floor(elapsed / (60 * 60))
+
+  if (hours !== 0) {
+    return (hours > 1) ? `${hours} hours` : `${hours} hour`
+  } else {
+    elapsed -= hours * 60 * 60
+  }
+
+  const minutes = Math.floor(elapsed / 60)
+
+  return (minutes > 1) ? `${minutes} minutes` : `${minutes} minute`
+}
+
 export function get_time_remaining (
   expires : number | null,
   current : number = now()

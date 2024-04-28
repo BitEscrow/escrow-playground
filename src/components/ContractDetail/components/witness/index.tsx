@@ -1,5 +1,5 @@
 import { useStatementList } from '@scrow/hooks'
-import { Box, Loader }      from '@mantine/core'
+import { Loader, Stack }    from '@mantine/core'
 import { useClient }        from '@/hooks/useClient'
 import { useSigner }        from '@/hooks/useSigner'
 
@@ -27,11 +27,11 @@ export default function ({ contract, vmid } : Props) {
   )
 
   return (
-    <Box>
-      { isLoading  && <Loader /> }
-      { !isLoading && <StatementList data={data} host={client.server_url}/> }
+    <Stack>
       { can_submit && <SubmitForm contract={contract} signer={signer} update={update} /> }
-    </Box>
+      { isLoading  && <Loader /> }
+      { !isLoading && <StatementList data={data} host={client.server_url} can_submit={can_submit} /> }
+    </Stack>
   )
 }
 

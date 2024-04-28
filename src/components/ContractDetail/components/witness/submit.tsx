@@ -7,7 +7,7 @@ import { useContractUpdate } from '@scrow/hooks/contract'
 
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
-import { Button, Fieldset, Group, NativeSelect, TagsInput } from '@mantine/core'
+import { Button, Card, Group, NativeSelect, TagsInput, Textarea } from '@mantine/core'
 
 import {
   ContractData,
@@ -32,10 +32,11 @@ export default function ({ contract, signer, update } : Props) {
 
   const form = useForm({
     initialValues : {
-      method : vm.methods[0],
-      action : vm.actions[0],
-      path   : pnames[0],
-      args   : []
+      method  : vm.methods[0],
+      action  : vm.actions[0],
+      content : '',
+      path    : pnames[0],
+      args    : []
     }
   })
 
@@ -62,7 +63,7 @@ export default function ({ contract, signer, update } : Props) {
   }
 
   return (
-    <Fieldset legend="Submit a Statement">
+    <Card withBorder>
       <Group>
         <NativeSelect
           label="Method"
@@ -83,6 +84,11 @@ export default function ({ contract, signer, update } : Props) {
           {...form.getInputProps('path')}
         />
       </Group>
+      <Textarea
+        label="Content"
+        description="A free-form content field."
+        {...form.getInputProps('content')}
+      />
       <TagsInput
         label="Arguments"
         splitChars={[' ', ',']}
@@ -95,6 +101,6 @@ export default function ({ contract, signer, update } : Props) {
       >
         Submit
       </Button>
-    </Fieldset>
+    </Card>
   )
 }

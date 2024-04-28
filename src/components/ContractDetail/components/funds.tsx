@@ -37,7 +37,6 @@ export default function ({ contract } : Props) {
     const { expires_at, status, utxo } = elem
     return (
       <Table.Tr key={utxo.txid}>
-        <Table.Td>{utxo.vout}</Table.Td>
         <Table.Td>{status}</Table.Td>
         <Table.Td>{utxo.value}</Table.Td>
         <Table.Td>{get_time_remaining(expires_at)}</Table.Td>
@@ -55,13 +54,13 @@ export default function ({ contract } : Props) {
       { isLoading  &&  <Loader /> }
 
       { !isLoading && rows.length === 0 && 
-        <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no deposits have been collected</Text>}
+        <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no deposits have been collected</Text>
+      }
 
       { rows.length !== 0 &&
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Output</Table.Th>
               <Table.Th>Status</Table.Th>
               <Table.Th>Value</Table.Th>
               <Table.Th>Expires</Table.Th>
