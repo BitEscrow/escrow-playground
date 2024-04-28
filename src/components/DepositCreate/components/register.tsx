@@ -4,9 +4,10 @@ import { useEffect }      from 'react'
 import { useClient }      from '@/hooks/useClient'
 import { useErrResToast } from '@/hooks/useToast'
 
-import { Box } from '@mantine/core'
+import { Box, Code, Group, Loader, Stack, Text } from '@mantine/core'
 
 import { DepositDispatch, DepositForm, DepositState } from '..'
+import { truncate_id } from '@/lib/draft'
 
 interface Props {
   form     : DepositForm
@@ -16,10 +17,17 @@ interface Props {
 }
 
 export default function ({ form, state, setState, signer } : Props) {
+  assert.exists(state.account)
   assert.exists(state.payment)
+
   const { client }  = useClient()
   const { feerate } = form.getValues()
-  const utxo        = state.payment.txout
+
+  const cid = (state.contract !== null)
+    ? truncate_id(state.contract.cid) 
+    : 'null'
+
+  const utxo = state.payment.txout
 
   useEffect(() => { register() }, [ state.payment ])
 
@@ -45,8 +53,26 @@ export default function ({ form, state, setState, signer } : Props) {
   }
 
   return (
-    <Box>
-      
-    </Box>
+    <Stack align='center' >
+
+      <Box>
+        <Group>
+          <Text w={150} ff='monospace' ta='right' size='sm'>Deposit Address</Text>
+          <Text>:</Text>
+          <Code>{truncate_id(state.account.deposit_addr)}</Code>
+        </Group>
+        <Group>
+          <Text w={150} ff='monospace' ta='right' size='sm'>Contract Id</Text>
+          <Text>:</Text>
+          <Code>{cid}</Code>
+        </Group>
+      </Box>
+
+      <Group justify='center'>
+        <Text>Registering deposit</Text>
+        <Loader color="blue" type="dots" />
+      </Group>
+
+    </Stack>
   )
 }

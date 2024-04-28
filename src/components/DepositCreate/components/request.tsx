@@ -7,7 +7,7 @@ import { useErrResToast } from '@/hooks/useToast'
 import { useState }       from 'react'
 import { useNavigate }    from 'react-router-dom'
 
-import { Button, NumberInput, Slider, Stack, TextInput } from '@mantine/core'
+import { Button, NumberInput, Slider, Stack, TextInput, Tooltip } from '@mantine/core'
 
 import { DepositDispatch, DepositForm, DepositState } from '..'
 
@@ -70,8 +70,11 @@ export default function ({ form, state, setState, signer } : Props) {
       />
       <TextInput
         description="The return address to use for closing or recovering your deposit."
+        placeholder="paste an address here, or click generate"
         rightSection={
-          <Button onClick={gen_address}><IconRotate size={24} /></Button>
+          <Tooltip label="Generate">
+            <Button onClick={gen_address}><IconRotate size={24} /></Button>
+          </Tooltip>
         }
         rightSectionWidth={60}
         {...form.getInputProps('address')}

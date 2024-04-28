@@ -1,17 +1,35 @@
 import { get_time_remaining } from '@/lib/time'
-import { FundingData }        from '@scrow/sdk'
 import { IconLink }           from '@tabler/icons-react'
+import { ContractData }       from '@scrow/sdk'
+import { useContractFunds }   from '@scrow/hooks'
+import { useClient }          from '@/hooks/useClient'
+import { useSigner }          from '@/hooks/useSigner'
+import { useNavigate }        from 'react-router-dom'
 
-import { ActionIcon, Box, Table, Text } from '@mantine/core'
+import { ActionIcon, Box, Button, Loader, Table, Text } from '@mantine/core'
 
 interface Props {
-  data   : FundingData[]
-  oracle : string
+  contract : ContractData
 }
 
-export default function ({ data, oracle } : Props) {
+export default function ({ contract } : Props) {
+  const { cid, activated, canceled } = contract
+
+  const { client } = useClient()
+  const { signer } = useSigner()
+
+  const navigate = useNavigate()
+
+  const { data, isLoading } = useContractFunds(client, cid)
+
+  const can_commit = (signer !== null && !canceled && !activated)
+
+  const deposit = () => {
+    navigate(`/deposit/new?cid=${contract.cid}`)
+  }
+
   const open_mempool = (txid : string) => {
-    const url = `${oracle}/tx/${txid}`
+    const url = `${client.oracle_url}/tx/${txid}`
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
@@ -34,7 +52,9 @@ export default function ({ data, oracle } : Props) {
 
   return (
     <Box>
-      { rows.length === 0 && 
+      { isLoading  &&  <Loader /> }
+
+      { !isLoading && rows.length === 0 && 
         <Text fs="italic" mb={30} ml={30} c='dimmed' size='sm'>no deposits have been collected</Text>}
 
       { rows.length !== 0 &&
@@ -51,6 +71,8 @@ export default function ({ data, oracle } : Props) {
           <Table.Tbody>{rows}</Table.Tbody>
         </Table>
       }
+
+      { can_commit && <Button onClick={deposit}>Make a Deposit</Button> }
     </Box>
   )
 }

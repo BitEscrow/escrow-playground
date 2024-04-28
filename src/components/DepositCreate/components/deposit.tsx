@@ -45,7 +45,7 @@ export default function ({ account, cid, remaining, setState } : Props) {
           <Code>{truncate_id(address)}</Code>
         </Group>
         <Group>
-          <Text w={150} ff='monospace' size='sm'>Contract Id</Text>
+          <Text w={150} ff='monospace' ta='right' size='sm'>Contract Id</Text>
           <Text>:</Text>
           <Code>{truncate_id(cid)}</Code>
         </Group>

@@ -1,7 +1,7 @@
 import { ContractData } from '@scrow/sdk/core'
 import { Tabs }         from '@mantine/core'
 
-import FundsView     from './deposit'
+import FundsView     from './funds'
 import StatementView from './witness'
 
 import {
