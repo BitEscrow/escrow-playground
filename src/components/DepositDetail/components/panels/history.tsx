@@ -5,7 +5,9 @@ interface Props {
   data: DepositData;
 }
 
-export default function SessionDetails({ data }: Props) {
+export default function ({ data }: Props) {
+
+  console.log(data)
 
   return (
     <div style={{ marginTop: '30px' }}>

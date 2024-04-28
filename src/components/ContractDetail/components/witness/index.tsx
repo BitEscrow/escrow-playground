@@ -14,12 +14,11 @@ interface Props {
 }
 
 export default function ({ contract, vmid } : Props) {
-  const { activated, canceled, terms } = contract
-
+  const { terms }  = contract
   const { client } = useClient()
   const { signer } = useSigner()
 
-  const { data, isLoading, update } = useStatementList(client, vmid, (activated && !canceled))
+  const { data, isLoading, update } = useStatementList(client, vmid)
 
   const can_submit = (
     signer !== null                          && 

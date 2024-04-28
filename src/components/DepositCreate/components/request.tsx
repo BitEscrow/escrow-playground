@@ -1,42 +1,53 @@
-import { Buff }           from '@cmdcode/buff'
+import { now }            from '@scrow/sdk/util'
+import { EscrowSigner }   from '@scrow/sdk'
 import { useFeeRates }    from '@scrow/hooks'
 import { useClient }      from '@/hooks/useClient'
-import { DepositForm }    from './commit'
 import { IconRotate }     from '@tabler/icons-react'
 import { useErrResToast } from '@/hooks/useToast'
+import { useState }       from 'react'
+import { useNavigate }    from 'react-router-dom'
 
-import { Dispatch, SetStateAction, useState }               from 'react'
-import { AccountData, ContractData, EscrowSigner }          from '@scrow/sdk'
-import { Button, Fieldset, NumberInput, Slider, TextInput } from '@mantine/core'
+import { Button, NumberInput, Slider, Stack, TextInput } from '@mantine/core'
+
+import { DepositDispatch, DepositForm, DepositState } from '..'
+
+import ContractForm from './contract'
 
 interface Props {
-  contract   : ContractData
-  form       : DepositForm
-  setAccount : Dispatch<SetStateAction<AccountData | null>>
-  signer     : EscrowSigner
+  form     : DepositForm
+  state    : DepositState
+  setState : DepositDispatch
+  signer   : EscrowSigner
 }
 
-export default function ({ contract, form, setAccount, signer } : Props) {
-  const [ slider, setSlider   ] = useState(1)
+export default function ({ form, state, setState, signer } : Props) {
+  const [ slider, setSlider ] = useState(1)
 
   const { client } = useClient()
 
   const { data : feerates } = useFeeRates(client)
 
+  const navigate    = useNavigate()
+  const can_deposit = (state.contract === null || state.fundable)
+
   const gen_address = () => {
-    const hash = Buff.json([ contract.cid, contract.fund_count ]).digest
-    const addr = signer.address.new(hash.slice(0, 4).num)
+    const addr = signer.address.new(now())
     form.setFieldValue('address', addr)
   }
 
   const req_account = async () => {
     form.validate()
     if (form.isValid()) {
-      const { address, locktime } = form.getValues()
-      const req = signer.account.create(address, locktime)
+      const { address, duration } = form.getValues()
+      const req = signer.account.create(address, duration)
       const res = await client.deposit.request(req)
       if (res.ok) {
-        setAccount(res.data.account)
+        setState((e) => {
+          return { ...e, account : res.data.account }
+        })
+        const { pathname } = window.location
+        const { address, cid, duration, feerate } = form.getValues()
+        navigate(`${pathname}?addr=${address}&cid=${cid}&dur=${duration}&fr=${feerate}`)
       } else {
         useErrResToast(res)
       }
@@ -51,15 +62,13 @@ export default function ({ contract, form, setAccount, signer } : Props) {
   }
 
   return (
-    <Fieldset legend="Make a Deposit">
+    <Stack>
       <NumberInput
-        mb={15}
         description="The duration of time (in seconds) to lock your deposit into escrow."
         suffix=' seconds'
-        {...form.getInputProps('locktime')}
+        {...form.getInputProps('duration')}
       />
       <TextInput
-        mb={15}
         description="The return address to use for closing or recovering your deposit."
         rightSection={
           <Button onClick={gen_address}><IconRotate size={24} /></Button>
@@ -68,7 +77,6 @@ export default function ({ contract, form, setAccount, signer } : Props) {
         {...form.getInputProps('address')}
       />
       <NumberInput
-        mb={15}
         min={1}
         max={1000}
         description="The feerate that will be used for your return transaction."
@@ -90,7 +98,9 @@ export default function ({ contract, form, setAccount, signer } : Props) {
         ]}
       />
 
-      <Button onClick={req_account}>Reserve Account</Button>
-    </Fieldset>
+      <ContractForm form={form} state={state} setState={setState} signer={signer} />
+
+      <Button disabled={!can_deposit} onClick={req_account}>Reserve Account</Button>
+    </Stack>
   )
 }

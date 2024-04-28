@@ -2,11 +2,11 @@ import { ContractData }     from '@scrow/sdk'
 import { useContractFunds } from '@scrow/hooks'
 import { useClient }        from '@/hooks/useClient'
 import { useSigner }        from '@/hooks/useSigner'
-import { Box, Loader }      from '@mantine/core'
+import { useNavigate }      from 'react-router-dom'
+
+import { Box, Button, Loader } from '@mantine/core'
 
 import FundsList  from './funds'
-import CommitForm from './commit'
-import { useEffect } from 'react'
 
 interface Props {
   contract : ContractData
@@ -18,19 +18,21 @@ export default function ({ contract } : Props) {
   const { client } = useClient()
   const { signer } = useSigner()
 
-  const { data, error, isLoading, update } = useContractFunds(client, cid, !canceled)
+  const navigate = useNavigate()
+
+  const { data, isLoading } = useContractFunds(client, cid)
 
   const can_commit = (signer !== null && !canceled && !activated)
 
-  useEffect(() => {
-
-  }, [ error ])
+  const deposit = () => {
+    navigate(`/deposit/new?cid=${contract.cid}`)
+  }
 
   return (
     <Box>
       { isLoading  &&         <Loader /> }
       { !isLoading && data && <FundsList data={data} oracle={client.oracle_url}/> }
-      { can_commit &&         <CommitForm contract={contract} signer={signer} update={update} /> }
+      { can_commit &&         <Button onChange={deposit} >Make a Deposit</Button> }
     </Box>
   )
 }

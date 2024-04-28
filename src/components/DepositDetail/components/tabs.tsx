@@ -37,7 +37,7 @@ export default function ({ deposit, update } : Props) {
       { signer !== null &&
         <>
           <Tabs.Panel value="lock">
-            <LockForm data={deposit} signer={signer} update={update} />
+            <LockForm deposit={deposit} signer={signer} update={update} />
           </Tabs.Panel>
           <Tabs.Panel value="close">
             <CloseForm data={deposit} signer={signer} update={update}/>
