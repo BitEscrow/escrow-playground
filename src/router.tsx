@@ -37,10 +37,10 @@ export default function () {
   return (
     <Routes>
       <Route path="/"                   element={<LandingView    />} />
-      <Route path="/contracts"          element={<ContractView   />} />
-      <Route path="/contracts/:cid"     element={<ContractDetail />} />
-      <Route path="/deposits"           element={<DepositView    />} />
-      <Route path="/deposits/:dpid"     element={<DepositDetail  />} />
+      <Route path="/contract/list"      element={<ContractView   />} />
+      <Route path="/contract/:cid"      element={<ContractDetail />} />
+      <Route path="/deposit/list"       element={<DepositView    />} />
+      <Route path="/deposit/:dpid"      element={<DepositDetail  />} />
       <Route path="/deposit/new"        element={<DepostitCreate />} />
       <Route path="/draft/view"         element={<DraftEdit      />} />
       <Route path="/draft/new"          element={<DraftCreate    />} />

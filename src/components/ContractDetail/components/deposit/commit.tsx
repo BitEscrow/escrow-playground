@@ -59,7 +59,7 @@ export default function ({ contract, signer, update } : Props) {
 
   const view_deposit = () => {
     if (deposit !== null) {
-      navigate(`/deposits/${deposit.dpid}`)
+      navigate(`/deposit/${deposit.dpid}`)
     }
   }
 

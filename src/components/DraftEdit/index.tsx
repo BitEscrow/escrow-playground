@@ -88,7 +88,7 @@ export default function () {
       if (res.ok) {
         const cid = res.data.contract.cid
         console.log('cid:', cid)
-        navigate(`/contracts/${cid}`)
+        navigate(`/contract/${cid}`)
       } else {
         useErrResToast(res)
       }

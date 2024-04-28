@@ -19,7 +19,7 @@ export default function ({ data } : Props) {
   const navigate = useNavigate()
 
   const load = (dpid : string) => {
-    navigate(`/deposits/${dpid}`)
+    navigate(`/deposit/${dpid}`)
   }
 
   return (

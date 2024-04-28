@@ -33,7 +33,7 @@ export default function () {
   }
 
   const handleClick = () => {
-    navigate(`/contracts/${inputValue}`)
+    navigate(`/contract/${inputValue}`)
   }
 
   return (

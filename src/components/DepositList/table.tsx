@@ -72,7 +72,7 @@ export default function DepositTable({ signer }: Props) {
               <td>
                 <ActionIcon
                   variant="subtle"
-                  onClick={() => navigate(`/deposits/${deposit.dpid}`)}
+                  onClick={() => navigate(`/deposit/${deposit.dpid}`)}
                 >
                   <IconZoomScan size={16} color='#0068FE'/>
                 </ActionIcon>

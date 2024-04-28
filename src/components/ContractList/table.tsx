@@ -75,7 +75,7 @@ export default function ContractTable({ signer }: Props) {
               <td>
                 <ActionIcon
                   variant="subtle"
-                  onClick={() => navigate(`/contracts/${contract.cid}`)}
+                  onClick={() => navigate(`/contract/${contract.cid}`)}
                 >
                   <IconZoomScan size={16} color='#0068FE'/>
                 </ActionIcon>

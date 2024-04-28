@@ -119,10 +119,10 @@ export default function AppDemo() {
 
       <AppShell.Navbar p="md"style={{ height: '100%' }}>
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Contracts" active={view === 'contracts'}
-          onClick={() => handleNavLinkClick('contracts')}
+          onClick={() => handleNavLinkClick('contract/list')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Deposits" active={view === 'deposits'}
-          onClick={() => handleNavLinkClick('deposits')}
+          onClick={() => handleNavLinkClick('deposit/list')}
         />
         <NavLink w={'100%'} style={{ borderRadius: '25px'}} label="Settings" active={view === 'settings'} 
           onClick={() => handleNavLinkClick('settings')}

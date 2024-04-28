@@ -17,7 +17,7 @@ export default function ({ data } : Props) {
   const navigate = useNavigate()
 
   const load = (cid : string) => {
-    navigate(`/contracts/${cid}`)
+    navigate(`/contract/${cid}`)
   }
 
   return (
