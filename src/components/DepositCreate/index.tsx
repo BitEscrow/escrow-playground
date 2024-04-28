@@ -99,8 +99,7 @@ export default function () {
               { state.account !== null && 
                 <DepositForm
                   account   = {state.account}
-                  cid       = {state.contract?.cid ?? 'null'}
-                  remaining = {state.remaining}
+                  state     = {state}
                   setState  = {setState}
                 />
               }

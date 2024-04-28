@@ -37,8 +37,8 @@ export default function () {
 
   return (
     <Card>
-      { isLoading && <Center><Loader color="#0068FD" /></Center> }
-      { data && !isLoading &&
+      { !data && isLoading && <Center><Loader color="#0068FD" /></Center> }
+      { data &&
         <>
           <ContractHeader data={ data } setView={setView} />
           <Divider mt={20} mb={20} />

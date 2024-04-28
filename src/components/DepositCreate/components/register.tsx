@@ -1,13 +1,15 @@
-import { assert }         from '@scrow/sdk/util'
-import { EscrowSigner }   from '@scrow/sdk'
-import { useEffect }      from 'react'
-import { useClient }      from '@/hooks/useClient'
-import { useErrResToast } from '@/hooks/useToast'
+import { assert }            from '@scrow/sdk/util'
+import { EscrowSigner }      from '@scrow/sdk'
+import { useEffect }         from 'react'
+import { useClient }         from '@/hooks/useClient'
+import { useErrResToast }    from '@/hooks/useToast'
+import { truncate_id }       from '@/lib/draft'
+import { useContractUpdate } from '@scrow/hooks/contract'
+import { useDepositUpdate }  from '@scrow/hooks/deposit'
 
 import { Box, Code, Group, Loader, Stack, Text } from '@mantine/core'
 
 import { DepositDispatch, DepositForm, DepositState } from '..'
-import { truncate_id } from '@/lib/draft'
 
 interface Props {
   form     : DepositForm
@@ -27,6 +29,9 @@ export default function ({ form, state, setState, signer } : Props) {
     ? truncate_id(state.contract.cid) 
     : 'null'
 
+  const ct_update = useContractUpdate(client)
+  const dp_update = useDepositUpdate(client)
+
   const utxo = state.payment.txout
 
   useEffect(() => { register() }, [ state.payment ])
@@ -37,6 +42,9 @@ export default function ({ form, state, setState, signer } : Props) {
       const req = signer.deposit.commit(state.account, state.contract, feerate, utxo)
       const res = await client.contract.commit(req)
       if (res.ok) {
+        const dpid = res.data.deposit.dpid
+        ct_update(cid, res.data.contract)
+        dp_update(dpid, res.data.deposit)
         setState(e => { return { ...e, ...res.data } })
       } else {
         useErrResToast(res)
@@ -45,6 +53,8 @@ export default function ({ form, state, setState, signer } : Props) {
       const req = signer.deposit.register(state.account, feerate, utxo)
       const res = await client.deposit.register(req)
       if (res.ok) {
+        const dpid = res.data.deposit.dpid
+        dp_update(dpid, res.data.deposit)
         setState(e => { return { ...e, ...res.data } })
       } else {
         useErrResToast(res)

@@ -1,7 +1,7 @@
 import { WitnessReceipt } from '@scrow/sdk'
 import { IconLink }       from '@tabler/icons-react'
 
-import { ActionIcon, Box, Table, Text } from '@mantine/core'
+import { ActionIcon, Box, Pill, PillsInput, Stack, Table, Text } from '@mantine/core'
 
 interface Props {
   data : WitnessReceipt[]
@@ -15,19 +15,28 @@ export default function ({ data, host } : Props) {
   }
 
   const rows = data.map((elem) => {
-    const { method, action, path, stamp, wid } = elem
+    const { method, action, path, sigs, stamp, wid } = elem
     return (
-      <Table.Tr key={wid}>
-        <Table.Td>{method}</Table.Td>
-        <Table.Td>{action}</Table.Td>
-        <Table.Td>{path}</Table.Td>
-        <Table.Td>{stamp}</Table.Td>
-        <Table.Td>
-          <ActionIcon color="blue" onClick={() => view_statement(wid)}>
-            <IconLink size="1rem" />
-          </ActionIcon>
-        </Table.Td>
-      </Table.Tr>
+      <>
+        <Table.Tr key={wid}>
+          <Table.Td>{method}</Table.Td>
+          <Table.Td>{action}</Table.Td>
+          <Table.Td>{path}</Table.Td>
+          <Table.Td>{stamp}</Table.Td>
+          <Table.Td>
+            <ActionIcon color="blue" onClick={() => view_statement(wid)}>
+              <IconLink size="1rem" />
+            </ActionIcon>
+          </Table.Td>
+        </Table.Tr>
+        <Table.Tr>
+          <PillsInput label="Signers">
+            <Pill.Group>
+              {sigs.map(e => <Pill>{e.slice(0, 64)}</Pill> )}
+            </Pill.Group>
+          </PillsInput>
+        </Table.Tr>
+      </>
     )
   })
 

@@ -9,29 +9,35 @@ import { useEffect, useState } from 'react'
 
 import { Box, Code, Group, Loader, LoadingOverlay, NumberInput, Stack, Text } from '@mantine/core'
 
-import { DepositDispatch } from '..'
+import { DepositDispatch, DepositState } from '..'
 
 interface Props {
   account   : AccountData
-  cid       : string
-  remaining : number | null
+  state     : DepositState
   setState  : DepositDispatch
 }
 
-export default function ({ account, cid, remaining, setState } : Props) {
+export default function ({ account, state, setState } : Props) {
 
-  const address             = account.deposit_addr
+  const address = account.deposit_addr
+
+  const cid     = (state.contract !== null)
+    ? truncate_id(state.contract.cid)
+    : 'null'
+
+  const initval = (state.contract !== null && state.remaining !== null)
+    ? state.remaining + state.contract.fund_txfee
+    : 10000
+
   const { client }          = useClient()
-  const { data, isLoading } = usePayAddress(client, address)
-  const [ value, setValue ] = useState(remaining ?? 10000)
+  const { data, isLoading } = usePayAddress(client, address, { refreshInterval : 5000 })
+  const [ value, setValue ] = useState(initval)
 
-  const has_utxo = data !== undefined && data.length === 1
+  const has_utxo = data !== undefined && data.length > 0
 
   useEffect(() => {
     if (has_utxo) {
-      setState((e) => {
-        return { ...e, payment : data [0] }
-      })
+      setState((e) => { return { ...e, payment : data[0] } })
     }
   }, [ data ])
 
@@ -47,7 +53,7 @@ export default function ({ account, cid, remaining, setState } : Props) {
         <Group>
           <Text w={150} ff='monospace' ta='right' size='sm'>Contract Id</Text>
           <Text>:</Text>
-          <Code>{truncate_id(cid)}</Code>
+          <Code>{cid}</Code>
         </Group>
       </Box>
 

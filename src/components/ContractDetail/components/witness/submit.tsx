@@ -1,8 +1,10 @@
-import { useForm }        from '@mantine/form'
-import { get_path_names } from '@scrow/sdk/proposal'
-import { get_vm_engine }  from '@/lib/vms'
-import { get_vm_config }  from '@scrow/sdk/vm'
-import { useClient }      from '@/hooks/useClient'
+import { useForm }           from '@mantine/form'
+import { get_path_names }    from '@scrow/sdk/proposal'
+import { get_vm_engine }     from '@/lib/vms'
+import { get_vm_config }     from '@scrow/sdk/vm'
+import { useClient }         from '@/hooks/useClient'
+import { useContractUpdate } from '@scrow/hooks/contract'
+
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
 import { Button, Fieldset, Group, NativeSelect, TagsInput } from '@mantine/core'
@@ -20,8 +22,10 @@ interface Props {
 }
 
 export default function ({ contract, signer, update } : Props) {
-  const { activated, terms, vmid }  = contract
+  const { activated, cid, terms, vmid }  = contract
+
   const { client } = useClient()
+  const ct_update  = useContractUpdate(client)
 
   const pnames = get_path_names(terms.paths)
   const vm     = get_vm_engine(terms.engine)
@@ -46,6 +50,7 @@ export default function ({ contract, signer, update } : Props) {
         client.vm.submit(vmid, req).then(res => {
           if (res.ok) {
             update([ res.data.receipt ])
+            ct_update(cid)
           } else {
             useErrResToast(res)
           }

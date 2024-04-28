@@ -17,14 +17,14 @@ export default function ({ contract } : Props) {
 
   return (
     <Card withBorder mb={15} >
-      <Text>Funds Summary:</Text>
+      <Text ta='center' mb={10}>Funding Status:</Text>
       <SimpleGrid cols={2} spacing="sm" verticalSpacing="sm">
-        <Text>Depoists:</Text>
+        <Text>Deposits:</Text>
         <Code>{fund_count}</Code>
-        <Text>Allocated:</Text>
-        <Code>{available}</Code>
+        <Text>Amount:</Text>
+        <Code>{available} sats</Code>
         <Text>Balance:</Text>
-        <Code>{remaining}</Code>
+        <Code>{remaining} sats</Code>
       </SimpleGrid>
     </Card>
   )

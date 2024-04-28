@@ -15,7 +15,7 @@ export default function ({ contract, deposit } : Props) {
   return (
     <Stack align='center'>
       <Stack>
-        <Text>Your deposit has been registered!</Text>
+        <Text ta='center'>Your deposit has been registered!</Text>
         { contract !== null &&
           <Group>
             <Text w={150} ff='monospace' ta='right' size='sm'>Contract Id</Text>
@@ -38,8 +38,10 @@ export default function ({ contract, deposit } : Props) {
           <Text>:</Text>
           <Code>{`${truncate_id(deposit.utxo.txid)}:${deposit.utxo.vout}`}</Code>
         </Group>
-        <Group>
-          { contract !== null && <Button onClick={() => navigate(`/contract/${contract.cid}`)}>View Contract</Button> }
+        <Group justify='center'>
+          { contract !== null && 
+            <Button onClick={() => navigate(`/contract/${contract.cid}`)}>View Contract</Button>
+          }
           <Button onClick={() => navigate(`/deposit/${deposit.dpid}`)}>View Deposit</Button>
           <Button onClick={() => navigate(`/deposit/new`)}>New Deposit</Button>
         </Group>

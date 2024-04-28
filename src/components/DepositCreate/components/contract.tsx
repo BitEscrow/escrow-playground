@@ -52,7 +52,7 @@ export default function ({ form, state, setState, signer  } : Props) {
   return (
     <Stack>
       <CIDField form={form} signer={signer} />
-      { !data && isLoading && <Loader /> }
+      { !data && isLoading && <Loader size='sm' /> }
       { data && <FundView contract={data} state={state} setState={setState} />}
     </Stack>
   )
