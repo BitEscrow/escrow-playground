@@ -22,7 +22,6 @@ import { parse_network } from '@scrow/sdk/util'
 
 export default function () {
 
-
   const config = useConfig()
   const { update: update_client } = useClient()
   const { update: update_signer } = useSigner()

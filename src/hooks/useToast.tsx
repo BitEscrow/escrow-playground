@@ -1,8 +1,25 @@
+import { useState }      from 'react'
 import { Text }          from '@mantine/core'
 import { notifications } from '@mantine/notifications'
 import { ErrorResponse } from '@scrow/sdk'
 
 import { IconExclamationMark, IconX } from '@tabler/icons-react'
+
+type ReturnToast <T> = [
+  value    : T | null | undefined,
+  setValue : (value : T | null | undefined) => void
+]
+
+export function useTimeout <T> (
+  initValue ?: T | null, delay = 5000
+) : ReturnToast<T> {
+  const [ value, _setValue ] = useState(initValue)
+  const setValue = (value: T | null | undefined) => {
+    _setValue(value)
+    setTimeout(() => _setValue(initValue), delay)
+  }
+  return [ value, setValue ]
+}
 
 export function useErrorToast (
   title : string,

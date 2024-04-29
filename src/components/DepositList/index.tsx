@@ -1,12 +1,12 @@
 import { EscrowSigner }       from '@scrow/sdk/client'
 import { useClient }          from '@/hooks/useClient'
 import { get_time_remaining } from '@/lib/time'
-import { IconExternalLink, IconZoom }           from '@tabler/icons-react'
 import { useNavigate }        from 'react-router-dom'
 import { useDepositList }     from '@scrow/hooks'
 
+import { IconExternalLink, IconZoom } from '@tabler/icons-react'
+
 import { ActionIcon, Loader, Stack, Table, Text } from '@mantine/core'
-import { truncate_id } from '@/lib/draft'
 
 interface Props {
   signer: EscrowSigner
@@ -25,8 +25,6 @@ export default function ({ signer }: Props) {
     const remaining = (confirmed)
       ? get_time_remaining(expires_at)
       : 'N/A'
-
-    const satpoint = `${truncate_id(utxo.txid)}:${utxo.vout}`
 
     const open_mempool = () => {
       const url = `${client.oracle_url}/tx/${utxo.txid}`

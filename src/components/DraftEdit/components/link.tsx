@@ -1,5 +1,6 @@
 import { useClipboard } from '@mantine/hooks'
 import { DraftStore }   from '@scrow/hooks'
+import { useTimeout }   from '@/hooks/useToast'
 
 import { useEffect, useState } from 'react'
 
@@ -20,39 +21,60 @@ export default function ({ draft } : Props) {
 
   const clip  = useClipboard({ timeout: 500 })
 
-  const [ data, setData ] = useState(draft.encoded)
+  const [ data, setData ]     = useState(draft.encoded)
+  const [ toast, setToast ]   = useTimeout<string>(null)
+  const [ pasted, setPasted ] = useTimeout(false, 1000)
+
+  const copy = (prefix = '') => {
+    clip.copy(`${prefix}${draft.encoded}`)
+    setData(draft.encoded)
+  }
 
   const paste = async () => {
-    const data = await navigator.clipboard.readText()
-    draft.decode(data)
+    try {
+      if (navigator.clipboard !== undefined) {
+        const pasted = await navigator.clipboard.readText()
+        draft.decode(pasted)
+        setData(pasted)
+        setPasted(true)
+      } else {
+        draft.decode(data)
+        setPasted(true)
+      }
+    } catch (err) {
+      console.error(err)
+      setToast('the data you are trying to paste is invalid')
+    }
   }
 
   useEffect(() => {
     if (data !== draft.encoded) {
       setData(draft.encoded)
     }
-  }, [ data, draft.encoded ])
+  }, [ draft.encoded ])
 
   return (
     <Box mt={15} mb={15}>
       <TextInput
-        mb={15}
-        readOnly
         description="Copy, paste, or share this data blob with others to collaborate."
         value={data}
         onChange={(e) => setData(e.target.value)}
+        error={toast}
       />
-      <Group>
+      <Group mt={5} gap='xs'>
         <Button
           color={clip.copied ? 'teal' : 'blue'}
-          onClick={() => clip.copy(data)}
+          onClick={() => copy()}
         >
           {clip.copied ? 'Copied' : 'Copy'}
         </Button>
-        <Button onClick={paste}>
-          Paste
+        <Button
+          onClick = {paste}
+          color   = {pasted ? 'teal' : 'blue'}
+        >
+          {pasted ? 'Pasted' : 'Paste'}
         </Button>
-        <Button onClick={() => clip.copy(`${origin}${pathname}?enc=${data}`)}>
+        <Button onClick={() => copy(`${origin}${pathname}?enc=`)}>
           Share
         </Button>
       </Group>
