@@ -1,4 +1,4 @@
-import { get_time_remaining } from '@/lib/time'
+import { get_time_elapsed, get_time_remaining } from '@/lib/time'
 import { IconLink }           from '@tabler/icons-react'
 import { ContractData }       from '@scrow/sdk'
 import { useContractFunds }   from '@scrow/hooks'
@@ -34,12 +34,12 @@ export default function ({ contract } : Props) {
   }
 
   const rows = data.map((elem) => {
-    const { expires_at, status, utxo } = elem
+    const { updated_at, status, utxo } = elem
     return (
       <Table.Tr key={utxo.txid}>
-        <Table.Td>{status}</Table.Td>
         <Table.Td>{utxo.value}</Table.Td>
-        <Table.Td>{get_time_remaining(expires_at)}</Table.Td>
+        <Table.Td>{status}</Table.Td>
+        <Table.Td>{get_time_elapsed(updated_at)} ago</Table.Td>
         <Table.Td>
           <ActionIcon color="blue" onClick={() =>  open_mempool(utxo.txid)}>
             <IconLink size="1rem" />
@@ -61,9 +61,9 @@ export default function ({ contract } : Props) {
         <Table mb={15}>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Status</Table.Th>
               <Table.Th>Value</Table.Th>
-              <Table.Th>Expires</Table.Th>
+              <Table.Th>Status</Table.Th>
+              <Table.Th>Updated</Table.Th>
               <Table.Th>Link</Table.Th>
             </Table.Tr>
           </Table.Thead>

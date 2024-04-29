@@ -1,5 +1,7 @@
-import { ContractData }       from '@scrow/sdk/core'
-import { Stack, NumberInput } from '@mantine/core'
+import { ContractData } from '@scrow/sdk/core'
+import { Stack }        from '@mantine/core'
+
+import SatsInput from '@/components/ui/SatsInput'
 
 interface Props {
   data: ContractData
@@ -8,40 +10,30 @@ interface Props {
 export default function ContractFunds({ data }: Props) {
   return (
     <Stack>
-      <NumberInput
-        readOnly
+      <SatsInput
         label="Contract Value"
+        description="The value of the underlying contract."
         value={data.terms.value}
-        suffix=' sats'
-        thousandSeparator
       />
-      <NumberInput
-        readOnly
+      <SatsInput
         label="Provider Fees"
+        description="The fees charged by the server provider."
         value={data.fees.reduce((p, c) => p + c[0], 0)}
-        suffix=' sats'
-        thousandSeparator
       />
-      <NumberInput
-        readOnly
+      <SatsInput
         label="Subtotal"
+        description="The value of the contract, plus provider fees."
         value={data.subtotal}
-        suffix=' sats'
-        thousandSeparator
       />
-      <NumberInput
-        readOnly
+      <SatsInput
         label="Transaction Fees"
+        description="The fees for including the transaction in a block."
         value={data.tx_fees}
-        suffix=' sats'
-        thousandSeparator
       />
-      <NumberInput
-        readOnly
+      <SatsInput
         label="Transaction Total"
+        description="The total transaction value of the contract."
         value={data.tx_total}
-        suffix=' sats'
-        thousandSeparator
       />
     </Stack>
   )

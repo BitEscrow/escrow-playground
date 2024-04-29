@@ -1,10 +1,11 @@
-import { ContractData }   from '@scrow/sdk/core'
-import { DateTimePicker } from '@mantine/dates'
+import { ContractData } from '@scrow/sdk/core'
 
 import {
   Stack,
   SegmentedControl
 } from '@mantine/core'
+
+import StampInput from '@/components/ui/StampInput'
 
 interface Props {
   data: ContractData
@@ -22,53 +23,45 @@ export default function ({ data }: Props) {
         data  = {[ 'Canceled', 'Activated', 'Closed', 'Spent', 'Settled' ]}
         value = {state}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Created At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.created_at)}
+        description="The timestamp for the creation of the contract record."
+        value={data.created_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Activated At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.active_at)}
+        description="The timestamp for the activation of the contract vm."
+        value={data.active_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Closed At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.closed_at)}
+        description="The timestamp for the closing of the contract vm."
+        value={data.closed_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Spent At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.spent_at)}
+        description="The timestamp for the broadcast of the spending tx."
+        value={data.spent_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Settled At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.settled_at)}
+        description="The timestamp for the settlement of the spending tx."
+        value={data.settled_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Deadline At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.deadline_at)}
+        description="The future timestamp when the contract funds must be secured."
+        value={data.deadline_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Expires At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.expires_at)}
+        description="The future timestamp when the contract execution must be closed."
+        value={data.expires_at}
       />
-      <DateTimePicker
-        readOnly
+      <StampInput
         label="Canceled At"
-        valueFormat="MMM DD, YYYY - hh:mm A"
-        value={format_date(data.canceled_at)}
+        description="The timestamp for the canceling of the contract record."
+        value={data.canceled_at}
       />
     </Stack>
   )

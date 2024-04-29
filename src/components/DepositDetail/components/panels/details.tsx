@@ -1,25 +1,40 @@
-import { DepositData } from '@scrow/sdk/core';
-import { Divider, TextInput, NumberInput, Text } from '@mantine/core';
+import { DepositData } from '@scrow/sdk/core'
+import { Stack }       from '@mantine/core'
+
+import HashInput from '@/components/ui/HashInput'
 
 interface Props {
-  data: DepositData;
+  data: DepositData
 }
 
-export default function DepositDetails({ data }: Props) {
-  const { utxo } = data
+export default function ({ data } : Props) {
   return (
-    <div style={{ marginTop: '30px' }}>
-      <Text size="lg" fw={700}>Deposit Details</Text>
-      <Text size="sm" mb={30} c={'dimmed'}>
-        Key information about the deposit, including the transaction ID, output index, the value of the deposit, and the script key.
-      </Text>
-      
-      <TextInput label="Transaction ID" value={utxo.txid ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      <NumberInput label="Output Index" value={utxo.vout ?? undefined} readOnly style={{ maxWidth: '500px' }} />
-      <NumberInput label="Value" value={utxo.value ?? undefined} readOnly style={{ maxWidth: '500px' }} />
-      <TextInput label="ScriptKey" value={utxo.scriptkey ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-
-      <Divider mb={40} mt={70} />
-    </div>
-  );
+    <Stack>
+      <HashInput
+        label="Account Id"
+        description="The hash identifier of the reserved deposit account."
+        value={data.acct_hash}
+      />
+      <HashInput
+        label="Deposit Pubkey"
+        description="The public key of the depositor's signing agent."
+        value={data.deposit_pk}
+      />
+      <HashInput
+        label="Server Pubkey"
+        description="The public key of the server's signing agent."
+        value={data.server_pk}
+      />
+      <HashInput
+        label="Server Signature"
+        description="The server's endorsement of the deposit (dpid) record."
+        value={data.server_sig}
+      />
+      <HashInput
+        label="Server Token"
+        description="The server's token for the covenant signing session."
+        value={data.server_tkn}
+      />
+    </Stack>
+  )
 }

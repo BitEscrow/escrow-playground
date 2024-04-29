@@ -41,7 +41,7 @@ export default function () {
       { data &&
         <>
           <ContractHeader data={ data } setView={setView} />
-          <Divider mt={20} mb={20} />
+          <Divider mt={20} mb={40} />
           <Stepper contract={data} />
           <Progress data={data} />
           <Tabs defaultValue="fields" value={view}>

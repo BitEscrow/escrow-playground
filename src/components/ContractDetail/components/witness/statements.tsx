@@ -1,9 +1,10 @@
 import { WitnessReceipt }   from '@scrow/sdk'
 import { get_time_elapsed } from '@/lib/time'
 
-import { IconArrowUpBar, IconLink } from '@tabler/icons-react'
+import { IconArrowUpBar, IconCube, IconLink } from '@tabler/icons-react'
 
 import { ActionIcon, Box, Card, Code, Group, Pill, Stack, Table, TagsInput, Text, Textarea } from '@mantine/core'
+import { truncate_id } from '@/lib/draft'
 
 interface Props {
   data       : WitnessReceipt[]
@@ -21,16 +22,15 @@ export default function ({ data, host, can_submit } : Props) {
     const { method, action, args, content, path, sigs, stamp, wid, vm_hash } = elem
     return (
       <Stack>
-        { (can_submit || idx !== 0) && 
-          <Stack align='center'>
-            <IconArrowUpBar />
-            <Group>
-              <Text size='sm'>Hash</Text>
-              <Text>:</Text>
-              <Code>{vm_hash}</Code>
-            </Group>
-          </Stack>
-        }
+        <Stack align='center'>
+          { (can_submit || idx !== 0) && <IconArrowUpBar /> }
+          { (!can_submit && idx === 0) && <IconCube /> }
+          <Group>
+            <Text size='sm'>Hash</Text>
+            <Text>:</Text>
+            <Code>{truncate_id(vm_hash)}</Code>
+          </Group>
+        </Stack>
         <Card withBorder>
           <Table mb={15}>
             <Table.Thead bg='#EEEEEE'>
@@ -74,7 +74,7 @@ export default function ({ data, host, can_submit } : Props) {
           />
           <Text fw={700} size='sm' mb={10}>Signers</Text>
           <Pill.Group>
-            {sigs.map(e => <Pill>{e.slice(0, 64)}</Pill> )}
+            {sigs.map(e => <Pill>{truncate_id(e.slice(0, 64))}</Pill> )}
           </Pill.Group>
         </Card>
       </Stack>

@@ -1,28 +1,36 @@
-import { DepositData } from '@scrow/sdk/core'
-import { TextInput, Text, Divider } from '@mantine/core'
+import { DepositData }     from '@scrow/sdk/core'
+import { Stack, Fieldset } from '@mantine/core'
+import { format_label }    from '@/lib/draft'
+
+import HashInput from '@/components/ui/HashInput'
 
 interface Props {
-  data: DepositData;
+  data: DepositData
 }
 
-export default function ConfirmationDetails({ data }: Props) {
-  const confirm_at = data.confirmed
-    ? new Date(data.block_time * 1000).toLocaleString()
-    : 'N/A';
-
+export default function ({ data } : Props) {
   return (
-    <div style={{ marginTop: '30px' }}>
-      <Text size="lg" fw={700}>Confirmation Details</Text>
-      <Text size="sm" mb={30} c={'dimmed'}>
-        Information related to the confirmation status of the deposit. This section provides a snapshot of the deposit's confirmation on the blockchain.
-      </Text>
-      
-      <TextInput label="Confirmed" value={data.confirmed.toString()} readOnly style={{ maxWidth: '500px' }} />
-      <TextInput label="Confirmed At" value={confirm_at} readOnly style={{ maxWidth: '500px' }} />
-      <TextInput label="Block Hash" value={data.block_hash ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      <TextInput label="Block Height" value={data.block_height?.toString() ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      
-      <Divider mb={40} mt={70} />
-    </div>
-  );
+    <Stack>
+      <HashInput
+        label="Contract Id"
+        description="The hash identifier of the contract."
+        value={data.covenant?.cid ?? null}
+      />
+      <HashInput
+        label="Covenant Id"
+        description="The hash identifier of the covenant."
+        value={data.covenant?.cvid ?? null}
+      />
+      <HashInput
+        label="Deposit Root Pubnonce"
+        description="The root public nonce of the depositor."
+        value={data.covenant?.pnonce ?? null}
+      />
+      <Fieldset legend="Partial Signatures">
+        { data.covenant && data.covenant.psigs.map(e => (
+          <HashInput label={format_label(e[0])} value={e[1]} />
+        ))}
+      </Fieldset>
+    </Stack>
+  )
 }

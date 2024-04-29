@@ -1,25 +1,36 @@
 import { DepositData } from '@scrow/sdk/core'
-import { Divider, NumberInput, TextInput, Text } from '@mantine/core'
+import { Stack }       from '@mantine/core'
+
+import HashInput from '@/components/ui/HashInput'
+import SatsInput from '@/components/ui/SatsInput'
 
 interface Props {
-  data: DepositData;
+  data: DepositData
 }
 
-export default function DepositDetails({ data }: Props) {
-  const { utxo } = data
+export default function ({ data } : Props) {
   return (
-    <div style={{ marginTop: '30px' }}>
-      <Text size="lg" fw={700}>Deposit Details</Text>
-      <Text size="sm" mb={30} c={'dimmed'}>
-        Overview of the deposit transaction, including transaction ID, output index, value, and script key.
-      </Text>
-      
-      <TextInput label="Transaction ID" value={utxo.txid ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-      <NumberInput label="Output Index" value={utxo.vout ?? undefined} readOnly style={{ maxWidth: '500px' }} />
-      <NumberInput label="Value" value={utxo.value ?? undefined} readOnly style={{ maxWidth: '500px' }} />
-      <TextInput label="ScriptKey" value={utxo.scriptkey ?? 'N/A'} readOnly style={{ maxWidth: '500px' }} />
-
-      <Divider mb={40} mt={70} />
-    </div>
-  );
+    <Stack>
+      <HashInput
+        label="Deposit Address"
+        description="The on-chain musig address for the deposit."
+        value={data.deposit_addr}
+      />
+      <SatsInput
+        label="Deposit Value"
+        description="The output value of the deposit (in sats)."
+        value={data.utxo.value}
+      />
+      <HashInput
+        label="Satpoint"
+        description="The source transaction id and output of the funds."
+        value={data.satpoint}
+      />
+      <HashInput
+        label="Script Key"
+        description="The taproot script key locking the deposit."
+        value={data.utxo.scriptkey}
+      />
+    </Stack>
+  )
 }

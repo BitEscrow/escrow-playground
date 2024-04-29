@@ -1,49 +1,42 @@
-import { DepositData } from '@scrow/sdk/core';
-import { TextInput, NumberInput, Text } from '@mantine/core';
+import { DepositData } from '@scrow/sdk/core'
+import { Stack }       from '@mantine/core'
+
+import HashInput  from '@/components/ui/HashInput'
+import StampInput from '@/components/ui/StampInput'
+import DataInput  from '@/components/ui/DataInput'
 
 interface Props {
-  data: DepositData;
+  data: DepositData
 }
 
-export default function TransactionDetails({ data }: Props) {
+export default function ({ data } : Props) {
   return (
-    <div style={{ marginTop: '30px' }}>
-      <Text size="lg" fw={700}>Transaction Details</Text>
-      <Text size="sm" mb={30} c={'dimmed'}>
-        Overview of transaction states, including settlement and spending details. This section provides insights into the transaction's lifecycle and outcomes.
-      </Text>
-      
-      <TextInput
-        label="Settled"
-        value={data.settled?.toString() ?? 'N/A'}
-        readOnly
-        style={{ maxWidth: '500px' }}
+    <Stack>
+      <HashInput
+        label="Block Hash"
+        description="The hash of the confirming block."
+        value={data.block_hash ?? 'N/A'}
       />
-      <NumberInput
-        label="Settled At"
-        value={data.settled_at ?? undefined}
-        readOnly
-        style={{ maxWidth: '500px' }}
+      <DataInput
+        label="Block Height"
+        description="The height of the confirming block."
+        value={data.block_height ?? 'N/A'}
       />
-      <TextInput
-        label="Spent"
-        value={data.spent?.toString() ?? 'N/A'}
-        readOnly
-        style={{ maxWidth: '500px' }}
+      <StampInput
+        label="Block Timestamp"
+        description="The timestamp of the confirming block."
+        value={data.block_time}
       />
-      <NumberInput
-        label="Spent At"
-        value={data.spent_at ?? undefined}
-        readOnly
-        style={{ maxWidth: '500px' }}
+      <HashInput
+        label="Spend Transaction Id"
+        description="The txid of the spending transaction."
+        value={data.spent_txid  ?? 'N/A'}
       />
-      <TextInput
-        label="Spent TXID"
-        value={data.spent_txid ?? 'N/A'}
-        readOnly
-        style={{ maxWidth: '500px' }}
+      <HashInput
+        label="Spend Transaction Hex"
+        description="The hex data of the spending transaction."
+        value={data.spent_txhex ?? 'N/A'}
       />
-
-    </div>
-  );
+    </Stack>
+  )
 }

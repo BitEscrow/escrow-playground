@@ -1,14 +1,13 @@
-import { now }                 from '@scrow/sdk/util'
+import { now } from '@scrow/sdk/util'
 
 import { Box, Progress, ProgressRootProps, Tooltip } from '@mantine/core'
+
 import { get_time_elapsed, get_time_remaining } from '@/lib/time'
 
 interface Props extends ProgressRootProps {
-  active  : boolean
   start   : number
   end     : number
   colors ?: (pct : number) => string
-  
 }
 
 const default_colors = (pct : number) => {
@@ -19,11 +18,11 @@ const default_colors = (pct : number) => {
   return 'purple'
 }
 
-export default function ({ active, start, end, colors, ...props } : Props) {
-
+export default function ({ start, end, colors, ...props } : Props) {
 
   const current  = now()
   const progress = get_progress(start, current, end)
+
 
   colors = colors ?? default_colors
 

@@ -1,48 +1,36 @@
 import { ContractData } from '@scrow/sdk/core'
+import { Stack }        from '@mantine/core'
 
-import {
-  Stack,
-  TextInput
-} from '@mantine/core'
+import HashInput from '@/components/ui/HashInput'
+import DataInput from '@/components/ui/DataInput'
 
 interface Props {
   data: ContractData
 }
 
-/**
- * 
- * moderator
- * server_pk
- * server_sig
- */
-
 export default function ({ data }: Props) {
 
   return (
     <Stack>
-      <TextInput
-        readOnly
+      <DataInput
         label="Engine"
+        description="The execution engine used by the virtual machine."
         value={data.terms.engine}
-        styles={{ input : { fontFamily : 'monospace' }}}
       />
-      <TextInput
-        readOnly
-        label="Machine Id"
-        value={data.vmid ?? 'N/A'}
-        styles={{ input : { fontFamily : 'monospace' }}}
+      <HashInput
+        label="Virtual Machine Id"
+        description="The hash identifier of the virtual machine."
+        value={data.vmid}
       />
-      <TextInput
-        readOnly
+      <HashInput
         label="Current Head"
+        description="The head of the hash-chain for the virtual machine."
         value={data.active_head ?? 'N/A'}
-        styles={{ input : { fontFamily : 'monospace' }}}
       />
-      <TextInput
-        readOnly
+      <DataInput
         label="Closing Output"
+        description="The final output of the virtual machine."
         value={data.closed_path ?? 'N/A'}
-        styles={{ input : { fontFamily : 'monospace' }}}
       />
     </Stack>
   )

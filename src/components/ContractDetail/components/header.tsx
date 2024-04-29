@@ -70,7 +70,6 @@ export default function ({ data, setView } : Props) {
         <Text>:</Text>
         <Code>{new Date(data.updated_at * 1000).toLocaleString()}</Code>
       </Group>
-
     </Box>
   )
 }
