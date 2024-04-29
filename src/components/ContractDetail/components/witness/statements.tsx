@@ -4,6 +4,7 @@ import { get_time_elapsed } from '@/lib/time'
 import { IconArrowUpBar, IconCube, IconLink } from '@tabler/icons-react'
 
 import { ActionIcon, Box, Card, Code, Group, Pill, Stack, Table, TagsInput, Text, Textarea } from '@mantine/core'
+
 import { truncate_id } from '@/lib/draft'
 
 interface Props {
@@ -38,7 +39,6 @@ export default function ({ data, host, can_submit } : Props) {
                 <Table.Th>Method</Table.Th>
                 <Table.Th>Action</Table.Th>
                 <Table.Th>Path</Table.Th>
-                <Table.Th>Published</Table.Th>
                 <Table.Th>Link</Table.Th>
               </Table.Tr>
             </Table.Thead>
@@ -47,7 +47,6 @@ export default function ({ data, host, can_submit } : Props) {
                 <Table.Td>{method}</Table.Td>
                 <Table.Td>{action}</Table.Td>
                 <Table.Td>{path}</Table.Td>
-                <Table.Td>{get_time_elapsed(stamp)} ago</Table.Td>
                 <Table.Td>
                   <ActionIcon color="blue" onClick={() => view_statement(wid)}>
                     <IconLink size="1rem" />
@@ -72,10 +71,18 @@ export default function ({ data, host, can_submit } : Props) {
             value={content}
             placeholder='no content provided'
           />
-          <Text fw={700} size='sm' mb={10}>Signers</Text>
-          <Pill.Group>
-            {sigs.map(e => <Pill>{truncate_id(e.slice(0, 64))}</Pill> )}
-          </Pill.Group>
+          <Group justify='space-between' align='flex-end'>
+            <Box>
+              <Text fw={700} size='sm' mb={10}>Signers</Text>
+              <Pill.Group>
+                {sigs.map(e => <Pill>{truncate_id(e.slice(0, 64))}</Pill> )}
+              </Pill.Group>
+            </Box>
+            <Box>
+              <Text fw={700} size='sm' mb={10}>Published</Text>
+              <Text size='sm'>{get_time_elapsed(stamp)} ago</Text>
+            </Box>
+          </Group>
         </Card>
       </Stack>
     )

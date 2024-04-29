@@ -1,5 +1,5 @@
 import { useForm }     from '@mantine/form'
-import { PolicyStore } from 'node_modules/@scrow/hooks/dist/draft/session'
+import { PolicyStore } from '@scrow/hooks/draft'
 
 import * as util from '@/lib/draft.js'
 

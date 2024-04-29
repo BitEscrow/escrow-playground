@@ -34,7 +34,7 @@ export default function ({ data } : Props) {
 
   return (
     <Box>
-      <TimerProgress active={activated} start={active_at} end={expires_at} />
+      { activated && !closed && <TimerProgress start={active_at} end={expires_at} /> }
       <Group mt={15} justify='center'>
         <Stack gap={5}>
           <Group gap='xs' h={24} justify='flex-start'>

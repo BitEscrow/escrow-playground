@@ -40,7 +40,6 @@ export default function ({ signer }: Props) {
             <IconZoom size={16} onClick={() => navigate(`/deposit/${dpid}`)}/>
           </ActionIcon>
         </Table.Td>
-        <Table.Td>{satpoint}</Table.Td>
         <Table.Td>{status}</Table.Td>
         <Table.Td>{utxo.value}</Table.Td>
         <Table.Td>{remaining}</Table.Td>
@@ -65,7 +64,6 @@ export default function ({ signer }: Props) {
           <Table.Thead>
             <Table.Tr>
               <Table.Th>View</Table.Th>
-              <Table.Th>Satpoint</Table.Th>
               <Table.Th>Status</Table.Th>
               <Table.Th>Value</Table.Th>
               <Table.Th>Expires</Table.Th>

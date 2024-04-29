@@ -1,4 +1,4 @@
-import { get_time_elapsed, get_time_remaining } from '@/lib/time'
+import { get_time_elapsed }   from '@/lib/time'
 import { IconLink }           from '@tabler/icons-react'
 import { ContractData }       from '@scrow/sdk'
 import { useContractFunds }   from '@scrow/hooks'

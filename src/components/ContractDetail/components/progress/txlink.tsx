@@ -29,27 +29,31 @@ export default function ({ data } : Props) {
   return (
     <Stack align='center'>
       <Stack>
-        <Group gap='xs' h={24}>
-          <Text w={150} fw={700} ta='right'>Closing Hash</Text>
+        <Group gap='xs'>
+          <Text w={85} fw={700} size='sm' ta='right'>Closed Hash</Text>
           <Text>:</Text>
-          <Code>{truncate_id(data.active_head ?? 'null')}</Code>
-          <Button h={24} w={24} p={0} onClick={() => clip.copy(data.active_head)} bg={color}>
-            <IconCopy size={16} />
-          </Button>
-          <Button h={24} w={24} p={0} onClick={() => open_link(vmlink)}>
-            <IconExternalLink size={18} />
-          </Button>
+          <Group>
+            <Code>{truncate_id(data.active_head ?? 'null')}</Code>
+            <Button h={24} w={24} p={0} onClick={() => clip.copy(data.active_head)} bg={color}>
+              <IconCopy size={16} />
+            </Button>
+            <Button h={24} w={24} p={0} onClick={() => open_link(vmlink)}>
+              <IconExternalLink size={18} />
+            </Button>
+          </Group>
         </Group>
-        <Group gap='xs' h={24}>
-          <Text w={150} fw={700} ta='right'>Final Transaction</Text>
+        <Group gap='xs'>
+          <Text w={85} fw={700} size='sm' ta='right'>Final Tx</Text>
           <Text>:</Text>
-          <Code>{truncate_id(txid)}</Code>
-          <Button h={24} w={24} p={0} onClick={() => clip.copy(txid)} bg={color}>
-            <IconCopy size={16} />
-          </Button>
-          <Button h={24} w={24} p={0} onClick={() => open_link(txlink)}>
-            <IconExternalLink size={18} />
-          </Button>
+          <Group>
+            <Code>{truncate_id(txid)}</Code>
+            <Button h={24} w={24} p={0} onClick={() => clip.copy(txid)} bg={color}>
+              <IconCopy size={16} />
+            </Button>
+            <Button h={24} w={24} p={0} onClick={() => open_link(txlink)}>
+              <IconExternalLink size={18} />
+            </Button>
+          </Group>
         </Group>
       </Stack>
     </Stack>

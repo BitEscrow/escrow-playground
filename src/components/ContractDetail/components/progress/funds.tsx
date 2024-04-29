@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function ({ data } : Props) {
-  const { fund_count, fund_pend, fund_value, tx_total } = data
+  const { activated, canceled, fund_count, fund_pend, fund_value, tx_total } = data
   const fund_pend_pct = (fund_pend > 0)
     ? Math.min(Math.floor((fund_pend / tx_total) * 100), 100)
     : 0
@@ -41,7 +41,7 @@ export default function ({ data } : Props) {
           </Progress.Section>
         </Tooltip>
       </Progress.Root>
-      <TimerProgress active={!data.canceled} start={data.created_at} end={data.deadline_at} radius='0 0 5px 5px'/>
+      { !canceled && !activated && <TimerProgress start={data.created_at} end={data.deadline_at} radius='0 0 5px 5px'/> }
       <Group mt={10} justify='center'>
         <Text>{`${data.fund_pend} pending`}</Text>
         <Text>/</Text>
