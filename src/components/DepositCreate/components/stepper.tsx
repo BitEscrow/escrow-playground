@@ -6,7 +6,7 @@ interface Props {
 }
 
 export default function ({ step } : Props) {
-  const breakpoint = useMediaQuery('(min-width: 580px)')
+  const breakpoint = useMediaQuery('(min-width: 620px)')
 
   return (
     <Group justify='center' mb={20}>
