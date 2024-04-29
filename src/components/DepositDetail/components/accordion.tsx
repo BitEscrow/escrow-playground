@@ -17,7 +17,13 @@ interface Props {
 export default function ({ data } : Props) {
 
   return (
-    <Accordion>
+    <Accordion mb={15}>
+      <Accordion.Item key="covenant" value="covenant">
+        <Accordion.Control icon={<IconLock size={18}/>}>Covenant</Accordion.Control>
+        <Accordion.Panel>
+          <LockPanel data={data} />
+        </Accordion.Panel>
+      </Accordion.Item>
       <Accordion.Item key="deposit" value="deposit">
         <Accordion.Control icon={<IconCoins size={18}/>}>Deposit</Accordion.Control>
         <Accordion.Panel>
@@ -34,12 +40,6 @@ export default function ({ data } : Props) {
         <Accordion.Control icon={<IconCalendar size={18}/>}>History</Accordion.Control>
         <Accordion.Panel>
           <HistoryPanel data={data} />
-        </Accordion.Panel>
-      </Accordion.Item>
-      <Accordion.Item key="lock" value="lock">
-        <Accordion.Control icon={<IconLock size={18}/>}>Lock</Accordion.Control>
-        <Accordion.Panel>
-          <LockPanel data={data} />
         </Accordion.Panel>
       </Accordion.Item>
       <Accordion.Item key="recovery" value="recovery">

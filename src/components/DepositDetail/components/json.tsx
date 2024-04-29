@@ -10,6 +10,7 @@ export default function ({ data } : Props) {
   return (
     <Box>
       <JsonInput
+        mb={20}
         formatOnBlur
         autosize
         minRows={4}
