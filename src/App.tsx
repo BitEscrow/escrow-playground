@@ -159,7 +159,7 @@ export default function AppDemo() {
             marginTop: '13px',
             width: '100%', 
             textDecoration: 'none',
-            maxWidth: isMobile? '200px' : 'undefined'
+            maxWidth: isMobile? '120px' : 'undefined'
         }}
         />
          {isMobile && <MobileFooterComponent/>}
