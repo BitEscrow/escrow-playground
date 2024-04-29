@@ -1,7 +1,7 @@
 import { EscrowSigner }       from '@scrow/sdk/client'
 import { useContractList }    from '@scrow/hooks/contract'
 import { useClient }          from '@/hooks/useClient'
-import { get_time_remaining } from '@/lib/time'
+import { get_time_elapsed }   from '@/lib/time'
 import { IconZoom }           from '@tabler/icons-react'
 import { useNavigate }        from 'react-router-dom'
 
@@ -19,12 +19,8 @@ export default function Home({ signer }: Props) {
   const navigate = useNavigate()
 
   const rows = data.map((elem) => {
-    const { activated, canceled, cid, deadline_at, expires_at, status, terms, tx_total } = elem
-    const remaining = (activated)
-      ? get_time_remaining(expires_at)
-      : (!canceled)
-        ? get_time_remaining(deadline_at)
-        : 'N/A'
+    const { cid, status, terms, tx_total, updated_at } = elem
+
     return (
       <Table.Tr key={cid}>
         <Table.Td>
@@ -35,7 +31,7 @@ export default function Home({ signer }: Props) {
         <Table.Td>{terms.title}</Table.Td>
         <Table.Td>{status}</Table.Td>
         <Table.Td>{tx_total}</Table.Td>
-        <Table.Td>{remaining}</Table.Td>
+        <Table.Td>{get_time_elapsed(updated_at)}</Table.Td>
       </Table.Tr>
     )
   })
@@ -55,7 +51,7 @@ export default function Home({ signer }: Props) {
               <Table.Th>Title</Table.Th>
               <Table.Th>Status</Table.Th>
               <Table.Th>Value</Table.Th>
-              <Table.Th>Expires</Table.Th>
+              <Table.Th>Updated</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>
