@@ -1,7 +1,18 @@
 {
-  "Basic two-party contract with third-party arbitration" : {
+  "Basic contract with expiration" : {
     "proposal": {
-      "title": "Basic two-party contract with third-party arbitration",
+      "title": "Basic contract with expiration",
+      "duration": 14400,
+      "network": "mutiny",
+      "schedule": [[ 7200, "close|resolve", "*" ]],
+      "value": 10000
+    },
+    "roles": []
+  },
+
+  "Buyer / seller contract with expiration" : {
+    "proposal": {
+      "title": "Buyer / seller contract with expiration",
       "duration": 14400,
       "network": "mutiny",
       "schedule": [[ 7200, "close|resolve", "*" ]],
@@ -9,7 +20,7 @@
     },
     "roles": [
       {
-        "title": "buyer",
+        "title": "Buyer",
         "paths": [
           [ "return", 10000 ]
         ],
@@ -19,7 +30,39 @@
         ]
       },
       {
-        "title": "seller",
+        "title": "Seller",
+        "paths": [
+          [ "payout", 10000 ]
+        ],
+        "programs": [
+          [ "endorse", "close",   "*", 2 ],
+          [ "endorse", "dispute", "*", 1 ]
+        ]
+      }
+    ]
+  },
+
+  "Buyer / seller contract with third-party arbitration" : {
+    "proposal": {
+      "title": "Buyer / seller contract with third-party arbitration",
+      "duration": 14400,
+      "network": "mutiny",
+      "schedule": [[ 7200, "close|resolve", "*" ]],
+      "value": 10000
+    },
+    "roles": [
+      {
+        "title": "Buyer",
+        "paths": [
+          [ "return", 10000 ]
+        ],
+        "programs": [
+          [ "endorse", "close",   "*", 2 ],
+          [ "endorse", "dispute", "*", 1 ]
+        ]
+      },
+      {
+        "title": "Seller",
         "paths": [
           [ "payout", 10000 ]
         ],
@@ -29,9 +72,75 @@
         ]
       },
       {
-        "title": "agent",
+        "title": "Agent",
         "programs": [
           [ "endorse", "resolve", "*", 1 ]
+        ]
+      }
+    ]
+  },
+
+  "Basic fundraiser contract" : {
+    "proposal": {
+      "title": "Basic fundraiser contract",
+      "deadline": 14400,
+      "duration": 7200,
+      "network": "mutiny",
+      "schedule": [[ 0, "close", "payout" ]],
+      "value": 10000
+    },
+    "roles": [
+      {
+        "title": "Recipient",
+        "payment": 10000
+      }
+    ]
+  },
+
+  "Loan contract with decrementing payout" : {
+    "proposal": {
+      "title": "Loan contract with decrementing payout",
+      "deadline": 14400,
+      "duration": 432001,
+      "network": "mutiny",
+      "schedule": [
+        [ 86400,  "lock",  "100" ],
+        [ 172800, "lock",  "75"  ],
+        [ 259200, "lock",  "50"  ],
+        [ 345600, "lock",  "25"  ],
+        [ 432000, "close", "00"  ]
+      ],
+      "value": 10000
+    },
+    "roles": [
+      {
+        "title": "Borrower",
+        "paths": [
+          [ "100", 10000 ],
+          [ "75",  7500  ],
+          [ "50",  5000  ],
+          [ "25",  2500  ]
+        ],
+        "programs": [
+          [ "endorse", "close", "*", 3 ]
+        ]
+      },
+      {
+        "title": "Lender",
+        "paths": [
+          [ "75",  2500  ],
+          [ "50",  5000  ],
+          [ "25",  7500  ],
+          [ "00",  10000 ]
+        ],
+        "programs": [
+          [ "endorse", "close", "*", 3 ]
+        ]
+      },
+      {
+        "title": "Agent",
+        "programs": [
+          [ "endorse", "close", "*", 3 ]
         ]
       }
     ]
