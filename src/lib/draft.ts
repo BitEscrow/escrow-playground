@@ -105,7 +105,7 @@ export function validate_paths (prop_paths : string[]) {
 export function validate_pubkeys (pubkeys : string[]) {
   for (const pub of pubkeys) {
     const err = is_bip340_pubkey(pub)
-    if (err !== null) return err + ': ' + pub
+    if (err !== null) return `pubkey "${pub}" is invalid`
   }
   return null
 }

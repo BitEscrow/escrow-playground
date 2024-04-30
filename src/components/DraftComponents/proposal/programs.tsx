@@ -1,7 +1,6 @@
 import { useForm }       from '@mantine/form'
 import { get_vm_engine } from '@/lib/vms'
 import { DraftStore }    from '@scrow/hooks'
-import NoData            from '@/components/ui/NoData'
 import * as util         from '@/lib/draft.js'
 
 import { IconPlus, IconTrash } from '@tabler/icons-react'
@@ -10,7 +9,6 @@ import {
   Box,
   Button,
   Fieldset,
-  TagsInput,
   TextInput,
   Group,
   ActionIcon,
@@ -20,16 +18,21 @@ import {
   NativeSelect
 } from '@mantine/core'
 
+import NoData      from '@/components/ui/NoData'
+import PubkeyInput from '@/components/ui/PubkeyInput'
+import { ProgramEntry } from '@scrow/sdk'
+
 interface Props {
   draft : DraftStore
 }
 
 export default function ({ draft } : Props) {
-  const prop  = draft.proposal
-  const vm    = get_vm_engine(prop.data.engine)
+  const prop = draft.proposal
+  const vm   = get_vm_engine(prop.data.engine)
 
   const rows = prop.data.programs.map((elem, idx) => {
-    const [ method, actions, paths, thold, ...pubkeys ] = elem
+    const [ method, actions, paths, thold, ...rest ] = elem
+    const pubkeys = rest.map(e => String(e))
     return (
       <Fieldset variant="filled" legend={util.format_method_name(method)} mb={15} key={elem.toString()}>
         <Table mb={15}>
@@ -53,7 +56,19 @@ export default function ({ draft } : Props) {
             </Table.Tr>
           </Table.Tbody>
         </Table>
-        <TagsInput readOnly label="Allowed Pubkeys" value={pubkeys.map(e => String(e))} />
+        <PubkeyInput
+          label={<Text size='sm' fw={700}>Member Pubkeys</Text>}
+          splitChars={[' ', ',']}
+          description="List of pubkeys allowed to participate."
+          placeholder={pubkeys.length === 0 
+            ? 'enter a list of pubkeys' 
+            : ''
+          }
+          value={pubkeys}
+          onChange={(e) => update_prog_pubs(e, idx)}
+          onClickAdd={(pub) => add_pubkey(pub, idx)}
+          error={util.validate_pubkeys(pubkeys)}
+        />
       </Fieldset>
     )
   })
@@ -75,6 +90,28 @@ export default function ({ draft } : Props) {
       pubkeys : util.validate_pubkeys
     }
   })
+
+  const update_prog_pubs = (pubs : string[], idx : number) => {
+    const current = prop.data.programs
+    const program  = [ ...current[idx].slice(0, 4), ...pubs.sort() ] as ProgramEntry
+    const programs  = [
+      ...current.slice(0, idx),
+      program,
+      ...current.slice(idx + 1)
+    ]
+    return prop.update({ programs })
+  }
+
+  const add_pubkey = (pub : string, idx : number) => {
+    const current = prop.data.programs
+    const program = [ ...current[idx], pub ] as ProgramEntry
+    const programs = [
+      ...current.slice(0, idx),
+      program,
+      ...current.slice(idx + 1)
+    ]
+    return prop.update({ programs })
+  }
 
   const submit = () => {
     const { method, actions, paths, threshold, pubkeys } = form.getValues()
@@ -124,13 +161,6 @@ export default function ({ draft } : Props) {
             description="Required # of signatures to execute."
             min={1}
             {...form.getInputProps('threshold')}
-          />
-          <TagsInput
-            label="Pubkeys"
-            splitChars={[' ', ',']}
-            description="List of pubkeys allowed to participate."
-            placeholder='enter a list of pubkeys'
-            {...form.getInputProps('pubkeys')}
           />
         </Group>
         <Button

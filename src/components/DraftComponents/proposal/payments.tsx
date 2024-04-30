@@ -1,13 +1,15 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
 import { DraftStore }          from '@scrow/hooks'
-import NoData                  from '@/components/ui/NoData'
+import { useErrorToast }       from '@/hooks/useToast'
+
+import NoData       from '@/components/ui/NoData'
+import AddressInput from '@/components/ui/AddressInput'
 
 import * as util from '@/lib/draft.js'
 
 import {
   NumberInput,
-  TextInput,
   Group,
   ActionIcon,
   Box,
@@ -44,9 +46,10 @@ export default function ({ draft } : Props) {
     try {
       if (form.isValid()) {
         prop.payment.add(payment)
+        form.reset()
       }
     } catch (err) {
-      throw new Error('invalid payment entry')
+      useErrorToast('Submission Error', err)
     }
   }
 
@@ -91,7 +94,10 @@ export default function ({ draft } : Props) {
             description="Payment Amount (in sats)"
             {...form.getInputProps('value')}
           />
-          <TextInput
+          <AddressInput
+            account={prop.data.created_at}
+            index={prop.data.payments.length}
+            onGenerate={(e) => form.setFieldValue('address', e)}
             description="Receive Address"
             placeholder="receive address"
             {...form.getInputProps('address')}

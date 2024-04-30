@@ -17,6 +17,7 @@ import {
   Table,
   Fieldset
 } from '@mantine/core'
+import AddressInput from '@/components/ui/AddressInput'
 
 interface Props {
   draft : DraftStore
@@ -100,7 +101,10 @@ export default function ({ draft } : Props) {
             description="Payment Amount (in sats)"
             {...form.getInputProps('value')}
           />
-          <TextInput
+          <AddressInput
+            account={prop.data.created_at}
+            index={prop.data.payments.length}
+            onGenerate={(e) => form.setFieldValue('address', e)}
             description="Receive Address"
             placeholder="receive address"
             {...form.getInputProps('address')}
