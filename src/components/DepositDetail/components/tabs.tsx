@@ -22,7 +22,7 @@ export default function ({ deposit, update } : Props) {
         <Tabs.Tab 
           disabled    = {!can_lock}
           leftSection = {<IconLock size={18}/>}
-          value       = "Covenant"
+          value       = "lock"
         >
           Lock
         </Tabs.Tab>
@@ -34,16 +34,12 @@ export default function ({ deposit, update } : Props) {
           Close
         </Tabs.Tab>
       </Tabs.List>
-      { signer !== null &&
-        <>
-          <Tabs.Panel value="lock">
-            <LockForm deposit={deposit} signer={signer} update={update} />
-          </Tabs.Panel>
-          <Tabs.Panel value="close">
-            <CloseForm data={deposit} signer={signer} update={update}/>
-          </Tabs.Panel>
-        </>
-      }
+      <Tabs.Panel value="lock">
+        { signer !== null && can_lock && <LockForm deposit={deposit} signer={signer} update={update} /> }
+      </Tabs.Panel>
+      <Tabs.Panel value="close">
+        { signer !== null && can_close && <CloseForm data={deposit} signer={signer} update={update}/> }
+      </Tabs.Panel>
     </Tabs>
   )
 }

@@ -1,8 +1,11 @@
+import { Button, Stack, Text } from '@mantine/core'
+import { useClient }           from '@/hooks/useClient'
+import { useErrResToast }      from '@/hooks/useToast'
+import { useEffect, useState } from 'react'
+
 import { ContractData, DepositData, EscrowSigner } from '@scrow/sdk'
 
-import { Button } from '@mantine/core'
-import { useClient } from '@/hooks/useClient'
-import { useErrResToast } from '@/hooks/useToast'
+import { useContractUpdate, useDepositUpdate } from '@scrow/hooks'
 
 interface Props {
   contract : ContractData
@@ -14,6 +17,12 @@ export default function ({ contract, deposit, signer } : Props) {
   const { canceled, activated, fund_pend, fund_value, tx_total } = contract
 
   const { client } = useClient()
+
+  const [ error, setError ] = useState<string | null>(null)
+
+  const setContract = useContractUpdate(client)
+  const setDeposit  = useDepositUpdate(client)
+
   const available  = fund_pend + fund_value
   const remaining  = tx_total - available
   const allocated  = deposit.utxo.value + available
@@ -28,14 +37,29 @@ export default function ({ contract, deposit, signer } : Props) {
     const req = signer.deposit.lock(contract, deposit)
     client.deposit.lock(req).then(res => {
       if (res.ok) {
-        // Update deposit
+        setContract(contract.cid, res.data.contract)
+        setDeposit(deposit.dpid, res.data.deposit)
       } else {
         useErrResToast(res)
       }
     })
   }
 
+  useEffect(() => {
+    if (available >= tx_total) {
+      setError('contract is already funded')
+    } else if (allocated >= threshold) {
+      setError('deposit value is over-spending by too much')
+    } else {
+      setError(null)
+    }
+  }, [ contract ])
+
   return (
-    <Button disabled={!can_lock} onClick={lock}>Lock Deposit</Button>
+    <Stack>
+       { error && <Text c='red' size='sm'>Error: {error}</Text> }
+       <Button disabled={!can_lock} onClick={lock}>Lock Deposit</Button>
+    </Stack>
+   
   )
 }

@@ -2,7 +2,8 @@ import { useClient }   from '@/hooks/useClient'
 import { useFeeRates } from '@scrow/hooks'
 
 import { Dispatch, SetStateAction, useState } from 'react'
-import { Box, NumberInput, Slider, Text }     from '@mantine/core'
+
+import { Box, Code, Group, NumberInput, Slider, Text } from '@mantine/core'
 
 interface Props {
   feerate : number
@@ -49,7 +50,12 @@ export default function ({ feerate, setRate, txsize } : Props) {
           ]}
         />
       }
-      { txsize && <Text mt={10}>Fee Total: {feerate * txsize} sats</Text> }
+      { txsize && 
+        <Group mt={30}>
+          <Text fw={700} size='sm'>Fee Total:</Text>
+          <Code>{feerate * txsize} sats</Code>
+        </Group>
+      }
     </Box>
   )
 }

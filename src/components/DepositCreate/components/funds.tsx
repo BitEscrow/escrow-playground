@@ -1,12 +1,9 @@
 import { ContractData } from '@scrow/sdk'
 
-import { DepositDispatch, DepositState } from '..'
 import { Card, Code, SimpleGrid, Text }  from '@mantine/core'
 
 interface Props {
   contract : ContractData
-  state    : DepositState
-  setState : DepositDispatch
 }
 
 export default function ({ contract } : Props) {

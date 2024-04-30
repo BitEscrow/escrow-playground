@@ -23,11 +23,11 @@ export default function ({ deposit, signer } : Props) {
 
   return (
     <Box>
-      <CIDForm setCid={setCid}/>
+      <CIDForm cid={cid} setCid={setCid} signer={signer} />
       { cid  && !data && isLoading && <Loader />}
       { data && 
         <Stack>
-          <FundSummary contract={data}/>
+          <FundSummary contract={data} deposit={deposit} />
           <LockSubmit  contract={data} deposit={deposit} signer={signer}/>
         </Stack>
       }

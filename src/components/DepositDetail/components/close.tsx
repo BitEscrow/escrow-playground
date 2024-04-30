@@ -19,14 +19,18 @@ export default function ({ data, signer, update } : Props) {
 
   const [ feerate, setFeerate ] = useState(data.feerate)
 
+  console.log('feerate:', feerate)
+
   const close = async () => {
     let res : ApiResponse<DepositDataResponse>
     if (feerate === data.feerate) {
       const req = signer.deposit.cancel(data.dpid)
       res = await client.deposit.cancel(data.dpid, req)
+      console.log('canceled')
     } else {
       const req = signer.deposit.close(data, feerate)
       res = await client.deposit.close(req)
+      console.log('closed')
     }
     if (res.ok) {
       update(res.data.deposit)
@@ -38,7 +42,7 @@ export default function ({ data, signer, update } : Props) {
   return (
     <Box>
       <FeeSelector feerate={feerate} setRate={setFeerate} txsize={65} />
-      <Group>
+      <Group mt={10}>
         <Button onClick={close}>
           Close Deposit
         </Button>
