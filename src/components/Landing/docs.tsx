@@ -37,7 +37,7 @@ export default function Docs() {
               rightSection={<IconChevronRight size={20}/>}
               variant='transparent'
               mt={30}
-              w={150}
+              w={isMobile? 230 : 150}
               ml={10}
               mb={30}
               style={{
