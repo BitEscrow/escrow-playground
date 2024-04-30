@@ -11,7 +11,9 @@ import {
 import {
   IconFileText,
   IconMenu2,
-  IconSchool
+  IconSchool,
+  IconBrandGithub,
+  IconBrandDiscord
 } from '@tabler/icons-react'
 
 interface Props {
@@ -80,7 +82,7 @@ export default function Header(props : Props) {
           size="lg"
           
           >
-              <img width="21" height="21" src='discord_logo.svg' alt="Discord" />
+              <img width="21" height="21" src='public/Icons/discord_logo.svg' alt="Discord" />
           </ActionIcon>
         <ActionIcon
             style={{borderRadius: '10px', backgroundColor: '#2D2D2D'}}                
@@ -91,7 +93,7 @@ export default function Header(props : Props) {
             size="lg"
             
         >
-            <img width="21" height="21" src='github_logo.svg' alt="GitHub" />
+            <img width="21" height="21" src='public/Icons/github_logo.svg' alt="GitHub" />
           </ActionIcon>
           <ActionIcon
             style={{borderRadius: '10px'}}                
