@@ -59,7 +59,7 @@ export default function Header(props : Props) {
         <IconMenu2/>
       </Button>
       <Image 
-        src={'logo.png'} 
+        src={'/Images/logo.png'} 
         w={120} 
         alt="BitEscrow Logo"
         onClick={() => go_home() }
