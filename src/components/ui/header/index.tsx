@@ -12,8 +12,6 @@ import {
   IconFileText,
   IconMenu2,
   IconSchool,
-  IconBrandGithub,
-  IconBrandDiscord
 } from '@tabler/icons-react'
 
 interface Props {

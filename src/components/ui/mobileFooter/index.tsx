@@ -42,7 +42,7 @@ const MobileFooterComponent = () => {
                 size="lg"
                 
                 >
-                    <img width="22" height="22" src='/discord_logo.svg' alt="Discord" />
+                    <img width="22" height="22" src='public/Icons/discord_logo.svg' alt="Discord" />
             </ActionIcon>
             <ActionIcon
                 style={{borderRadius: '10px', backgroundColor: '#2D2D2D'}}                
@@ -53,7 +53,7 @@ const MobileFooterComponent = () => {
                 size="lg"
                 
             >
-                <img width="22" height="22" src='/github_logo.svg' alt="GitHub" />
+                <img width="22" height="22" src='public/Icons/github_logo.svg' alt="GitHub" />
               </ActionIcon>
               <ActionIcon
                 style={{borderRadius: '10px'}}                
