@@ -45,7 +45,7 @@ export default function Hero() {
                 borderRadius: '15px',
                 backgroundColor: '#0068FD'
             }}
-            onClick={() => window.location.href = '/drafts/new'}
+            onClick={() => window.location.href = '/draft/new'}
             >
 Get Started
             </Button>
@@ -92,7 +92,7 @@ Watch Tutorial
                 borderRadius: '15px',
                 backgroundColor: '#0068FD'
               }}
-              onClick={() => window.location.href = '/drafts/new'}
+              onClick={() => window.location.href = '/draft/new'}
               >
   Get Started
             </Button>
