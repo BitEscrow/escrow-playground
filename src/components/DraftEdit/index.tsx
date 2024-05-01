@@ -43,9 +43,14 @@ export default function () {
   const { client } = useClient()
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
-  const draft      = useDraftStore(CONFIG.default_session)
-  const tabs       = draft.tabulate()
   const encoded    = params.get('enc')
+  const session    = (encoded!== null)
+    ? DraftUtil.decode(encoded)
+    : CONFIG.default_session
+    
+  const draft      = useDraftStore(session)
+  const tabs       = draft.tabulate()
+  
   const navigate   = useNavigate()
 
   const can_endorse = (

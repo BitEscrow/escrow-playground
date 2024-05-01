@@ -4,12 +4,13 @@ import { usePayAddress }  from '@scrow/hooks'
 import { truncate_id }    from '@/lib/draft'
 import QRCode             from 'react-qr-code'
 import CopyBtn            from '@/components/ui/copyBtn'
+import { useConfig }      from '@/hooks/useConfig'
 
-import { useEffect, useState } from 'react'
-
-import { Box, Code, Group, Loader, LoadingOverlay, NumberInput, Stack, Text } from '@mantine/core'
-
+import { useEffect, useState }           from 'react'
 import { DepositDispatch, DepositState } from '..'
+import { IconCurrencyBitcoin }           from '@tabler/icons-react'
+
+import { Anchor, Box, Code, Group, Loader, LoadingOverlay, Notification, NumberInput, Stack, Text } from '@mantine/core'
 
 interface Props {
   account   : AccountData
@@ -18,6 +19,8 @@ interface Props {
 }
 
 export default function ({ account, state, setState } : Props) {
+
+  const config  = useConfig()
 
   const address = account.deposit_addr
 
@@ -75,6 +78,20 @@ export default function ({ account, state, setState } : Props) {
       />
 
       <CopyBtn data={address} label='Copy Address'/>
+
+      { config.store.network === 'mutiny' &&
+      
+          <Notification
+            mt={20}
+            icon={<IconCurrencyBitcoin />}
+            withCloseButton={false}
+          >
+            <Text>You can get free coins from this faucet:</Text>
+            <Anchor href='https://faucet.mutinynet.com' target="_blank">
+              https://faucet.mutinynet.com
+            </Anchor>
+          </Notification>
+      }
 
     </Stack>
   )
