@@ -38,7 +38,7 @@ export default function ({ draft } : Props) {
       address : util.validate_address(prop.data.network)
     }
   })
-
+  
   const submit = () => {
     const { value, address } = form.getValues()
     const payment = [ value, address ]
@@ -58,7 +58,7 @@ export default function ({ draft } : Props) {
     return (
       <Table.Tr key={address}>
         <Table.Td>{amt}</Table.Td>
-        <Table.Td>{address}</Table.Td>
+        <Table.Td>{util.truncate_id(address)}</Table.Td>
         <Table.Td>
           <ActionIcon color="red" onClick={() => prop.payment.rem(idx) }>
             <IconTrash size="1rem" />
@@ -96,7 +96,7 @@ export default function ({ draft } : Props) {
           />
           <AddressInput
             account={prop.data.created_at}
-            index={prop.data.payments.length}
+            data={prop.addresses}
             onGenerate={(e) => form.setFieldValue('address', e)}
             description="Receive Address"
             placeholder="receive address"

@@ -20,7 +20,7 @@ interface Props {
 export default function ({ draft } : Props) {
 
   return (
-    <Box mb={30} mt={10}>
+    <Box mt={10}>
       <Tabs defaultValue="proposal">
         <Tabs.List grow w='100%' mb={20}>
           <Tabs.Tab leftSection={<IconLicense size={18}/>} value="proposal">Proposal</Tabs.Tab>

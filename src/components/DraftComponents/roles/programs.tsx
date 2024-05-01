@@ -85,6 +85,7 @@ export default function ({ policy } : Props) {
     try {
       if (form.isValid()) {
         policy.program.add(program as any)
+        form.reset()
       }
     } catch (err) {
       throw new Error('invalid program entry')

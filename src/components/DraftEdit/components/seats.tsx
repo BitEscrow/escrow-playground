@@ -18,13 +18,12 @@ export default function ({ draft } : Props) {
 
   return (
     <Stack align='center'>
-      <Text size='md' mb={10} c={'dimmed'}>Avalible seats in the contract:</Text>
       <Group gap={'lg'}>
         { draft.roles.map(e => {
           const is_mbr  = signer !== null && signer.draft.is_member(draft.data)
           const is_pol  = signer !== null && signer.draft.is_role(e.id, draft.data)
           const curr    = draft.members.filter(x => x.pid === e.id).length
-          const is_full = curr >= e.data.max_num
+          const is_full = curr >= e.data.seats
 
           const submit = () => {
             if (signer !== null) {
@@ -38,7 +37,7 @@ export default function ({ draft } : Props) {
           return (
             <Card key={ e.id } withBorder radius={5}>
               <Text mb={5} ta={'center'}>{format_label(e.data.title)}</Text>
-              <Code mb={15} ta={'center'}>{`${e.data.min_num} / ${curr} / ${e.data.max_num}`}</Code>
+              <Code mb={15} ta={'center'}>{`${curr} / ${e.data.seats}`}</Code>
               { signer !== null &&
                 <Button
                   style={{ borderRadius: '15px', backgroundColor: !is_pol && is_full ? '#F7F8F9' : '#0068FD' }}

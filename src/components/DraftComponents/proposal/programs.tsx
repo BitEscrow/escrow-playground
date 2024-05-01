@@ -120,6 +120,7 @@ export default function ({ draft } : Props) {
     try {
       if (form.isValid()) {
         prop.program.add(program)
+        form.reset()
       }
     } catch (err) {
       throw new Error('invalid program entry')

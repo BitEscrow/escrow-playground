@@ -27,12 +27,13 @@ import {
   Text
 } from '@mantine/core'
 
-import DraftHeader from '../DraftComponents/header'
-import FormView    from '../DraftComponents'
-import JsonView    from '../DraftComponents/json'
-import LinkView    from './components/link'
-import MemberView  from './components/members'
-import SeatView    from './components/seats'
+import DraftHeader  from '../DraftComponents/header'
+import FormView     from '../DraftComponents'
+import JsonView     from '../DraftComponents/json'
+import TabulateView from '../DraftComponents/totals'
+import LinkView     from './components/link'
+import MemberView   from './components/members'
+import SeatView     from './components/seats'
 
 export default function () {
   const [ init, setInit ] = useState(false)
@@ -43,6 +44,7 @@ export default function () {
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
   const draft      = useDraftStore(CONFIG.default_session)
+  const tabs       = draft.tabulate()
   const encoded    = params.get('enc')
   const navigate   = useNavigate()
 
@@ -58,6 +60,10 @@ export default function () {
     draft.is_filled &&
     draft.is_endorsed
   )
+
+  const path_total  = tabs.proposal.path_total
+  const pay_total   = tabs.proposal.pay_total
+  const total_value = path_total + pay_total
 
   const update_link = () => {
     try {
@@ -109,6 +115,11 @@ export default function () {
     }
   }, [ encoded ])
 
+  useEffect(() => {
+    if (total_value !== draft.proposal.data.value)
+    draft.proposal.update({ value : total_value })
+  }, [ draft ])
+
   return (
     <Card style={{ padding: '20px', display: 'flex', flexDirection: 'column' }}>
       <DraftHeader
@@ -126,19 +137,19 @@ export default function () {
           <JsonView draft={draft} />
         </Tabs.Panel>
       </Tabs>
-      <Tabs defaultValue="seats">
+      <Tabs defaultValue="seats" mb={10}>
         <Tabs.List grow w='100%' mb={20}>
-          <Tabs.Tab leftSection={<IconUsers size={18}/>}    value="members">Members</Tabs.Tab>
+          <Tabs.Tab leftSection={<IconUsers size={18}/>} value="members">Members</Tabs.Tab>
           <Tabs.Tab leftSection={<IconArmchair size={18}/>} value="seats">Seats</Tabs.Tab>
         </Tabs.List>
         <Tabs.Panel value="members">
-          <MemberView draft={draft} />
-        </Tabs.Panel>
+            <MemberView draft={draft} />
+          </Tabs.Panel>
         <Tabs.Panel value="seats">
           <SeatView draft={draft} />
         </Tabs.Panel>
       </Tabs>
-      <Space h="xl" />
+      <TabulateView path_total={path_total} pay_total={pay_total} total_value={total_value} />
       <Group>
         <Button 
           disabled={!can_endorse}

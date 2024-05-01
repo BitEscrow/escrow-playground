@@ -82,6 +82,7 @@ export default function ({ draft } : Props) {
     try {
       if (form.isValid()) {
         prop.task.add(task)
+        form.reset()
       }
     } catch (err) {
       throw new Error('invalid task entry')

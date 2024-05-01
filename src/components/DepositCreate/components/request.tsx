@@ -2,16 +2,16 @@ import { now }            from '@scrow/sdk/util'
 import { EscrowSigner }   from '@scrow/sdk'
 import { useFeeRates }    from '@scrow/hooks'
 import { useClient }      from '@/hooks/useClient'
-import { IconRotate }     from '@tabler/icons-react'
 import { useErrResToast } from '@/hooks/useToast'
 import { useState }       from 'react'
 import { useNavigate }    from 'react-router-dom'
 
-import { Button, NumberInput, Slider, Stack, TextInput, Tooltip } from '@mantine/core'
+import { Button, NumberInput, Slider, Stack } from '@mantine/core'
 
 import { DepositDispatch, DepositForm, DepositState } from '..'
 
 import ContractForm from './contract'
+import AddressInput from '@/components/ui/AddressInput'
 
 interface Props {
   form     : DepositForm
@@ -29,11 +29,6 @@ export default function ({ form, state, setState, signer } : Props) {
 
   const navigate    = useNavigate()
   const can_deposit = (state.contract === null || state.fundable)
-
-  const gen_address = () => {
-    const addr = signer.address.new(now())
-    form.setFieldValue('address', addr)
-  }
 
   const req_account = async () => {
     form.validate()
@@ -68,15 +63,11 @@ export default function ({ form, state, setState, signer } : Props) {
         suffix=' seconds'
         {...form.getInputProps('duration')}
       />
-      <TextInput
+      <AddressInput
+        account={now()}
+        onGenerate={(e) => form.setFieldValue('address', e)}
         description="The return address to use for closing or recovering your deposit."
         placeholder="paste an address here, or click generate"
-        rightSection={
-          <Tooltip label="Generate">
-            <Button onClick={gen_address}><IconRotate size={24} /></Button>
-          </Tooltip>
-        }
-        rightSectionWidth={60}
         {...form.getInputProps('address')}
       />
       <NumberInput
