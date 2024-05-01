@@ -124,7 +124,7 @@
           [ "25",  2500  ]
         ],
         "programs": [
-          [ "endorse", "close", "*", 3 ]
+          [ "endorse", "close", "*", 2 ]
         ]
       },
       {
@@ -136,13 +136,13 @@
           [ "00",  10000 ]
         ],
         "programs": [
-          [ "endorse", "close", "*", 3 ]
+          [ "endorse", "close", "*", 2 ]
         ]
       },
       {
         "title": "Agent",
         "programs": [
-          [ "endorse", "close", "*", 3 ]
+          [ "endorse", "close", "*", 2 ]
         ]
       }
     ]

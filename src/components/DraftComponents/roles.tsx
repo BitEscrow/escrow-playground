@@ -19,7 +19,7 @@ export default function ({ draft } : Props) {
   const is_create = window.location.pathname === '/draft/new'
 
   return (
-    <Box>
+    <Box mb={20}>
       {policies.length === 0 && <Text mb={30} ml={30} c='dimmed' size='sm'>no roles have been created</Text>}
       <Accordion mt="xs">{policies}</Accordion>
       { is_create &&

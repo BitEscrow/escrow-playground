@@ -6,7 +6,6 @@ import CONFIG                from '@/config/index.js'
 import {
   Box,
   NativeSelect,
-  NumberInput,
   TextInput,
   Textarea,
 } from '@mantine/core'
@@ -47,14 +46,6 @@ export default function ({ draft, form } : Props) {
         label="Network"
         description="The blockchain network to use for this contract."
         value={draft.proposal.data.network}
-      />
-
-      <NumberInput
-        mt={15}
-        label="Value"
-        description="The total value of the proposal (in sats)."
-        min={1000}
-        {...form.getInputProps('value')}
       />
     </Box>
   )
