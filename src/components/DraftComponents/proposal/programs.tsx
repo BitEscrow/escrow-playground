@@ -77,8 +77,8 @@ export default function ({ draft } : Props) {
     mode : 'uncontrolled',
     initialValues : {
       method    : 'endorse',
-      actions   : undefined,
-      paths     : undefined,
+      actions   : '*',
+      paths     : '*',
       threshold : 1,
       pubkeys   : [] as string[]
     },

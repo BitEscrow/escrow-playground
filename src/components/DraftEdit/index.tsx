@@ -44,7 +44,7 @@ export default function () {
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
   const encoded    = params.get('enc')
-  
+
   const session    = (encoded!== null)
     ? DraftUtil.decode(encoded)
     : CONFIG.default_session
@@ -110,14 +110,14 @@ export default function () {
       try {
         const dec = DraftUtil.decode(encoded)
         DraftUtil.verify(dec)
-        draft.set(dec)
+        draft.restore(dec)
         setInit(true)
         scrollTo({ y: 0 })
       } catch (err) {
         useErrorToast('Error Importing Draft', err)
       }
     }
-  }, [ encoded ])
+  }, [ init, encoded ])
 
   useEffect(() => {
     if (total_value !== draft.proposal.data.value)

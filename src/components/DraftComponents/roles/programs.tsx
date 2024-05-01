@@ -66,8 +66,8 @@ export default function ({ policy } : Props) {
     mode : 'uncontrolled',
     initialValues : {
       method    : 'endorse',
-      actions   : undefined,
-      paths     : undefined,
+      actions   : '*',
+      paths     : '*',
       threshold : 1
     },
     validateInputOnChange : true,

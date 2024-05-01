@@ -1,12 +1,14 @@
 import { ContractData } from '@scrow/sdk/core'
 import { useClipboard } from '@mantine/hooks'
-import { IconCopy }     from '@tabler/icons-react'
+import { IconCopy, IconRefresh }     from '@tabler/icons-react'
 import { truncate_id }  from '@/lib/draft'
 
 import { Dispatch, SetStateAction } from 'react'
 import { Anchor, Badge, Box, Button, Code, Group, Text, Title } from '@mantine/core'
 
 import Controls from './controls'
+import { useContractUpdate } from '@scrow/hooks'
+import { useClient } from '@/hooks/useClient'
 
 interface Props {
   data    : ContractData
@@ -15,7 +17,11 @@ interface Props {
 
 export default function ({ data, setView } : Props) {
 
-  const clip  = useClipboard({ timeout: 500 })
+  const { client } = useClient()
+
+  const clip = useClipboard({ timeout: 500 })
+
+  const setContract = useContractUpdate(client)
 
   const color = () => {
     switch (data?.status) {
@@ -55,6 +61,16 @@ export default function ({ data, setView } : Props) {
         </Button>
       </Group>
       <Group mb={10}>
+        <Text w={60}>Updated</Text>
+        <Text>:</Text>
+        <Code>{new Date(data.updated_at * 1000).toLocaleString()}</Code>
+        <Button h={20} w={20} p={2}
+          onClick={() => setContract(data.cid)}
+        >
+          <IconRefresh size={12}/>
+        </Button>
+      </Group>
+      <Group mb={10}>
         <Text w={60}>Status</Text>
         <Text>:</Text>
         <Badge
@@ -64,11 +80,6 @@ export default function ({ data, setView } : Props) {
         >
           {data.status}
         </Badge>
-      </Group>
-      <Group mb={10}>
-        <Text w={60}>Updated</Text>
-        <Text>:</Text>
-        <Code>{new Date(data.updated_at * 1000).toLocaleString()}</Code>
       </Group>
     </Box>
   )
