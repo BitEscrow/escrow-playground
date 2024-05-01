@@ -44,20 +44,19 @@ export default function () {
   const { signer } = useSigner()
   const [ params ] = useSearchParams()
   const encoded    = params.get('enc')
+  
   const session    = (encoded!== null)
     ? DraftUtil.decode(encoded)
     : CONFIG.default_session
     
   const draft      = useDraftStore(session)
   const tabs       = draft.tabulate()
-  
   const navigate   = useNavigate()
 
   const can_endorse = (
     signer !== null &&
-    signer.draft.is_member(draft.data)  &&
-    !signer.draft.is_signed(draft.data) &&
-    draft.is_filled
+    draft.is_filled &&
+    !signer.draft.is_signed(draft.data)
   )
 
   const can_publish = (
