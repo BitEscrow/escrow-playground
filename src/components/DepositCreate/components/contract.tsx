@@ -9,6 +9,7 @@ import { DepositDispatch, DepositForm, DepositState } from '..'
 
 import CIDField from './cid'
 import FundView from './funds'
+import { get_contract_value } from '@scrow/sdk/contract'
 
 interface Props {
   form     : DepositForm
@@ -36,8 +37,9 @@ export default function ({ form, state, setState, signer  } : Props) {
         })
       } else {
         setState((e) => {
-          const { canceled, activated, fund_pend, fund_value, tx_total } = contract
-          const remaining = tx_total - (fund_pend + fund_value)
+          const tx_total = get_contract_value(contract)
+          const { canceled, activated, funds_pend, funds_conf } = contract
+          const remaining = tx_total - (funds_pend + funds_conf)
           const fundable  = !canceled && !activated && remaining > 0
           console.log('fundable:', fundable)
           if (!fundable) {

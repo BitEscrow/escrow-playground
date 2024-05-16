@@ -1,15 +1,17 @@
 import { ContractData } from '@scrow/sdk'
 
 import { Card, Code, SimpleGrid, Text }  from '@mantine/core'
+import { get_contract_value } from '@scrow/sdk/contract'
 
 interface Props {
   contract : ContractData
 }
 
 export default function ({ contract } : Props) {
-  const { fund_count, fund_pend, fund_value, tx_total } = contract
+  const tx_total = get_contract_value(contract)
+  const { vin_count, funds_pend, funds_conf } = contract
 
-  const available = fund_pend + fund_value
+  const available = funds_pend + funds_conf
   const remaining = tx_total - available
 
   return (
@@ -17,7 +19,7 @@ export default function ({ contract } : Props) {
       <Text ta='center' mb={10}>Funding Status:</Text>
       <SimpleGrid cols={2} spacing="sm" verticalSpacing="sm">
         <Text>Deposits:</Text>
-        <Code>{fund_count}</Code>
+        <Code>{vin_count}</Code>
         <Text>Amount:</Text>
         <Code>{available} sats</Code>
         <Text>Balance:</Text>

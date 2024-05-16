@@ -21,7 +21,7 @@ export default function ({ data }: Props) {
       <DataInput
         label="Transaction Virtual Size"
         description="The vsize of the full transaction (in bytes)."
-        value={data.tx_vsize}
+        value={data.tx_vsize ?? undefined}
       />
       <HashInput
         label="Transaction Id"

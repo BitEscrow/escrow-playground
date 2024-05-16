@@ -1,7 +1,8 @@
-import { ContractData }   from '@scrow/sdk'
-import { Stepper }        from '@mantine/core'
-import { useMediaQuery }  from '@mantine/hooks'
-import { get_enum_state } from '@/lib/contract'
+import { ContractData }       from '@scrow/sdk'
+import { Stepper }            from '@mantine/core'
+import { useMediaQuery }      from '@mantine/hooks'
+import { get_enum_state }     from '@/lib/contract'
+import { get_contract_value } from '@scrow/sdk/contract'
 
 interface Props {
   contract : ContractData
@@ -21,11 +22,12 @@ export default function ({ contract } : Props) {
 }
 
 function get_fund_status (contract : ContractData) {
-  const { canceled, canceled_at, deadline_at, fund_value, fund_pend, tx_total } = contract
-  const fund_total = fund_value + fund_pend
+  const tx_total = get_contract_value(contract)
+  const { canceled, canceled_at, deadline_at, funds_conf, funds_pend } = contract
+  const fund_total = funds_conf + funds_pend
   if (canceled) {
     return 'contract canceled'
-  } else if (fund_value >= tx_total) {
+  } else if (funds_conf >= tx_total) {
     return 'contract paid'
   } else if (fund_total >= tx_total) {
     return 'confirming funds'
@@ -37,8 +39,8 @@ function get_fund_status (contract : ContractData) {
 }
 
 function get_engine_status (contract : ContractData) {
-  const { activated, closed, closed_at, closed_path, expires_at } = contract
-  if (closed && closed_path) {
+  const { activated, closed, closed_at, engine_vout, expires_at } = contract
+  if (closed && engine_vout) {
     return 'contract closed'
   } else if (activated && closed && closed_at >= expires_at) {
     return 'contract expired'
@@ -52,12 +54,12 @@ function get_engine_status (contract : ContractData) {
 }
 
 function get_settlement_status (contract : ContractData) {
-  const { settled, spent, closed, closed_path } = contract
+  const { settled, spent, closed, engine_vout } = contract
   if (settled) {
     return 'contract settled'
   } else if (spent) {
     return 'tx broadcast'
-  } else if (closed && closed_path !== null) {
+  } else if (closed && engine_vout !== null) {
     return 'preparing tx'
   } else if (closed) {
     return 'funds released'

@@ -6,7 +6,7 @@ import FeeSelector        from '@/components/ui/FeeSelector'
 
 import { Box, Button, Group } from '@mantine/core'
 
-import { ApiResponse, DepositData, DepositDataResponse } from '@scrow/sdk/core'
+import { DepositData } from '@scrow/sdk/core'
 
 interface Props {
   data   : DepositData
@@ -17,13 +17,13 @@ interface Props {
 export default function ({ data, signer, update } : Props) {
   const { client } = useClient()
 
-  const [ feerate, setFeerate ] = useState(data.feerate)
+  const [ feerate, setFeerate ] = useState(data.return_rate)
 
   console.log('feerate:', feerate)
 
   const close = async () => {
-    let res : ApiResponse<DepositDataResponse>
-    if (feerate === data.feerate) {
+    let res
+    if (feerate === data.return_rate) {
       const req = signer.deposit.cancel(data.dpid)
       res = await client.deposit.cancel(data.dpid, req)
       console.log('canceled')
@@ -46,7 +46,7 @@ export default function ({ data, signer, update } : Props) {
         <Button onClick={close}>
           Close Deposit
         </Button>
-        <Button onClick={() => setFeerate(data.feerate)}>
+        <Button onClick={() => setFeerate(data.return_rate)}>
           Reset Feerate
         </Button>
       </Group>

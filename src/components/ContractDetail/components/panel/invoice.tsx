@@ -28,12 +28,12 @@ export default function ContractFunds({ data }: Props) {
       <SatsInput
         label="Transaction Fees"
         description="The fees for including the transaction in a block."
-        value={data.tx_fees}
+        value={data.tx_fees ?? undefined}
       />
       <SatsInput
         label="Transaction Total"
         description="The total transaction value of the contract."
-        value={data.tx_total}
+        value={data.tx_total ?? undefined}
       />
     </Stack>
   )

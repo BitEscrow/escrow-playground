@@ -28,7 +28,7 @@ export default function ({ draft, signer } : Props) {
 
       <Group h={20} mb={20} mt={20}>
         { draft.data.members.map(e => {
-          return <Chip color='#00AB83' key={e.pub} checked={e.sig !== undefined}>
+          return <Chip color='#00AB83' key={e.pub}>
             { get_alias(e.pub) }
           </Chip>
         }) }

@@ -26,13 +26,13 @@ export default function ({ data, setView } : Props) {
 
   const color = () => {
     switch (data.status) {
-      case 'pending' : return 'gray'
-      case 'locked'  : return '#0068FD'
-      case 'open'    : return '#3F8C4F'
-      case 'settled' : return '#3F8C4F'
-      case 'spent'   : return 'grey'
-      case 'expired' : return 'red'
-      case 'error'   : return 'red'
+      case 'registered' : return 'gray'
+      case 'locked'     : return '#0068FD'
+      case 'confirmed'  : return '#3F8C4F'
+      case 'settled'    : return '#3F8C4F'
+      case 'spent'      : return 'grey'
+      case 'expired'    : return 'red'
+      case 'error'      : return 'red'
       default: return 'grey'
     }
   }

@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function ({ contract, deposit, signer } : Props) {
-  const { canceled, activated, fund_pend, fund_value, tx_total } = contract
+  const { canceled, activated, funds_pend, funds_conf, tx_total } = contract
 
   const { client } = useClient()
 
@@ -23,7 +23,7 @@ export default function ({ contract, deposit, signer } : Props) {
   const setContract = useContractUpdate(client)
   const setDeposit  = useDepositUpdate(client)
 
-  const available  = fund_pend + fund_value
+  const available  = funds_pend + funds_conf
   const remaining  = tx_total - available
   const allocated  = deposit.utxo.value + available
   const threshold  = Math.floor(tx_total * 1.1)

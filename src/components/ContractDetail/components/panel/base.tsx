@@ -21,13 +21,8 @@ export default function ({ data }: Props) {
         description="The public key of the server's signing agent."
         value={data.server_pk ?? 'N/A'}
       />
-      <HashInput
-        label="Server Signature"
-        description="The server's signature endorsement of the contract (cid) hash."
-        value={data.server_sig ?? 'N/A'}
-      />
       <Fieldset my={10} legend="Member Endorsements">
-        { data.signatures.map((e) => <HashInput mb={10} key = {e} value = {e} />)}
+        { data.endorsements.map((e) => <HashInput mb={10} key = {e} value = {e} />)}
       </Fieldset>
     </Stack>
   )

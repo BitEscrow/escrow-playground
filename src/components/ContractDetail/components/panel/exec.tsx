@@ -13,24 +13,24 @@ export default function ({ data }: Props) {
   return (
     <Stack>
       <DataInput
-        label="Engine"
-        description="The execution engine used by the virtual machine."
+        label="Script Engine"
+        description="The script interpreter used by the virtual machine."
         value={data.terms.engine}
       />
       <HashInput
-        label="Virtual Machine Id"
+        label="Machine Id"
         description="The hash identifier of the virtual machine."
-        value={data.vmid}
+        value={data.engine_vmid}
       />
       <HashInput
-        label="Current Head"
+        label="Final Commit"
         description="The head of the hash-chain for the virtual machine."
-        value={data.active_head ?? 'N/A'}
+        value={data.engine_head ?? 'N/A'}
       />
       <DataInput
-        label="Closing Output"
+        label="Final Output"
         description="The final output of the virtual machine."
-        value={data.closed_path ?? 'N/A'}
+        value={data.engine_vout ?? 'N/A'}
       />
     </Stack>
   )

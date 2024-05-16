@@ -1,7 +1,6 @@
 import { useForm }           from '@mantine/form'
-import { get_path_names }    from '@scrow/sdk/proposal'
+import { CoreLib }           from '@scrow/sdk'
 import { get_vm_engine }     from '@/lib/vms'
-import { get_vm_config }     from '@scrow/sdk/vm'
 import { useClient }         from '@/hooks/useClient'
 import { useContractUpdate } from '@scrow/hooks/contract'
 
@@ -22,12 +21,12 @@ interface Props {
 }
 
 export default function ({ contract, signer, update } : Props) {
-  const { activated, cid, terms, vmid }  = contract
+  const { activated, cid, terms, engine_vmid }  = contract
 
   const { client } = useClient()
   const ct_update  = useContractUpdate(client)
 
-  const pnames = get_path_names(terms.paths)
+  const pnames = CoreLib.proposal.get_path_names(terms.paths)
   const vm     = get_vm_engine(terms.engine)
 
   const form = useForm({
@@ -44,11 +43,11 @@ export default function ({ contract, signer, update } : Props) {
     form.validate()
     if (activated && form.isValid()) {
       try {
-        const config = get_vm_config(contract) 
+        const config = CoreLib.vm.get_vm_config(contract) 
         const tmpl   = form.getValues()
         console.log('witness template:', tmpl)
         const req    = signer.witness.create(config, tmpl)
-        client.vm.submit(vmid, req).then(res => {
+        client.vm.submit(engine_vmid, req).then(res => {
           if (res.ok) {
             update([ res.data.receipt ])
             ct_update(cid)

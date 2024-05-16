@@ -1,9 +1,9 @@
-import { VirtualMachineAPI } from '@scrow/sdk'
+import { ScriptEngineAPI } from '@scrow/sdk'
 
 import CONFIG from '@/config/index.js'
 import CVM    from '@scrow/sdk/cvm'
 
-export function get_vm_engine (machine : string) : VirtualMachineAPI {
+export function get_vm_engine (machine : string) : ScriptEngineAPI {
   switch (machine) {
     case 'cvm':
       return CVM

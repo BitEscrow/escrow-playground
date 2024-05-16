@@ -1,6 +1,6 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { get_path_names }      from '@scrow/sdk/proposal'
+import { CoreLib }             from '@scrow/sdk'
 import { convert_regex }       from '@/lib/util'
 import { get_vm_engine }       from '@/lib/vms'
 import { DraftStore }          from '@scrow/hooks'
@@ -46,7 +46,7 @@ export default function ({ draft } : Props) {
         return null
       },
       paths : (e) => {
-        const names = get_path_names(prop.data.paths)
+        const names = CoreLib.proposal.get_path_names(prop.data.paths)
         const paths = convert_regex(e, names)
         if (paths === undefined) return 'path is undefined'
         for (const path of paths) {

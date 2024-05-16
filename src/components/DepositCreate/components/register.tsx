@@ -39,8 +39,8 @@ export default function ({ form, state, setState, signer } : Props) {
   const register = async () => {
     assert.exists(state.account)
     if (state.contract !== null) {
-      const req = signer.deposit.commit(state.account, state.contract, feerate, utxo)
-      const res = await client.contract.commit(req)
+      const req = signer.account.commit(state.account, state.contract, feerate, utxo)
+      const res = await client.account.commit(req)
       if (res.ok) {
         const dpid = res.data.deposit.dpid
         ct_update(cid, res.data.contract)
@@ -50,8 +50,8 @@ export default function ({ form, state, setState, signer } : Props) {
         useErrResToast(res)
       }
     } else {
-      const req = signer.deposit.register(state.account, feerate, utxo)
-      const res = await client.deposit.register(req)
+      const req = signer.account.register(state.account, feerate, utxo)
+      const res = await client.account.register(req)
       if (res.ok) {
         const dpid = res.data.deposit.dpid
         dp_update(dpid, res.data.deposit)

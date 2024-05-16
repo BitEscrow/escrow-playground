@@ -34,8 +34,8 @@ export default function ({ form, state, setState, signer } : Props) {
     form.validate()
     if (form.isValid()) {
       const { address, duration } = form.getValues()
-      const req = signer.account.create(address, duration)
-      const res = await client.deposit.request(req)
+      const req = signer.account.request(duration, address)
+      const res = await client.account.request(req)
       if (res.ok) {
         setState((e) => {
           return { ...e, account : res.data.account }

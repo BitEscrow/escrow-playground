@@ -13,7 +13,7 @@ export default function ({ data } : Props) {
       <HashInput
         label="Account Id"
         description="The hash identifier of the reserved deposit account."
-        value={data.acct_hash}
+        value={data.account_hash}
       />
       <HashInput
         label="Deposit Pubkey"

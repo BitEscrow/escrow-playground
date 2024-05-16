@@ -15,6 +15,7 @@ interface Props {
 }
 
 export default function ({ draft } : Props) {
+  const pubs = draft.sigs.map(e => e.slice(0, 64))
   const rows = draft.data.members.map((mbr) => {
     const role = draft.data.roles.find(e => e.id === mbr.pid)
     if (role === undefined) throw new Error('Role not found: ' + mbr.pid)
@@ -23,7 +24,7 @@ export default function ({ draft } : Props) {
         <Group>
           <Text size='sm' w={75} ff="monospace">Endorsed</Text>
           <Text>:</Text>
-          <Code>{mbr.sig !== undefined ? 'True' : 'False'}</Code>
+          <Code>{pubs.includes(mbr.pub) ? 'True' : 'False'}</Code>
         </Group>
         <Group>
           <Text size='sm' w={75} ff="monospace">Pubkey</Text>

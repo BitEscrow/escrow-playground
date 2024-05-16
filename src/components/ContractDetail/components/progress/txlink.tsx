@@ -8,17 +8,17 @@ import { IconCopy, IconExternalLink } from '@tabler/icons-react'
 
 import { Button, Code, Group, Stack, Text } from '@mantine/core'
 
-import { ContractData, TxSpentState } from '@scrow/sdk'
+import { ContractData, TxIsSpent } from '@scrow/sdk'
 
 interface Props {
-  data : ContractData & TxSpentState
+  data : ContractData &TxIsSpent
 }
 
 export default function ({ data } : Props) {
   const { client } = useClient()
   const clip   = useClipboard()
   const txid   = data.spent_txid
-  const vmlink = `${client.server_url}/api/vm/${data.vmid}`
+  const vmlink = `${client.server_url}/api/vm/${data.engine_vmid}`
   const txlink = `${client.oracle_url}/tx/${txid}`
   const color  = clip.copied ? 'green' : 'blue'
 
@@ -33,8 +33,8 @@ export default function ({ data } : Props) {
           <Text w={85} fw={700} size='sm' ta='right'>Closed Hash</Text>
           <Text>:</Text>
           <Group>
-            <Code>{truncate_id(data.active_head ?? 'null')}</Code>
-            <Button h={24} w={24} p={0} onClick={() => clip.copy(data.active_head)} bg={color}>
+            <Code>{truncate_id(data.engine_head ?? 'null')}</Code>
+            <Button h={24} w={24} p={0} onClick={() => clip.copy(data.engine_head)} bg={color}>
               <IconCopy size={16} />
             </Button>
             <Button h={24} w={24} p={0} onClick={() => open_link(vmlink)}>

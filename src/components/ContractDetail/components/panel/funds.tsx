@@ -14,12 +14,12 @@ export default function ContractFunds({ data }: Props) {
       <DataInput
         label="Deposit Count"
         description="The number of deposits locked to the contract."
-        value={data.fund_count}
+        value={data.vin_count}
       />
       <SatsInput
         label="Deposit Fee"
         description="The fee for adding a deposit to the transaction."
-        value={data.fund_txfee}
+        value={data.vin_txfee}
       />
       <SatsInput
         label="Feerate"
@@ -29,12 +29,12 @@ export default function ContractFunds({ data }: Props) {
       <SatsInput
         label="Pending Funds"
         description="The value of funds that are waiting to be confirmed in a block."
-        value={data.fund_pend}
+        value={data.funds_pend}
       />
       <SatsInput
         label="Secured Funds"
         description="The value of funds that have been confirmed in a block."
-        value={data.fund_value}
+        value={data.funds_conf}
       />
     </Stack>
   )

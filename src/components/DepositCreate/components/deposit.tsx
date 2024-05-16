@@ -29,7 +29,7 @@ export default function ({ account, state, setState } : Props) {
     : 'null'
 
   const initval = (state.contract !== null && state.remaining !== null)
-    ? state.remaining + state.contract.fund_txfee
+    ? state.remaining + state.contract.vin_txfee
     : 10000
 
   const { client }          = useClient()

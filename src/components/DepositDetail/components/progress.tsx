@@ -1,10 +1,10 @@
 import { now } from '@scrow/sdk/util'
 
-import { DepositData, TxConfirmedState } from '@scrow/sdk/core'
-import { Progress, Tooltip }             from '@mantine/core'
+import { DepositData, TxIsConfirmed } from '@scrow/sdk/core'
+import { Progress, Tooltip }          from '@mantine/core'
 
 interface Props {
-  data : DepositData & TxConfirmedState
+  data : DepositData & TxIsConfirmed
 }
 
 export default function ({ data } : Props) {
