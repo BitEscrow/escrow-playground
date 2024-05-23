@@ -1,5 +1,5 @@
 import { useState }  from 'react'
-import { Network }   from '@scrow/sdk/core'
+import { ChainNetwork }   from '@scrow/sdk/core'
 import { useConfig } from '@/hooks/useConfig'
 
 import CONFIG from '@/config/index.js'
@@ -58,11 +58,11 @@ export default function SettingsView () {
           <Divider mb={30} mt={20} />
           <Box>
             <NativeSelect
-              label="Choose Network"
+              label="Choose ChainNetwork"
               data={CONFIG.settings.networks}
               maw={300}
               value={network}
-              onChange={(e) => setNetwork(e.target.value as Network)}
+              onChange={(e) => setNetwork(e.target.value as ChainNetwork)}
             />
             <Space h="xs" />
             <Button

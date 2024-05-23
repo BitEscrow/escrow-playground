@@ -1,5 +1,6 @@
 import { useEffect }     from 'react'
 import { Routes, Route } from 'react-router-dom'
+import { parser }        from '@scrow/sdk/util'
 
 import { useConfig }     from '@/hooks/useConfig'
 import { useClient }     from '@/hooks/useClient'
@@ -17,8 +18,6 @@ import LandingView    from '@/components/Landing'
 import DepostitCreate from './components/DepositCreate'
 
 import CONFIG from '@/config/index.js'
-import { parse_network } from '@scrow/sdk/util'
-
 
 export default function () {
 
@@ -27,7 +26,7 @@ export default function () {
   const { update: update_signer } = useSigner()
 
   useEffect(() => {
-    const network = parse_network(config.store.network)
+    const network = parser.parse_network(config.store.network)
     const options = CONFIG.servers[network as keyof typeof CONFIG.servers]
     update_client(options)
     update_signer(options)

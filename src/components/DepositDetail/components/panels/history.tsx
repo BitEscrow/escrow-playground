@@ -31,7 +31,7 @@ export default function ({ data }: Props) {
       <StampInput
         label="Confirmed At"
         description="The network timestamp of the confirming block."
-        value={data.block_time}
+        value={data.confirmed_at}
       />
       <StampInput
         label="Locked At"

@@ -1,11 +1,11 @@
 import { Button, Stack, Text } from '@mantine/core'
 import { useClient }           from '@/hooks/useClient'
 import { useErrResToast }      from '@/hooks/useToast'
+import { get_contract_value }  from '@scrow/sdk/contract'
 import { useEffect, useState } from 'react'
 
 import { ContractData, DepositData, EscrowSigner } from '@scrow/sdk'
-
-import { useContractUpdate, useDepositUpdate } from '@scrow/hooks'
+import { useContractUpdate, useDepositUpdate }     from '@scrow/hooks'
 
 interface Props {
   contract : ContractData
@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function ({ contract, deposit, signer } : Props) {
-  const { canceled, activated, funds_pend, funds_conf, tx_total } = contract
+  const { canceled, activated, funds_pend, funds_conf } = contract
 
   const { client } = useClient()
 
@@ -23,6 +23,7 @@ export default function ({ contract, deposit, signer } : Props) {
   const setContract = useContractUpdate(client)
   const setDeposit  = useDepositUpdate(client)
 
+  const tx_total   = get_contract_value(contract)
   const available  = funds_pend + funds_conf
   const remaining  = tx_total - available
   const allocated  = deposit.utxo.value + available

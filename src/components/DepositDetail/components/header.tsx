@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react'
 import { DepositData }              from '@scrow/sdk/core'
 import { useClipboard }             from '@mantine/hooks'
-import { IconCopy, IconRefresh }                 from '@tabler/icons-react'
+import { IconCopy, IconRefresh }    from '@tabler/icons-react'
 import { truncate_id }              from '@/lib/draft'
 
 import { Badge, Box, Button, Code, Group, Text, Title } from '@mantine/core'
@@ -27,11 +27,10 @@ export default function ({ data, setView } : Props) {
   const color = () => {
     switch (data.status) {
       case 'registered' : return 'gray'
+      case 'open'       : return '#3F8C4F'
       case 'locked'     : return '#0068FD'
-      case 'confirmed'  : return '#3F8C4F'
-      case 'settled'    : return '#3F8C4F'
       case 'spent'      : return 'grey'
-      case 'expired'    : return 'red'
+      case 'settled'    : return '#3F8C4F'
       case 'error'      : return 'red'
       default: return 'grey'
     }
@@ -78,7 +77,7 @@ export default function ({ data, setView } : Props) {
         </Badge>
       </Group>
       { data.confirmed && !data.spent &&
-        <TimerProgress start={data.block_time} end={data.expires_at} />
+        <TimerProgress start={data.confirmed_at} end={data.expires_at} />
       }
     </Box>
   )

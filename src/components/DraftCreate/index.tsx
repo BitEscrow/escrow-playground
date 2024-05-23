@@ -1,7 +1,7 @@
 import { useNavigate }   from 'react-router-dom'
 import { useDraftStore } from '@scrow/hooks'
 import { useConfig }     from '@/hooks/useConfig'
-import { Network }       from '@scrow/sdk'
+import { ChainNetwork }  from '@scrow/sdk'
 import CONFIG            from '@/config/index.js'
 
 import { useEffect, useState }      from 'react'
@@ -58,7 +58,7 @@ export default function CreateDraftView () {
   }
 
   useEffect(() => {
-    draft.proposal.update({ network : config.store.network as Network })
+    draft.proposal.update({ network : config.store.network as ChainNetwork })
   }, [ config.store.network ])
 
   useEffect(() => {

@@ -15,17 +15,17 @@ export default function ({ data } : Props) {
       <HashInput
         label="Block Hash"
         description="The hash of the confirming block."
-        value={data.block_hash ?? 'N/A'}
+        value={data.conf_block ?? 'N/A'}
       />
       <DataInput
         label="Block Height"
         description="The height of the confirming block."
-        value={data.block_height ?? 'N/A'}
+        value={data.conf_height ?? 'N/A'}
       />
       <StampInput
         label="Block Timestamp"
         description="The timestamp of the confirming block."
-        value={data.block_time}
+        value={data.confirmed_at}
       />
       <HashInput
         label="Spend Transaction Id"

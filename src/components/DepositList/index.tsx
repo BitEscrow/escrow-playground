@@ -27,7 +27,7 @@ export default function ({ signer }: Props) {
       : 'N/A'
 
     const open_mempool = () => {
-      const url = `${client.oracle_url}/tx/${utxo.txid}`
+      const url = `${client.oracle._host}/tx/${utxo.txid}`
       window.open(url, '_blank', 'noopener,noreferrer')
     }
 

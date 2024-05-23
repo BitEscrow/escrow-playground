@@ -32,7 +32,7 @@ export default function ({ form, state, setState, signer } : Props) {
   const ct_update = useContractUpdate(client)
   const dp_update = useDepositUpdate(client)
 
-  const utxo = state.payment.txout
+  const utxo = state.payment.utxo
 
   useEffect(() => { register() }, [ state.payment ])
 

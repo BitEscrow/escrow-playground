@@ -1,14 +1,16 @@
-import { ContractData } from '@scrow/sdk/core'
-import { useClipboard } from '@mantine/hooks'
-import { IconCopy, IconRefresh }     from '@tabler/icons-react'
-import { truncate_id }  from '@/lib/draft'
+import { ContractData }      from '@scrow/sdk/core'
+import { useContractUpdate } from '@scrow/hooks'
+import { useClient }         from '@/hooks/useClient'
+import { useClipboard }      from '@mantine/hooks'
+import { truncate_id }       from '@/lib/draft'
 
 import { Dispatch, SetStateAction } from 'react'
+import { IconCopy, IconRefresh }    from '@tabler/icons-react'
+
 import { Anchor, Badge, Box, Button, Code, Group, Text, Title } from '@mantine/core'
 
 import Controls from './controls'
-import { useContractUpdate } from '@scrow/hooks'
-import { useClient } from '@/hooks/useClient'
+
 
 interface Props {
   data    : ContractData
@@ -26,13 +28,11 @@ export default function ({ data, setView } : Props) {
   const color = () => {
     switch (data?.status) {
       case 'published': return '#0068FD'
-      case 'funded' :   return '#0068FD'
       case 'secured':   return '#0068FD'
       case 'active':    return '#0068FD'
       case 'settled':   return '#3F8C4F'
       case 'spent':     return '#0068FD'
       case 'canceled':  return 'red'
-      case 'expired':   return 'red'
       case 'error':     return 'red'
       default:          return 'grey'
     }

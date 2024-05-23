@@ -3,13 +3,13 @@ import { Box, Tabs, Text }  from '@mantine/core'
 import { useSearchParams }  from 'react-router-dom'
 import { validate_address } from '@/lib/draft'
 import { useConfig }        from '@/hooks/useConfig'
-import { is_hash }          from '@scrow/sdk/util'
+import { check }            from '@scrow/sdk/util'
 
 import { UseFormReturnType, useForm } from '@mantine/form'
 
 import { Dispatch, SetStateAction, useState } from 'react'
 
-import { AccountData, ContractData, DepositData, Network, OracleTxSpendData } from '@scrow/sdk'
+import { AccountData, ContractData, DepositData, ChainNetwork, OracleUtxoData } from '@scrow/sdk'
 
 import PageHeader   from './components/header'
 import RequestForm  from './components/request'
@@ -28,12 +28,12 @@ export type DepositForm = UseFormReturnType<{
 export type DepositDispatch = Dispatch<SetStateAction<DepositState>>
 
 export interface DepositState {
-  account   : AccountData       | null
-  contract  : ContractData      | null
-  deposit   : DepositData       | null
+  account   : AccountData    | null
+  contract  : ContractData   | null
+  deposit   : DepositData    | null
   fundable  : boolean
-  payment   : OracleTxSpendData | null
-  remaining : number            | null
+  payment   : OracleUtxoData | null
+  remaining : number         | null
 }
 
 export default function () {
@@ -59,11 +59,11 @@ export default function () {
     },
     validateInputOnChange : true,
     validate : {
-      address : validate_address(config.store.network as Network),
+      address : validate_address(config.store.network as ChainNetwork),
       cid     : (cid : string) => {
         if (cid === '') {
           return null
-        } else if (!is_hash(cid)) {
+        } else if (!check.is_hash(cid)) {
           return 'invalid contract id'
         } else {
           return null

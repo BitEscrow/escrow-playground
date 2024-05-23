@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function ({ data } : Props) {
-  const { activated, engine_vmid } = data
+  const { activated, machine_vmid } = data
 
   return (
     <Tabs defaultValue={activated ? 'statements' : 'deposits'}>
@@ -38,7 +38,7 @@ export default function ({ data } : Props) {
         <FundsView contract={data} />
       </Tabs.Panel>
       <Tabs.Panel value="statements">
-        { activated && <StatementView contract={data} vmid={engine_vmid} /> }
+        { activated && <StatementView contract={data} vmid={machine_vmid} /> }
       </Tabs.Panel>
     </Tabs>
   )

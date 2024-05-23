@@ -20,16 +20,16 @@ export default function ({ data, host, can_submit } : Props) {
   }
 
   const rows = data.map((elem, idx) => {
-    const { method, action, args, content, path, sigs, stamp, wid, vm_hash } = elem
+    const { method, action, args, content, path, sigs, stamp, wid, vm_head } = elem
     return (
-      <Stack>
+      <Stack key={wid}>
         <Stack align='center'>
           { (can_submit || idx !== 0) && <IconArrowUpBar /> }
           { (!can_submit && idx === 0) && <IconCube /> }
           <Group>
             <Text size='sm'>Hash</Text>
             <Text>:</Text>
-            <Code>{truncate_id(vm_hash)}</Code>
+            <Code>{truncate_id(vm_head)}</Code>
           </Group>
         </Stack>
         <Card withBorder>

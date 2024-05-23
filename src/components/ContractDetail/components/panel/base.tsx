@@ -17,9 +17,9 @@ export default function ({ data }: Props) {
         value={data.moderator ?? 'N/A'}
       />
       <HashInput
-        label="Server Pubkey"
+        label="Escrow Agent Pubkey"
         description="The public key of the server's signing agent."
-        value={data.server_pk ?? 'N/A'}
+        value={data.agent_pk ?? 'N/A'}
       />
       <Fieldset my={10} legend="Member Endorsements">
         { data.endorsements.map((e) => <HashInput mb={10} key = {e} value = {e} />)}

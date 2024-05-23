@@ -1,6 +1,6 @@
 import { useContractList } from '@scrow/hooks'
 import { useClient }       from '@/hooks/useClient'
-import { is_hash }         from '@scrow/sdk/util'
+import { check }           from '@scrow/sdk/util'
 import {EscrowSigner }     from '@scrow/sdk'
 
 import { Autocomplete, Loader } from '@mantine/core'
@@ -30,7 +30,7 @@ export default function ({ cid, setCid, signer  } : Props) {
       setCid(null)
       setError(null)
     } else {
-      if (!is_hash(e)) {
+      if (!check.is_hash(e)) {
         setError('invalid contract id')
       } else {
         setError(null)

@@ -1,10 +1,6 @@
+import { ChainNetwork }  from '@scrow/sdk'
+import { check }         from '@scrow/sdk/util'
 import { convert_regex } from '@/lib/util'
-import { Network }       from '@scrow/sdk'
-
-import {
-  is_bip340_pubkey,
-  is_btc_address
-} from '@scrow/sdk/util'
 
 export function format_label (str : string) {
   return str.slice(0, 1).toUpperCase() + str.slice(1)
@@ -58,10 +54,10 @@ export function validate_path_value (value : number) {
 }
 
 export function validate_address (
-  network : Network
+  network : ChainNetwork
 ) {
   return (address : string) => {
-    return is_btc_address(address, network)
+    return check.is_btc_address(address, network)
   }
 }
 
@@ -104,7 +100,7 @@ export function validate_paths (prop_paths : string[]) {
 
 export function validate_pubkeys (pubkeys : string[]) {
   for (const pub of pubkeys) {
-    const err = is_bip340_pubkey(pub)
+    const err = check.is_bip340_pubkey(pub)
     if (err !== null) return `pubkey "${pub}" is invalid`
   }
   return null

@@ -1,9 +1,9 @@
 import { create_provider } from '@cmdcode/use-store'
-import { Network }         from '@scrow/sdk/core'
+import { ChainNetwork }         from '@scrow/sdk/core'
 import CONFIG              from '@/config/index.js'
 
 export interface ConfigStore {
-  network : Network
+  network : ChainNetwork
 }
 
 const defaults  = CONFIG.settings.defaults

@@ -43,7 +43,7 @@ export default function ({ draft, form } : Props) {
       <TextInput
         disabled
         mt={15}
-        label="Network"
+        label="ChainNetwork"
         description="The blockchain network to use for this contract."
         value={draft.proposal.data.network}
       />

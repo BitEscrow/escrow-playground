@@ -1,6 +1,4 @@
 import { useSigner }       from '@/hooks/useSigner'
-import { DraftUtil }       from '@scrow/sdk/client'
-import { ClientConfig }    from '@scrow/sdk/client'
 import { useClient }       from '@/hooks/useClient'
 import { parse_err }       from '@scrow/sdk/util'
 import { useDraftStore }   from '@scrow/hooks'
@@ -8,6 +6,7 @@ import { useWindowScroll } from '@mantine/hooks'
 import { get_vm_engine }   from '@/lib/vms'
 import CONFIG              from '@/config/index.js'
 
+import { DEFAULT_POLICY, DraftUtil }     from '@scrow/sdk/client'
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 import { useEffect, useState }           from 'react'
 import { useNavigate, useSearchParams }  from 'react-router-dom'
@@ -36,8 +35,6 @@ import TabulateView from '../DraftComponents/totals'
 import LinkView     from './components/link'
 import MemberView   from './components/members'
 import SeatView     from './components/seats'
-
-const SERVER_POLICY = ClientConfig.DEFAULT_POLICY
 
 export default function () {
   const [ init, setInit ] = useState(false)
@@ -99,7 +96,7 @@ export default function () {
     if (signer !== null) {
       const eng = get_vm_engine(draft.proposal.data.engine)
       const req = draft.publish()
-      const res = await client.contract.create(eng, SERVER_POLICY, req)
+      const res = await client.contract.create(req, eng, DEFAULT_POLICY.proposal)
       if (res.ok) {
         const cid = res.data.contract.cid
         console.log('cid:', cid)

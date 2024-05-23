@@ -1,15 +1,15 @@
-import { useEffect }     from 'react'
-import { EscrowSigner }  from '@scrow/sdk'
-import { is_hash }       from '@scrow/sdk/util'
-import { useContract }   from '@scrow/hooks'
-import { useClient }     from '@/hooks/useClient'
-import { Loader, Stack } from '@mantine/core'
+import { useEffect }          from 'react'
+import { EscrowSigner }       from '@scrow/sdk'
+import { check }              from '@scrow/sdk/util'
+import { useContract }        from '@scrow/hooks'
+import { useClient }          from '@/hooks/useClient'
+import { Loader, Stack }      from '@mantine/core'
+import { get_contract_value } from '@scrow/sdk/contract'
 
 import { DepositDispatch, DepositForm, DepositState } from '..'
 
 import CIDField from './cid'
 import FundView from './funds'
-import { get_contract_value } from '@scrow/sdk/contract'
 
 interface Props {
   form     : DepositForm
@@ -21,7 +21,7 @@ interface Props {
 export default function ({ form, state, setState, signer  } : Props) {
   const { client } = useClient()
 
-  const cid = (is_hash(form.values.cid))
+  const cid = (check.is_hash(form.values.cid))
     ? form.values.cid
     : null
 

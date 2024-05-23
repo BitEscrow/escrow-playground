@@ -20,17 +20,17 @@ export default function ({ data }: Props) {
       <HashInput
         label="Machine Id"
         description="The hash identifier of the virtual machine."
-        value={data.engine_vmid}
+        value={data.machine_vmid}
       />
       <HashInput
-        label="Final Commit"
+        label="Latest Commit"
         description="The head of the hash-chain for the virtual machine."
-        value={data.engine_head ?? 'N/A'}
+        value={data.machine_head ?? 'N/A'}
       />
       <DataInput
-        label="Final Output"
+        label="Machine Output"
         description="The final output of the virtual machine."
-        value={data.engine_vout ?? 'N/A'}
+        value={data.machine_vout ?? 'N/A'}
       />
     </Stack>
   )

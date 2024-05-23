@@ -1,8 +1,9 @@
-import { useForm }           from '@mantine/form'
-import { CoreLib }           from '@scrow/sdk'
-import { get_vm_engine }     from '@/lib/vms'
-import { useClient }         from '@/hooks/useClient'
-import { useContractUpdate } from '@scrow/hooks/contract'
+import { useForm }            from '@mantine/form'
+import { CoreLib }            from '@scrow/sdk'
+import { get_vm_engine }      from '@/lib/vms'
+import { useClient }          from '@/hooks/useClient'
+import { useContractUpdate }  from '@scrow/hooks/contract'
+import { get_machine_config } from '@scrow/sdk/machine'
 
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
@@ -21,7 +22,7 @@ interface Props {
 }
 
 export default function ({ contract, signer, update } : Props) {
-  const { activated, cid, terms, engine_vmid }  = contract
+  const { activated, cid, terms } = contract
 
   const { client } = useClient()
   const ct_update  = useContractUpdate(client)
@@ -43,11 +44,11 @@ export default function ({ contract, signer, update } : Props) {
     form.validate()
     if (activated && form.isValid()) {
       try {
-        const config = CoreLib.vm.get_vm_config(contract) 
+        const config = get_machine_config(contract)
         const tmpl   = form.getValues()
         console.log('witness template:', tmpl)
         const req    = signer.witness.create(config, tmpl)
-        client.vm.submit(engine_vmid, req).then(res => {
+        client.machine.submit(req).then(res => {
           if (res.ok) {
             update([ res.data.receipt ])
             ct_update(cid)

@@ -18,7 +18,6 @@ export default function ({ contract, signer } : Props) {
   const can_cancel = (
     (
       status === 'published' ||
-      status === 'funded'    ||
       status === 'secured'
     ) && (
       moderator !== null &&

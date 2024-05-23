@@ -18,8 +18,8 @@ export default function ({ data } : Props) {
   const { client } = useClient()
   const clip   = useClipboard()
   const txid   = data.spent_txid
-  const vmlink = `${client.server_url}/api/vm/${data.engine_vmid}`
-  const txlink = `${client.oracle_url}/tx/${txid}`
+  const vmlink = `${client.server_url}/api/machine/${data.machine_vmid}`
+  const txlink = `${client.oracle._host}/tx/${txid}`
   const color  = clip.copied ? 'green' : 'blue'
 
   const open_link = (link : string) => {
@@ -33,8 +33,8 @@ export default function ({ data } : Props) {
           <Text w={85} fw={700} size='sm' ta='right'>Closed Hash</Text>
           <Text>:</Text>
           <Group>
-            <Code>{truncate_id(data.engine_head ?? 'null')}</Code>
-            <Button h={24} w={24} p={0} onClick={() => clip.copy(data.engine_head)} bg={color}>
+            <Code>{truncate_id(data.machine_head ?? 'null')}</Code>
+            <Button h={24} w={24} p={0} onClick={() => clip.copy(data.machine_head)} bg={color}>
               <IconCopy size={16} />
             </Button>
             <Button h={24} w={24} p={0} onClick={() => open_link(vmlink)}>

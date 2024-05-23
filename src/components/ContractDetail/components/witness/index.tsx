@@ -1,4 +1,4 @@
-import { useCommitList }    from '@scrow/hooks'
+import { useReceiptList }   from '@scrow/hooks'
 import { Loader, Stack }    from '@mantine/core'
 import { useClient }        from '@/hooks/useClient'
 import { useSigner }        from '@/hooks/useSigner'
@@ -18,7 +18,7 @@ export default function ({ contract, vmid } : Props) {
   const { client } = useClient()
   const { signer } = useSigner()
 
-  const { data, isLoading, update } = useCommitList(client, vmid)
+  const { data, isLoading, update } = useReceiptList(client, vmid)
 
   const can_submit = (
     signer !== null                          && 

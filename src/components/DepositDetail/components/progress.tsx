@@ -9,7 +9,7 @@ interface Props {
 
 export default function ({ data } : Props) {
   const current = now()
-  const elapsed = current - data.block_time
+  const elapsed = current - data.confirmed_at
   const remain  = data.expires_at - current
 
   const elapsed_pct = Math.min(Math.floor((elapsed / remain) * 100), 100)

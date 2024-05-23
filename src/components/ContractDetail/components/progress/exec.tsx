@@ -45,7 +45,7 @@ export default function ({ data } : Props) {
           <Group gap='xs' h={24} justify='flex-start'>
             <Text w={50} >Output</Text>
             <Text>:</Text>
-            <Code>{data.engine_vout ?? 'null'}</Code>
+            <Code>{data.machine_vout ?? 'null'}</Code>
           </Group>
         </Stack>
         <Stack gap={5} justify='center'>

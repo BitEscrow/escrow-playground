@@ -39,8 +39,8 @@ function get_fund_status (contract : ContractData) {
 }
 
 function get_engine_status (contract : ContractData) {
-  const { activated, closed, closed_at, engine_vout, expires_at } = contract
-  if (closed && engine_vout) {
+  const { activated, closed, closed_at, machine_vout, expires_at } = contract
+  if (closed && machine_vout) {
     return 'contract closed'
   } else if (activated && closed && closed_at >= expires_at) {
     return 'contract expired'
@@ -54,12 +54,12 @@ function get_engine_status (contract : ContractData) {
 }
 
 function get_settlement_status (contract : ContractData) {
-  const { settled, spent, closed, engine_vout } = contract
+  const { settled, spent, closed, machine_vout } = contract
   if (settled) {
     return 'contract settled'
   } else if (spent) {
     return 'tx broadcast'
-  } else if (closed && engine_vout !== null) {
+  } else if (closed && machine_vout !== null) {
     return 'preparing tx'
   } else if (closed) {
     return 'funds released'

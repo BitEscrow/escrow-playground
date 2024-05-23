@@ -29,7 +29,7 @@ export default function ({ contract } : Props) {
   }
 
   const open_mempool = (txid : string) => {
-    const url = `${client.oracle_url}/tx/${txid}`
+    const url = `${client.oracle._host}/tx/${txid}`
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 

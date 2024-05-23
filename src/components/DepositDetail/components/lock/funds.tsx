@@ -1,4 +1,5 @@
 import { ContractData, DepositData }    from '@scrow/sdk'
+import { get_contract_value }           from '@scrow/sdk/contract'
 import { Card, Code, SimpleGrid, Text } from '@mantine/core'
 
 interface Props {
@@ -7,8 +8,8 @@ interface Props {
 }
 
 export default function ({ contract, deposit } : Props) {
-  const { vin_count, funds_pend, funds_conf, tx_total } = contract
-
+  const { vin_count, funds_pend, funds_conf } = contract
+  const tx_total  = get_contract_value(contract)
   const available = funds_pend + funds_conf
   const remaining = tx_total - available
   const new_total = available + deposit.utxo.value

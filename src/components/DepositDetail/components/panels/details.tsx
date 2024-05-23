@@ -16,24 +16,19 @@ export default function ({ data } : Props) {
         value={data.account_hash}
       />
       <HashInput
+        label="Agent Pubkey"
+        description="The public key of the server's signing agent."
+        value={data.agent_pk}
+      />
+      <HashInput
+        label="Agent Token"
+        description="The server's token for the covenant signing session."
+        value={data.agent_tkn}
+      />
+      <HashInput
         label="Deposit Pubkey"
         description="The public key of the depositor's signing agent."
         value={data.deposit_pk}
-      />
-      <HashInput
-        label="Server Pubkey"
-        description="The public key of the server's signing agent."
-        value={data.server_pk}
-      />
-      <HashInput
-        label="Server Signature"
-        description="The server's endorsement of the deposit (dpid) record."
-        value={data.server_sig}
-      />
-      <HashInput
-        label="Server Token"
-        description="The server's token for the covenant signing session."
-        value={data.server_tkn}
       />
     </Stack>
   )
