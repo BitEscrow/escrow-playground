@@ -34,12 +34,12 @@ export default function ({ draft } : Props) {
     try {
       if (navigator.clipboard !== undefined) {
         const pasted = await navigator.clipboard.readText()
-        draft.decode(pasted)
+        setPasted(true)
         setData(pasted)
-        setPasted(true)
+        draft.decode(pasted)
       } else {
-        draft.decode(data)
         setPasted(true)
+        draft.decode(data)
       }
     } catch (err) {
       console.error(err)
@@ -49,9 +49,13 @@ export default function ({ draft } : Props) {
 
   useEffect(() => {
     if (data !== draft.encoded) {
-      setData(draft.encoded)
+      if (pasted) {
+        draft.decode(data)
+      } else {
+        setData(draft.encoded)
+      }
     }
-  }, [ draft.encoded ])
+  }, [ data, draft.data ])
 
   return (
     <Box mt={15} mb={15}>
