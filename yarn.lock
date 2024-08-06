@@ -548,21 +548,21 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.16.4.tgz#c09ad9a132ccb5a67c4f211d909323ab1294f95f"
   integrity sha512-YunpoOAyGLDseanENHmbFvQSfVL5BxW3k7hhy0eN4rb3gS/ct75dVD0EXOWIqFT/nE8XYW6LP6vz6ctKRi0k9A==
 
-"@scrow/hooks@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.5.1.tgz#045c74b9a7f71a015296da89267e9b3723be9d99"
-  integrity sha512-jzekcUvqvM79r5o2PBQhz2jN1lXFP92W5z0NnCpMcVRecSwsu+tqmVQDd+QWSxN06qdoKPvnH0sZjy7XkxPg0Q==
+"@scrow/hooks@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@scrow/hooks/-/hooks-0.5.2.tgz#3a6291414cbeed4db5b6bb295a9484490b1a5d16"
+  integrity sha512-4gG4n+QhVKWRJStKPu94zQRgXrAo6t50PyrVnkLitJsPq8wN+Y9zcojBjHxTR2WeC0Nol+ssYkc/No57PMPmOA==
   dependencies:
     "@cmdcode/buff" "^2.2.5"
     "@cmdcode/signer" "^1.4.7"
     "@cmdcode/use-store" "^1.1.2"
-    "@scrow/sdk" "^0.15.0"
+    "@scrow/sdk" "^0.15.1"
     swr "^2.2.5"
 
-"@scrow/sdk@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.15.0.tgz#3c1b5bbcfbac5901218c53031a4257dd12c451b2"
-  integrity sha512-gHgjMSp0/52gJ35/fwmz4z4/d8F7Hk+7ZvTlw0fgHsKoW2b4p5DDKYEUzlsCkdqDg0+PkWBg3LcdN0xfXdshJA==
+"@scrow/sdk@^0.15.1":
+  version "0.15.1"
+  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.15.1.tgz#195a9c0c24a0376094e32fa13165b2596220994b"
+  integrity sha512-F+xE12gbNQKF5JmbZYKcMQce2lYTmTozLO8CyI8Mu8kFKZ1Y5lfaAHgfbz14knB++z/G4bzSXpeUXnifKwQQsA==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"

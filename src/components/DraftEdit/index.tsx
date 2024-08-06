@@ -3,10 +3,9 @@ import { useClient }       from '@/hooks/useClient'
 import { parse_err }       from '@scrow/sdk/util'
 import { useDraftStore }   from '@scrow/hooks'
 import { useWindowScroll } from '@mantine/hooks'
-import { get_vm_engine }   from '@/lib/vms'
 import CONFIG              from '@/config/index.js'
 
-import { DEFAULT_POLICY, DraftUtil }     from '@scrow/sdk/client'
+import { DraftUtil }                     from '@scrow/sdk/client'
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 import { useEffect, useState }           from 'react'
 import { useNavigate, useSearchParams }  from 'react-router-dom'
@@ -94,9 +93,8 @@ export default function () {
 
   const publish_draft = async () => {
     if (signer !== null) {
-      const eng = get_vm_engine(draft.proposal.data.engine)
       const req = draft.publish()
-      const res = await client.contract.create(req, eng, DEFAULT_POLICY.proposal)
+      const res = await client.contract.create(req)
       if (res.ok) {
         const cid = res.data.contract.cid
         console.log('cid:', cid)
