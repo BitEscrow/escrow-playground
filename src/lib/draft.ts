@@ -1,5 +1,5 @@
-import { ChainNetwork }  from '@scrow/sdk'
-import { check }         from '@scrow/sdk/util'
+import { ChainNetwork }  from '@bitescrow/client-sdk'
+import { check }         from '@bitescrow/client-sdk/util'
 import { convert_regex } from '@/lib/util'
 
 export function format_label (str : string) {

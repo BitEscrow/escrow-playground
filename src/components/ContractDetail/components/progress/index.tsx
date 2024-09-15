@@ -1,5 +1,5 @@
 import { get_enum_state } from '@/lib/contract'
-import { ContractData }   from '@scrow/sdk'
+import { ContractData }   from '@bitescrow/client-sdk'
 import { useMediaQuery }  from '@mantine/hooks'
 
 import { Loader, Stack, Tabs, Text } from '@mantine/core'

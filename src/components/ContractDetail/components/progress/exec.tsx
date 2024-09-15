@@ -1,6 +1,6 @@
 import { get_countdown_timer } from '@/lib/time'
-import { ContractData }        from '@scrow/sdk'
-import { now }                 from '@scrow/sdk/util'
+import { ContractData }        from '@bitescrow/client-sdk'
+import { now }                 from '@bitescrow/client-sdk/util'
 import { useEffect, useState } from 'react'
 
 import { Box, Code, Group, Stack, Text } from '@mantine/core'

@@ -1,4 +1,4 @@
-import { DepositData }     from '@scrow/sdk/core'
+import { DepositData }     from '@bitescrow/client-sdk/core'
 import { Stack, Fieldset } from '@mantine/core'
 import { format_label }    from '@/lib/draft'
 

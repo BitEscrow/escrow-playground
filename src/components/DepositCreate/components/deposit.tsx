@@ -1,4 +1,4 @@
-import { AccountData }    from '@scrow/sdk'
+import { AccountData }    from '@bitescrow/client-sdk'
 import { useClient }      from '@/hooks/useClient'
 import { usePayAddress }  from '@scrow/hooks'
 import { truncate_id }    from '@/lib/draft'

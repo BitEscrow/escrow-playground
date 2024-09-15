@@ -1,4 +1,4 @@
-import { WitnessReceipt }   from '@scrow/sdk'
+import { WitnessReceipt }   from '@bitescrow/client-sdk'
 import { get_time_elapsed } from '@/lib/time'
 
 import { IconArrowUpBar, IconCube, IconLink } from '@tabler/icons-react'

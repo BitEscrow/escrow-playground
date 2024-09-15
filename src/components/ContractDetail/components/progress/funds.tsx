@@ -1,5 +1,5 @@
-import { ContractData }       from '@scrow/sdk'
-import { get_contract_value } from '@scrow/sdk/contract'
+import { ContractData }       from '@bitescrow/client-sdk'
+import { get_contract_value } from '@bitescrow/client-sdk/contract'
 
 import { Box, Group, Progress, Text, Tooltip } from '@mantine/core'
 

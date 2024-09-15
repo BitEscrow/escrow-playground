@@ -1,6 +1,6 @@
-import { now } from '@scrow/sdk/util'
+import { now } from '@bitescrow/client-sdk/util'
 
-import { DepositData, TxIsConfirmed } from '@scrow/sdk/core'
+import { DepositData, TxIsConfirmed } from '@bitescrow/client-sdk/core'
 import { Progress, Tooltip }          from '@mantine/core'
 
 interface Props {

@@ -1,5 +1,5 @@
 import { Accordion }    from '@mantine/core'
-import { ContractData } from '@scrow/sdk'
+import { ContractData } from '@bitescrow/client-sdk'
 
 import BasePanel    from './panel/base'
 import FundsPanel   from './panel/funds'

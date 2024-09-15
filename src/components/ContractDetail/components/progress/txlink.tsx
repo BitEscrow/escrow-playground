@@ -8,7 +8,7 @@ import { IconCopy, IconExternalLink } from '@tabler/icons-react'
 
 import { Button, Code, Group, Stack, Text } from '@mantine/core'
 
-import { ContractData, TxIsSpent } from '@scrow/sdk'
+import { ContractData, TxIsSpent } from '@bitescrow/client-sdk'
 
 interface Props {
   data : ContractData &TxIsSpent

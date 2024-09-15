@@ -1,4 +1,4 @@
-import { EscrowSigner }       from '@scrow/sdk/client'
+import { EscrowSigner }       from '@bitescrow/client-sdk/client'
 import { useContractList }    from '@scrow/hooks/contract'
 import { useClient }          from '@/hooks/useClient'
 import { get_time_elapsed }   from '@/lib/time'

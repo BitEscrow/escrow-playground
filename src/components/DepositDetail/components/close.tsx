@@ -1,12 +1,12 @@
 import { useState }       from 'react'
-import { EscrowSigner }   from '@scrow/sdk/client'
+import { EscrowSigner }   from '@bitescrow/client-sdk/client'
 import { useClient }      from '@/hooks/useClient'
 import { useErrResToast } from '@/hooks/useToast'
 import FeeSelector        from '@/components/ui/FeeSelector'
 
 import { Box, Button, Group } from '@mantine/core'
 
-import { DepositData } from '@scrow/sdk/core'
+import { DepositData } from '@bitescrow/client-sdk/core'
 
 interface Props {
   data   : DepositData

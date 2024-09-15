@@ -1,6 +1,6 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { CoreLib }             from '@scrow/sdk'
+import { CoreLib }             from '@bitescrow/client-sdk'
 import { convert_regex }       from '@/lib/util'
 import { get_vm_engine }       from '@/lib/vms'
 import { DraftStore }          from '@scrow/hooks'

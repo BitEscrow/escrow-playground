@@ -1,4 +1,4 @@
-import { DepositData } from '@scrow/sdk/core'
+import { DepositData } from '@bitescrow/client-sdk/core'
 import { Accordion }   from '@mantine/core'
 
 import { IconCalendar, IconCoins, IconGitBranch, IconInfoCircle, IconLifebuoy, IconLock } from '@tabler/icons-react'

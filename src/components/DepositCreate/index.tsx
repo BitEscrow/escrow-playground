@@ -3,13 +3,13 @@ import { Box, Tabs, Text }  from '@mantine/core'
 import { useSearchParams }  from 'react-router-dom'
 import { validate_address } from '@/lib/draft'
 import { useConfig }        from '@/hooks/useConfig'
-import { check }            from '@scrow/sdk/util'
+import { check }            from '@bitescrow/client-sdk/util'
 
 import { UseFormReturnType, useForm } from '@mantine/form'
 
 import { Dispatch, SetStateAction, useState } from 'react'
 
-import { AccountData, ContractData, DepositData, ChainNetwork, OracleUtxoData } from '@scrow/sdk'
+import { AccountData, ContractData, DepositData, ChainNetwork, OracleUtxoData } from '@bitescrow/client-sdk'
 
 import PageHeader   from './components/header'
 import RequestForm  from './components/request'

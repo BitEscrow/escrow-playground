@@ -1,4 +1,4 @@
-import { DepositData } from '@scrow/sdk/core'
+import { DepositData } from '@bitescrow/client-sdk/core'
 import { Stack }       from '@mantine/core'
 
 import HashInput from '@/components/ui/HashInput'

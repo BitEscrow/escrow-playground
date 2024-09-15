@@ -1,8 +1,8 @@
-import { ContractData }       from '@scrow/sdk'
+import { ContractData }       from '@bitescrow/client-sdk'
 import { Stepper }            from '@mantine/core'
 import { useMediaQuery }      from '@mantine/hooks'
 import { get_enum_state }     from '@/lib/contract'
-import { get_contract_value } from '@scrow/sdk/contract'
+import { get_contract_value } from '@bitescrow/client-sdk/contract'
 
 interface Props {
   contract : ContractData

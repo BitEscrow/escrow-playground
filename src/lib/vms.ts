@@ -1,7 +1,7 @@
-import { ScriptEngineAPI } from '@scrow/sdk'
+import { ScriptEngineAPI } from '@bitescrow/client-sdk'
 
 import CONFIG from '@/config/index.js'
-import CVM    from '@scrow/sdk/cvm'
+import CVM    from '@bitescrow/client-sdk/cvm'
 
 export function get_vm_engine (machine : string) : ScriptEngineAPI {
   switch (machine) {

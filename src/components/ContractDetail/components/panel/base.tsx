@@ -1,4 +1,4 @@
-import { ContractData }    from '@scrow/sdk/core'
+import { ContractData }    from '@bitescrow/client-sdk/core'
 import { Fieldset, Stack } from '@mantine/core'
 
 import HashInput from '@/components/ui/HashInput'

@@ -1,9 +1,9 @@
 import { useForm }            from '@mantine/form'
-import { CoreLib }            from '@scrow/sdk'
+import { CoreLib }            from '@bitescrow/client-sdk'
 import { get_vm_engine }      from '@/lib/vms'
 import { useClient }          from '@/hooks/useClient'
 import { useContractUpdate }  from '@scrow/hooks/contract'
-import { get_machine_config } from '@scrow/sdk/machine'
+import { get_machine_config } from '@bitescrow/client-sdk/machine'
 
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
@@ -13,7 +13,7 @@ import {
   ContractData,
   EscrowSigner,
   WitnessReceipt
-} from '@scrow/sdk'
+} from '@bitescrow/client-sdk'
 
 interface Props {
   contract : ContractData

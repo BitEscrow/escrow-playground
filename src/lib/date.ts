@@ -1,4 +1,4 @@
-import { now } from '@scrow/sdk/util'
+import { now } from '@bitescrow/client-sdk/util'
 
 export function convert_date (stamp : number) {
   const utc = Math.floor(stamp * 1000)

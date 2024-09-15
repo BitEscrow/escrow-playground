@@ -1,11 +1,11 @@
 import { useNavigate }   from 'react-router-dom'
 import { useDraftStore } from '@scrow/hooks'
 import { useConfig }     from '@/hooks/useConfig'
-import { ChainNetwork }  from '@scrow/sdk'
+import { ChainNetwork }  from '@bitescrow/client-sdk'
 import CONFIG            from '@/config/index.js'
 
 import { useEffect, useState }      from 'react'
-import { DraftTemplate, DraftUtil } from '@scrow/sdk/client'
+import { DraftTemplate, DraftUtil } from '@bitescrow/client-sdk/client'
 import { IconPencil, IconRotate }   from '@tabler/icons-react'
 
 import {

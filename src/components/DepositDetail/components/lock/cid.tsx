@@ -1,7 +1,7 @@
 import { useContractList } from '@scrow/hooks'
 import { useClient }       from '@/hooks/useClient'
-import { check }           from '@scrow/sdk/util'
-import {EscrowSigner }     from '@scrow/sdk'
+import { check }           from '@bitescrow/client-sdk/util'
+import {EscrowSigner }     from '@bitescrow/client-sdk'
 
 import { Autocomplete, Loader } from '@mantine/core'
 

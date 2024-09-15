@@ -1,5 +1,5 @@
 import { IconRubberStamp } from '@tabler/icons-react'
-import { EscrowSigner }    from '@scrow/sdk'
+import { EscrowSigner }    from '@bitescrow/client-sdk'
 import { DraftStore }      from '@scrow/hooks'
 
 import {

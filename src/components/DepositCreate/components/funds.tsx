@@ -1,7 +1,7 @@
-import { ContractData } from '@scrow/sdk'
+import { ContractData } from '@bitescrow/client-sdk'
 
 import { Card, Code, SimpleGrid, Text }  from '@mantine/core'
-import { get_contract_value } from '@scrow/sdk/contract'
+import { get_contract_value } from '@bitescrow/client-sdk/contract'
 
 interface Props {
   contract : ContractData

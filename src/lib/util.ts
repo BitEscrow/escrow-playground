@@ -1,5 +1,5 @@
 import { Buff }        from '@cmdcode/buff'
-import { sort_record } from '@scrow/sdk/util'
+import { sort_record } from '@bitescrow/client-sdk/util'
 
 export function random (size = 8) {
   return Buff.random(size).b64url

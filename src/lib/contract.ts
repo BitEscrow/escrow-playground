@@ -1,4 +1,4 @@
-import { ContractData } from '@scrow/sdk'
+import { ContractData } from '@bitescrow/client-sdk'
 
 export function get_enum_state (contract : ContractData) {
   switch (true) {

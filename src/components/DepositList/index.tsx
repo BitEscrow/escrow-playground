@@ -1,4 +1,4 @@
-import { EscrowSigner }       from '@scrow/sdk/client'
+import { EscrowSigner }       from '@bitescrow/client-sdk/client'
 import { useClient }          from '@/hooks/useClient'
 import { get_time_remaining } from '@/lib/time'
 import { useNavigate }        from 'react-router-dom'

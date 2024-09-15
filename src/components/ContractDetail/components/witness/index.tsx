@@ -3,7 +3,7 @@ import { Loader, Stack }    from '@mantine/core'
 import { useClient }        from '@/hooks/useClient'
 import { useSigner }        from '@/hooks/useSigner'
 
-import { ContractData, ProgramEntry } from '@scrow/sdk'
+import { ContractData, ProgramEntry } from '@bitescrow/client-sdk'
 
 import StatementList from './statements'
 import SubmitForm    from './submit'

@@ -1,4 +1,4 @@
-import { EscrowSigner }    from '@scrow/sdk'
+import { EscrowSigner }    from '@bitescrow/client-sdk'
 import { useContractList } from '@scrow/hooks'
 import { useClient }       from '@/hooks/useClient'
 import { DepositForm }     from '..'

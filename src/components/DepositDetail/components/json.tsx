@@ -1,4 +1,4 @@
-import { DepositData }    from '@scrow/sdk/core'
+import { DepositData }    from '@bitescrow/client-sdk/core'
 import { Box, JsonInput } from '@mantine/core'
 
 interface Props {

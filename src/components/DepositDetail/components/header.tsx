@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react'
-import { DepositData }              from '@scrow/sdk/core'
+import { DepositData }              from '@bitescrow/client-sdk/core'
 import { useClipboard }             from '@mantine/hooks'
 import { IconCopy, IconRefresh }    from '@tabler/icons-react'
 import { truncate_id }              from '@/lib/draft'

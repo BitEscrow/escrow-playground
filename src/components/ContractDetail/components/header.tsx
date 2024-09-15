@@ -1,4 +1,4 @@
-import { ContractData }      from '@scrow/sdk/core'
+import { ContractData }      from '@bitescrow/client-sdk/core'
 import { useContractUpdate } from '@scrow/hooks'
 import { useClient }         from '@/hooks/useClient'
 import { useClipboard }      from '@mantine/hooks'

@@ -1,5 +1,5 @@
 import { create_provider } from '@cmdcode/use-store'
-import { ChainNetwork }         from '@scrow/sdk/core'
+import { ChainNetwork }    from '@bitescrow/client-sdk/core'
 import CONFIG              from '@/config/index.js'
 
 export interface ConfigStore {

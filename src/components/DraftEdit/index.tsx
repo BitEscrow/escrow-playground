@@ -1,11 +1,11 @@
 import { useSigner }       from '@/hooks/useSigner'
 import { useClient }       from '@/hooks/useClient'
-import { parse_err }       from '@scrow/sdk/util'
+import { parse_err }       from '@bitescrow/client-sdk/util'
 import { useDraftStore }   from '@scrow/hooks'
 import { useWindowScroll } from '@mantine/hooks'
 import CONFIG              from '@/config/index.js'
 
-import { DraftUtil }                     from '@scrow/sdk/client'
+import { DraftUtil }                     from '@bitescrow/client-sdk/client'
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 import { useEffect, useState }           from 'react'
 import { useNavigate, useSearchParams }  from 'react-router-dom'

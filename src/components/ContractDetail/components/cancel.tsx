@@ -1,6 +1,6 @@
 import { useClient }    from '@/hooks/useClient'
-import { ContractData } from '@scrow/sdk/core'
-import { EscrowSigner } from '@scrow/sdk/client'
+import { ContractData } from '@bitescrow/client-sdk/core'
+import { EscrowSigner } from '@bitescrow/client-sdk/client'
 
 import { Button } from '@mantine/core'
 

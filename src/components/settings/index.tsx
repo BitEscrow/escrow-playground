@@ -1,5 +1,5 @@
 import { useState }  from 'react'
-import { ChainNetwork }   from '@scrow/sdk/core'
+import { ChainNetwork }   from '@bitescrow/client-sdk/core'
 import { useConfig } from '@/hooks/useConfig'
 
 import CONFIG from '@/config/index.js'

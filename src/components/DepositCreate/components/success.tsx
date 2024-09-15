@@ -1,5 +1,5 @@
 import { Button, Code, Group, Stack, Text }  from '@mantine/core'
-import { ContractData, DepositData } from '@scrow/sdk'
+import { ContractData, DepositData } from '@bitescrow/client-sdk'
 import { truncate_id }               from '@/lib/draft'
 import { useNavigate }               from 'react-router-dom'
 

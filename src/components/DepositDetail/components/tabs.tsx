@@ -1,5 +1,5 @@
 import { Tabs }        from '@mantine/core'
-import { DepositData } from '@scrow/sdk'
+import { DepositData } from '@bitescrow/client-sdk'
 import { useSigner }   from '@/hooks/useSigner'
 
 import { IconDownload, IconLock } from '@tabler/icons-react'

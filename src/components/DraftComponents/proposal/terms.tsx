@@ -1,4 +1,4 @@
-import { ProposalData }      from '@scrow/sdk'
+import { ProposalData }      from '@bitescrow/client-sdk'
 import { DateTimePicker }    from '@mantine/dates'
 import { UseFormReturnType } from '@mantine/form'
 import { IconX }             from '@tabler/icons-react'

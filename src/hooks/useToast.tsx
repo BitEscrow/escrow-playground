@@ -1,7 +1,7 @@
 import { useState }      from 'react'
 import { Text }          from '@mantine/core'
 import { notifications } from '@mantine/notifications'
-import { ErrorResponse } from '@scrow/sdk'
+import { ErrorResponse } from '@bitescrow/client-sdk'
 
 import { IconExclamationMark, IconX } from '@tabler/icons-react'
 

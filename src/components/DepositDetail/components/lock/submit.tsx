@@ -1,10 +1,10 @@
 import { Button, Stack, Text } from '@mantine/core'
 import { useClient }           from '@/hooks/useClient'
 import { useErrResToast }      from '@/hooks/useToast'
-import { get_contract_value }  from '@scrow/sdk/contract'
+import { get_contract_value }  from '@bitescrow/client-sdk/contract'
 import { useEffect, useState } from 'react'
 
-import { ContractData, DepositData, EscrowSigner } from '@scrow/sdk'
+import { ContractData, DepositData, EscrowSigner } from '@bitescrow/client-sdk'
 import { useContractUpdate, useDepositUpdate }     from '@scrow/hooks'
 
 interface Props {

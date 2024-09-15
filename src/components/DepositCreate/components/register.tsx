@@ -1,5 +1,5 @@
-import { assert }            from '@scrow/sdk/util'
-import { EscrowSigner }      from '@scrow/sdk'
+import { assert }            from '@bitescrow/client-sdk/util'
+import { EscrowSigner }      from '@bitescrow/client-sdk'
 import { useEffect }         from 'react'
 import { useClient }         from '@/hooks/useClient'
 import { useErrResToast }    from '@/hooks/useToast'

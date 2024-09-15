@@ -1,4 +1,4 @@
-import { DraftTemplate, DraftUtil } from '@scrow/sdk'
+import { DraftTemplate, DraftUtil } from '@bitescrow/client-sdk'
 
 import templates from './presets.json'  assert { type : 'json' }
 import servers   from './servers.json'  assert { type : 'json' }

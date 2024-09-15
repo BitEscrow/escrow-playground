@@ -1,4 +1,4 @@
-import { now } from '@scrow/sdk/util'
+import { now } from '@bitescrow/client-sdk/util'
 
 import { Box, Progress, ProgressRootProps, Tooltip } from '@mantine/core'
 

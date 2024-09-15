@@ -20,7 +20,7 @@ import {
 
 import NoData      from '@/components/ui/NoData'
 import PubkeyInput from '@/components/ui/PubkeyInput'
-import { ProgramEntry } from '@scrow/sdk'
+import { ProgramEntry } from '@bitescrow/client-sdk'
 
 interface Props {
   draft : DraftStore

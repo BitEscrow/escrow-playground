@@ -1,6 +1,6 @@
 import { useEffect }     from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { parser }        from '@scrow/sdk/util'
+import { parser }        from '@bitescrow/client-sdk/util'
 
 import { useConfig }     from '@/hooks/useConfig'
 import { useClient }     from '@/hooks/useClient'

@@ -1,4 +1,4 @@
-import { now } from '@scrow/sdk/util'
+import { now } from '@bitescrow/client-sdk/util'
 
 export function get_time_elapsed (
   created : number,
