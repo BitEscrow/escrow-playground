@@ -2,7 +2,7 @@ import { useState }     from 'react'
 import { EscrowSigner } from '@bitescrow/client-sdk/client'
 import { useClient }    from '@/hooks/useClient'
 import { DepositData }  from '@bitescrow/client-sdk/core'
-import { useContract }  from '@scrow/hooks'
+import { useContract }  from '@bitescrow/hooks'
 
 import { Box, Loader, Stack }  from '@mantine/core'
 

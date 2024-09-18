@@ -1,5 +1,5 @@
 import { format_label } from '@/lib/draft'
-import { DraftStore }   from '@scrow/hooks'
+import { DraftStore }   from '@bitescrow/hooks'
 
 import { Button, Card, Code, Group, Stack, Text } from '@mantine/core'
 

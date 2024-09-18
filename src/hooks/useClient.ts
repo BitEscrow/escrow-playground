@@ -1,4 +1,4 @@
-import { createClientStore } from '@scrow/hooks/client'
+import { createClientStore } from '@bitescrow/hooks/client'
 
 import CONFIG from '@/config/index.js'
 

@@ -2,7 +2,7 @@ import { EscrowSigner }       from '@bitescrow/client-sdk/client'
 import { useClient }          from '@/hooks/useClient'
 import { get_time_remaining } from '@/lib/time'
 import { useNavigate }        from 'react-router-dom'
-import { useDepositList }     from '@scrow/hooks'
+import { useDepositList }     from '@bitescrow/hooks'
 
 import { IconExternalLink, IconZoom } from '@tabler/icons-react'
 

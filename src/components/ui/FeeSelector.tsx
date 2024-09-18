@@ -1,5 +1,5 @@
 import { useClient }   from '@/hooks/useClient'
-import { useFeeRates } from '@scrow/hooks'
+import { useFeeRates } from '@bitescrow/hooks'
 
 import { Dispatch, SetStateAction, useState } from 'react'
 

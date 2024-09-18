@@ -5,7 +5,7 @@ import { get_contract_value }  from '@bitescrow/client-sdk/contract'
 import { useEffect, useState } from 'react'
 
 import { ContractData, DepositData, EscrowSigner } from '@bitescrow/client-sdk'
-import { useContractUpdate, useDepositUpdate }     from '@scrow/hooks'
+import { useContractUpdate, useDepositUpdate }     from '@bitescrow/hooks'
 
 interface Props {
   contract : ContractData

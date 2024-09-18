@@ -1,4 +1,4 @@
-import { useReceiptList }   from '@scrow/hooks'
+import { useReceiptList }   from '@bitescrow/hooks'
 import { Loader, Stack }    from '@mantine/core'
 import { useClient }        from '@/hooks/useClient'
 import { useSigner }        from '@/hooks/useSigner'

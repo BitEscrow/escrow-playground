@@ -1,5 +1,5 @@
 import { useClipboard } from '@mantine/hooks'
-import { DraftStore }   from '@scrow/hooks'
+import { DraftStore }   from '@bitescrow/hooks'
 import { useTimeout }   from '@/hooks/useToast'
 
 import { useEffect, useState } from 'react'

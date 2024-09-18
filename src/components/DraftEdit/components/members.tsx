@@ -1,4 +1,4 @@
-import { DraftStore } from '@scrow/hooks'
+import { DraftStore } from '@bitescrow/hooks'
 
 import { format_label, truncate_id } from '@/lib/draft'
 

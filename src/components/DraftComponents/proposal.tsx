@@ -1,7 +1,7 @@
 import { useForm }    from '@mantine/form'
 import { useEffect }  from 'react'
 import { is_diff }    from '@/lib/util'
-import { DraftStore } from '@scrow/hooks'
+import { DraftStore } from '@bitescrow/hooks'
 
 import * as util from '@/lib/draft.js'
 

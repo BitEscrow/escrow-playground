@@ -1,4 +1,4 @@
-import { useContractList } from '@scrow/hooks'
+import { useContractList } from '@bitescrow/hooks'
 import { useClient }       from '@/hooks/useClient'
 import { check }           from '@bitescrow/client-sdk/util'
 import {EscrowSigner }     from '@bitescrow/client-sdk'

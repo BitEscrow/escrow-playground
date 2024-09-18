@@ -1,5 +1,5 @@
 import { EscrowSigner }       from '@bitescrow/client-sdk/client'
-import { useContractList }    from '@scrow/hooks/contract'
+import { useContractList }    from '@bitescrow/hooks/contract'
 import { useClient }          from '@/hooks/useClient'
 import { get_time_elapsed }   from '@/lib/time'
 import { IconZoom }           from '@tabler/icons-react'

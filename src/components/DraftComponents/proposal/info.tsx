@@ -1,6 +1,6 @@
 import { ProposalData }      from '@bitescrow/client-sdk'
 import { UseFormReturnType } from '@mantine/form'
-import { DraftStore }        from '@scrow/hooks'
+import { DraftStore }        from '@bitescrow/hooks'
 import CONFIG                from '@/config/index.js'
 
 import {

@@ -1,4 +1,4 @@
-import { DraftStore } from '@scrow/hooks'
+import { DraftStore } from '@bitescrow/hooks'
 import { useForm }    from '@mantine/form'
 import { IconPlus }   from '@tabler/icons-react'
 

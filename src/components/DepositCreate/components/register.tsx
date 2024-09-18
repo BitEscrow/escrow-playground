@@ -4,8 +4,8 @@ import { useEffect }         from 'react'
 import { useClient }         from '@/hooks/useClient'
 import { useErrResToast }    from '@/hooks/useToast'
 import { truncate_id }       from '@/lib/draft'
-import { useContractUpdate } from '@scrow/hooks/contract'
-import { useDepositUpdate }  from '@scrow/hooks/deposit'
+import { useContractUpdate } from '@bitescrow/hooks/contract'
+import { useDepositUpdate }  from '@bitescrow/hooks/deposit'
 
 import { Box, Code, Group, Loader, Stack, Text } from '@mantine/core'
 

@@ -1,5 +1,5 @@
 import { useNavigate }   from 'react-router-dom'
-import { useDraftStore } from '@scrow/hooks'
+import { useDraftStore } from '@bitescrow/hooks'
 import { useConfig }     from '@/hooks/useConfig'
 import { ChainNetwork }  from '@bitescrow/client-sdk'
 import CONFIG            from '@/config/index.js'

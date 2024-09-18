@@ -8,7 +8,7 @@ import { Badge, Box, Button, Code, Group, Text, Title } from '@mantine/core'
 
 import Controls      from './controls'
 import TimerProgress from '@/components/ui/TimerProgress'
-import { useDepositUpdate } from '@scrow/hooks'
+import { useDepositUpdate } from '@bitescrow/hooks'
 import { useClient } from '@/hooks/useClient'
 
 interface Props {

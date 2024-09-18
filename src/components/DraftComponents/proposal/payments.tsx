@@ -1,6 +1,6 @@
 import { useForm }             from '@mantine/form'
 import { IconPlus, IconTrash } from '@tabler/icons-react'
-import { DraftStore }          from '@scrow/hooks'
+import { DraftStore }          from '@bitescrow/hooks'
 import { useErrorToast }       from '@/hooks/useToast'
 
 import NoData       from '@/components/ui/NoData'

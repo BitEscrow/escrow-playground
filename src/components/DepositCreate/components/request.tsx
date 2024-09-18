@@ -1,6 +1,6 @@
 import { now }            from '@bitescrow/client-sdk/util'
 import { EscrowSigner }   from '@bitescrow/client-sdk'
-import { useFeeRates }    from '@scrow/hooks'
+import { useFeeRates }    from '@bitescrow/hooks'
 import { useClient }      from '@/hooks/useClient'
 import { useErrResToast } from '@/hooks/useToast'
 import { useState }       from 'react'

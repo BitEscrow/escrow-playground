@@ -1,5 +1,5 @@
 import { ContractData }      from '@bitescrow/client-sdk/core'
-import { useContractUpdate } from '@scrow/hooks'
+import { useContractUpdate } from '@bitescrow/hooks'
 import { useClient }         from '@/hooks/useClient'
 import { useClipboard }      from '@mantine/hooks'
 import { truncate_id }       from '@/lib/draft'

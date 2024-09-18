@@ -2,7 +2,7 @@ import { useForm }            from '@mantine/form'
 import { CoreLib }            from '@bitescrow/client-sdk'
 import { get_vm_engine }      from '@/lib/vms'
 import { useClient }          from '@/hooks/useClient'
-import { useContractUpdate }  from '@scrow/hooks/contract'
+import { useContractUpdate }  from '@bitescrow/hooks/contract'
 import { get_machine_config } from '@bitescrow/client-sdk/machine'
 
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
@@ -32,10 +32,10 @@ export default function ({ contract, signer, update } : Props) {
 
   const form = useForm({
     initialValues : {
-      method  : vm.methods[0],
+      method  : vm.methods[1],
       action  : vm.actions[0],
       content : '',
-      path    : pnames[0],
+      path    : '',
       args    : []
     }
   })
@@ -47,6 +47,7 @@ export default function ({ contract, signer, update } : Props) {
         const config = get_machine_config(contract)
         const tmpl   = form.getValues()
         console.log('witness template:', tmpl)
+        if (tmpl.path === '') tmpl.path = null
         const req    = signer.witness.create(config, tmpl)
         client.machine.submit(req).then(res => {
           if (res.ok) {
@@ -80,7 +81,7 @@ export default function ({ contract, signer, update } : Props) {
         <NativeSelect
           label="Path"
           description="Spending path to select for action."
-          data={pnames}
+          data={[ ...pnames, '' ]}
           {...form.getInputProps('path')}
         />
       </Group>

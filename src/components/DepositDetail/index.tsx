@@ -1,6 +1,6 @@
 import { useState }   from 'react'
 import { useParams }  from 'react-router-dom'
-import { useDeposit } from '@scrow/hooks/deposit'
+import { useDeposit } from '@bitescrow/hooks/deposit'
 import { useClient }  from '@/hooks/useClient'
 
 import {

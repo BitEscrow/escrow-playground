@@ -1,6 +1,6 @@
 import { useState }    from 'react'
 import { useParams }   from 'react-router-dom'
-import { useContract } from '@scrow/hooks/contract'
+import { useContract } from '@bitescrow/hooks/contract'
 import { useClient }   from '@/hooks/useClient'
 import { useSigner }   from '@/hooks/useSigner'
 

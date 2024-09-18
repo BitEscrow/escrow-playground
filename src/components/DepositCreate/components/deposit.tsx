@@ -1,6 +1,6 @@
 import { AccountData }    from '@bitescrow/client-sdk'
 import { useClient }      from '@/hooks/useClient'
-import { usePayAddress }  from '@scrow/hooks'
+import { usePayAddress }  from '@bitescrow/hooks'
 import { truncate_id }    from '@/lib/draft'
 import QRCode             from 'react-qr-code'
 import CopyBtn            from '@/components/ui/copyBtn'

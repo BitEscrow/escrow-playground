@@ -1,4 +1,4 @@
-import { PolicyStore } from '@scrow/hooks/draft'
+import { PolicyStore } from '@bitescrow/hooks/draft'
 
 import { format_label, truncate_id }                 from '@/lib/draft'
 import { Accordion, ActionIcon, Card, Code, Group, Text, Title } from '@mantine/core'

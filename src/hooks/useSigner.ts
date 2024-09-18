@@ -1,4 +1,4 @@
-import { createSignerStore } from '@scrow/hooks/signer'
+import { createSignerStore } from '@bitescrow/hooks/signer'
 
 import CONFIG from '@/config/index.js'
 

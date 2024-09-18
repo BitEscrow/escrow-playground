@@ -1,5 +1,5 @@
 import { Box, JsonInput } from '@mantine/core'
-import { DraftStore }     from '@scrow/hooks'
+import { DraftStore }     from '@bitescrow/hooks'
 
 interface Props {
   draft : DraftStore

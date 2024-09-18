@@ -1,7 +1,7 @@
 import { get_time_elapsed }   from '@/lib/time'
 import { IconLink }           from '@tabler/icons-react'
 import { ContractData }       from '@bitescrow/client-sdk'
-import { useContractFunds }   from '@scrow/hooks'
+import { useContractFunds }   from '@bitescrow/hooks'
 import { useClient }          from '@/hooks/useClient'
 import { useSigner }          from '@/hooks/useSigner'
 import { useNavigate }        from 'react-router-dom'

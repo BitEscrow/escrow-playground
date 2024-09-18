@@ -1,7 +1,7 @@
 import { useEffect }          from 'react'
 import { EscrowSigner }       from '@bitescrow/client-sdk'
 import { check }              from '@bitescrow/client-sdk/util'
-import { useContract }        from '@scrow/hooks'
+import { useContract }        from '@bitescrow/hooks'
 import { useClient }          from '@/hooks/useClient'
 import { Loader, Stack }      from '@mantine/core'
 import { get_contract_value } from '@bitescrow/client-sdk/contract'
