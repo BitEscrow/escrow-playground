@@ -9,10 +9,10 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@bitescrow/client-sdk@^0.15.7":
-  version "0.15.7"
-  resolved "https://npm.pkg.github.com/download/@bitescrow/client-sdk/0.15.7/34d9593fcff18f6a603ce88f482c0f52bb4b2eeb#34d9593fcff18f6a603ce88f482c0f52bb4b2eeb"
-  integrity sha512-yBYGkwp6AcYeBfhZWmlJH0obDWzmsuuabbKjL1yGC9KUWOqDco9gSM3yTJC3oVkKJAVDR2P6J7bgf96kWRq8bQ==
+"@bitescrow/client-sdk@^0.15.8":
+  version "0.15.8"
+  resolved "https://npm.pkg.github.com/download/@bitescrow/client-sdk/0.15.8/4910c318a440960624260e45e2cb06aa65f975b7#4910c318a440960624260e45e2cb06aa65f975b7"
+  integrity sha512-JiUcRLQzZWaYpwIGd5x67pSlI87TcRGlKICtzew+4dBIxNQsCx/NitK7LAd86DZdVI2WjR2hsIfVPCaDJsLVZg==
   dependencies:
     "@cmdcode/buff" "2.2.5"
     "@cmdcode/crypto-tools" "2.7.6"
@@ -20,6 +20,17 @@
     "@cmdcode/signer" "1.4.7"
     "@scrow/tapscript" "2.2.4"
     zod "^3.23.8"
+
+"@bitescrow/hooks@^0.5.4":
+  version "0.5.4"
+  resolved "https://npm.pkg.github.com/download/@bitescrow/hooks/0.5.4/fabb28b4ef273014e4a3afc3d3fdbd321f4b3515#fabb28b4ef273014e4a3afc3d3fdbd321f4b3515"
+  integrity sha512-5vN8qvp6my8I/zZiUpQzAS6+BIzB6uy7HOnWX66Si/3vqYOzOVCMYzIuOFNZ9kc90WTRz9B/htYCVW4rSUueEQ==
+  dependencies:
+    "@bitescrow/client-sdk" "^0.15.8"
+    "@cmdcode/buff" "^2.2.5"
+    "@cmdcode/signer" "^1.4.7"
+    "@cmdcode/use-store" "^1.1.2"
+    swr "^2.2.5"
 
 "@cmdcode/buff@2.2.5", "@cmdcode/buff@^2.2.5":
   version "2.2.5"
@@ -576,38 +587,6 @@
   version "4.21.3"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.21.3.tgz#4115233aa1bd5a2060214f96d8511f6247093212"
   integrity sha512-fOvu7PCQjAj4eWDEuD8Xz5gpzFqXzGlxHZozHP4b9Jxv9APtdxL6STqztDzMLuRXEc4UpXGGhx029Xgm91QBeA==
-
-"@bitescrow/hooks@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@bitescrow/hooks/-/hooks-0.5.2.tgz#3a6291414cbeed4db5b6bb295a9484490b1a5d16"
-  integrity sha512-4gG4n+QhVKWRJStKPu94zQRgXrAo6t50PyrVnkLitJsPq8wN+Y9zcojBjHxTR2WeC0Nol+ssYkc/No57PMPmOA==
-  dependencies:
-    "@cmdcode/buff" "^2.2.5"
-    "@cmdcode/signer" "^1.4.7"
-    "@cmdcode/use-store" "^1.1.2"
-    "@scrow/sdk" "^0.15.1"
-    swr "^2.2.5"
-
-"@scrow/sdk@^0.15.1":
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/@scrow/sdk/-/sdk-0.15.1.tgz#195a9c0c24a0376094e32fa13165b2596220994b"
-  integrity sha512-F+xE12gbNQKF5JmbZYKcMQce2lYTmTozLO8CyI8Mu8kFKZ1Y5lfaAHgfbz14knB++z/G4bzSXpeUXnifKwQQsA==
-  dependencies:
-    "@cmdcode/buff" "2.2.5"
-    "@cmdcode/crypto-tools" "2.7.6"
-    "@cmdcode/musig2" "2.4.3"
-    "@cmdcode/signer" "1.4.7"
-    "@scrow/tapscript" "2.2.2"
-    zod "^3.22.4"
-
-"@scrow/tapscript@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@scrow/tapscript/-/tapscript-2.2.2.tgz#0958a9ad5009154cebea6b5b5872c2e0d269e898"
-  integrity sha512-POtV7oAZL+vPUAe4nlM2xVpRtttbcHSRdu4eJ8Emh77fk+wzPkrOXlBKRicHgyLafMLkJ3tVXNoGzCRQ6LTzsg==
-  dependencies:
-    "@cmdcode/buff" "^2.2.5"
-    "@cmdcode/crypto-tools" "^2.7.6"
-    zod "^3.22.4"
 
 "@scrow/tapscript@2.2.4":
   version "2.2.4"

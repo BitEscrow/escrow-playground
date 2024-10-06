@@ -4,7 +4,7 @@
       "title": "Buyer / seller contract with third-party arbitration",
       "duration": 14400,
       "network": "mutiny",
-      "schedule": [[ 7200, "close|resolve", "*" ]],
+      "schedule": [[ 7200, "spend|resolve", "*" ]],
       "value": 10000
     },
     "roles": [
@@ -14,7 +14,7 @@
           [ "return", 10000 ]
         ],
         "programs": [
-          [ "endorse", "close",   "*", 2 ],
+          [ "endorse", "spend|close", "*", 2 ],
           [ "endorse", "dispute", "*", 1 ]
         ]
       },
@@ -24,7 +24,7 @@
           [ "payout", 10000 ]
         ],
         "programs": [
-          [ "endorse", "close",   "*", 2 ],
+          [ "endorse", "spend|close", "*", 2 ],
           [ "endorse", "dispute", "*", 1 ]
         ]
       },

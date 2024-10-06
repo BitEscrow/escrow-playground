@@ -1,10 +1,10 @@
 import { useForm }            from '@mantine/form'
-import { CoreLib }            from '@bitescrow/client-sdk'
 import { get_vm_engine }      from '@/lib/vms'
 import { useClient }          from '@/hooks/useClient'
 import { useContractUpdate }  from '@bitescrow/hooks/contract'
 import { get_machine_config } from '@bitescrow/client-sdk/machine'
 
+import { CoreLib, WitnessTemplate }      from '@bitescrow/client-sdk'
 import { useErrResToast, useErrorToast } from '@/hooks/useToast'
 
 import { Button, Card, Group, NativeSelect, TagsInput, Textarea } from '@mantine/core'
@@ -45,7 +45,7 @@ export default function ({ contract, signer, update } : Props) {
     if (activated && form.isValid()) {
       try {
         const config = get_machine_config(contract)
-        const tmpl   = form.getValues()
+        const tmpl   = form.getValues() as WitnessTemplate
         console.log('witness template:', tmpl)
         if (tmpl.path === '') tmpl.path = null
         const req    = signer.witness.create(config, tmpl)
